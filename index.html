@@ -3,495 +3,375 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dr Wehan M. Coombs · English teacher, philosopher, tutor</title>
-<meta name="description" content="Dr Wehan M. Coombs: English Home Language teacher, philosophy lecturer and researcher (Plato, Neoplatonism, esotericism), and freelance tutor, editor and learning designer in Pretoria East.">
-<meta property="og:title" content="Dr Wehan M. Coombs">
-<meta property="og:description" content="English teacher, philosopher and learning designer in Pretoria East. Teaching, research, freelance services and CVs.">
+<title>Wehan Coombs · Teacher, philosopher, maker</title>
+<meta name="description" content="Dr Wehan M. Coombs teaches English, lectures and writes on Plato, Neoplatonism and esotericism, and builds tools for learning. Pretoria East, South Africa.">
+<meta property="og:title" content="Wehan Coombs · Teacher, philosopher, maker">
+<meta property="og:description" content="English teacher. Philosopher of Plato and the esoteric. Tutor, editor and learning designer in Pretoria East.">
 <meta property="og:image" content="https://wehancoombs.github.io/headshot.jpg">
 <meta property="og:url" content="https://wehancoombs.github.io/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#1C1A17">
+<meta name="theme-color" content="#100F0D">
 <script>
   // Apply a remembered light-mode choice before the page paints, so there is no flash.
   try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E3A56'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='32' fill='%23F6F1E7'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23100F0D'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23C9A24D' stroke-width='2'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%23ECE4D6'%3EW%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-  /* Dark is the default. The light values live under [data-theme="light"]. */
-  :root {
-    --paper: #1C1A17;
-    --paper-2: #232019;
-    --ink: #EAE2D4;
-    --ink-soft: #B3A898;
-    --rule: #3A352E;
-    --navy: #C7D5E3;
-    --navy-soft: #9DB3C9;
-    --accent: #D7906F;
-    --accent-soft: #E6AD92;
-    --white: #2A2622;
-    --foot-bg: #121110;
-    --foot-text: #B3A898;
-    --foot-bright: #EAE2D4;
-    --top-bg: rgba(28,26,23,.94);
-    color-scheme: dark;
-  }
-  :root[data-theme="light"] {
-    --paper: #F7F2E8;
-    --paper-2: #EFE7D7;
-    --ink: #2A2520;
-    --ink-soft: #5C544B;
-    --rule: #DCD2C0;
-    --navy: #1E3A56;
-    --navy-soft: #3F5C7A;
-    --accent: #8A3B2C;
-    --accent-soft: #B06A58;
-    --white: #FFFCF6;
-    --foot-bg: #1E3A56;
-    --foot-text: #C9D6E3;
-    --foot-bright: #FFFCF6;
-    --top-bg: rgba(247,242,232,.94);
-    color-scheme: light;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-  body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.65 'Source Sans 3', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:hover { color: var(--accent-soft); }
-  h1, h2, h3, h4, blockquote, .serif { font-family: 'EB Garamond', Georgia, serif; }
-  h1, h2, h3, h4 { color: var(--navy); font-weight: 500; line-height: 1.15; margin: 0; }
-  p { margin: 0 0 1em; }
-  em { font-style: italic; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-  .eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 12px; }
-  .muted { color: var(--ink-soft); }
-  .small { font-size: 15.5px; }
-
-  /* ---------- Header / nav ---------- */
-  .top { position: sticky; top: 0; z-index: 20; background: var(--top-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
-  .top .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 60px; gap: 16px; }
-  .top .right { display: flex; align-items: center; gap: 14px; }
-  .theme { font: inherit; font-size: 14.5px; color: var(--ink-soft); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; cursor: pointer; white-space: nowrap; }
-  .theme:hover { color: var(--accent); border-color: var(--accent); }
-  .brand { font-family: 'EB Garamond', serif; font-size: 21px; color: var(--navy); text-decoration: none; white-space: nowrap; }
-  .brand:hover { color: var(--navy); }
-  .top nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
-  .top nav a { color: var(--ink-soft); text-decoration: none; font-size: 15.5px; white-space: nowrap; padding: 6px 0; }
-  .top nav a:hover { color: var(--accent); }
-  .menu-btn { display: none; }
-  .menu-btn summary { list-style: none; cursor: pointer; font-size: 15.5px; color: var(--navy); padding: 8px 12px; border: 1px solid var(--rule); border-radius: 6px; background: var(--white); user-select: none; }
-  .menu-btn summary::-webkit-details-marker { display: none; }
-
-  /* ---------- Hero ---------- */
-  .hero { padding: 72px 0 48px; }
-  .hero .wrap { display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: center; }
-  .hero img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 4px var(--paper), 0 0 0 6px var(--navy); display: block; }
-  .hero h1 { font-size: 56px; letter-spacing: -.01em; color: var(--ink); }
-  .hero .tag { font-family: 'EB Garamond', serif; font-style: italic; font-size: 23px; color: var(--navy-soft); margin: 10px 0 18px; }
-  .hero p.intro { max-width: 600px; font-size: 19px; margin: 0; }
-
-  /* ---------- Doors ---------- */
-  .doors { padding: 8px 0 64px; }
-  .doors .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .door { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--rule); border-top: 3px solid var(--navy); border-radius: 8px; padding: 22px 22px 20px; text-decoration: none; color: inherit; transition: transform .15s ease, box-shadow .15s ease; }
-  .door:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -14px rgba(42,37,32,.35); color: inherit; }
-  .door .eyebrow { margin-bottom: 8px; }
-  .door h3 { font-size: 25px; margin-bottom: 8px; }
-  .door p { color: var(--ink-soft); font-size: 16.5px; margin: 0 0 14px; flex: 1; }
-  .door .go { color: var(--accent); font-weight: 600; font-size: 15.5px; }
-
-  /* ---------- Sections ---------- */
-  section { padding: 64px 0; border-top: 1px solid var(--rule); }
-  section.band { background: var(--paper-2); }
-  h2 { font-size: 40px; margin-bottom: 10px; }
-  .lead { font-size: 19.5px; color: var(--ink-soft); max-width: 680px; margin: 0 0 32px; }
-  h3 { font-size: 24px; }
-  h4 { font-size: 20px; font-family: 'Source Sans 3', sans-serif; font-weight: 600; color: var(--ink); }
-  .sub { font-family: 'EB Garamond', serif; font-size: 26px; color: var(--navy); margin: 40px 0 14px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
-  .sub:first-of-type { margin-top: 0; }
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 40px; }
-  .card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 24px; }
-  .card h3 { margin-bottom: 4px; }
-  .card .when { color: var(--ink-soft); font-size: 15.5px; font-style: italic; font-family: 'EB Garamond', serif; font-size: 17px; margin-bottom: 10px; }
-  ul.list { list-style: none; margin: 0; padding: 0; }
-  ul.list li { position: relative; padding-left: 20px; margin-bottom: 9px; }
-  ul.list li::before { content: ""; position: absolute; left: 2px; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  ul.list li:last-child { margin-bottom: 0; }
-  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
-  .pills span { border: 1px solid var(--rule); background: var(--white); color: var(--ink); padding: 5px 14px; border-radius: 999px; font-size: 15.5px; }
-  blockquote { margin: 0 0 32px; padding: 6px 0 6px 24px; border-left: 3px solid var(--accent); font-size: 24px; line-height: 1.45; color: var(--ink); font-style: italic; max-width: 720px; }
-  dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 8px 20px; margin: 0; }
-  dl.facts dt { color: var(--ink-soft); font-size: 15.5px; letter-spacing: .04em; text-transform: uppercase; padding-top: 3px; }
-  dl.facts dd { margin: 0; }
-  .pub { margin-bottom: 16px; padding-left: 20px; text-indent: -20px; }
-  .pub:last-child { margin-bottom: 0; }
-  .btn { display: inline-block; padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15.5px; border: 1px solid var(--navy); color: var(--navy); background: transparent; }
-  .btn:hover { background: var(--navy); color: var(--white); }
-  .btn.solid { background: var(--navy); color: var(--white); }
-  .btn.solid:hover { background: var(--navy-soft); border-color: var(--navy-soft); }
-  .cvgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .cvgrid .card { display: flex; flex-direction: column; }
-  .cvgrid .card p { flex: 1; color: var(--ink-soft); margin: 6px 0 16px; }
-  .cvgrid .card .btn { align-self: flex-start; }
-  .contact-list { list-style: none; margin: 0; padding: 0; font-size: 19px; }
-  .contact-list li { margin-bottom: 10px; }
-  footer { background: var(--foot-bg); color: var(--foot-text); padding: 36px 0 44px; font-size: 15.5px; }
-  footer .wrap { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  footer em { font-family: 'EB Garamond', serif; font-size: 19px; color: var(--foot-bright); }
-  footer a { color: var(--foot-text); }
-
-  /* ---------- Phones and small tablets ---------- */
-  @media (max-width: 820px) {
-    .doors .grid { grid-template-columns: 1fr; }
-    .cols, .cvgrid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 680px) {
-    body { font-size: 17px; }
-    .top .wrap { flex-wrap: wrap; }
-    .brand { font-size: 19px; }
-    .top .right { gap: 10px; }
-    .theme { padding: 6px 10px; }
-    .theme .lbl { display: none; }
-    .menu-btn { display: block; }
-    .top nav { display: none; width: 100%; }
-    .top.menu-open nav { display: block; }
-    .top nav ul { flex-direction: column; gap: 0; padding: 6px 0 14px; }
-    .top nav a { display: block; padding: 10px 0; font-size: 17px; border-top: 1px solid var(--rule); }
-    .hero { padding: 44px 0 32px; }
-    .hero .wrap { grid-template-columns: 1fr; text-align: center; gap: 24px; justify-items: center; }
-    .hero img { width: 150px; height: 150px; }
-    .hero h1 { font-size: 40px; }
-    .hero .tag { font-size: 20px; }
-    .hero p.intro { font-size: 17.5px; }
-    section { padding: 48px 0; }
-    h2 { font-size: 33px; }
-    .lead { font-size: 18px; }
-    blockquote { font-size: 21px; padding-left: 18px; }
-    dl.facts { grid-template-columns: 1fr; gap: 2px; }
-    dl.facts dt { padding-top: 10px; }
-    .pub { padding-left: 0; text-indent: 0; }
-  }
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body data-chapter="threshold">
+
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="lantern" id="lantern" aria-hidden="true"></div>
 
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="#top">Dr Wehan M. Coombs</a>
-    <div class="right">
-      <button class="theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
-      <details class="menu-btn" id="menu"><summary>Menu</summary></details>
-    </div>
-    <nav aria-label="Sections">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#teaching">Teaching</a></li>
-        <li><a href="#lecturing">Lecturing</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#freelance">Freelance</a></li>
-        <li><a href="#cvs">CVs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <a class="brand" href="#threshold"><span class="mono">W</span><span class="name">Dr Wehan M. Coombs</span></a>
+  <div class="links">
+    <a class="pill" href="profile.html">Full profile</a>
+    <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
   </div>
 </header>
 
-<main id="top">
+<nav class="dots" aria-label="Chapters">
+  <a href="#threshold"><span>Begin</span></a>
+  <a href="#paths"><span>Paths</span></a>
+  <a href="#teach"><span>Teach</span></a>
+  <a href="#think"><span>Think</span></a>
+  <a href="#make"><span>Make</span></a>
+  <a href="#sofar"><span>So far</span></a>
+  <a href="#write"><span>Write</span></a>
+</nav>
 
-<div class="hero">
-  <div class="wrap">
-    <img src="headshot.jpg" alt="Portrait of Wehan Coombs in front of a bookshelf" width="180" height="180">
+<main>
+
+<!-- ===================== 1. Threshold ===================== -->
+<section id="threshold" class="chapter hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow reveal">Pretoria East · South Africa</p>
+      <h1 class="display reveal">Wehan<br>Coombs</h1>
+      <p class="line reveal">I teach English, think about Plato, and build things that help people learn.</p>
+      <p class="whisper reveal">
+        <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
+        <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
+      </p>
+    </div>
+    <div class="solid-wrap reveal">
+      <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
+      <p class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></p>
+      <p class="solid-hint">After Plato’s <em>Timaeus</em> · drag to turn · tap to change</p>
+    </div>
+  </div>
+  <a class="cue" href="#paths" aria-label="Scroll down"><span></span></a>
+</section>
+
+<!-- ===================== 2. Three paths ===================== -->
+<section id="paths" class="chapter">
+  <div class="wrap paths-grid">
     <div>
-      <h1>Dr Wehan M. Coombs</h1>
-      <p class="tag">English teacher, philosopher and learning designer · Pretoria East</p>
-      <p class="intro">I taught philosophy at the University of Pretoria for fifteen years and now teach English in high school classrooms as well. Whether the text is <em>Macbeth</em> or Plato’s <em>Republic</em>, I care about the same things: reading closely, thinking clearly and writing well.</p>
+      <p class="eyebrow reveal">Three paths</p>
+      <h2 class="display reveal">Choose<br><em>yours.</em></h2>
+      <p class="line reveal">One person, three kinds of work. Follow the one that brought you here.</p>
     </div>
-  </div>
-</div>
-
-<div class="doors">
-  <div class="wrap">
-    <div class="grid">
-      <a class="door" href="#teaching">
-        <p class="eyebrow">For schools</p>
-        <h3>English Home Language teacher</h3>
-        <p>FET Phase. PGCE practicums at Abbotts College Pretoria East and Hoërskool Garsfontein, with a mentor assessment of 95/100.</p>
-        <span class="go">Teaching record and approach →</span>
+    <svg class="paths reveal" viewBox="0 0 720 660" role="group" aria-label="Three paths: Teach, Think and Make">
+      <circle class="ring" cx="360" cy="330" r="312"/>
+      <a href="#teach" class="path teach" aria-label="Teach, for schools">
+        <circle cx="250" cy="250" r="182"/>
+        <text class="word" x="250" y="246">Teach</text>
+        <text class="sub" x="250" y="282">for schools</text>
       </a>
-      <a class="door" href="#lecturing">
-        <p class="eyebrow">For universities</p>
-        <h3>Philosophy lecturer and researcher</h3>
-        <p>Head lecturer at UP, postdoctoral fellow at UJ. Plato, Neoplatonism and philosophical esotericism.</p>
-        <span class="go">Courses, posts and research →</span>
+      <a href="#think" class="path think" aria-label="Think, for universities">
+        <circle cx="470" cy="250" r="182"/>
+        <text class="word" x="470" y="246">Think</text>
+        <text class="sub" x="470" y="282">for universities</text>
       </a>
-      <a class="door" href="#freelance">
-        <p class="eyebrow">For students and clients</p>
-        <h3>Tutor, editor, learning designer</h3>
-        <p>English and philosophy tutoring, online English lessons, editing of essays and theses, and course and tool design.</p>
-        <span class="go">Services →</span>
+      <a href="#make" class="path make" aria-label="Make, for students and clients">
+        <circle cx="360" cy="440" r="182"/>
+        <text class="word" x="360" y="436">Make</text>
+        <text class="sub" x="360" y="472">for students &amp; clients</text>
       </a>
-    </div>
-  </div>
-</div>
-
-<section id="about">
-  <div class="wrap">
-    <p class="eyebrow">About</p>
-    <h2>A teacher first</h2>
-    <p class="lead">Philosopher and English teacher with a PhD and fifteen years of university teaching, from tutoring first-years to designing and running honours modules.</p>
-    <div class="cols">
-      <div>
-        <p>I joined the Department of Philosophy at the University of Pretoria as a tutor in 2010 and stayed on as assistant lecturer and then head lecturer, teaching first-year classes of more than five hundred students and designing four modules from scratch. From 2024 to 2026 I held a postdoctoral research fellowship at the University of Johannesburg on Platonic and African esotericism.</p>
-        <p>In 2026 I turned to the school classroom. During my Postgraduate Certificate in Education I taught Grade 10 and 11 English at Abbotts College Pretoria East and Hoërskool Garsfontein, and found the same pleasure there that I had found in the lecture hall: watching a room of people start to think together.</p>
-        <p style="margin:0">Alongside teaching I tutor, edit, and build study materials and simple web tools for learning.</p>
-      </div>
-      <div>
-        <dl class="facts">
-          <dt>Qualifications</dt>
-          <dd>PhD in Philosophy (UP, 2023) · MA cum laude (2016) · BA Hons cum laude (2012) · BA English Literature and Philosophy (2010)</dd>
-          <dt>In progress</dt>
-          <dd>PGCE, FET Phase (University of Pretoria)</dd>
-          <dt>Certificates</dt>
-          <dd>120-hour TESOL/TEFL (World TESOL Academy, 2026)</dd>
-          <dt>Registration</dt>
-          <dd>SACE provisional registration, student teacher (2026)</dd>
-          <dt>Languages</dt>
-          <dd>English (home language), Afrikaans (fluent)</dd>
-          <dt>Based in</dt>
-          <dd>Pretoria East, Gauteng · in person or online</dd>
-        </dl>
-      </div>
-    </div>
+      <circle class="core" cx="360" cy="313" r="5"/>
+    </svg>
   </div>
 </section>
 
-<section id="teaching" class="band">
+<!-- ===================== 3. Teach ===================== -->
+<section id="teach" class="chapter">
   <div class="wrap">
-    <p class="eyebrow">For schools</p>
-    <h2>Teaching English</h2>
-    <p class="lead">FET Phase English, Home Language and First Additional Language. Literature, poetry, grammar and the craft of the essay.</p>
-
-    <blockquote>Learners do their best thinking when they feel known and respected. I start from what they already know, then set a challenge they reason through together in discussion, and end by applying the new skill to their own lives, so they leave with ideas they can call their own.</blockquote>
-
-    <div class="cols">
-      <div class="card">
-        <h3>Abbotts College Pretoria East</h3>
-        <div class="when">PGCE teaching practicum · July to September 2026</div>
-        <ul class="list">
-          <li>Planned and taught Grade 10 and 11 English Home Language over seven weeks, including <em>Macbeth</em> and <em>The Tempest</em>, taking charge of classes with guidance from a mentor teacher</li>
-          <li>Used regular informal assessment to check what learners had understood</li>
-          <li>Mentor assessment: 95/100, with full marks for classroom competencies; 98/100 for a lesson observed by my university mentor</li>
-          <li>Tended the community garden, helped organise a Book Day donation drive and a shoe donation outreach</li>
-        </ul>
+    <div class="ch-head">
+      <div>
+        <p class="eyebrow reveal">For schools</p>
+        <h2 class="display reveal">Teach</h2>
+        <p class="line reveal">English Home Language, FET Phase. Learners as real thinking partners.</p>
       </div>
-      <div class="card">
-        <h3>Hoërskool Garsfontein</h3>
-        <div class="when">PGCE teaching practicum · May 2026</div>
-        <ul class="list">
-          <li>Planned and taught Grade 10 and 11 English First Additional Language grammar and poetry over three weeks</li>
-          <li>Helped with the school’s <em>Kersfees in die Winter</em> charity drive</li>
-        </ul>
-      </div>
+      <ul class="stats reveal">
+        <li><b data-count="95">0</b><span>/100 mentor assessment</span></li>
+        <li><b data-count="98">0</b><span>/100 observed lesson</span></li>
+        <li><b data-count="7">0</b><span>weeks in charge of classes</span></li>
+      </ul>
     </div>
 
-    <div class="cols" style="margin-top:40px">
-      <div>
-        <div class="sub">Strengths</div>
-        <div class="pills">
-          <span>Dynamic, engaged classrooms</span><span>Question-led discussion</span><span>Close reading of literature and poetry</span>
-          <span>Essay and argument writing</span><span>Lesson planning and module design</span><span>Rubric design and marking</span>
-          <span>Online and hybrid teaching</span><span>Training and mentoring tutors</span>
+    <div class="grid-2">
+      <figure class="arc reveal">
+        <figcaption class="eyebrow">The arc of a lesson</figcaption>
+        <svg viewBox="0 0 520 300" aria-label="A lesson rises from what learners know, through a challenge, to ideas they own">
+          <path id="arcpath" d="M40 250 C 150 250 170 150 260 150 S 380 50 480 50"/>
+          <circle class="runner" r="4.5" cx="40" cy="250"/>
+          <g class="node" tabindex="0" role="button" aria-pressed="false" data-x="40" data-y="250" data-text="Start from what they already know.">
+            <circle class="hit" cx="40" cy="250" r="24"/><circle class="pt" cx="40" cy="250" r="7"/><text x="40" y="286">Known</text>
+          </g>
+          <g class="node" tabindex="0" role="button" aria-pressed="false" data-x="260" data-y="150" data-text="Set a challenge they reason through together, in discussion.">
+            <circle class="hit" cx="260" cy="150" r="24"/><circle class="pt" cx="260" cy="150" r="7"/><text x="260" y="118">Challenge</text>
+          </g>
+          <g class="node" tabindex="0" role="button" aria-pressed="false" data-x="480" data-y="50" data-text="End by applying it to their own lives, so they leave with ideas they can call their own.">
+            <circle class="hit" cx="480" cy="50" r="24"/><circle class="pt" cx="480" cy="50" r="7"/><text x="480" y="88">Own</text>
+          </g>
+        </svg>
+        <p class="arc-text" id="arc-text">Start from what they already know.</p>
+      </figure>
+
+      <div class="reveal">
+        <p class="eyebrow">On the desk in 2026</p>
+        <div class="shelf" role="group" aria-label="Texts taught">
+          <button class="book b1" type="button" data-cap="Grade 10 and 11 English Home Language · Abbotts College Pretoria East · July to September 2026">Macbeth</button>
+          <button class="book b2" type="button" data-cap="Grade 10 and 11 English Home Language · Abbotts College Pretoria East · July to September 2026">The Tempest</button>
+          <button class="book b3" type="button" data-cap="Grade 10 and 11 English First Additional Language, grammar and poetry · Hoërskool Garsfontein · May 2026">Poetry &amp; grammar</button>
         </div>
-      </div>
-      <div>
-        <div class="sub">Beyond the classroom</div>
-        <ul class="list">
-          <li><strong>Squash:</strong> league player at Irene Squash Club; keen to coach or run a school team</li>
-          <li><strong>Debating and public speaking:</strong> can coach debaters and adjudicate</li>
-          <li><strong>General duties:</strong> glad to help with sport, events and supervision wherever needed</li>
-          <li><strong>Professional development:</strong> Teaching and Learning Week sessions at UP on AI in schools and on indigenous language literacy (2026)</li>
-        </ul>
-      </div>
-    </div>
-    <p style="margin:32px 0 0"><a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf">Download the teaching CV (PDF)</a></p>
-  </div>
-</section>
-
-<section id="lecturing">
-  <div class="wrap">
-    <p class="eyebrow">For universities</p>
-    <h2>Lecturing philosophy</h2>
-    <p class="lead">Fifteen years in the Department of Philosophy at the University of Pretoria, and a postdoctoral fellowship at the University of Johannesburg.</p>
-
-    <div class="cols">
-      <div>
-        <div class="sub">Academic posts</div>
-        <ul class="list">
-          <li><strong>University of Johannesburg</strong>, Postdoctoral Research Fellow: Platonic and African Esotericism (April 2024 to April 2026)</li>
-          <li><strong>University of Pretoria</strong>, Department of Philosophy: Head Lecturer (2016 to 2026), Assistant Lecturer (2014 to 2018), Education Assistant (2015), Tutor (2010 to 2013)</li>
-        </ul>
-        <div class="sub">What the work involved</div>
-        <ul class="list">
-          <li>Head lecturer for first-year, second-year and honours modules, including first-year classes of more than 500 students</li>
-          <li>Designed four modules from scratch and partly redesigned a fifth, writing their study guides, and co-compiled a custom reader</li>
-          <li>Trained and managed tutor teams, planned lecture schedules and created assessments</li>
-          <li>Designed marking rubrics and marked thousands of essays and exams</li>
-          <li>Taught live online and hybrid classes on ClickUP and Blackboard</li>
-        </ul>
-      </div>
-      <div>
-        <div class="sub">Courses designed and taught</div>
-        <ul class="list">
-          <li><strong>FIL710/810</strong> Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism (Honours, 2026)</li>
-          <li><strong>FIL710</strong> The (Secret) History of Thought: Introduction to Philosophical Esotericism (Honours, 2024, 2025)</li>
-          <li><strong>FIL220</strong> The Good Life (2nd year, 2024)</li>
-          <li><strong>FIL110</strong> Introduction to Metaphysics and Epistemology (1st year, 2019 to 2021)</li>
-          <li><strong>FIL251</strong> Introduction to Moral and Political Philosophy (2nd year, partly redesigned, 2018)</li>
-          <li class="muted">Also taught FIL155 Philosophy of Medicine (2023), BPE211 Ethics (2018), FIL110 (2014, 2017), FIL120 (2014) and FIL251 (2016)</li>
-        </ul>
-        <div class="sub">Service and memberships</div>
-        <ul class="list">
-          <li>Philosophical Society of Southern Africa (since 2017)</li>
-          <li>International Society for Neoplatonic Studies (since 2017)</li>
-          <li>Co-organised the Aristotle Colloquium at UP for Aristotle’s 2400th birth year (2016)</li>
-          <li>Long-time member of Footnotes, the UP philosophy society (2010 to 2025), helping to organise talks and film screenings</li>
-        </ul>
-      </div>
-    </div>
-    <p style="margin:32px 0 0"><a class="btn" href="cv/Wehan-Coombs-PhD-CV.pdf">Download the academic CV (PDF)</a></p>
-  </div>
-</section>
-
-<section id="research" class="band">
-  <div class="wrap">
-    <p class="eyebrow">Research</p>
-    <h2>Plato, Neoplatonism and the esoteric</h2>
-    <p class="lead">My doctoral thesis, <em>Ainigma</em>, read Plato’s esotericism in its historical context. My postdoctoral project at the University of Johannesburg widened the lens to Platonic and African esotericism. Running through both is an older question: what it means to practise philosophy as a way of life.</p>
-
-    <div class="cols">
-      <div>
-        <div class="sub">Research interests</div>
-        <div class="pills">
-          <span>Plato and the Platonic tradition</span><span>Neoplatonism and theurgy</span>
-          <span>Philosophical esotericism</span><span>African philosophy and decolonial curricula</span><span>Philosophy as a way of life</span>
-        </div>
-
-        <div class="sub">Publications</div>
-        <p class="pub">Coombs, W.M. 2017. Aristotle’s harmony with Plato on separable and immortal soul. <em>South African Journal of Philosophy</em> 36(4): 541–552. <a href="https://doi.org/10.1080/02580136.2017.1385951">doi:10.1080/02580136.2017.1385951</a></p>
-        <p class="pub">Coombs, W.M. 2013. Contingency, irony and morality: A critical review of Rorty’s notion of the liberal utopia. <em>Humanities</em> 2(2): 313–327. <a href="https://doi.org/10.3390/h2020313">doi:10.3390/h2020313</a></p>
-
-        <div class="sub">Theses</div>
-        <p class="pub">PhD (2023). <a href="https://repository.up.ac.za/handle/2263/89290"><em>Ainigma: Plato’s Esotericism in Context</em></a>. University of Pretoria.</p>
-        <p class="pub">MA, cum laude (2016). <a href="https://repository.up.ac.za/handle/2263/57175"><em>Symphonia: Aristotle versus Plato Critiqued</em></a>. University of Pretoria.</p>
-
-        <div class="sub">Funding</div>
-        <ul class="list">
-          <li>UJ Postdoctoral Fellowship, Platonic and African Esotericism (2024 to 2026)</li>
-          <li>UP Doctoral Support Bursary, <em>Ainigma: Plato’s Esotericism in Context</em> (2018 to 2020)</li>
-        </ul>
-      </div>
-      <div>
-        <div class="sub">Selected conference papers</div>
-        <ul class="list">
-          <li>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis. PSSA Annual Conference, University of Cape Town, 2026 (with Mitchell Black)</li>
-          <li>Animism, Consilience and the Rights of Nature. South African Society for Environmental Philosophy, North-West University, 2025 (co-presented)</li>
-          <li>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics. PSSA Conference, North-West University, 2025</li>
-          <li>The Curious Case of Neoplatonic Ritual Magic. PSSA Conference, University of KwaZulu-Natal, 2020</li>
-          <li>Immortal and Separable Soul in Aristotle. 42nd PSSA Conference, Rhodes University, 2017</li>
-        </ul>
-        <p class="small muted" style="margin-top:14px">Thirteen papers at conferences, colloquia and workshops since 2012. The full list is in the <a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">full resume</a>.</p>
-
-        <div class="sub">Profiles</div>
-        <ul class="list">
-          <li><a href="https://orcid.org/0000-0001-9151-7344">ORCID 0000-0001-9151-7344</a></li>
-          <li><a href="https://www.researchgate.net/profile/Wehan-Coombs">ResearchGate</a></li>
-          <li><a href="https://repository.up.ac.za/handle/2263/89290">UP Research Repository</a></li>
-        </ul>
+        <p class="caption" id="shelf-cap">Tap a spine.</p>
+        <a class="seal" href="cv/Wehan-Coombs-FET-CV.pdf">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="sp-t" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+            <circle class="seal-ring" cx="60" cy="60" r="56"/>
+            <text class="seal-text"><textPath href="#sp-t">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
+            <text class="seal-letter" x="60" y="75">T</text>
+          </svg>
+          <span class="seal-label">Teaching CV<small>Two pages, PDF</small></span>
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="freelance">
+<!-- ===================== 4. Think ===================== -->
+<section id="think" class="chapter">
   <div class="wrap">
-    <p class="eyebrow">For students and clients</p>
-    <h2>Tutoring, editing and learning design</h2>
-    <p class="lead">I help students read closely, think clearly and write well, and I design the materials and tools that support that work. In person in Pretoria East, or online anywhere.</p>
-
-    <div class="cols">
-      <div class="card">
-        <h3>Tutoring and TEFL</h3>
-        <ul class="list" style="margin-top:12px">
-          <li>High school English, Grades 10 to 12, Home Language and First Additional Language: literature, poetry and essay writing</li>
-          <li>University philosophy, from first-year modules to honours</li>
-          <li>Essay and academic writing at any level: structure, argument and referencing</li>
-          <li>Online English lessons for non-native speakers, backed by a 120-hour TESOL/TEFL certificate</li>
-        </ul>
+    <div class="ch-head">
+      <div>
+        <p class="eyebrow reveal">For universities</p>
+        <h2 class="display reveal">Think</h2>
+        <p class="line reveal">Plato, Neoplatonism and the esoteric. Fifteen years in the lecture hall.</p>
       </div>
-      <div class="card">
-        <h3>Editing and writing support</h3>
-        <ul class="list" style="margin-top:12px">
+      <ul class="stats reveal">
+        <li><b data-count="15">0</b><span>years lecturing</span></li>
+        <li><b data-count="500" data-suffix="+">0</b><span>students in one class</span></li>
+        <li><b data-count="5">0</b><span>modules designed</span></li>
+        <li><b data-count="13">0</b><span>papers presented</span></li>
+      </ul>
+    </div>
+
+    <div class="sky reveal">
+      <svg id="sky" viewBox="0 0 800 540" role="group" aria-label="A constellation of research interests. Each star opens a short note."></svg>
+      <p class="hint">Hover or tap a star<span class="m-only"> · drag the sky sideways</span></p>
+      <aside class="panel" id="panel" hidden>
+        <button class="close" type="button" aria-label="Close">×</button>
+        <h3 id="panel-title"></h3>
+        <p id="panel-body"></p>
+        <ul id="panel-links"></ul>
+      </aside>
+    </div>
+
+    <div class="row-end reveal">
+      <a class="seal" href="cv/Wehan-Coombs-PhD-CV.pdf">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="sp-a" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle class="seal-ring" cx="60" cy="60" r="56"/>
+          <text class="seal-text"><textPath href="#sp-a">Academic CV · PDF · Academic CV · PDF · </textPath></text>
+          <text class="seal-letter" x="60" y="75">Φ</text>
+        </svg>
+        <span class="seal-label">Academic CV<small>Two pages, PDF</small></span>
+      </a>
+      <a class="textlink" href="profile.html#research">All publications and courses →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. Make ===================== -->
+<section id="make" class="chapter">
+  <div class="wrap">
+    <div class="ch-head">
+      <div>
+        <p class="eyebrow reveal">For students &amp; clients</p>
+        <h2 class="display reveal">Make</h2>
+        <p class="line reveal">Tutoring, editing, learning design. In Pretoria East, or online anywhere.</p>
+      </div>
+    </div>
+
+    <div class="tools">
+      <article class="tool reveal">
+        <button class="t-head" type="button" aria-expanded="false" aria-controls="t1">
+          <span class="t-vis">
+            <svg class="quill" viewBox="0 0 110 110" aria-hidden="true">
+              <g class="ghost">
+                <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
+                <path d="M18 92 C 34 70, 52 50, 76 28"/>
+                <path d="M18 92 L 10 102"/>
+              </g>
+              <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
+              <path d="M18 92 C 34 70, 52 50, 76 28"/>
+              <path d="M18 92 L 10 102"/>
+            </svg>
+          </span>
+          <span class="t-name">Tutor</span>
+          <span class="t-sub">English · Philosophy · TEFL</span>
+          <span class="t-more">What I teach</span>
+        </button>
+        <div class="t-body" id="t1"><div><ul>
+          <li>High school English, Grades 10 to 12, Home and First Additional Language</li>
+          <li>University philosophy, first year to honours</li>
+          <li>Essay and academic writing at any level</li>
+          <li>Online English for non-native speakers, 120-hour TESOL/TEFL</li>
+        </ul></div></div>
+      </article>
+
+      <article class="tool reveal">
+        <button class="t-head" type="button" aria-expanded="false" aria-controls="t2">
+          <span class="t-vis"><span class="typer" id="typer"><span class="txt"></span><span class="caret"></span></span></span>
+          <span class="t-name">Edit</span>
+          <span class="t-sub">Essays · Theses · Course materials</span>
+          <span class="t-more">What I edit</span>
+        </button>
+        <div class="t-body" id="t2"><div><ul>
           <li>Editing and proofreading of essays, theses and academic writing</li>
-          <li>Structural feedback on arguments and drafts, drawing on years of marking undergraduate and honours essays</li>
-          <li>Writing and editing study guides, readers and course materials</li>
+          <li>Structural feedback on arguments and drafts</li>
+          <li>Study guides, readers and course materials</li>
           <li>Digital PR and campaign writing for agencies</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Learning design and tools</h3>
-        <ul class="list" style="margin-top:12px">
-          <li>Course and module design, from outcomes and reading lists to assessments</li>
-          <li>Rubric and marking tools built as simple, standalone web apps</li>
+        </ul></div></div>
+      </article>
+
+      <article class="tool reveal">
+        <button class="t-head" type="button" aria-expanded="false" aria-controls="t3">
+          <span class="t-vis"><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+          <span class="t-name">Design</span>
+          <span class="t-sub">Courses · Rubrics · Web apps</span>
+          <span class="t-more">What I build</span>
+        </button>
+        <div class="t-body" id="t3"><div><ul>
+          <li>Course and module design, from outcomes to assessments</li>
+          <li>Rubric and marking tools as simple web apps</li>
           <li>Interactive web apps for learning and practice</li>
-          <li>Online lecture production: live-streamed and recorded lectures with good audio and video</li>
-        </ul>
+          <li>Online lecture production with good audio and video</li>
+        </ul></div></div>
+      </article>
+    </div>
+
+    <div class="demo reveal">
+      <div class="demo-head">
+        <p class="eyebrow">Try a marking tool</p>
+        <p class="small">I build these as small web apps for teachers. Move the sliders.</p>
       </div>
-      <div class="card">
-        <h3>How it works</h3>
-        <ul class="list" style="margin-top:12px">
-          <li>Email me with what you need and when you need it</li>
-          <li>We agree a plan, a rate and a deadline up front</li>
-          <li>Sessions in person in Pretoria East or online; editing is turned around to the agreed date</li>
-        </ul>
-        <p style="margin:18px 0 0"><a class="btn solid" href="mailto:wehancoombs@gmail.com">Email me</a></p>
+      <div class="demo-grid">
+        <label>Argument <input type="range" min="0" max="10" value="7" id="r1"><output>7</output></label>
+        <label>Evidence <input type="range" min="0" max="10" value="6" id="r2"><output>6</output></label>
+        <label>Style <input type="range" min="0" max="10" value="8" id="r3"><output>8</output></label>
+        <div class="gauge">
+          <svg viewBox="0 0 120 70" aria-hidden="true">
+            <path class="g-bg" d="M10 65 A50 50 0 0 1 110 65" pathLength="100"/>
+            <path class="g-fg" id="gfg" d="M10 65 A50 50 0 0 1 110 65" pathLength="100"/>
+          </svg>
+          <b id="g-total">21</b>
+          <span id="g-band">Strong</span>
+        </div>
       </div>
     </div>
 
-    <div class="sub" style="margin-top:40px">Strengths</div>
-    <div class="pills">
-      <span>Clear, patient explanation</span><span>Close reading and argument</span><span>Detailed, constructive feedback</span>
-      <span>Course and materials design</span><span>Online teaching</span><span>Reliable deadlines</span>
-    </div>
-    <p style="margin:32px 0 0"><a class="btn" href="cv/Wehan-Coombs-Freelance-CV.pdf">Download the freelance CV (PDF)</a></p>
+    <a class="seal reveal" href="cv/Wehan-Coombs-Freelance-CV.pdf">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+        <circle class="seal-ring" cx="60" cy="60" r="56"/>
+        <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
+        <text class="seal-letter" x="60" y="75">M</text>
+      </svg>
+      <span class="seal-label">Freelance CV<small>Two pages, PDF</small></span>
+    </a>
   </div>
 </section>
 
-<section id="cvs" class="band">
-  <div class="wrap">
-    <p class="eyebrow">CVs</p>
-    <h2>Pick the CV for your purpose</h2>
-    <p class="lead">Three two-page CVs, one for each kind of role, plus the full resume with every module taught, all conference papers, the teaching portfolio and student evaluations.</p>
-    <div class="cvgrid">
-      <div class="card"><h3>Teaching CV</h3><p>For English teaching posts in high schools.</p><a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf">Download PDF</a></div>
-      <div class="card"><h3>Academic CV</h3><p>For lecturing, research and postdoctoral posts.</p><a class="btn" href="cv/Wehan-Coombs-PhD-CV.pdf">Download PDF</a></div>
-      <div class="card"><h3>Freelance CV</h3><p>For tutoring, editing and learning design work.</p><a class="btn" href="cv/Wehan-Coombs-Freelance-CV.pdf">Download PDF</a></div>
-      <div class="card"><h3>Full resume</h3><p>The long version, kept up to date as a Google Doc.</p><a class="btn solid" href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">Open online</a></div>
+<!-- ===================== 6. So far ===================== -->
+<section id="sofar" class="chapter">
+  <div class="sofar-inner">
+    <div class="wrap">
+      <p class="eyebrow reveal">2010 → 2026</p>
+      <h2 class="display reveal">So far.</h2>
+    </div>
+    <div class="track-wrap reveal">
+      <div class="track" id="track">
+        <ol class="years">
+          <li class="ev"><button type="button" data-cap="BA Humanities in English Literature and Philosophy at the University of Pretoria, and a first year as a philosophy tutor."><b>2010</b><span>A degree and a first tutorial</span></button></li>
+          <li class="ev"><button type="button" data-cap="BA Honours in Philosophy, cum laude. First paper at a philosophy conference."><b>2012</b><span>Honours, cum laude</span></button></li>
+          <li class="ev"><button type="button" data-cap="Contingency, irony and morality: a critical review of Rorty’s liberal utopia, published in Humanities."><b>2013</b><span>First article</span></button></li>
+          <li class="ev"><button type="button" data-cap="Assistant Lecturer in the Department of Philosophy, University of Pretoria."><b>2014</b><span>Assistant lecturer</span></button></li>
+          <li class="ev"><button type="button" data-cap="MA in Philosophy, cum laude: Symphonia, Aristotle versus Plato Critiqued. Head lecturer from this year. Co-organised the Aristotle Colloquium for his 2400th birth year."><b>2016</b><span>MA, cum laude. Head lecturer</span></button></li>
+          <li class="ev"><button type="button" data-cap="Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies."><b>2017</b><span>Journal article</span></button></li>
+          <li class="ev"><button type="button" data-cap="Partly redesigned Introduction to Moral and Political Philosophy. UP Doctoral Support Bursary for Ainigma, 2018 to 2020."><b>2018</b><span>A module redesigned</span></button></li>
+          <li class="ev"><button type="button" data-cap="Head lecturer for Introduction to Metaphysics and Epistemology, a first-year class of more than 500 students, 2019 to 2021."><b>2019</b><span>500 first-years</span></button></li>
+          <li class="ev"><button type="button" data-cap="The Curious Case of Neoplatonic Ritual Magic, PSSA Conference, University of KwaZulu-Natal."><b>2020</b><span>Ritual magic</span></button></li>
+          <li class="ev"><button type="button" data-cap="PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine."><b>2023</b><span>Doctorate</span></button></li>
+          <li class="ev"><button type="button" data-cap="Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life."><b>2024</b><span>Postdoc at UJ</span></button></li>
+          <li class="ev"><button type="button" data-cap="Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy."><b>2025</b><span>Two papers</span></button></li>
+          <li class="ev"><button type="button" data-cap="PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black."><b>2026</b><span>Into the classroom</span></button></li>
+        </ol>
+      </div>
+      <div class="wrap">
+        <p class="track-cap" id="track-cap">Drag the years, or tap one.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="contact">
+<!-- ===================== 7. Write ===================== -->
+<section id="write" class="chapter">
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
-    <h2>Get in touch</h2>
-    <p class="lead">Email is the quickest way to reach me, and I reply to every message.</p>
-    <ul class="contact-list">
-      <li>Email: <a href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/in/wehan-coombs">linkedin.com/in/wehan-coombs</a></li>
-      <li>Pretoria East, Gauteng, South Africa</li>
-    </ul>
+    <p class="eyebrow reveal">Contact</p>
+    <h2 class="display reveal">Write<br><em>to me.</em></h2>
+    <a class="mail reveal" href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a>
+    <div class="seals reveal">
+      <a class="seal" href="cv/Wehan-Coombs-FET-CV.pdf">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="sp-t2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle class="seal-ring" cx="60" cy="60" r="56"/>
+          <text class="seal-text"><textPath href="#sp-t2">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
+          <text class="seal-letter" x="60" y="75">T</text>
+        </svg>
+        <span class="seal-label">Teaching CV<small>for schools</small></span>
+      </a>
+      <a class="seal" href="cv/Wehan-Coombs-PhD-CV.pdf">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="sp-a2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle class="seal-ring" cx="60" cy="60" r="56"/>
+          <text class="seal-text"><textPath href="#sp-a2">Academic CV · PDF · Academic CV · PDF · </textPath></text>
+          <text class="seal-letter" x="60" y="75">Φ</text>
+        </svg>
+        <span class="seal-label">Academic CV<small>for universities</small></span>
+      </a>
+      <a class="seal" href="cv/Wehan-Coombs-Freelance-CV.pdf">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="sp-f2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle class="seal-ring" cx="60" cy="60" r="56"/>
+          <text class="seal-text"><textPath href="#sp-f2">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
+          <text class="seal-letter" x="60" y="75">M</text>
+        </svg>
+        <span class="seal-label">Freelance CV<small>for clients</small></span>
+      </a>
+    </div>
+    <p class="write-links reveal">
+      <a href="https://www.linkedin.com/in/wehan-coombs">LinkedIn</a> ·
+      <a href="https://orcid.org/0000-0001-9151-7344">ORCID</a> ·
+      <a href="https://www.researchgate.net/profile/Wehan-Coombs">ResearchGate</a> ·
+      <a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">Full resume</a> ·
+      <a href="profile.html">The long version, in words</a>
+    </p>
   </div>
 </section>
 
@@ -499,32 +379,11 @@
 
 <footer>
   <div class="wrap">
-    <span><em>Docendo discimus.</em></span>
-    <span>© 2026 Wehan M. Coombs · <a href="#top">Back to top</a></span>
+    <em>Docendo discimus.</em>
+    <span>© 2026 Wehan M. Coombs</span>
   </div>
 </footer>
 
-<script>
-  // Close the phone menu after a section link is tapped, so it does not cover the page.
-  var menu = document.getElementById('menu'), bar = document.querySelector('.top');
-  menu.addEventListener('toggle', function () { bar.classList.toggle('menu-open', menu.open); });
-  document.querySelectorAll('.top nav a').forEach(function (a) {
-    a.addEventListener('click', function () { menu.removeAttribute('open'); });
-  });
-
-  // Dark / light toggle. Dark is the default; the visitor's choice is remembered in their browser.
-  var root = document.documentElement, btn = document.getElementById('theme');
-  function paintButton() {
-    var light = root.getAttribute('data-theme') === 'light';
-    btn.innerHTML = light ? '☾<span class="lbl"> Dark</span>' : '☀<span class="lbl"> Light</span>';
-  }
-  btn.addEventListener('click', function () {
-    var light = root.getAttribute('data-theme') === 'light';
-    if (light) { root.removeAttribute('data-theme'); } else { root.setAttribute('data-theme', 'light'); }
-    try { localStorage.setItem('theme', light ? 'dark' : 'light'); } catch (e) {}
-    paintButton();
-  });
-  paintButton();
-</script>
+<script src="assets/main.js"></script>
 </body>
 </html>
