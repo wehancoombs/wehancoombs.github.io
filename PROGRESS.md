@@ -41,12 +41,24 @@ Feel: warm, scholarly, uncluttered. Plain static files (HTML + CSS), hosted on G
 **Done**
 - Read all files, git history and the three CVs. Confirmed the live site matches the local files.
 - Started this PROGRESS.md.
+- Rebuilt `index.html` from scratch:
+  - Warm cream palette with navy headings and an oxblood accent; EB Garamond for headings, Source Sans 3 for body text (same fonts as the CVs).
+  - Hero with portrait, then three "doors": For schools / For universities / For students and clients. Each jumps to its section.
+  - Sections: About (with an at-a-glance list), Teaching English, Lecturing philosophy, Research (interests, publications, theses, funding, selected papers, ORCID and ResearchGate), Tutoring/editing/learning design (with a "How it works" card), CVs, Contact.
+  - Each audience section ends with a download button for its CV.
+  - Phone layout: a Menu button that opens a list and closes again after a tap; everything stacks in one column; checked at 375 px wide with no sideways scrolling.
+  - Favicon (a navy "W"), page title and social-preview tags so links shared on WhatsApp or LinkedIn show the headshot and a description.
+- Previewed on a local server at http://localhost:8931 (desktop and phone widths). All CV PDFs and the headshot load.
+- Committed locally. **Not pushed yet**: the live site still shows the old dark-blue version.
 
 **Next**
-- Rebuild `index.html`: warm cream palette, three audience "doors" near the top, separate Lecturing and Research sections, phone-friendly menu, favicon and social preview tags.
-- Preview locally, check on phone width, then commit. Push only when Wehan says yes.
+- Wehan reviews the preview and asks for changes.
+- When happy: push to GitHub (changes the live site).
+- Possible later additions: a short "Teaching portfolio" page or section with sample lesson plans; a proper 404 page; a dark-mode variant if wanted.
 
 **Decisions**
 - Keep the single-page layout (uncluttered; everything one scroll away) rather than many pages.
 - Keep EB Garamond + Source Sans 3 so the site matches the CVs.
 - Phone number stays off the public site (email and LinkedIn only) unless Wehan wants it on.
+- Local preview uses port 8931 because port 8765 is taken by another app on this computer.
+- A `.claude/` folder holds the preview-server settings for Claude Code; it is ignored by git and never goes online.
