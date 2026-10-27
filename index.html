@@ -10,12 +10,35 @@
 <meta property="og:image" content="https://wehancoombs.github.io/headshot.jpg">
 <meta property="og:url" content="https://wehancoombs.github.io/">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#1C1A17">
+<script>
+  // Apply a remembered light-mode choice before the page paints, so there is no flash.
+  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E3A56'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='32' fill='%23F6F1E7'%3EW%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+  /* Dark is the default. The light values live under [data-theme="light"]. */
   :root {
+    --paper: #1C1A17;
+    --paper-2: #232019;
+    --ink: #EAE2D4;
+    --ink-soft: #B3A898;
+    --rule: #3A352E;
+    --navy: #C7D5E3;
+    --navy-soft: #9DB3C9;
+    --accent: #D7906F;
+    --accent-soft: #E6AD92;
+    --white: #2A2622;
+    --foot-bg: #121110;
+    --foot-text: #B3A898;
+    --foot-bright: #EAE2D4;
+    --top-bg: rgba(28,26,23,.94);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
     --paper: #F7F2E8;
     --paper-2: #EFE7D7;
     --ink: #2A2520;
@@ -26,6 +49,11 @@
     --accent: #8A3B2C;
     --accent-soft: #B06A58;
     --white: #FFFCF6;
+    --foot-bg: #1E3A56;
+    --foot-text: #C9D6E3;
+    --foot-bright: #FFFCF6;
+    --top-bg: rgba(247,242,232,.94);
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 72px; }
@@ -42,8 +70,11 @@
   .small { font-size: 15.5px; }
 
   /* ---------- Header / nav ---------- */
-  .top { position: sticky; top: 0; z-index: 20; background: rgba(247,242,232,.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+  .top { position: sticky; top: 0; z-index: 20; background: var(--top-bg); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
   .top .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 60px; gap: 16px; }
+  .top .right { display: flex; align-items: center; gap: 14px; }
+  .theme { font: inherit; font-size: 14.5px; color: var(--ink-soft); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px; cursor: pointer; white-space: nowrap; }
+  .theme:hover { color: var(--accent); border-color: var(--accent); }
   .brand { font-family: 'EB Garamond', serif; font-size: 21px; color: var(--navy); text-decoration: none; white-space: nowrap; }
   .brand:hover { color: var(--navy); }
   .top nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
@@ -106,10 +137,10 @@
   .cvgrid .card .btn { align-self: flex-start; }
   .contact-list { list-style: none; margin: 0; padding: 0; font-size: 19px; }
   .contact-list li { margin-bottom: 10px; }
-  footer { background: var(--navy); color: #C9D6E3; padding: 36px 0 44px; font-size: 15.5px; }
+  footer { background: var(--foot-bg); color: var(--foot-text); padding: 36px 0 44px; font-size: 15.5px; }
   footer .wrap { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  footer em { font-family: 'EB Garamond', serif; font-size: 19px; color: var(--white); }
-  footer a { color: #C9D6E3; }
+  footer em { font-family: 'EB Garamond', serif; font-size: 19px; color: var(--foot-bright); }
+  footer a { color: var(--foot-text); }
 
   /* ---------- Phones and small tablets ---------- */
   @media (max-width: 820px) {
@@ -119,9 +150,13 @@
   @media (max-width: 680px) {
     body { font-size: 17px; }
     .top .wrap { flex-wrap: wrap; }
+    .brand { font-size: 19px; }
+    .top .right { gap: 10px; }
+    .theme { padding: 6px 10px; }
+    .theme .lbl { display: none; }
     .menu-btn { display: block; }
     .top nav { display: none; width: 100%; }
-    .menu-btn[open] ~ nav { display: block; }
+    .top.menu-open nav { display: block; }
     .top nav ul { flex-direction: column; gap: 0; padding: 6px 0 14px; }
     .top nav a { display: block; padding: 10px 0; font-size: 17px; border-top: 1px solid var(--rule); }
     .hero { padding: 44px 0 32px; }
@@ -145,7 +180,10 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top">Dr Wehan M. Coombs</a>
-    <details class="menu-btn" id="menu"><summary>Menu</summary></details>
+    <div class="right">
+      <button class="theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
+      <details class="menu-btn" id="menu"><summary>Menu</summary></details>
+    </div>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#about">About</a></li>
@@ -468,10 +506,25 @@
 
 <script>
   // Close the phone menu after a section link is tapped, so it does not cover the page.
-  var menu = document.getElementById('menu');
+  var menu = document.getElementById('menu'), bar = document.querySelector('.top');
+  menu.addEventListener('toggle', function () { bar.classList.toggle('menu-open', menu.open); });
   document.querySelectorAll('.top nav a').forEach(function (a) {
     a.addEventListener('click', function () { menu.removeAttribute('open'); });
   });
+
+  // Dark / light toggle. Dark is the default; the visitor's choice is remembered in their browser.
+  var root = document.documentElement, btn = document.getElementById('theme');
+  function paintButton() {
+    var light = root.getAttribute('data-theme') === 'light';
+    btn.innerHTML = light ? '☾<span class="lbl"> Dark</span>' : '☀<span class="lbl"> Light</span>';
+  }
+  btn.addEventListener('click', function () {
+    var light = root.getAttribute('data-theme') === 'light';
+    if (light) { root.removeAttribute('data-theme'); } else { root.setAttribute('data-theme', 'light'); }
+    try { localStorage.setItem('theme', light ? 'dark' : 'light'); } catch (e) {}
+    paintButton();
+  });
+  paintButton();
 </script>
 </body>
 </html>

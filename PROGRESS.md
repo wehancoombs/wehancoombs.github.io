@@ -49,16 +49,20 @@ Feel: warm, scholarly, uncluttered. Plain static files (HTML + CSS), hosted on G
   - Phone layout: a Menu button that opens a list and closes again after a tap; everything stacks in one column; checked at 375 px wide with no sideways scrolling.
   - Favicon (a navy "W"), page title and social-preview tags so links shared on WhatsApp or LinkedIn show the headshot and a description.
 - Previewed on a local server at http://localhost:8931 (desktop and phone widths). All CV PDFs and the headshot load.
-- Committed locally. **Not pushed yet**: the live site still shows the old dark-blue version.
+- Committed locally.
+
+- Added a dark / light toggle in the top bar. **Dark is the default** (warm charcoal, not blue-black); the toggle switches to the cream version, and the visitor's choice is remembered in their own browser. On phones the toggle shrinks to a sun or moon icon.
+- Fixed a bug found while testing: the phone menu would not open because a script variable was called `top`, a name browsers reserve. Renamed it.
+- Wehan said yes to publishing. Pushed to GitHub; the live site now shows the new design.
 
 **Next**
-- Wehan reviews the preview and asks for changes.
-- When happy: push to GitHub (changes the live site).
+- Live site is current. Future edits: change `index.html`, preview, commit, push.
 - Possible later additions: a short "Teaching portfolio" page or section with sample lesson plans; a proper 404 page; a dark-mode variant if wanted.
 
 **Decisions**
 - Keep the single-page layout (uncluttered; everything one scroll away) rather than many pages.
 - Keep EB Garamond + Source Sans 3 so the site matches the CVs.
+- Dark mode is the default, with a light toggle (Wehan's choice, 2026-10-27).
 - Phone number stays off the public site (email and LinkedIn only) unless Wehan wants it on.
 - Local preview uses port 8931 because port 8765 is taken by another app on this computer.
 - A `.claude/` folder holds the preview-server settings for Claude Code; it is ignored by git and never goes online.
