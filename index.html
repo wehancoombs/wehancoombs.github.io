@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dr Wehan M. Coombs</title>
+<meta name="description" content="Dr Wehan M. Coombs: English teacher, philosopher, tutor and learning designer in Pretoria East.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D1724; --bg2: #101D2E; --card: #14233A; --line: #24384F;
+    --text: #D5DFEA; --muted: #93A8BE; --sky: #8FB0CF; --ice: #C9DAEA; --white: #F4F7FB;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 'Source Sans 3', sans-serif; }
+  a { color: var(--sky); }
+  h1, h2, h3 { font-family: 'EB Garamond', serif; color: var(--white); font-weight: 600; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(13,23,36,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  nav .brand { font-family: 'EB Garamond', serif; font-size: 20px; color: var(--white); text-decoration: none; white-space: nowrap; }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
+  nav ul a { color: var(--ice); text-decoration: none; font-size: 15px; white-space: nowrap; }
+  nav ul a:hover { color: var(--white); }
+
+  .hero { position: relative; overflow: hidden; padding: 80px 0 64px; }
+  .hero::before { content: ""; position: absolute; right: -180px; top: -220px; width: 620px; height: 620px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(143,176,207,.16), rgba(143,176,207,0) 70%); }
+  .hero .wrap { position: relative; display: flex; align-items: center; gap: 40px; }
+  .hero img { width: 170px; height: 170px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px var(--sky); flex: none; }
+  .hero h1 { font-size: 54px; font-weight: 500; line-height: 1.05; margin: 0; }
+  .role { text-transform: uppercase; letter-spacing: .22em; font-size: 14px; font-weight: 600; color: var(--sky); margin: 14px 0 16px; }
+  .hero p { max-width: 580px; margin: 0 0 24px; color: var(--ice); }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .btn.solid { background: var(--sky); color: var(--bg); }
+  .btn.ghost { border: 1px solid var(--sky); color: var(--ice); }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  section:nth-of-type(even) { background: var(--bg2); }
+  h2 { font-size: 36px; margin: 0 0 8px; }
+  .lead { color: var(--muted); margin: 0 0 28px; max-width: 680px; }
+  h3 { font-size: 22px; margin: 0 0 10px; }
+  .grid { display: grid; gap: 18px; }
+  .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); }
+  .card { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--sky); border-radius: 8px; padding: 20px 22px; }
+  .card p { margin: 0; }
+  ul.dots { list-style: none; margin: 0; padding: 0; }
+  ul.dots li { position: relative; padding-left: 18px; margin-bottom: 8px; }
+  ul.dots li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .pills span { border: 1px solid var(--sky); color: var(--ice); padding: 5px 14px; border-radius: 999px; font-size: 15px; }
+  blockquote { margin: 0 0 28px; padding: 4px 0 4px 20px; border-left: 3px solid var(--sky); font-family: 'EB Garamond', serif; font-size: 22px; line-height: 1.45; color: var(--ice); }
+  .sub { font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); font-weight: 600; margin: 36px 0 14px; }
+  .pub { margin-bottom: 14px; }
+  .pub em { color: var(--ice); }
+  .meta { color: var(--muted); font-size: 15px; }
+  .cvs .card { display: flex; flex-direction: column; }
+  .cvs .card p { color: var(--muted); flex: 1; margin-bottom: 16px; }
+  .contact a { color: var(--ice); }
+  footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer em { font-family: 'EB Garamond', serif; font-size: 17px; color: var(--ice); }
+
+  @media (max-width: 760px) {
+    body { font-size: 16px; }
+    nav ul { gap: 16px; }
+    nav .brand { display: none; }
+    .hero { padding: 48px 0 40px; }
+    .hero .wrap { flex-direction: column; text-align: center; gap: 24px; }
+    .hero img { width: 140px; height: 140px; }
+    .hero h1 { font-size: 40px; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .btns { justify-content: center; }
+    .g2, .g3 { grid-template-columns: 1fr; }
+    h2 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Dr Wehan M. Coombs</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#academic">Academic</a></li>
+      <li><a href="#freelance">Freelance</a></li>
+      <li><a href="#cvs">CVs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <img src="headshot.jpg" alt="Wehan Coombs">
+    <div>
+      <h1>Dr Wehan M. Coombs</h1>
+      <div class="role">Teacher · Philosopher · Tutor</div>
+      <p>English teacher and philosopher with a PhD and 15 years of university teaching experience, based in Pretoria East.</p>
+      <div class="btns">
+        <a class="btn solid" href="#cvs">Download my CVs</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p class="lead">I taught philosophy at the University of Pretoria for fifteen years, from tutoring to head lecturer and course designer, and held a postdoctoral fellowship at the University of Johannesburg. In 2026 I completed my teaching practicums in English at Abbotts College Pretoria East and Hoërskool Garsfontein as part of a Postgraduate Certificate in Education.</p>
+    <p class="lead">Whether I am teaching Grade 11 learners <em>Macbeth</em> or honours students Plato, I care about the same things: reading closely, thinking clearly and writing well.</p>
+  </div>
+</section>
+
+<section id="teaching">
+  <div class="wrap">
+    <h2>Teaching</h2>
+    <p class="lead">FET Phase English, Home Language and First Additional Language.</p>
+    <blockquote>Learners do their best thinking when they feel known and respected. I start from what they already know, then set a challenge they reason through together in discussion, and end by applying the new skill to their own lives, so they leave with ideas they can call their own.</blockquote>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Abbotts College Pretoria East</h3>
+        <p class="meta">PGCE practicum, Jul – Sep 2026</p>
+        <ul class="dots" style="margin-top:10px">
+          <li>Grade 10 and 11 English Home Language, including <em>Macbeth</em> and <em>The Tempest</em></li>
+          <li>Mentor assessment: 95/100, with full marks for classroom competencies</li>
+          <li>98/100 for a lesson observed by my university mentor</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Hoërskool Garsfontein</h3>
+        <p class="meta">PGCE practicum, May 2026</p>
+        <ul class="dots" style="margin-top:10px">
+          <li>Grade 10 and 11 English First Additional Language grammar and poetry</li>
+          <li>Community engagement with the school’s <em>Kersfees in die Winter</em> charity drive</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pills">
+      <span>Dynamic, engaged classrooms</span><span>Question-led discussion</span><span>Close reading of literature and poetry</span>
+      <span>Essay and argument writing</span><span>Lesson planning</span><span>Online and hybrid teaching</span>
+    </div>
+  </div>
+</section>
+
+<section id="academic">
+  <div class="wrap">
+    <h2>Academic</h2>
+    <p class="lead">Philosophy at the University of Pretoria (2010 – 2026) and the University of Johannesburg (2024 – 2026). My research focuses on Plato, Neoplatonism and philosophical esotericism.</p>
+
+    <div class="sub">Courses designed and taught</div>
+    <ul class="dots">
+      <li><strong>FIL710/810</strong> Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism (Honours, 2026)</li>
+      <li><strong>FIL710</strong> The (Secret) History of Thought: Introduction to Philosophical Esotericism (Honours, 2024, 2025)</li>
+      <li><strong>FIL220</strong> The Good Life (2nd year, 2024)</li>
+      <li><strong>FIL110</strong> Introduction to Metaphysics and Epistemology (1st year, 2019 – 2021)</li>
+      <li><strong>FIL251</strong> Introduction to Moral and Political Philosophy (2nd year, partly redesigned, 2018)</li>
+    </ul>
+
+    <div class="sub">Research interests</div>
+    <div class="pills" style="margin-top:0">
+      <span>Plato and the Platonic tradition</span><span>Neoplatonism and theurgy</span>
+      <span>African philosophy and decolonial curricula</span><span>Philosophical esotericism</span><span>Philosophy as a way of life</span>
+    </div>
+
+    <div class="sub">Publications</div>
+    <div class="pub">Coombs, W.M. 2017. Aristotle’s harmony with Plato on separable and immortal soul. <em>South African Journal of Philosophy</em> 36(4): 541–552. <a href="https://doi.org/10.1080/02580136.2017.1385951">doi:10.1080/02580136.2017.1385951</a></div>
+    <div class="pub">Coombs, W.M. 2013. Contingency, irony and morality: A critical review of Rorty’s notion of the liberal utopia. <em>Humanities</em> 2(2): 313–327. <a href="https://doi.org/10.3390/h2020313">doi:10.3390/h2020313</a></div>
+
+    <div class="sub">Theses</div>
+    <div class="pub">PhD (2023): <a href="https://repository.up.ac.za/handle/2263/89290"><em>Ainigma: Plato’s Esotericism in Context</em></a>, University of Pretoria</div>
+    <div class="pub">MA, cum laude (2016): <a href="https://repository.up.ac.za/handle/2263/57175"><em>Symphonia: Aristotle versus Plato Critiqued</em></a>, University of Pretoria</div>
+
+    <div class="sub">Selected conference papers</div>
+    <ul class="dots">
+      <li>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis. PSSA Annual Conference, University of Cape Town, 2026 (with Mitchell Black)</li>
+      <li>Animism, Consilience and the Rights of Nature. South African Society for Environmental Philosophy, North-West University, 2025 (co-presented)</li>
+      <li>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics. PSSA Conference, North-West University, 2025</li>
+      <li>The Curious Case of Neoplatonic Ritual Magic. PSSA Conference, University of KwaZulu-Natal, 2020</li>
+      <li>Immortal and Separable Soul in Aristotle. 42nd PSSA Conference, Rhodes University, 2017</li>
+    </ul>
+    <p class="meta">Twelve conference papers since 2012; the full list is in my <a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">full resume</a>. Also on <a href="https://orcid.org/0000-0001-9151-7344">ORCID</a> and <a href="https://www.researchgate.net/profile/Wehan-Coombs">ResearchGate</a>.</p>
+  </div>
+</section>
+
+<section id="freelance">
+  <div class="wrap">
+    <h2>Freelance</h2>
+    <p class="lead">Tutoring, editing and learning design, in person in Pretoria East or online.</p>
+    <div class="grid g3">
+      <div class="card">
+        <h3>Tutoring and TEFL</h3>
+        <ul class="dots">
+          <li>High school English, Grades 10 to 12</li>
+          <li>University philosophy, first year to honours</li>
+          <li>Essay and academic writing</li>
+          <li>Online English lessons (120-hour TESOL/TEFL)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Editing and writing</h3>
+        <ul class="dots">
+          <li>Editing and proofreading of essays, theses and academic writing</li>
+          <li>Structural feedback on arguments and drafts</li>
+          <li>Study guides, readers and course materials</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Learning design</h3>
+        <ul class="dots">
+          <li>Course and module design</li>
+          <li>Rubric and marking tools as simple web apps</li>
+          <li>Interactive web apps for learning</li>
+          <li>Online lecture production</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cvs" class="cvs">
+  <div class="wrap">
+    <h2>CVs</h2>
+    <p class="lead">Two-page CVs for each kind of role, plus my full resume and teaching portfolio.</p>
+    <div class="grid g2">
+      <div class="card"><h3>FET CV</h3><p>For English teaching posts in high schools.</p><a class="btn ghost" href="cv/Wehan-Coombs-FET-CV.pdf">Download PDF</a></div>
+      <div class="card"><h3>PhD CV</h3><p>For lecturing and academic posts.</p><a class="btn ghost" href="cv/Wehan-Coombs-PhD-CV.pdf">Download PDF</a></div>
+      <div class="card"><h3>Freelance CV</h3><p>For tutoring, editing and learning design work.</p><a class="btn ghost" href="cv/Wehan-Coombs-Freelance-CV.pdf">Download PDF</a></div>
+      <div class="card"><h3>Full resume</h3><p>Every module taught, research, the teaching portfolio and student evaluations.</p><a class="btn solid" href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">Open online</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="lead">The quickest way to reach me is by email.</p>
+    <ul class="dots">
+      <li>Email: <a href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a></li>
+      <li>LinkedIn: <a href="http://linkedin.com/in/wehan-coombs">linkedin.com/in/wehan-coombs</a></li>
+      <li>Based in Pretoria East, Gauteng</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap"><em>Docendo discimus.</em> &nbsp;·&nbsp; © 2026 Wehan M. Coombs</div>
+</footer>
+
+</body>
+</html>
