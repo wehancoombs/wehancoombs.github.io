@@ -88,9 +88,42 @@ Wehan asked for a bold, visual, interactive portfolio with very few words, that 
 - Gold is the unifying colour; each path has its own hue (Teach ember, Think lapis, Make verdigris).
 - Fonts unchanged (EB Garamond, Source Sans 3) so the site still matches the CVs.
 
-**Next**
-- Wehan reviews and reassesses. Then push, or change things first.
-- Ideas not done yet: a short video or audio clip in Threshold; a photo somewhere (the headshot is currently only used for link previews); sample lesson or rubric downloads in Teach.
+**Next (at the time)**
+- Wehan reviewed and asked for one overall change: see the next entry.
+
+---
+
+## 2026-10-28: one page, everything inside it
+
+Wehan's brief: no separate "Full profile" page. Everything from it should be found by exploring the beautiful page, hidden until wanted, a couple of clicks away. A pop-out map. Real deliverables on show (a recorded class, study guides) without hurting the look.
+
+**Done**
+- `profile.html` is gone. All of its content, plus the whole teaching portfolio from the full resume (teaching philosophy, curriculum design, assessment, student support, evaluations, referees), now lives in 30 "sheets": panels that slide in from the right. Each has a title, the chapter colour, Previous/Next within its chapter, and a Map button. Escape or the × closes it. Opening a sheet puts `#s-name` in the address bar, so a sheet can be linked to directly (for example `wehancoombs.github.io/#s-courses`).
+- **The map**: a "Map" button at the top left opens a drawer listing every sheet under its chapter (Begin, Teach, Think, Make, So far, Write), plus CV downloads and links. One click to open the map, one click to the thing. On phones it fills the screen.
+- **Chapter index lines**: under each chapter heading, a short line of small labels (for example "Approach · Abbotts College · Hoërskool Garsfontein · Beyond the classroom") that open the sheets directly, so the map is never required.
+- **Everything on the page now opens something**: the big numbers, the book spines ("More →"), the stars (each note now has "Go further →"), the tool cards, the years ("More →" under the caption), the footer motto (opens "Why I teach").
+- **Deliverables, embedded**:
+  - Think → "Watch me teach": the two recorded live online lectures from the resume (FIL110, 4 May 2021; FIL710, 21 February 2024), as tiles with a play button. The Google Drive player loads inside the tile when pressed.
+  - Think → "Study guides I wrote": five document covers (FIL710/810, FIL710, FIL220, FIL110, FIL251). Tap one and the PDF opens inside a sheet, with a line about the course and an "Open in Google Drive" link.
+  - "What students say": the ten-evaluation PDF embedded, the 4.81/5 rating, and a link to the peer evaluation report.
+  - "The full resume": the Google Doc embedded in a sheet.
+  - Make → "Things I have made": 5 study guides, 3 readers, 2 lectures, 1 marking tool, each opening the right place.
+- Verified before building that all the Drive files and the resume doc open without sign-in and allow embedding on another site.
+- Stylesheet and script links now carry `?v=3` so browsers fetch the new files after a change (bump the number when either file changes).
+
+**Checked**
+- Desktop (1280 wide) and phone (375 wide): map, sheets, study guide PDF inside a sheet, star notes, motto, Previous/Next, Escape, no sideways scrolling, no console errors.
+
+**Decisions**
+- Sheet content is written as plain HTML inside `index.html` under `<div id="library" hidden>`. To change a piece of text, edit it there.
+- Order of Previous/Next follows the order of items in the map.
+- The two lecture videos and the PDFs stay on Google Drive (already shared by Wehan for the resume); the site only embeds them. If sharing on Drive is ever switched off, the embeds go blank.
+- Referees' names and emails are shown in the Referees sheet because they are already public in the CVs and the resume.
+
+**Not done / ideas**
+- Lesson plans and observation reports from the practicum exist on Drive but are not shared publicly and may contain learners' names, so they are not on the site.
+- A photo of Wehan is still only used for link previews.
+- Not pushed: the live site still shows the earlier version.
 - Possible later additions: a short "Teaching portfolio" page or section with sample lesson plans; a proper 404 page; a dark-mode variant if wanted.
 
 **Decisions**

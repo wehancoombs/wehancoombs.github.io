@@ -12,6 +12,7 @@
   const coarse = matchMedia('(hover: none), (pointer: coarse)').matches;
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
+  const CH_LABEL = { threshold: 'Begin', paths: 'Paths', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Write' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
   function cssVar(name, el) { return getComputedStyle(el || body).getPropertyValue(name).trim(); }
@@ -218,29 +219,138 @@
   const revIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } }); }, { threshold: .12 });
   const onScreen = el => { const r = el.getBoundingClientRect(); return r.top < innerHeight * .95 && r.bottom > 0; };
   $$('.reveal').forEach(el => {
+    if (onScreen(el)) { el.classList.add('in'); return; }   // above the fold: shown at once, no stagger
     const sib = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
     el.style.transitionDelay = (sib.indexOf(el) * 110) + 'ms';
-    // Anything already on screen is shown at once (the rect read above forces a style pass, so it still fades in).
-    if (onScreen(el)) el.classList.add('in'); else revIO.observe(el);
+    revIO.observe(el);
   });
-  // Safety net: never leave something on screen invisible.
-  setTimeout(() => $$('.reveal:not(.in)').forEach(el => { if (onScreen(el)) el.classList.add('in'); }), 2500);
+  // Safety net: never leave something on screen invisible, whatever the browser is doing.
+  setTimeout(() => $$('.reveal').forEach(el => { if (onScreen(el) && !el.classList.contains('in')) { el.style.transition = 'none'; el.classList.add('in'); } }), 2500);
 
   /* ---------- Counting numbers ---------- */
   const cntIO = new IntersectionObserver(es => {
     es.forEach(e => {
       if (!e.isIntersecting) return;
       cntIO.unobserve(e.target);
-      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = performance.now(), dur = 1600;
-      if (reduced) { el.textContent = to + suf; return; }
+      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', dec = +(el.dataset.decimals || 0), t0 = performance.now(), dur = 1600;
+      if (reduced) { el.textContent = to.toFixed(dec) + suf; return; }
       (function step(t) {
-        const p = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - p, 3)));
-        el.textContent = v + suf;
+        const p = Math.min(1, (t - t0) / dur), v = to * (1 - Math.pow(1 - p, 3));
+        el.textContent = (dec ? v.toFixed(dec) : Math.round(v)) + suf;
         if (p < 1) requestAnimationFrame(step);
       })(t0);
     });
   }, { threshold: .6 });
   $$('[data-count]').forEach(el => cntIO.observe(el));
+
+  /* ---------- The library, the sheet and the map ---------- */
+  const library = {};
+  $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML }; });
+  // Reading order for Previous / Next: the map's order, chapter by chapter.
+  const ORDER = {};
+  $$('.map-group').forEach(g => { ORDER[g.dataset.ch] = $$('[data-sheet]', g).map(b => b.dataset.sheet); });
+
+  const scrim = $('#scrim'), sheet = $('#sheet'), sheetCh = $('#sheet-ch'), sheetTitle = $('#sheet-title'), sheetBody = $('#sheet-body');
+  const map = $('#map'), mapBtn = $('#map-btn');
+  let openId = null, lastFocus = null, sheetTimer = null, mapTimer = null;
+
+  function showScrim() { scrim.hidden = false; requestAnimationFrame(() => scrim.classList.add('on')); }
+  function hideScrimIfIdle() { if (sheet.classList.contains('on') || map.classList.contains('on')) return; scrim.classList.remove('on'); setTimeout(() => { if (!scrim.classList.contains('on')) scrim.hidden = true; }, 360); }
+  function lock() { body.classList.add('locked'); }
+  function unlockIfIdle() { if (!sheet.classList.contains('on') && !map.classList.contains('on')) body.classList.remove('locked'); }
+
+  function activateEmbeds(container) {
+    $$('.embed', container).forEach(e => {
+      if (e.querySelector('iframe')) return;
+      const f = document.createElement('iframe');
+      f.src = e.dataset.src; f.loading = 'lazy'; f.setAttribute('allow', 'autoplay; fullscreen'); f.setAttribute('allowfullscreen', '');
+      f.title = sheetTitle.textContent;
+      e.appendChild(f);
+    });
+  }
+
+  function openSheet(id) {
+    const item = library[id];
+    if (!item) return;
+    clearTimeout(sheetTimer);
+    if (map.classList.contains('on')) closeMap(true);
+    if (!sheet.classList.contains('on')) lastFocus = document.activeElement;
+    openId = id;
+    sheet.dataset.ch = item.ch;
+    sheetCh.textContent = CH_LABEL[item.ch] || '';
+    sheetTitle.textContent = item.title;
+    sheetBody.innerHTML = item.html;
+    sheetBody.scrollTop = 0;
+    activateEmbeds(sheetBody);
+    const order = ORDER[item.ch] || [], i = order.indexOf(id);
+    $('#sheet-prev').disabled = !(i > 0); $('#sheet-next').disabled = !(i >= 0 && i < order.length - 1);
+    sheet.hidden = false; showScrim(); lock();
+    requestAnimationFrame(() => { sheet.classList.add('on'); sheetTitle.focus({ preventScroll: true }); });
+    try { history.replaceState(null, '', '#s-' + id); } catch (e) {}
+  }
+  function closeSheet() {
+    if (!sheet.classList.contains('on')) return;
+    sheet.classList.remove('on'); openId = null;
+    sheetTimer = setTimeout(() => { sheet.hidden = true; sheetBody.innerHTML = ''; }, 460);
+    unlockIfIdle(); hideScrimIfIdle();
+    try { history.replaceState(null, '', location.pathname + (body.dataset.chapter ? '#' + body.dataset.chapter : '')); } catch (e) {}
+    if (lastFocus && lastFocus.focus) { lastFocus.focus({ preventScroll: true }); lastFocus = null; }
+  }
+  function stepSheet(d) {
+    if (!openId) return;
+    const order = ORDER[library[openId].ch] || [], i = order.indexOf(openId);
+    if (i < 0) return;
+    const n = order[i + d];
+    if (n) openSheet(n);
+  }
+  $('#sheet-close').addEventListener('click', closeSheet);
+  $('#sheet-prev').addEventListener('click', () => stepSheet(-1));
+  $('#sheet-next').addEventListener('click', () => stepSheet(1));
+  $('#sheet-map').addEventListener('click', () => { closeSheet(); openMap(); });
+
+  function openMap() {
+    clearTimeout(mapTimer);
+    if (sheet.classList.contains('on')) closeSheet();
+    lastFocus = document.activeElement;
+    map.hidden = false; showScrim(); lock();
+    mapBtn.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => { map.classList.add('on'); $('#map-close').focus({ preventScroll: true }); });
+  }
+  function closeMap(keepLock) {
+    if (!map.classList.contains('on')) return;
+    map.classList.remove('on');
+    mapBtn.setAttribute('aria-expanded', 'false');
+    mapTimer = setTimeout(() => { map.hidden = true; }, 460);
+    if (!keepLock) { unlockIfIdle(); hideScrimIfIdle(); if (lastFocus && lastFocus.focus) { lastFocus.focus({ preventScroll: true }); lastFocus = null; } }
+  }
+  mapBtn.addEventListener('click', () => { if (map.classList.contains('on')) closeMap(); else openMap(); });
+  $('#map-close').addEventListener('click', () => closeMap());
+  scrim.addEventListener('click', () => { closeSheet(); closeMap(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); } });
+
+  function goTo(sel) {
+    const el = $(sel);
+    if (!el) return;
+    closeSheet(); closeMap();
+    body.classList.remove('locked');
+    setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 60);
+  }
+
+  // One listener for every "open this" button on the page, in the map and inside sheets.
+  document.addEventListener('click', e => {
+    const s = e.target.closest('[data-sheet]');
+    if (s) { e.preventDefault(); const id = s.dataset.sheet, ch = library[id] && library[id].ch; const sec = ch && $('#' + ch); if (sec && map.classList.contains('on') && body.dataset.chapter !== ch) { sec.scrollIntoView({ behavior: 'auto', block: 'start' }); } openSheet(id); return; }
+    const g = e.target.closest('[data-goto]');
+    if (g) { e.preventDefault(); goTo(g.dataset.goto); return; }
+    const m = e.target.closest('[data-map]');
+    if (m) { e.preventDefault(); openMap(); }
+  });
+  // Deep links: #s-courses opens that sheet.
+  function openFromHash() {
+    const h = location.hash || '';
+    if (h.startsWith('#s-')) { const id = h.slice(3); if (library[id]) { const ch = library[id].ch, sec = $('#' + ch); if (sec) sec.scrollIntoView({ behavior: 'auto', block: 'start' }); openSheet(id); } }
+  }
+  window.addEventListener('hashchange', openFromHash);
 
   /* ---------- The arc of a lesson ---------- */
   const arcPath = $('#arcpath'), runner = $('.runner'), arcNodes = $$('.arc .node'), arcText = $('#arc-text');
@@ -283,7 +393,12 @@
   $$('.book').forEach(b => b.addEventListener('click', () => {
     $$('.book').forEach(o => o.classList.toggle('is-on', o === b));
     shelfCap.classList.add('swap');
-    setTimeout(() => { shelfCap.textContent = b.dataset.cap; shelfCap.classList.remove('swap'); }, 200);
+    setTimeout(() => {
+      shelfCap.textContent = b.dataset.cap + ' ';
+      const more = document.createElement('button'); more.type = 'button'; more.className = 'textlink'; more.dataset.sheet = b.dataset.sheetMore; more.textContent = 'More →';
+      shelfCap.appendChild(more);
+      shelfCap.classList.remove('swap');
+    }, 200);
   }));
 
   /* ---------- The constellation ---------- */
@@ -295,45 +410,35 @@
       body: 'My MA, <em>Symphonia</em>, argued that Aristotle stays in harmony with Plato on the separable, immortal soul. The argument became a journal article in 2017.',
       links: [['Aristotle’s harmony with Plato on separable and immortal soul (SAJP, 2017)', 'https://doi.org/10.1080/02580136.2017.1385951'], ['Symphonia: Aristotle versus Plato Critiqued (MA, 2016)', 'https://repository.up.ac.za/handle/2263/57175']] },
     { id: 'neo', x: 575, y: 160, r: 7, label: 'Neoplatonism',
-      body: 'Plotinus, Iamblichus, Proclus. A member of the International Society for Neoplatonic Studies since 2017. In 2026 I designed and taught the honours course <em>Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism</em>.' },
+      body: 'Plotinus, Iamblichus, Proclus. A member of the International Society for Neoplatonic Studies since 2017. In 2026 I designed and taught the honours course <em>Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism</em>.', more: 'guide-c5' },
     { id: 'theurgy', x: 690, y: 85, r: 5, label: 'Theurgy',
-      body: 'Ritual as philosophy in late Platonism. Conference paper: <em>The Curious Case of Neoplatonic Ritual Magic</em>, PSSA, University of KwaZulu-Natal, 2020.' },
+      body: 'Ritual as philosophy in late Platonism. Conference paper: <em>The Curious Case of Neoplatonic Ritual Magic</em>, PSSA, University of KwaZulu-Natal, 2020.', more: 'papers' },
     { id: 'egypt', x: 700, y: 260, r: 5, label: 'Ancient Egypt',
-      body: 'Where the rite of rebirth begins. The opening movement of the honours course <em>Philosophy as a Rite of Rebirth</em> (FIL710/810, 2026).' },
+      body: 'Where the rite of rebirth begins. The opening movement of the honours course <em>Philosophy as a Rite of Rebirth</em> (FIL710/810, 2026).', more: 'guide-c5' },
     { id: 'eso', x: 520, y: 370, r: 7, label: 'Esotericism',
-      body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.' },
+      body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'guide-c3' },
     { id: 'african', x: 672, y: 440, r: 6, label: 'African esotericism',
-      body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.' },
+      body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.', more: 'posts' },
     { id: 'life', x: 285, y: 385, r: 6, label: 'A way of life',
-      body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).' },
+      body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).', more: 'guide-c4' },
     { id: 'nature', x: 150, y: 470, r: 5, label: 'Animism & nature',
-      body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.' },
+      body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.', more: 'papers' },
     { id: 'rorty', x: 115, y: 285, r: 4.5, label: 'Rorty',
       body: 'An early article: <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em>, Humanities, 2013.',
       links: [['Read the article', 'https://doi.org/10.3390/h2020313']] },
     { id: 'meta', x: 420, y: 485, r: 5, label: 'Metacrisis',
-      body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.' }
+      body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' }
   ];
   const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt']];
+  NODES.forEach(n => {
+    const links = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
+    library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
+  });
   const sky = $('#sky'), NS = 'http://www.w3.org/2000/svg';
   const mk = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
   const byId = {}; NODES.forEach(n => { byId[n.id] = n; });
   const edgeEls = EDGES.map(([a, b]) => { const l = mk('line', { x1: byId[a].x, y1: byId[a].y, x2: byId[b].x, y2: byId[b].y }); l.dataset.a = a; l.dataset.b = b; sky.appendChild(l); return l; });
   const nodeEls = {};
-  const panel = $('#panel'), pTitle = $('#panel-title'), pBody = $('#panel-body'), pLinks = $('#panel-links');
-  function openPanel(n) {
-    pTitle.textContent = n.label; pBody.innerHTML = n.body;
-    pLinks.innerHTML = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
-    panel.hidden = false; panel.classList.remove('rise'); void panel.offsetWidth; panel.classList.add('rise');
-    Object.keys(nodeEls).forEach(k => nodeEls[k].classList.toggle('sel', k === n.id));
-  }
-  function closePanel() { panel.hidden = true; Object.keys(nodeEls).forEach(k => nodeEls[k].classList.remove('sel')); }
-  $('.panel .close').addEventListener('click', closePanel);
-  // On a phone the sky is wider than the screen: start it centred on Plato.
-  const skyWrap = $('.sky');
-  function centreSky() { if (skyWrap.scrollWidth > skyWrap.clientWidth + 4) skyWrap.scrollLeft = (skyWrap.scrollWidth - skyWrap.clientWidth) / 2; }
-  centreSky(); window.addEventListener('resize', centreSky);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
   NODES.forEach(n => {
     const g = mk('g', { class: 'node' + (n.big ? ' big' : ''), tabindex: '0', role: 'button', 'aria-label': n.label });
     g.appendChild(mk('circle', { class: 'hit', cx: n.x, cy: n.y, r: 28 }));
@@ -352,14 +457,22 @@
     };
     g.addEventListener('mouseenter', () => lit(true)); g.addEventListener('mouseleave', () => lit(false));
     g.addEventListener('focus', () => lit(true)); g.addEventListener('blur', () => lit(false));
-    g.addEventListener('click', () => openPanel(n));
-    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPanel(n); } });
+    g.addEventListener('click', () => openSheet('star-' + n.id));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet('star-' + n.id); } });
   });
+  // On a phone the sky is wider than the screen: start it centred on Plato.
+  const skyWrap = $('.sky');
+  function centreSky() { if (skyWrap.scrollWidth > skyWrap.clientWidth + 4) skyWrap.scrollLeft = (skyWrap.scrollWidth - skyWrap.clientWidth) / 2; }
+  centreSky(); window.addEventListener('resize', centreSky);
 
-  /* ---------- Tools: open and close ---------- */
-  $$('.tool').forEach(tool => {
-    const b = $('.t-head', tool);
-    b.addEventListener('click', () => { const open = tool.classList.toggle('open'); b.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+  /* ---------- Lectures: the player loads when you press play ---------- */
+  $$('.lecture').forEach(l => {
+    $('.play', l).addEventListener('click', () => {
+      if (l.classList.contains('playing')) return;
+      const f = document.createElement('iframe');
+      f.src = l.dataset.src; f.setAttribute('allow', 'autoplay; fullscreen'); f.setAttribute('allowfullscreen', ''); f.title = $('.l-cap strong', l).textContent;
+      l.appendChild(f); l.classList.add('playing');
+    });
   });
 
   /* ---------- The editing typewriter ---------- */
@@ -411,7 +524,7 @@
   ranges.forEach(r => r.addEventListener('input', rubric)); rubric();
 
   /* ---------- The years ---------- */
-  const track = $('#track'), trackCap = $('#track-cap'), evs = $$('.ev');
+  const track = $('#track'), trackCap = $('#track-cap'), trackMore = $('#track-more'), evs = $$('.ev');
   let td = null, dragged = false;
   track.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; td = { x: e.clientX, sl: track.scrollLeft, moved: 0 }; dragged = false; track.classList.add('dragging'); track.setPointerCapture(e.pointerId); });
   track.addEventListener('pointermove', e => { if (!td) return; const dx = e.clientX - td.x; td.moved += Math.abs(dx); if (td.moved > 6) dragged = true; track.scrollLeft = td.sl - dx; });
@@ -419,11 +532,14 @@
   track.addEventListener('pointerup', tEnd); track.addEventListener('pointercancel', tEnd);
   function pickYear(li) {
     evs.forEach(o => o.classList.toggle('is-on', o === li));
+    const b = $('button', li);
     trackCap.classList.add('swap');
-    setTimeout(() => { trackCap.textContent = $('button', li).dataset.cap; trackCap.classList.remove('swap'); }, 200);
+    setTimeout(() => {
+      trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap');
+      if (b.dataset.more && library[b.dataset.more]) { trackMore.dataset.sheet = b.dataset.more; trackMore.hidden = false; } else { trackMore.hidden = true; }
+    }, 200);
   }
   evs.forEach(li => $('button', li).addEventListener('click', () => { if (dragged) return; pickYear(li); }));
-  // Start the story at the latest year, scrolled into view.
   new IntersectionObserver(es => { if (es[0].isIntersecting) { pickYear(evs[evs.length - 1]); track.scrollLeft = track.scrollWidth; } }, { threshold: .3 }).observe(track);
 
   /* ---------- Main loop ---------- */
@@ -436,4 +552,5 @@
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { sizeField(); sizeSolid(); if (reduced) { drawField(0); drawSolid(performance.now()); } }, 120); });
   if (reduced) { drawField(0); drawSolid(performance.now()); placeRunner(); }
   else requestAnimationFrame(loop);
+  openFromHash();
 })();
