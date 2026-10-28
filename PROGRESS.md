@@ -288,3 +288,15 @@ Wehan: "are you sure you can't make Teach, Think and Make a bit more compact? ..
 - Checked at 1366x768, 1920x1080 and 375 wide; no console errors. Committed, not pushed.
 
 **Later:** the 4.5 stat is gone from Think (the stars and the Testimonials sheet carry the ratings). Teach and Make now grow with the height of the screen: the shelf, the arc, the service cards and their visuals scale by a steeper rule than the screen itself, and on screens wider than 1700px the column widens to 1340px. Measured at 1366x768, 1920x1080 and 2560x1440: every chapter is exactly one screen tall. Committed, not pushed.
+
+---
+
+## 2026-10-28 (evening): round six
+
+Wehan's sixth list; committed, not pushed.
+
+- **Start here is a landing page again.** Wehan: "Make and What do you need are entirely redundant." The four-service menu is gone; in its place three doors, Teach, Think and Make, each in its chapter's colour with a line on who it is for ("A teacher for your school", "A lecturer or a researcher", "A tutor, an editor, a designer, a consultant"), a sentence on what the chapter holds, and that chapter's CV as a pill. The row goes to the chapter. The left column keeps "What do you need?" with a new line and three skip-ahead links (General CV, Write to me, How working with me works). The services and their Request buttons live in Make only.
+- **The glowing dot** in the middle of the ring behind the doors is gone; the slow dotted ring stays.
+- **CV seals beside the numbers.** In Teach, Think and Make the mini seal sits in the same row as the stats (or the blurb, in Make), after a hairline, instead of under them.
+- **So far:** 2020 is "A paper presented" and 2025 is "More papers".
+- Assets at `?v=11`.

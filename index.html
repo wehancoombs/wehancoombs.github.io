@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=10">
+<link rel="stylesheet" href="assets/style.css?v=11">
 </head>
 <body data-chapter="threshold">
 
@@ -215,33 +215,28 @@
     <div class="start-text">
       <p class="eyebrow reveal">Start here</p>
       <h2 class="display reveal">What do<br><em>you need?</em></h2>
-      <p class="line reveal">Pick a service and send a request in one tap. I reply with a plan, a rate and a start date.</p>
+      <p class="line reveal">Three chapters, for three kinds of work. Pick the one that is yours. Each has its own CV.</p>
       <p class="hire reveal">
-        <span class="hint">Hiring instead?</span>
+        <span class="hint">Or skip ahead</span>
         <a href="cv/Wehan-Coombs-CV.pdf" target="_blank" rel="noopener">General CV, two pages →</a>
-        <a href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">Teaching CV, for schools →</a>
-        <a href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">Academic CV, for universities →</a>
+        <button type="button" class="textlink" data-sheet="request-any">Write to me →</button>
         <button type="button" class="textlink" data-sheet="working">How working with me works →</button>
       </p>
     </div>
     <div class="menu-wrap reveal">
-      <svg class="menu-ring" viewBox="0 0 400 400" aria-hidden="true"><circle class="ring" cx="200" cy="200" r="190"/><circle class="core" cx="200" cy="200" r="4"/></svg>
-      <ol class="menu">
-        <li class="menu-row">
-          <button class="menu-main" type="button" data-sheet="tutoring"><span class="m-name">Tutoring</span><span class="m-desc">English, philosophy and essays, Grades 10 to 12 and university. Online English for non-native speakers.</span></button>
-          <button class="btn solid" type="button" data-sheet="request-tutoring">Request</button>
+      <svg class="menu-ring" viewBox="0 0 400 400" aria-hidden="true"><circle class="ring" cx="200" cy="200" r="190"/></svg>
+      <ol class="menu doors">
+        <li class="menu-row door" data-ch="teach">
+          <a class="menu-main" href="#teach" data-goto="#teach"><span class="m-for">A teacher for your school</span><span class="m-name">Teach</span><span class="m-desc">English and philosophy in the high-school classroom: the practicum record, the lessons, and a way of teaching built for the age of AI.</span></a>
+          <a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">Teaching CV</a>
         </li>
-        <li class="menu-row">
-          <button class="menu-main" type="button" data-sheet="editing"><span class="m-name">Editing</span><span class="m-desc">Essays, theses and academic writing, back with tracked changes and a note on what to fix next.</span></button>
-          <button class="btn solid" type="button" data-sheet="request-editing">Request</button>
+        <li class="menu-row door" data-ch="think">
+          <a class="menu-main" href="#think" data-goto="#think"><span class="m-for">A lecturer or a researcher</span><span class="m-name">Think</span><span class="m-desc">Fifteen years of university philosophy: Plato and Neoplatonism, five modules designed from scratch, lectures, study guides and papers.</span></a>
+          <a class="btn" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">Academic CV</a>
         </li>
-        <li class="menu-row">
-          <button class="menu-main" type="button" data-sheet="design"><span class="m-name">Learning design</span><span class="m-desc">Whole modules with study guides, rubrics as simple web apps, recorded or live-streamed lectures.</span></button>
-          <button class="btn solid" type="button" data-sheet="request-design">Request</button>
-        </li>
-        <li class="menu-row">
-          <button class="menu-main" type="button" data-sheet="consulting"><span class="m-name">Philosophical &amp; AI consulting</span><span class="m-desc">For schools, teams and organisations: ethics, purpose, and what to do about AI. One to one, for a question in your own life.</span></button>
-          <button class="btn solid" type="button" data-sheet="request-consulting">Request</button>
+        <li class="menu-row door" data-ch="make">
+          <a class="menu-main" href="#make" data-goto="#make"><span class="m-for">A tutor, an editor, a designer, a consultant</span><span class="m-name">Make</span><span class="m-desc">Tutoring, editing, learning design, and philosophical and AI consulting, for students, families, schools and teams. Pretoria East, or online anywhere.</span></a>
+          <a class="btn" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">Freelance CV</a>
         </li>
       </ol>
     </div>
@@ -542,10 +537,10 @@
           <li class="ev"><button type="button" data-year="2017" data-label="Journal article" data-cap="Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies. Presented at a Wits workshop on Plato’s Republic." data-more="publications"><b>2017</b><span>Journal article</span></button></li>
           <li class="ev"><button type="button" data-year="2018" data-label="A module redesigned" data-cap="Partly redesigned Introduction to Moral and Political Philosophy for business students. UP Doctoral Support Bursary for Ainigma, 2018 to 2020." data-more="guide-c1"><b>2018</b><span>A module redesigned</span></button></li>
           <li class="ev"><button type="button" data-year="2019" data-label="A first-year course of my own" data-cap="Created Introduction to Metaphysics and Epistemology from scratch and ran it as head lecturer for classes of around 500, 2019 to 2021. Still in use at UP." data-more="curriculum"><b>2019</b><span>A first-year course of my own</span></button></li>
-          <li class="ev"><button type="button" data-year="2020" data-label="A paper on theurgy" data-cap="The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal." data-more="papers"><b>2020</b><span>A paper on theurgy</span></button></li>
+          <li class="ev"><button type="button" data-year="2020" data-label="A paper presented" data-cap="The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal." data-more="papers"><b>2020</b><span>A paper presented</span></button></li>
           <li class="ev"><button type="button" data-year="2023" data-label="Doctorate" data-cap="PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of about 300." data-more="publications"><b>2023</b><span>Doctorate</span></button></li>
           <li class="ev"><button type="button" data-year="2024" data-label="Postdoc at UJ" data-cap="Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life. Workshop on publishing in international journals with Prof Thaddeus Metz." data-more="posts"><b>2024</b><span>Postdoc at UJ</span></button></li>
-          <li class="ev"><button type="button" data-year="2025" data-label="Two papers" data-cap="Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy." data-more="papers"><b>2025</b><span>Two papers</span></button></li>
+          <li class="ev"><button type="button" data-year="2025" data-label="More papers" data-cap="Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy." data-more="papers"><b>2025</b><span>More papers</span></button></li>
           <li class="ev"><button type="button" data-year="2026" data-label="Into the classroom" data-cap="PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black." data-more="abbotts"><b>2026</b><span>Into the classroom</span></button></li>
         </ol>
       </div>
@@ -1231,6 +1226,6 @@
 
 </div>
 
-<script src="assets/main.js?v=10"></script>
+<script src="assets/main.js?v=11"></script>
 </body>
 </html>

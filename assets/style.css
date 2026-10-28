@@ -268,7 +268,7 @@ main { position: relative; z-index: 1; }
 .cue span { display: block; width: 1px; height: 100%; margin: 0 auto; background: linear-gradient(var(--accent), transparent); animation: cue 2.4s var(--ease) infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
 
-/* ---------- 2. Start here: the service menu ---------- */
+/* ---------- 2. Start here: three doors, Teach, Think and Make ---------- */
 .start-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
 #start .display { font-size: clamp(48px, min(7.4vw, 14vh), 112px); }
 #start .display em { white-space: nowrap; }
@@ -280,8 +280,6 @@ main { position: relative; z-index: 1; }
 .menu-ring { position: absolute; width: 560px; height: 560px; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; overflow: visible; }
 .menu-ring .ring { fill: none; stroke: var(--gold); stroke-opacity: .22; stroke-dasharray: 2 10; stroke-linecap: round; transform-box: view-box; transform-origin: 200px 200px; animation: spin 120s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.menu-ring .core { fill: var(--gold); animation: pulse 4s ease-in-out infinite; }
-@keyframes pulse { 0%, 100% { opacity: .5; r: 4; } 50% { opacity: 1; r: 7; } }
 .menu { position: relative; list-style: none; margin: 0; padding: 0; }
 .menu-row { display: flex; align-items: center; gap: 20px; padding: clamp(10px, 1.9vh, 18px) 0; border-top: 1px solid var(--line); }
 .menu-row:last-child { border-bottom: 1px solid var(--line); }
@@ -294,6 +292,11 @@ main { position: relative; z-index: 1; }
 .menu-main:hover .m-name::after, .menu-main:focus-visible .m-name::after { opacity: 1; transform: none; }
 .m-desc { font-size: clamp(13px, 1.8vh, 14.5px); line-height: 1.45; color: var(--text-2); max-width: 44ch; }
 .menu-row .btn { flex: none; }
+.door .menu-main { text-decoration: none; color: inherit; }
+.m-for { font: 600 11.5px/1.3 var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.door .m-name { font-size: clamp(28px, 4.6vh, 40px); }
+.door .m-desc { max-width: 48ch; }
+.door .btn { font-size: 12.5px; padding: 8px 14px; letter-spacing: .04em; }
 
 /* ---------- 3. Teach ---------- */
 .arc { margin: 0; }
@@ -429,17 +432,18 @@ main { position: relative; z-index: 1; }
 .chapter.compact { padding: clamp(76px, 11vh, 110px) 0 clamp(44px, 7vh, 72px); }
 .compact .ch-head { align-items: flex-start; margin-bottom: clamp(10px, 2.2vh, 22px); gap: 28px; }
 .compact .ch-lead { flex: 1 1 440px; min-width: 0; }
-.compact .ch-side { display: flex; flex-direction: column; align-items: flex-end; gap: clamp(10px, 2vh, 18px); flex: 0 1 46%; }
+.compact .ch-side { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: clamp(12px, 1.4vw, 24px); flex: 0 1 auto; max-width: 56%; }
+.compact .ch-side .seal.mini { padding-left: clamp(12px, 1.4vw, 24px); border-left: 1px solid var(--line); }
 .compact .display { font-size: clamp(52px, min(9vw, 13vh), 150px); }
 .compact .ch-lead .voices { margin: clamp(10px, 1.6vh, 16px) 0 0; max-width: 74ch; }
 .compact .voice p { font-size: clamp(16px, 2.1vh, 20px); }
 #teach .voice p, #make .voice p { font-size: clamp(16px, 2.1vh, 23px); }
 .compact .voice figcaption { margin-top: 8px; }
 .compact .voices-nav { margin-top: 10px; }
-.compact .stats { gap: clamp(14px, 1.6vw, 24px); justify-content: flex-end; flex-wrap: wrap; }
+.compact .stats { gap: clamp(12px, 1.4vw, 22px); justify-content: flex-end; flex-wrap: wrap; }
 .compact .stats b { font-size: clamp(34px, 5.2vh, 46px); }
 #teach .stats b { font-size: clamp(34px, 5.4vh, 60px); }
-.compact .stats span { max-width: 140px; font-size: 11px; }
+.compact .stats span { max-width: 124px; font-size: 11px; }
 .compact .stats li button { min-width: 96px; }
 .compact .stars { height: 38px; padding-top: 8px; }
 .compact .stars svg { width: 24px; height: 24px; }
@@ -558,7 +562,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 @media (max-width: 900px) {
   .hero-grid, .start-grid, .grid-2, .think-grid { grid-template-columns: 1fr; }
   .compact .ch-head { flex-direction: column; }
-  .compact .ch-side { align-items: flex-start; }
+  .compact .ch-side { justify-content: flex-start; max-width: none; }
   .compact .stats { justify-content: flex-start; }
   .side-note { text-align: left; }
   .compact .svc-body { height: auto; }
@@ -584,6 +588,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .ch-head { margin-bottom: 24px; }
   .index { gap: 6px 16px; margin-bottom: 32px; }
   .m-name { font-size: 22px; }
+  .door .m-name { font-size: 26px; }
   .face { width: 40px; height: 40px; }
   .voice p { font-size: 18px; }
   .voices { margin-top: -10px; }
