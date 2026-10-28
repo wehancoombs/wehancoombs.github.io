@@ -12,7 +12,7 @@
   const coarse = matchMedia('(hover: none), (pointer: coarse)').matches;
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
-  const CH_LABEL = { threshold: 'Begin', paths: 'Paths', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Write' };
+  const CH_LABEL = { threshold: 'Begin', start: 'Start here', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Write' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
   function cssVar(name, el) { return getComputedStyle(el || body).getPropertyValue(name).trim(); }
@@ -50,6 +50,12 @@
     setTimeout(() => body.classList.remove('theming'), 1000);
   });
   paintTheme();
+
+  /* ---------- The CVs in the top bar: a dropdown on narrow screens ---------- */
+  const cvs = $('#cvs'), cvsBtn = $('#cvs-btn');
+  function closeCvs() { if (!cvs.classList.contains('on')) return; cvs.classList.remove('on'); cvsBtn.setAttribute('aria-expanded', 'false'); }
+  cvsBtn.addEventListener('click', e => { e.stopPropagation(); const on = cvs.classList.toggle('on'); cvsBtn.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+  document.addEventListener('click', closeCvs);
 
   /* ---------- Background field: drifting stars joined by faint lines ---------- */
   const field = $('#field'), fx = field.getContext('2d');
@@ -215,6 +221,27 @@
   }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
   chapters.forEach(c => chapIO.observe(c));
 
+  /* ---------- Settle on a whole chapter ---------- */
+  // You scroll freely. When you stop, the page eases to the nearest place where one chapter fills the screen.
+  // A chapter taller than the screen scrolls freely inside itself; the foot of the page is a resting place too.
+  let settleTimer = null;
+  function settle() {
+    if (body.classList.contains('locked')) return;
+    const y = scrollY, vh = innerHeight, max = Math.max(0, document.documentElement.scrollHeight - vh);
+    const targets = [max];
+    for (const c of chapters) {
+      const top = Math.round(c.getBoundingClientRect().top + y), h = c.offsetHeight;
+      if (top <= y + 2 && top + h >= y + vh - 2) return; // one chapter already fills the screen
+      targets.push(top);
+      if (h > vh) targets.push(top + h - vh);
+    }
+    let best = -1, bd = Infinity;
+    for (const t of targets) { const d = Math.abs(t - y); if (d < bd) { bd = d; best = t; } }
+    if (best < 0 || bd < 2 || bd > vh * .6) return;
+    window.scrollTo({ top: best, behavior: reduced ? 'auto' : 'smooth' });
+  }
+  window.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }, { passive: true });
+
   /* ---------- Reveal on scroll ---------- */
   const revIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } }); }, { threshold: .12 });
   const onScreen = el => { const r = el.getBoundingClientRect(); return r.top < innerHeight * .95 && r.bottom > 0; };
@@ -255,6 +282,57 @@
   /* ---------- The library, the sheet and the map ---------- */
   const library = {};
   $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML }; });
+
+  /* ---------- Request sheets: a drafted message you can send from your email app, from Gmail, or copy ---------- */
+  const EMAIL = 'wehancoombs@gmail.com';
+  // Paste a booking link here (a Google Calendar appointment page, or Calendly) and every request sheet gets a "Book a call" button. Empty hides it.
+  const BOOKING_URL = '';
+  const REQUESTS = {
+    tutoring: { ch: 'make', title: 'Request tutoring', subject: 'Tutoring request', intro: 'Tell me the subject, the level and when suits you. I reply with a plan, a rate and a start date.', body: 'Hi Wehan,\n\nI’d like to ask about tutoring.\n\nSubject and grade or level: \nWhen and how often: \nIn person or online: \n\nThanks,\n' },
+    editing: { ch: 'make', title: 'Request editing', subject: 'Editing request', intro: 'Tell me what the document is and when you need it back. I reply with a rate and a date.', body: 'Hi Wehan,\n\nI’d like to ask about editing.\n\nWhat the document is and roughly how long: \nWhen I need it back: \n\nThanks,\n' },
+    design: { ch: 'make', title: 'Request learning design', subject: 'Learning design request', intro: 'Tell me what you need built and who it is for. I reply with a plan, a rate and a timeline.', body: 'Hi Wehan,\n\nI’d like to ask about learning design.\n\nWhat I need built: \nWho it is for: \nWhen I need it: \n\nThanks,\n' },
+    counselling: { ch: 'make', title: 'Request philosophical counselling', subject: 'Philosophical counselling', intro: 'Say as much or as little as you like. I reply with a time to talk and a rate.', body: 'Hi Wehan,\n\nI’d like to ask about philosophical counselling.\n\nWhat I’d like to think through: \nIn person or online: \nWhen suits me: \n\nThanks,\n' },
+    consulting: { ch: 'make', title: 'Request philosophical consulting', subject: 'Philosophical consulting request', intro: 'Tell me the question and who is involved. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about philosophical consulting.\n\nThe question or situation: \nWho is involved: \nA talk, a workshop, a written brief, or a conversation: \n\nThanks,\n' },
+    any: { ch: 'write', title: 'Write to me', subject: 'Hello', intro: 'For anything else: a post, a reference, a question, a hello.', body: 'Hi Wehan,\n\n\n\nThanks,\n' }
+  };
+  const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  Object.keys(REQUESTS).forEach(k => {
+    const r = REQUESTS[k];
+    library['request-' + k] = { title: r.title, ch: r.ch, html:
+      '<p class="when">' + r.intro + '</p>' +
+      '<div class="req" data-kind="' + k + '">' +
+        '<label class="req-label" for="req-body">Your message <small>change anything you like</small></label>' +
+        '<textarea id="req-body" class="req-body" rows="9" spellcheck="false">' + esc(r.body) + '</textarea>' +
+        '<div class="req-actions">' +
+          '<button class="btn solid" type="button" data-send="mail">Send from my email app</button>' +
+          '<button class="btn" type="button" data-send="gmail">Send from Gmail</button>' +
+          '<button class="btn" type="button" data-send="copy">Copy the message</button>' +
+        '</div>' +
+        '<p class="req-to">To <button type="button" class="inline" data-copy="' + EMAIL + '">' + EMAIL + '</button> · subject: ' + r.subject + '</p>' +
+        (BOOKING_URL ? '<p class="more"><a class="btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener">Book a call instead ↗</a></p>' : '') +
+      '</div>' };
+  });
+  function copyText(t) {
+    const legacy = () => new Promise((res, rej) => {
+      const ta = document.createElement('textarea'); ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); ok ? res() : rej();
+    });
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(t).catch(legacy);
+    return legacy();
+  }
+  function flash(btn, msg) { const old = btn.textContent; btn.textContent = msg; btn.disabled = true; setTimeout(() => { btn.textContent = old; btn.disabled = false; }, 1800); }
+  function activateRequest(container) {
+    const form = $('.req', container); if (!form) return;
+    const r = REQUESTS[form.dataset.kind], ta = $('.req-body', form);
+    form.addEventListener('click', e => {
+      const b = e.target.closest('[data-send]'); if (!b) return;
+      const text = ta.value;
+      if (b.dataset.send === 'mail') location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text);
+      else if (b.dataset.send === 'gmail') window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text), '_blank', 'noopener');
+      else copyText('To: ' + EMAIL + '\nSubject: ' + r.subject + '\n\n' + text).then(() => flash(b, 'Copied ✓'), () => flash(b, 'Could not copy'));
+    });
+  }
   const ORDER = {};
   $$('.map-group').forEach(g => { ORDER[g.dataset.ch] = $$('[data-sheet]', g).map(b => b.dataset.sheet); });
 
@@ -289,7 +367,7 @@
     sheetTitle.textContent = item.title;
     sheetBody.innerHTML = item.html;
     sheetBody.scrollTop = 0;
-    activateEmbeds(sheetBody);
+    activateEmbeds(sheetBody); activateRequest(sheetBody);
     const order = ORDER[item.ch] || [], i = order.indexOf(id);
     $('#sheet-prev').disabled = !(i > 0); $('#sheet-next').disabled = !(i >= 0 && i < order.length - 1);
     sheetWhere.textContent = i >= 0 ? (i + 1) + ' of ' + order.length + ' · ' + (CH_LABEL[item.ch] || '') : '';
@@ -334,7 +412,7 @@
   mapBtn.addEventListener('click', () => { if (map.classList.contains('on')) closeMap(); else openMap(); });
   $('#map-close').addEventListener('click', () => closeMap());
   scrim.addEventListener('click', () => { closeSheet(); closeMap(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); } });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); } });
 
   function goTo(sel) {
     const el = $(sel);
@@ -346,6 +424,8 @@
 
   // One listener for every "open this" button on the page, in the map and inside sheets.
   document.addEventListener('click', e => {
+    const c = e.target.closest('[data-copy]');
+    if (c) { e.preventDefault(); copyText(c.dataset.copy).then(() => flash(c, 'Copied ✓'), () => flash(c, 'Could not copy')); return; }
     const s = e.target.closest('[data-sheet]');
     if (s) { e.preventDefault(); const id = s.dataset.sheet, ch = library[id] && library[id].ch; const sec = ch && $('#' + ch); if (sec && map.classList.contains('on') && body.dataset.chapter !== ch) { sec.scrollIntoView({ behavior: 'auto', block: 'start' }); } openSheet(id); return; }
     const g = e.target.closest('[data-goto]');
@@ -398,7 +478,7 @@
     macbeth: { cap: '<strong>Macbeth.</strong> Grade 10 Home Language, three classes, August. Whose fault is the murder, a banquet with an empty chair, and a revision sheet of my own.', sheet: 'macbeth' },
     tempest: { cap: '<strong>The Tempest.</strong> Grade 11 Home Language, five classes. A scene a day through Act 3, staged with desks, sweets and thunder; then the RSC.', sheet: 'tempest' },
     grammar: { cap: '<strong>Grammar.</strong> Grade 10 First Additional Language at Hoërskool Garsfontein, May. Conditionals and prepositions, taught inside real situations.', sheet: 'grammar' },
-    film: { cap: '<strong>Film study.</strong> Grade 11. The language of film, then Spirited Away and Howl’s Moving Castle with a method called FRAME.', sheet: 'film' },
+    film: { cap: '<strong>Film study.</strong> Grade 11: the language of film, then a pub quiz on shots and angles. Grade 10: Spirited Away and Howl’s Moving Castle, with a method called FRAME.', sheet: 'film' },
     enrichment: { cap: '<strong>Philosophy for teenagers.</strong> Grade 11 enrichment, September. Prove your neighbour exists, trolley problems, an ask-me-anything, and English as the meta-skill.', sheet: 'enrichment' }
   };
   const POEMS = [
@@ -423,30 +503,30 @@
 
   /* ---------- The constellation ---------- */
   const NODES = [
-    { id: 'plato', x: 400, y: 250, r: 9, big: true, label: 'Plato',
+    { id: 'plato', x: 500, y: 200, r: 9, big: true, label: 'Plato',
       body: 'The centre of the map. My PhD, <em>Ainigma</em>, read Plato’s esotericism in its historical context: what he wrote, what he withheld, and why.',
       links: [['Ainigma: Plato’s Esotericism in Context (PhD, 2023)', 'https://repository.up.ac.za/handle/2263/89290']] },
-    { id: 'aristotle', x: 235, y: 160, r: 6, label: 'Aristotle',
+    { id: 'aristotle', x: 300, y: 115, r: 6, label: 'Aristotle',
       body: 'My MA, <em>Symphonia</em>, argued that Aristotle stays in harmony with Plato on the separable, immortal soul. The argument became a journal article in 2017.',
       links: [['Aristotle’s harmony with Plato on separable and immortal soul (SAJP, 2017)', 'https://doi.org/10.1080/02580136.2017.1385951'], ['Symphonia: Aristotle versus Plato Critiqued (MA, 2016)', 'https://repository.up.ac.za/handle/2263/57175']] },
-    { id: 'neo', x: 575, y: 160, r: 7, label: 'Neoplatonism',
+    { id: 'neo', x: 700, y: 115, r: 7, label: 'Neoplatonism',
       body: 'Plotinus, Iamblichus, Proclus. A member of the International Society for Neoplatonic Studies since 2017. In 2026 I designed and taught the honours course <em>Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism</em>.', more: 'guide-c5' },
-    { id: 'theurgy', x: 690, y: 85, r: 5, label: 'Theurgy',
+    { id: 'theurgy', x: 860, y: 62, r: 5, label: 'Theurgy',
       body: 'Ritual as philosophy in late Platonism. Conference paper: <em>The Curious Case of Neoplatonic Ritual Magic</em>, PSSA, University of KwaZulu-Natal, 2020.', more: 'papers' },
-    { id: 'egypt', x: 700, y: 260, r: 5, label: 'Ancient Egypt',
+    { id: 'egypt', x: 905, y: 195, r: 5, label: 'Ancient Egypt',
       body: 'Where the rite of rebirth begins. The opening movement of the honours course <em>Philosophy as a Rite of Rebirth</em> (FIL710/810, 2026).', more: 'guide-c5' },
-    { id: 'eso', x: 520, y: 370, r: 7, label: 'Esotericism',
+    { id: 'eso', x: 660, y: 285, r: 7, label: 'Esotericism',
       body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'guide-c3' },
-    { id: 'african', x: 672, y: 440, r: 6, label: 'African esotericism',
+    { id: 'african', x: 820, y: 338, r: 6, label: 'African esotericism',
       body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.', more: 'posts' },
-    { id: 'life', x: 285, y: 385, r: 6, label: 'A way of life',
+    { id: 'life', x: 335, y: 295, r: 6, label: 'A way of life',
       body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).', more: 'guide-c4' },
-    { id: 'nature', x: 150, y: 470, r: 5, label: 'Animism & nature',
+    { id: 'nature', x: 165, y: 340, r: 5, label: 'Animism & nature',
       body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.', more: 'papers' },
-    { id: 'rorty', x: 115, y: 285, r: 4.5, label: 'Rorty',
+    { id: 'rorty', x: 125, y: 190, r: 4.5, label: 'Rorty',
       body: 'An early article: <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em>, Humanities, 2013.',
       links: [['Read the article', 'https://doi.org/10.3390/h2020313']] },
-    { id: 'meta', x: 420, y: 485, r: 5, label: 'Metacrisis',
+    { id: 'meta', x: 500, y: 345, r: 5, label: 'Metacrisis',
       body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' }
   ];
   const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt']];
@@ -541,9 +621,15 @@
     b.dataset.sheet = id;
     li.addEventListener('mouseenter', () => { trackCap.classList.add('swap'); setTimeout(() => { trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap'); }, 150); });
   });
+  // Drag the strip with a mouse. The pointer is captured only once you have actually moved, so a plain click on a year still opens it.
   let td = null, dragged = false;
-  track.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; td = { x: e.clientX, sl: track.scrollLeft, moved: 0 }; dragged = false; track.classList.add('dragging'); track.setPointerCapture(e.pointerId); });
-  track.addEventListener('pointermove', e => { if (!td) return; const dx = e.clientX - td.x; td.moved += Math.abs(dx); if (td.moved > 6) dragged = true; track.scrollLeft = td.sl - dx; });
+  track.addEventListener('pointerdown', e => { if (e.pointerType === 'touch' || e.button !== 0) return; td = { x: e.clientX, sl: track.scrollLeft, id: e.pointerId }; dragged = false; });
+  track.addEventListener('pointermove', e => {
+    if (!td) return;
+    const dx = e.clientX - td.x;
+    if (!dragged && Math.abs(dx) > 6) { dragged = true; track.classList.add('dragging'); try { track.setPointerCapture(td.id); } catch (err) {} }
+    if (dragged) track.scrollLeft = td.sl - dx;
+  });
   const tEnd = () => { if (!td) return; td = null; track.classList.remove('dragging'); setTimeout(() => { dragged = false; }, 50); };
   track.addEventListener('pointerup', tEnd); track.addEventListener('pointercancel', tEnd);
   track.addEventListener('click', e => { if (dragged) { e.stopPropagation(); e.preventDefault(); } }, true);

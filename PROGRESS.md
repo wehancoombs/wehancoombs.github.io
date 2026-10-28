@@ -162,9 +162,51 @@ Wehan's list after the one-page version went live, all done:
 
 **CVs**
 - The three CVs now say "My website" instead of the address (sources in `../wehan-cvs/cv-bundle`, re-rendered with `render.py`, all pages overflow 0, copied into `cv/`). Note: on a printed copy the link text no longer shows the address; say the word to revert.
-- **Standing routine:** whenever the CVs change, copy the three PDFs into the synced Google Drive folder `D:\Google Drive\WORK­MIN\CV` (Google Drive for Desktop syncs it), after copying the previous versions into its `2026 Archive` subfolder with a "(before <date>)" suffix. Done today; checksums match.
+- **Standing routine:** whenever the CVs change, copy the three PDFs into the synced Google Drive folder `D:\Google Drive\WORK\xADMIN\CV` (Google Drive for Desktop syncs it), after copying the previous versions into its `2026 Archive` subfolder with a "(before <date>)" suffix. Done today; checksums match.
 
 **Checked**
 - Desktop (1280) and phone (375): shelf and poem burst, stars, think layout, services, year sheets, seals; no console errors; no sideways scroll. One thing to know: the app's phone emulation in the Browser pane reports a window wider than the page, which makes the pop-up sheet look cut off there; that is the test tool, not the site (the sheet is sized to the real screen on a phone).
 
 **Not pushed yet.**
+
+---
+
+## 2026-10-28 (evening): tweaks round two
+
+Wehan's second list, all done:
+
+**Always on top**
+- The three CVs and the full resume sit in the top bar beside the theme switch (T, Φ, F and ≡, coloured like their chapters). On screens narrower than 1100px they fold into a "CVs ▾" menu.
+
+**Scrolling settles on a chapter**
+- You scroll freely; when you stop, the page eases to the nearest place where one chapter fills the screen. Chapters taller than the screen (Teach, Think and Make on most laptops) scroll freely inside themselves, and the foot of the page is a resting place too. Done with a small script in main.js, not CSS scroll-snap, because the CSS version left gaps where the page could rest between two chapters.
+
+**Start here (replaces "Choose yours")**
+- A menu of five services, each with a Request button: Tutoring, Editing, Learning design, Philosophical counselling (new) and Philosophical consulting. Tapping a service name opens its sheet. Under the heading, a "Hiring instead?" line with the two CVs and "How working with me works".
+
+**Request buttons that work for everyone**
+- Every Request button now opens a sheet with the message already drafted (and editable), plus three ways to send it: "Send from my email app" (a mailto link), "Send from Gmail" (opens Gmail's compose window in a new tab) and "Copy the message". The old buttons were plain mailto links, which do nothing on a computer that has no mail app set up.
+- A `BOOKING_URL` line near the request code in `assets/main.js`: paste a booking link there (a Google Calendar appointment schedule or Calendly) and every request sheet grows a "Book a call" button. Empty for now. No rates on the site yet.
+
+**Teach**
+- Film study corrected: the Grade 11s did the language of film and a pub quiz on shots (five classes); the Grade 10s did Spirited Away and Howl's Moving Castle with FRAME (three classes). The sheet, the shelf caption and the Abbotts sheet all say so.
+
+**Think**
+- "students taught" (no more "counted conservatively").
+- The constellation runs the full width, relabelled "My research, constellated", with the stars laid out again for the wide band.
+- Lectures and study guides share a row beneath it. The guides are bigger and pop out one after another as the row comes into view.
+
+**Make**
+- Six cards in three columns: the five services plus a "Working with me" card that carries the Freelance CV seal. Consulting now speaks to teams and organisations; counselling (new sheet) is one to one, and says plainly that it is not therapy. The counselling and consulting copy is drafted by Claude for Wehan to check.
+
+**So far**
+- Bug fixed: a real mouse click on a year did nothing, because the drag-to-scroll code grabbed the pointer on every press. Now a plain click opens the year and only an actual drag scrolls the strip.
+- Workshops folded into the years they belong to: the 2017 Wits workshop and the 2024 publishing workshop with Prof Metz (the 2016 Aristotle Colloquium was already there).
+
+**Write**
+- A Copy button beside the address; "Request a service" opens a general request sheet. The map's "Email me" became "Write to me" and opens the same sheet.
+
+**Checked**
+- Desktop (1280) and phone (375): the top-bar CVs and the phone menu; scroll settling (five wheel ticks from the top land on Start here, a short scroll back returns, inside Teach it scrolls freely); the Start menu; request sheets on both sizes (the Gmail link is built correctly; copying falls back to the old method if the browser refuses); the film caption; the constellation; the guides; all six Make cards; a real click on 2024; the Write section; the top bar in light mode. No console errors, no sideways scroll.
+
+**Not pushed yet** (two commits ahead of the live site once this one lands).

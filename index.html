@@ -6,7 +6,7 @@
 <title>Wehan Coombs · Teacher, philosopher, maker</title>
 <meta name="description" content="Dr Wehan M. Coombs teaches English, lectures and writes on Plato, Neoplatonism and esotericism, and builds tools for learning. Courses, study guides, recorded lectures, research and CVs, all on one page. Pretoria East, South Africa.">
 <meta property="og:title" content="Wehan Coombs · Teacher, philosopher, maker">
-<meta property="og:description" content="English teacher. Philosopher of Plato and the esoteric. Tutor, editor, learning designer and philosophical consultant in Pretoria East.">
+<meta property="og:description" content="English teacher. Philosopher of Plato and the esoteric. Tutor, editor, learning designer, philosophical counsellor and consultant in Pretoria East.">
 <meta property="og:image" content="https://wehancoombs.github.io/headshot.jpg">
 <meta property="og:url" content="https://wehancoombs.github.io/">
 <meta property="og:type" content="website">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=5">
 </head>
 <body data-chapter="threshold">
 
@@ -36,13 +36,22 @@
     <a class="brand" href="#threshold"><span class="mono">W</span><span class="name">Dr Wehan M. Coombs</span></a>
   </div>
   <div class="links">
+    <div class="cvs" id="cvs">
+      <button class="pill cvs-btn" id="cvs-btn" type="button" aria-expanded="false" aria-controls="cvs-menu">CVs ▾</button>
+      <div class="cvs-menu" id="cvs-menu">
+        <a class="pill cv-link teach" href="cv/Wehan-Coombs-FET-CV.pdf" title="Teaching CV, for schools (PDF)"><b>T</b><span>Teaching CV</span></a>
+        <a class="pill cv-link think" href="cv/Wehan-Coombs-PhD-CV.pdf" title="Academic CV, for universities (PDF)"><b>Φ</b><span>Academic CV</span></a>
+        <a class="pill cv-link make" href="cv/Wehan-Coombs-Freelance-CV.pdf" title="Freelance CV, for clients (PDF)"><b>F</b><span>Freelance CV</span></a>
+        <button class="pill cv-link" type="button" data-sheet="resume" title="The full resume"><b>≡</b><span>Full resume</span></button>
+      </div>
+    </div>
     <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
   </div>
 </header>
 
 <nav class="dots" aria-label="Chapters">
   <a href="#threshold"><span>Begin</span></a>
-  <a href="#paths"><span>Paths</span></a>
+  <a href="#start"><span>Start</span></a>
   <a href="#teach"><span>Teach</span></a>
   <a href="#think"><span>Think</span></a>
   <a href="#make"><span>Make</span></a>
@@ -111,6 +120,7 @@
         <li><button type="button" data-sheet="tutoring">Tutoring &amp; TEFL</button></li>
         <li><button type="button" data-sheet="editing">Editing &amp; writing</button></li>
         <li><button type="button" data-sheet="design">Learning design</button></li>
+        <li><button type="button" data-sheet="counselling">Philosophical counselling</button></li>
         <li><button type="button" data-sheet="consulting">Philosophical consulting</button></li>
         <li><button type="button" data-sheet="working">Working with me</button></li>
         <li><a href="cv/Wehan-Coombs-Freelance-CV.pdf">Freelance CV (PDF) ↓</a></li>
@@ -127,7 +137,7 @@
     <section class="map-group" data-ch="write">
       <a class="map-ch" href="#write" data-goto="#write">Write</a>
       <ul>
-        <li><a href="mailto:wehancoombs@gmail.com">Email me</a></li>
+        <li><button type="button" data-sheet="request-any">Write to me</button></li>
         <li><button type="button" data-sheet="referees">Referees</button></li>
         <li><button type="button" data-sheet="resume">The full resume</button></li>
         <li><a href="https://www.linkedin.com/in/wehan-coombs">LinkedIn ↗</a></li>
@@ -178,36 +188,48 @@
       <p class="solid-hint">After Plato’s <em>Timaeus</em> · drag to turn · tap to change</p>
     </div>
   </div>
-  <a class="cue" href="#paths" aria-label="Scroll down"><span></span></a>
+  <a class="cue" href="#start" aria-label="Scroll down"><span></span></a>
 </section>
 
-<!-- ===================== 2. Three paths ===================== -->
-<section id="paths" class="chapter">
-  <div class="wrap paths-grid">
-    <div>
-      <p class="eyebrow reveal">Three paths</p>
-      <h2 class="display reveal">Choose<br><em>yours.</em></h2>
-      <p class="line reveal">One person, three kinds of work. Follow the one that brought you here.</p>
+<!-- ===================== 2. Start here ===================== -->
+<section id="start" class="chapter">
+  <div class="wrap start-grid">
+    <div class="start-text">
+      <p class="eyebrow reveal">Start here</p>
+      <h2 class="display reveal">What do<br><em>you need?</em></h2>
+      <p class="line reveal">Pick a service and send a request in one tap. I reply with a plan, a rate and a start date.</p>
+      <p class="hire reveal">
+        <span class="hint">Hiring instead?</span>
+        <a href="cv/Wehan-Coombs-FET-CV.pdf">Teaching CV, for schools →</a>
+        <a href="cv/Wehan-Coombs-PhD-CV.pdf">Academic CV, for universities →</a>
+        <button type="button" class="textlink" data-sheet="working">How working with me works →</button>
+      </p>
     </div>
-    <svg class="paths reveal" viewBox="0 0 720 660" role="group" aria-label="Three paths: Teach, Think and Make">
-      <circle class="ring" cx="360" cy="330" r="312"/>
-      <a href="#teach" class="path teach" aria-label="Teach, for schools">
-        <circle cx="250" cy="250" r="182"/>
-        <text class="word" x="250" y="246">Teach</text>
-        <text class="sub" x="250" y="282">for schools</text>
-      </a>
-      <a href="#think" class="path think" aria-label="Think, for universities">
-        <circle cx="470" cy="250" r="182"/>
-        <text class="word" x="470" y="246">Think</text>
-        <text class="sub" x="470" y="282">for universities</text>
-      </a>
-      <a href="#make" class="path make" aria-label="Make, for students and clients">
-        <circle cx="360" cy="440" r="182"/>
-        <text class="word" x="360" y="436">Make</text>
-        <text class="sub" x="360" y="472">for students &amp; clients</text>
-      </a>
-      <circle class="core" cx="360" cy="313" r="5"/>
-    </svg>
+    <div class="menu-wrap reveal">
+      <svg class="menu-ring" viewBox="0 0 400 400" aria-hidden="true"><circle class="ring" cx="200" cy="200" r="190"/><circle class="core" cx="200" cy="200" r="4"/></svg>
+      <ol class="menu">
+        <li class="menu-row">
+          <button class="menu-main" type="button" data-sheet="tutoring"><span class="m-name">Tutoring</span><span class="m-desc">English, philosophy and essays, Grades 10 to 12 and university. Online English for non-native speakers.</span></button>
+          <button class="btn solid" type="button" data-sheet="request-tutoring">Request</button>
+        </li>
+        <li class="menu-row">
+          <button class="menu-main" type="button" data-sheet="editing"><span class="m-name">Editing</span><span class="m-desc">Essays, theses and academic writing, back with tracked changes and a note on what to fix next.</span></button>
+          <button class="btn solid" type="button" data-sheet="request-editing">Request</button>
+        </li>
+        <li class="menu-row">
+          <button class="menu-main" type="button" data-sheet="design"><span class="m-name">Learning design</span><span class="m-desc">Whole modules with study guides, rubrics as simple web apps, recorded or live-streamed lectures.</span></button>
+          <button class="btn solid" type="button" data-sheet="request-design">Request</button>
+        </li>
+        <li class="menu-row">
+          <button class="menu-main" type="button" data-sheet="counselling"><span class="m-name">Philosophical counselling</span><span class="m-desc">One to one, for a question in your own life: meaning, work, loss, belief, a decision.</span></button>
+          <button class="btn solid" type="button" data-sheet="request-counselling">Request</button>
+        </li>
+        <li class="menu-row">
+          <button class="menu-main" type="button" data-sheet="consulting"><span class="m-name">Philosophical consulting</span><span class="m-desc">For teams, schools and organisations: ethics, purpose, talks, workshops, a written brief.</span></button>
+          <button class="btn solid" type="button" data-sheet="request-consulting">Request</button>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -289,7 +311,7 @@
       </div>
       <ul class="stats reveal">
         <li><button type="button" data-sheet="posts"><b data-count="15">0</b><span>years lecturing</span></button></li>
-        <li><button type="button" data-sheet="courses"><b data-count="4000" data-suffix="+" data-group="1">0</b><span>students taught, counted conservatively</span></button></li>
+        <li><button type="button" data-sheet="courses"><b data-count="4000" data-suffix="+" data-group="1">0</b><span>students taught</span></button></li>
         <li><button type="button" data-sheet="courses"><b data-count="5">0</b><span>self-designed modules</span></button></li>
         <li><button type="button" data-sheet="evaluations">
           <span class="stars" data-rating="4.81" aria-label="4.81 out of 5">
@@ -311,15 +333,15 @@
       <button type="button" data-sheet="philosophy">Teaching philosophy</button>
     </p>
 
-    <div class="think-grid reveal">
-      <div class="sky-wrap">
-        <p class="eyebrow">My research, star by star</p>
-        <div class="sky">
-          <svg id="sky" viewBox="0 0 800 540" role="group" aria-label="A constellation of my research interests. Each star opens a short note."></svg>
-        </div>
-        <p class="hint">Hover or tap a star<span class="m-only"> · drag the sky sideways</span></p>
+    <div class="sky-wrap reveal">
+      <p class="eyebrow">My research, constellated</p>
+      <div class="sky">
+        <svg id="sky" viewBox="0 0 1000 400" role="group" aria-label="A constellation of my research interests. Each star opens a short note."></svg>
       </div>
-      <div class="think-side">
+      <p class="hint">Hover or tap a star<span class="m-only"> · drag the sky sideways</span></p>
+    </div>
+
+    <div class="think-row reveal">
         <div>
           <p class="eyebrow">Watch me teach</p>
           <div class="lectures">
@@ -345,7 +367,6 @@
           </div>
           <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
         </div>
-      </div>
     </div>
 
     <div class="row-end reveal">
@@ -370,13 +391,14 @@
       <div>
         <p class="eyebrow reveal">For students &amp; clients</p>
         <h2 class="display reveal">Make</h2>
-        <p class="line reveal">Tutoring, editing, learning design and philosophical consulting. In Pretoria East, or online anywhere.</p>
+        <p class="line reveal">Tutoring, editing, learning design, philosophical counselling and consulting. In Pretoria East, or online anywhere.</p>
       </div>
     </div>
     <p class="index reveal">
       <button type="button" data-sheet="tutoring">Tutoring &amp; TEFL</button>
       <button type="button" data-sheet="editing">Editing</button>
       <button type="button" data-sheet="design">Learning design</button>
+      <button type="button" data-sheet="counselling">Counselling</button>
       <button type="button" data-sheet="consulting">Consulting</button>
       <button type="button" data-sheet="working">Working with me</button>
     </p>
@@ -403,7 +425,7 @@
           <li>Online English lessons for non-native speakers</li>
         </ul>
         <div class="svc-actions">
-          <a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Tutoring%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20tutoring.%0A%0ASubject%20and%20grade%20or%20level%3A%20%0AWhen%20and%20how%20often%3A%20%0AIn%20person%20or%20online%3A%20%0A%0AThanks%2C%0A">Request tutoring</a>
+          <button class="btn solid" type="button" data-sheet="request-tutoring">Request tutoring</button>
           <button class="textlink" type="button" data-sheet="tutoring">Details</button>
         </div>
       </article>
@@ -418,7 +440,7 @@
           <li>Study guides, readers and course materials, written or edited</li>
         </ul>
         <div class="svc-actions">
-          <a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Editing%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20editing.%0A%0AWhat%20the%20document%20is%20and%20roughly%20how%20long%3A%20%0AWhen%20I%20need%20it%20back%3A%20%0A%0AThanks%2C%0A">Request editing</a>
+          <button class="btn solid" type="button" data-sheet="request-editing">Request editing</button>
           <button class="textlink" type="button" data-sheet="editing">Details</button>
         </div>
       </article>
@@ -433,8 +455,28 @@
           <li>Live-streamed or recorded lectures with good audio and video</li>
         </ul>
         <div class="svc-actions">
-          <a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Learning%20design%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20learning%20design.%0A%0AWhat%20I%20need%20built%3A%20%0AWho%20it%20is%20for%3A%20%0AWhen%20I%20need%20it%3A%20%0A%0AThanks%2C%0A">Request a design</a>
+          <button class="btn solid" type="button" data-sheet="request-design">Request a design</button>
           <button class="textlink" type="button" data-sheet="design">Details</button>
+        </div>
+      </article>
+
+      <article class="svc reveal">
+        <div class="svc-vis">
+          <svg class="dialog" viewBox="0 0 120 100" aria-hidden="true">
+            <circle class="d1" cx="44" cy="50" r="27"/>
+            <circle class="d2" cx="76" cy="50" r="27"/>
+          </svg>
+        </div>
+        <h3>Philosophical counselling</h3>
+        <p class="svc-sub">One to one · Meaning · Decisions</p>
+        <ul class="deliv">
+          <li>Conversations about a question in your own life: meaning, work, loss, belief, a choice to make</li>
+          <li>In person in Pretoria East or online, one session or a short series</li>
+          <li>Not therapy: philosophy, with twenty-five centuries of help</li>
+        </ul>
+        <div class="svc-actions">
+          <button class="btn solid" type="button" data-sheet="request-counselling">Request counselling</button>
+          <button class="textlink" type="button" data-sheet="counselling">Details</button>
         </div>
       </article>
 
@@ -448,30 +490,38 @@
           </svg>
         </div>
         <h3>Philosophical consulting</h3>
-        <p class="svc-sub">Ethics · Meaning · Decisions</p>
+        <p class="svc-sub">Teams · Schools · Organisations</p>
         <ul class="deliv">
-          <li>A thinking partner for a hard question, one to one, in person or online</li>
-          <li>Talks, workshops and reading groups for a team, a school or a society</li>
+          <li>Talks, workshops and reading groups, from a single session to a short series</li>
+          <li>What a project or an organisation is for, and the ethics of the decisions in front of it</li>
           <li>A written brief you can act on: the question, the positions, a recommendation</li>
         </ul>
         <div class="svc-actions">
-          <a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Philosophical%20consulting%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20talk%20about%20philosophical%20consulting.%0A%0AThe%20question%20or%20situation%3A%20%0AWho%20is%20involved%3A%20%0A%0AThanks%2C%0A">Start a conversation</a>
+          <button class="btn solid" type="button" data-sheet="request-consulting">Request consulting</button>
           <button class="textlink" type="button" data-sheet="consulting">Details</button>
         </div>
       </article>
-    </div>
-
-    <div class="row-end reveal">
-      <a class="seal" href="cv/Wehan-Coombs-Freelance-CV.pdf">
-        <svg viewBox="0 0 120 120" aria-hidden="true">
-          <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-          <circle class="seal-ring" cx="60" cy="60" r="56"/>
-          <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
-          <text class="seal-letter" x="60" y="75">F</text>
-        </svg>
-        <span class="seal-label">Freelance CV<small>Two pages, PDF</small></span>
-      </a>
-      <button class="textlink" type="button" data-sheet="working">How working with me works →</button>
+      <article class="svc svc-how reveal">
+        <p class="eyebrow">Working with me</p>
+        <h3>Ask, agree, begin.</h3>
+        <ul class="deliv">
+          <li>Press a Request button and tell me what you need. I reply with a plan, a rate and a start date</li>
+          <li>Everything agreed up front, in writing</li>
+          <li>In person in Pretoria East, or online anywhere</li>
+        </ul>
+        <div class="svc-actions">
+          <a class="seal" href="cv/Wehan-Coombs-Freelance-CV.pdf">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+              <circle class="seal-ring" cx="60" cy="60" r="56"/>
+              <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
+              <text class="seal-letter" x="60" y="75">F</text>
+            </svg>
+            <span class="seal-label">Freelance CV<small>Two pages, PDF</small></span>
+          </a>
+          <button class="textlink" type="button" data-sheet="working">The details</button>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -491,12 +541,12 @@
           <li class="ev"><button type="button" data-year="2013" data-label="First article" data-cap="Contingency, irony and morality: a critical review of Rorty’s liberal utopia, published in Humanities." data-more="publications"><b>2013</b><span>First article</span></button></li>
           <li class="ev"><button type="button" data-year="2014" data-label="Assistant lecturer" data-cap="Assistant Lecturer in the Department of Philosophy, University of Pretoria, teaching two first-year modules." data-more="posts"><b>2014</b><span>Assistant lecturer</span></button></li>
           <li class="ev"><button type="button" data-year="2016" data-label="MA, cum laude. Head lecturer" data-cap="MA in Philosophy, cum laude: Symphonia, Aristotle versus Plato Critiqued. Head lecturer from this year. Co-organised the Aristotle Colloquium for his 2400th birth year." data-more="publications"><b>2016</b><span>MA, cum laude. Head lecturer</span></button></li>
-          <li class="ev"><button type="button" data-year="2017" data-label="Journal article" data-cap="Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies." data-more="publications"><b>2017</b><span>Journal article</span></button></li>
+          <li class="ev"><button type="button" data-year="2017" data-label="Journal article" data-cap="Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies. Presented at a Wits workshop on Plato’s Republic." data-more="publications"><b>2017</b><span>Journal article</span></button></li>
           <li class="ev"><button type="button" data-year="2018" data-label="A module redesigned" data-cap="Partly redesigned Introduction to Moral and Political Philosophy for business students. UP Doctoral Support Bursary for Ainigma, 2018 to 2020." data-more="guide-c1"><b>2018</b><span>A module redesigned</span></button></li>
           <li class="ev"><button type="button" data-year="2019" data-label="A first-year course of my own" data-cap="Created Introduction to Metaphysics and Epistemology from scratch and ran it as head lecturer for classes of around 500, 2019 to 2021. Still in use at UP." data-more="curriculum"><b>2019</b><span>A first-year course of my own</span></button></li>
           <li class="ev"><button type="button" data-year="2020" data-label="A paper on theurgy" data-cap="The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal." data-more="papers"><b>2020</b><span>A paper on theurgy</span></button></li>
           <li class="ev"><button type="button" data-year="2023" data-label="Doctorate" data-cap="PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of about 300." data-more="publications"><b>2023</b><span>Doctorate</span></button></li>
-          <li class="ev"><button type="button" data-year="2024" data-label="Postdoc at UJ" data-cap="Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life." data-more="posts"><b>2024</b><span>Postdoc at UJ</span></button></li>
+          <li class="ev"><button type="button" data-year="2024" data-label="Postdoc at UJ" data-cap="Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life. Workshop on publishing in international journals with Prof Thaddeus Metz." data-more="posts"><b>2024</b><span>Postdoc at UJ</span></button></li>
           <li class="ev"><button type="button" data-year="2025" data-label="Two papers" data-cap="Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy." data-more="papers"><b>2025</b><span>Two papers</span></button></li>
           <li class="ev"><button type="button" data-year="2026" data-label="Into the classroom" data-cap="PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black." data-more="abbotts"><b>2026</b><span>Into the classroom</span></button></li>
         </ol>
@@ -513,9 +563,9 @@
   <div class="wrap">
     <p class="eyebrow reveal">Contact</p>
     <h2 class="display reveal">Write<br><em>to me.</em></h2>
-    <a class="mail reveal" href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a>
+    <p class="mail-row reveal"><a class="mail" href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a><button class="copy" type="button" data-copy="wehancoombs@gmail.com">Copy</button></p>
     <p class="index reveal">
-      <button type="button" data-sheet="working">Request a service</button>
+      <button type="button" data-sheet="request-any">Request a service</button>
       <button type="button" data-sheet="referees">Referees</button>
       <button type="button" data-sheet="resume">The full resume</button>
     </p>
@@ -619,7 +669,7 @@
   <article id="s-abbotts" data-ch="teach" data-title="Abbotts College Pretoria East">
     <p class="when">PGCE teaching practicum · July to September 2026 · seven weeks · mentor teacher Eben van Dien</p>
     <ul class="list">
-      <li>Planned and taught Grade 10 and 11 English Home Language, taking charge of classes with guidance from a mentor teacher: <button type="button" class="inline" data-sheet="macbeth">Macbeth</button> with the Grade 10s; <button type="button" class="inline" data-sheet="tempest">The Tempest</button>, <button type="button" class="inline" data-sheet="poems">three poems</button>, a <button type="button" class="inline" data-sheet="film">film study</button> and a <button type="button" class="inline" data-sheet="enrichment">philosophy enrichment unit</button> with the Grade 11s</li>
+      <li>Planned and taught Grade 10 and 11 English Home Language, taking charge of classes with guidance from a mentor teacher: <button type="button" class="inline" data-sheet="macbeth">Macbeth</button> and <button type="button" class="inline" data-sheet="film">two Miyazaki films</button> with the Grade 10s; <button type="button" class="inline" data-sheet="tempest">The Tempest</button>, <button type="button" class="inline" data-sheet="poems">three poems</button>, the <button type="button" class="inline" data-sheet="film">language of film</button> and a <button type="button" class="inline" data-sheet="enrichment">philosophy enrichment unit</button> with the Grade 11s</li>
       <li>Used regular informal assessment to check what learners had understood, from quick questioning to a Kahoot revision gauntlet</li>
       <li>Community engagement through the school’s WESSA programme: tended the community garden, helped with a shoe donation outreach to a school in need, and played a key role in organising Book Day, a take-one-leave-one book donation drive</li>
     </ul>
@@ -749,10 +799,15 @@
   </article>
 
   <article id="s-film" data-ch="teach" data-title="Film study">
-    <p class="when">Grade 11 English Home Language · Abbotts College · five classes · August 2026</p>
+    <p class="when">English Home Language · Abbotts College · August 2026 · Grade 11 (five classes) and Grade 10 (three classes)</p>
     <p>Visual literacy as a language: every detail on a screen was put there on purpose by someone, to tell you something.</p>
+    <h4>Grade 11: the language of film</h4>
     <ul class="list">
-      <li><strong>The language of film.</strong> Camera angles, shot distances, movement and lighting, taught by asking the class what each one makes them feel before giving a definition. Then a pub-quiz, run from PowerPoint’s presenter mode so I could read each scenario aloud before the answer slide appeared.</li>
+      <li>Camera angles, shot distances, movement and lighting, taught by asking the class what each one makes them feel before giving a definition; then the heavier ideas, denotation and connotation, icons and indexes, and who on a film crew decides what.</li>
+      <li>The next day, a pub quiz on shots, angles and lighting, in teams with a scribe and a scoreboard, run from PowerPoint’s presenter mode so I could read each scenario aloud before the answer slide appeared.</li>
+    </ul>
+    <h4>Grade 10: two films by Miyazaki</h4>
+    <ul class="list">
       <li><strong>Spirited Away.</strong> FRAME, a method for writing about a scene: Fact, Rendering, Affect, Meaning, Explanation. We tested it live on No-Face’s rampage, in a world where greed literally turns people into pigs.</li>
       <li><strong>Howl’s Moving Castle.</strong> Opened with Miyazaki refusing to attend the 2003 Oscars in protest at the invasion of Iraq, then comparative paragraphs and hinge words. The icebreaker: which curse would you rather have?</li>
       <li>Assessed by a blog review and a comparative essay; many who had not seen either film had watched both by the next week.</li>
@@ -1032,7 +1087,7 @@
     </ul>
     <h4>Why me</h4>
     <p>Fifteen years of explaining difficult ideas to first-years, and a year in the Grade 10 and 11 English classroom. I start from what you already know, and I do not move on until it makes sense.</p>
-    <p class="more"><a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Tutoring%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20tutoring.%0A%0ASubject%20and%20grade%20or%20level%3A%20%0AWhen%20and%20how%20often%3A%20%0AIn%20person%20or%20online%3A%20%0A%0AThanks%2C%0A">Request tutoring</a> <button type="button" data-sheet="working">How it works →</button></p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-tutoring">Request tutoring</button> <button type="button" data-sheet="working">How it works →</button></p>
   </article>
 
   <article id="s-editing" data-ch="make" data-title="Editing and writing support">
@@ -1051,7 +1106,7 @@
     </ul>
     <h4>Why me</h4>
     <p>I have marked and commented on thousands of essays and exams, and written five study guides and three readers of my own. I edit for the argument first, then the sentence.</p>
-    <p class="more"><a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Editing%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20editing.%0A%0AWhat%20the%20document%20is%20and%20roughly%20how%20long%3A%20%0AWhen%20I%20need%20it%20back%3A%20%0A%0AThanks%2C%0A">Request editing</a> <button type="button" data-sheet="guides">See the study guides →</button></p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-editing">Request editing</button> <button type="button" data-sheet="guides">See the study guides →</button></p>
   </article>
 
   <article id="s-design" data-ch="make" data-title="Learning design and tools">
@@ -1064,26 +1119,41 @@
     </ul>
     <h4>Why me</h4>
     <p>Four university modules designed from scratch and a fifth redesigned, each with its study guide, tutorial programme and assessments, and two years of live online teaching with my own equipment. The five study guides on this page are the kind of thing I make.</p>
-    <p class="more"><a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Learning%20design%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%20learning%20design.%0A%0AWhat%20I%20need%20built%3A%20%0AWho%20it%20is%20for%3A%20%0AWhen%20I%20need%20it%3A%20%0A%0AThanks%2C%0A">Request a design</a> <button type="button" data-sheet="guides">See the study guides →</button> <button type="button" data-sheet="lectures">Watch a lecture →</button></p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-design">Request a design</button> <button type="button" data-sheet="guides">See the study guides →</button> <button type="button" data-sheet="lectures">Watch a lecture →</button></p>
+  </article>
+
+  <article id="s-counselling" data-ch="make" data-title="Philosophical counselling">
+    <p>Philosophical counselling is a conversation, one to one, about a question in your own life: what matters to you and why, a decision you cannot settle, work that has stopped making sense, a belief that no longer holds, a loss, a life that has changed shape. We think it through together, with the help of people who have been thinking about these things for twenty-five centuries.</p>
+    <h4>What you get</h4>
+    <ul class="list">
+      <li>Sessions in person in Pretoria East or online, one at a time or a short series, at a pace you set</li>
+      <li>Questions rather than advice. By the end of a session the question is clearer and usually smaller, and the next step is yours</li>
+      <li>Something to take away: a short reading, a distinction, an exercise to sit with until next time</li>
+    </ul>
+    <h4>What it is not</h4>
+    <p>It is not therapy, and it does not replace it. I am a philosopher, not a psychologist or a doctor, and if a question belongs to one of them I will say so plainly and help you find the right person.</p>
+    <h4>Where I come from</h4>
+    <p>A PhD on Plato, for whom philosophy was the care of the soul, and years of teaching <em>The Good Life</em>, ethics and metaphysics to people who had never done philosophy before. Fifteen years of office hours taught me that most hard questions get lighter when someone takes them seriously with you.</p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-counselling">Request counselling</button> <button type="button" data-sheet="consulting">For teams and organisations →</button></p>
   </article>
 
   <article id="s-consulting" data-ch="make" data-title="Philosophical consulting">
-    <p>Some questions do not need a therapist, a lawyer or a coach. They need someone who has spent twenty years reading the people who thought hardest about them. Ethics in a decision you have to make. What a project or an organisation is actually for. How to think clearly about AI, meaning, or a life that has changed shape.</p>
+    <p>Some questions do not need a lawyer, an auditor or a coach. They need someone who has spent twenty years reading the people who thought hardest about them. What a project, a school or an organisation is actually for. The ethics of a decision that has to be made. How to think clearly about AI, meaning, or a field that is changing shape.</p>
     <h4>What you get</h4>
     <ul class="list">
-      <li>A thinking partner, one to one, in person in Pretoria East or online: structured conversations that leave you with a clearer question and a way forward</li>
       <li>Talks, workshops and reading groups for a team, a school or a society, from a single session to a short series</li>
+      <li>A thinking partner for leaders and teams: structured conversations that leave you with a clearer question and a way forward</li>
       <li>A written brief you can act on: the question stated properly, the positions worth taking seriously, and a recommendation</li>
     </ul>
     <h4>Where I come from</h4>
-    <p>A PhD on Plato and fifteen years of teaching ethics, metaphysics and the good life to people who had never done philosophy before, including business students and medical students. I am a philosopher, not a counsellor, and I will say so when a question belongs to someone else.</p>
-    <p class="more"><a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Philosophical%20consulting%20request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20talk%20about%20philosophical%20consulting.%0A%0AThe%20question%20or%20situation%3A%20%0AWho%20is%20involved%3A%20%0A%0AThanks%2C%0A">Start a conversation</a> <button type="button" data-sheet="working">How it works →</button></p>
+    <p>A PhD on Plato and fifteen years of teaching ethics, metaphysics and the good life to people who had never done philosophy before, including business students and medical students. For a question in your own life rather than your organisation’s, see <button type="button" class="inline" data-sheet="counselling">philosophical counselling</button>.</p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-consulting">Request consulting</button> <button type="button" data-sheet="working">How it works →</button></p>
   </article>
 
   <article id="s-working" data-ch="make" data-title="Working with me">
     <h4>How it works</h4>
     <ul class="list">
-      <li>Email me with what you need and when you need it. The request buttons on this page start an email with the right questions already in it.</li>
+      <li>Press a Request button anywhere on this page. It drafts a message with the right questions in it, which you send from your own email app or from Gmail, or copy and send however you like.</li>
       <li>We agree a plan, a rate and a deadline up front, in writing</li>
       <li>Sessions in person in Pretoria East or online; editing and written work are returned by the agreed date</li>
     </ul>
@@ -1092,6 +1162,7 @@
       <li><button type="button" class="inline" data-sheet="tutoring">Tutoring and TEFL</button></li>
       <li><button type="button" class="inline" data-sheet="editing">Editing and writing support</button></li>
       <li><button type="button" class="inline" data-sheet="design">Learning design and tools</button></li>
+      <li><button type="button" class="inline" data-sheet="counselling">Philosophical counselling</button></li>
       <li><button type="button" class="inline" data-sheet="consulting">Philosophical consulting</button></li>
     </ul>
     <h4>Strengths</h4>
@@ -1099,7 +1170,7 @@
       <span>Clear, patient explanation</span><span>Close reading and argument</span><span>Detailed, constructive feedback</span>
       <span>Course and materials design</span><span>Online teaching</span><span>Reliable deadlines</span>
     </div>
-    <p class="more"><a class="btn solid" href="mailto:wehancoombs@gmail.com?subject=Request&body=Hi%20Wehan%2C%0A%0AI%27d%20like%20to%20ask%20about%3A%20%0A%0AThanks%2C%0A">Email me</a></p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-any">Write to me</button></p>
   </article>
 
   <article id="s-referees" data-ch="write" data-title="Referees">
@@ -1121,6 +1192,6 @@
 
 </div>
 
-<script src="assets/main.js?v=4"></script>
+<script src="assets/main.js?v=5"></script>
 </body>
 </html>
