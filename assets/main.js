@@ -341,7 +341,7 @@
   let openId = null, lastFocus = null, sheetTimer = null, mapTimer = null;
 
   function showScrim() { scrim.hidden = false; requestAnimationFrame(() => scrim.classList.add('on')); }
-  function hideScrimIfIdle() { if (sheet.classList.contains('on') || map.classList.contains('on')) return; scrim.classList.remove('on'); setTimeout(() => { if (!scrim.classList.contains('on')) scrim.hidden = true; }, 360); }
+  function hideScrimIfIdle() { if (sheet.classList.contains('on') || map.classList.contains('on') || welcomeOpen) return; scrim.classList.remove('on'); setTimeout(() => { if (!scrim.classList.contains('on')) scrim.hidden = true; }, 360); }
   function lock() { body.classList.add('locked'); }
   function unlockIfIdle() { if (!sheet.classList.contains('on') && !map.classList.contains('on')) body.classList.remove('locked'); }
 
@@ -440,7 +440,7 @@
   function goTo(sel) {
     const el = $(sel);
     if (!el) return;
-    closeSheet(); closeMap(); closeWelcome(true);
+    closeSheet(); closeMap(); closeWelcome();
     body.classList.remove('locked');
     setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 60);
   }

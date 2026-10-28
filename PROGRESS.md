@@ -271,3 +271,5 @@ Wehan's fourth list, all done; committed, not pushed.
 
 **Checked**
 - Laptop size (1366×768): welcome card, hero and Start here fit the screen, headshot pop, Think side by side, guides bar, Make cards, the AI and consulting sheets; no console errors. Phone (375): welcome card, Start here, Think stacked with the guides bar, no sideways scroll.
+
+**Later the same night:** the welcome card now says "Hi, I’m Wehan.", and leaving it through "What I offer" no longer leaves the blurred backdrop behind (that route closed the card without clearing the scrim). Committed, not pushed.
