@@ -12,6 +12,7 @@
   const coarse = matchMedia('(hover: none), (pointer: coarse)').matches;
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
+  $$('a[href$=".pdf"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
   const CH_LABEL = { threshold: 'Begin', start: 'Start here', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Write' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
@@ -89,13 +90,13 @@
     const ox = (mouse.x - .5) * 50, oy = (mouse.y - .5) * 50;
     const light = pal.light, tc = pal.text, pts = [];
     for (const p of parts) {
-      if (!reduced) {
+      {
         p.x += p.vx; p.y += p.vy;
         if (p.x < -10) p.x = FW + 10; else if (p.x > FW + 10) p.x = -10;
         if (p.y < -10) p.y = FH + 10; else if (p.y > FH + 10) p.y = -10;
       }
       const x = p.x + ox * p.z, y = p.y + oy * p.z;
-      const tw = reduced ? .7 : .55 + .45 * Math.sin(t * .0012 + p.p);
+      const tw = .55 + .45 * Math.sin(t * .0012 + p.p);
       pts.push({ x, y });
       fx.beginPath(); fx.arc(x, y, p.r * p.z + .3, 0, TAU);
       fx.fillStyle = 'rgba(' + tc.r + ',' + tc.g + ',' + tc.b + ',' + ((light ? .3 : .75) * tw).toFixed(3) + ')';
@@ -176,7 +177,7 @@
   function drawSolid(t) {
     const dt = Math.min(50, t - S.last); S.last = t;
     sx.clearRect(0, 0, SW, SW);
-    if (!S.drag && !reduced) { S.ax += .00016 * dt + S.vx; S.ay += .00026 * dt + S.vy; S.vx *= .94; S.vy *= .94; }
+    if (!S.drag) { S.ax += .00016 * dt + S.vx; S.ay += .00026 * dt + S.vy; S.vx *= .94; S.vy *= .94; }
     if (!coarse) { S.tx += ((mouse.y - .5) * .45 - S.tx) * .04; S.ty += ((mouse.x - .5) * .45 - S.ty) * .04; }
     const cx = SW / 2, cy = SW / 2, R = SW * .36;
     const br = .5 + .5 * Math.sin(t * .0006), g = pal.gold;
@@ -184,7 +185,7 @@
     grad.addColorStop(0, 'rgba(' + g.r + ',' + g.g + ',' + g.b + ',' + ((pal.light ? .09 : .13) * br + .04).toFixed(3) + ')');
     grad.addColorStop(1, 'rgba(' + g.r + ',' + g.g + ',' + g.b + ',0)');
     sx.fillStyle = grad; sx.fillRect(0, 0, SW, SW);
-    if (!reduced && S.nxt < 0 && !S.drag && t - S.lastSwitch > 9000) switchSolid();
+    if (S.nxt < 0 && !S.drag && t - S.lastSwitch > 9000) switchSolid();
     if (S.nxt >= 0) {
       S.mix = Math.min(1, S.mix + dt / 1500);
       const m = S.mix < .5 ? 2 * S.mix * S.mix : 1 - Math.pow(-2 * S.mix + 2, 2) / 2;
@@ -237,10 +238,10 @@
     }
     let best = -1, bd = Infinity;
     for (const t of targets) { const d = Math.abs(t - y); if (d < bd) { bd = d; best = t; } }
-    if (best < 0 || bd < 2 || bd > vh * .6) return;
+    if (best < 0 || bd < 2 || bd > vh * .3) return;
     window.scrollTo({ top: best, behavior: reduced ? 'auto' : 'smooth' });
   }
-  window.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }, { passive: true });
+  window.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 450); }, { passive: true });
 
   /* ---------- Reveal on scroll ---------- */
   const revIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } }); }, { threshold: .12 });
@@ -291,8 +292,7 @@
     tutoring: { ch: 'make', title: 'Request tutoring', subject: 'Tutoring request', intro: 'Tell me the subject, the level and when suits you. I reply with a plan, a rate and a start date.', body: 'Hi Wehan,\n\nI’d like to ask about tutoring.\n\nSubject and grade or level: \nWhen and how often: \nIn person or online: \n\nThanks,\n' },
     editing: { ch: 'make', title: 'Request editing', subject: 'Editing request', intro: 'Tell me what the document is and when you need it back. I reply with a rate and a date.', body: 'Hi Wehan,\n\nI’d like to ask about editing.\n\nWhat the document is and roughly how long: \nWhen I need it back: \n\nThanks,\n' },
     design: { ch: 'make', title: 'Request learning design', subject: 'Learning design request', intro: 'Tell me what you need built and who it is for. I reply with a plan, a rate and a timeline.', body: 'Hi Wehan,\n\nI’d like to ask about learning design.\n\nWhat I need built: \nWho it is for: \nWhen I need it: \n\nThanks,\n' },
-    counselling: { ch: 'make', title: 'Request philosophical counselling', subject: 'Philosophical counselling', intro: 'Say as much or as little as you like. I reply with a time to talk and a rate.', body: 'Hi Wehan,\n\nI’d like to ask about philosophical counselling.\n\nWhat I’d like to think through: \nIn person or online: \nWhen suits me: \n\nThanks,\n' },
-    consulting: { ch: 'make', title: 'Request philosophical consulting', subject: 'Philosophical consulting request', intro: 'Tell me the question and who is involved. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about philosophical consulting.\n\nThe question or situation: \nWho is involved: \nA talk, a workshop, a written brief, or a conversation: \n\nThanks,\n' },
+    consulting: { ch: 'make', title: 'Request consulting', subject: 'Consulting request', intro: 'Tell me the question and who it is for. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about philosophical and AI consulting.\n\nFor me personally, or for a school, team or organisation: \nThe question or situation: \nA talk, a workshop, a written brief, or a conversation: \n\nThanks,\n' },
     any: { ch: 'write', title: 'Write to me', subject: 'Hello', intro: 'For anything else: a post, a reference, a question, a hello.', body: 'Hi Wehan,\n\n\n\nThanks,\n' }
   };
   const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -359,6 +359,7 @@
     const item = library[id];
     if (!item) return;
     clearTimeout(sheetTimer);
+    closeWelcome(true);
     if (map.classList.contains('on')) closeMap(true);
     if (!sheet.classList.contains('on')) lastFocus = document.activeElement;
     openId = id;
@@ -411,13 +412,35 @@
   }
   mapBtn.addEventListener('click', () => { if (map.classList.contains('on')) closeMap(); else openMap(); });
   $('#map-close').addEventListener('click', () => closeMap());
-  scrim.addEventListener('click', () => { closeSheet(); closeMap(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); } });
+  scrim.addEventListener('click', () => { closeSheet(); closeMap(); closeWelcome(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); closeWelcome(); } });
+
+  /* ---------- Welcome: a card on the first visit of a session ---------- */
+  const welcome = $('#welcome');
+  let welcomeOpen = false;
+  function closeWelcome(keep) {
+    if (!welcomeOpen) return;
+    welcomeOpen = false; welcome.classList.remove('on');
+    setTimeout(() => { welcome.hidden = true; }, 480);
+    if (!keep) { unlockIfIdle(); hideScrimIfIdle(); }
+  }
+  function openWelcome() {
+    welcomeOpen = true; welcome.hidden = false; showScrim(); lock();
+    requestAnimationFrame(() => { welcome.classList.add('on'); $('#welcome-go').focus({ preventScroll: true }); });
+  }
+  $('#welcome-close').addEventListener('click', () => closeWelcome());
+  $('#welcome-go').addEventListener('click', () => closeWelcome());
+  (function () {
+    let seen = false; try { seen = sessionStorage.getItem('welcomed') === '1'; } catch (e) {}
+    if (seen || location.hash.startsWith('#s-')) return;
+    try { sessionStorage.setItem('welcomed', '1'); } catch (e) {}
+    setTimeout(openWelcome, 700);
+  })();
 
   function goTo(sel) {
     const el = $(sel);
     if (!el) return;
-    closeSheet(); closeMap();
+    closeSheet(); closeMap(); closeWelcome(true);
     body.classList.remove('locked');
     setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 60);
   }
@@ -453,7 +476,9 @@
       ['This is an exceptional thesis. I recommend this thesis receive a PhD without reservation.', 'PhD examiner · Ainigma, 2023'],
       ['The content was by far the most complex and difficult material I have encountered in my academic career so far, but the way in which seminars were presented made it much easier to grapple with.', 'An honours student, 2024'],
       ['It is needless to say this course has been my favorite in honours so far.', 'An honours student, 2025'],
-      ['Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present.', 'A first-year student, 2023']
+      ['Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present.', 'A first-year student, 2023'],
+      ['I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.', 'Dr Mitchell-Ron Black · on teaching and AI, 2026'],
+      ['Wehan is in an excellent position to consider ways of using Platonism to shed light on modern teaching with AI.', 'Prof John F. Finamore, 2026']
     ] },
     make: { more: 'evaluations', items: [
       ['Dr. Coombs is passionate and knowledgeable in his field, he has the ability to simplify complex ideas, which is helpful as a student.', 'An honours student, 2024'],
@@ -475,7 +500,7 @@
       const go = () => { p.textContent = set.items[i][0]; cap.textContent = set.items[i][1]; fig.classList.remove('swap'); dots.forEach((d, n) => { if (n === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); }); };
       if (instant || reduced) go(); else { fig.classList.add('swap'); setTimeout(go, 360); }
     }
-    function arm() { clearTimeout(timer); if (!visible || reduced) return; timer = setTimeout(() => { show(i + 1); arm(); }, 8000); }
+    function arm() { clearTimeout(timer); if (!visible) return; timer = setTimeout(() => { show(i + 1); arm(); }, 8000); }
     dots.forEach((d, k) => d.addEventListener('click', () => { show(k); arm(); }));
     box.addEventListener('mouseenter', () => clearTimeout(timer));
     box.addEventListener('mouseleave', arm);
@@ -505,7 +530,7 @@
   function placeRunner() { const p = arcPath.getPointAtLength(A.phase * arcLen); runner.setAttribute('cx', p.x); runner.setAttribute('cy', p.y); }
   function arcTick(t) {
     const dt = Math.min(60, t - A.last); A.last = t;
-    if (!A.visible || reduced || t < A.hold) { placeRunner(); return; }
+    if (!A.visible || t < A.hold) { placeRunner(); return; }
     const prev = A.phase;
     if (A.idx === 2 && prev >= 1) { A.phase = 0; A.hold = t + 3000; setArc(0); placeRunner(); return; }
     let ph = prev + dt / 12000;
@@ -549,33 +574,35 @@
 
   /* ---------- The constellation ---------- */
   const NODES = [
-    { id: 'plato', x: 500, y: 200, r: 9, big: true, label: 'Plato',
+    { id: 'plato', x: 380, y: 270, r: 9, big: true, label: 'Plato',
       body: 'The centre of the map. My PhD, <em>Ainigma</em>, read Plato’s esotericism in its historical context: what he wrote, what he withheld, and why.',
       links: [['Ainigma: Plato’s Esotericism in Context (PhD, 2023)', 'https://repository.up.ac.za/handle/2263/89290']] },
-    { id: 'aristotle', x: 300, y: 115, r: 6, label: 'Aristotle',
+    { id: 'aristotle', x: 215, y: 150, r: 6, label: 'Aristotle',
       body: 'My MA, <em>Symphonia</em>, argued that Aristotle stays in harmony with Plato on the separable, immortal soul. The argument became a journal article in 2017.',
       links: [['Aristotle’s harmony with Plato on separable and immortal soul (SAJP, 2017)', 'https://doi.org/10.1080/02580136.2017.1385951'], ['Symphonia: Aristotle versus Plato Critiqued (MA, 2016)', 'https://repository.up.ac.za/handle/2263/57175']] },
-    { id: 'neo', x: 700, y: 115, r: 7, label: 'Neoplatonism',
+    { id: 'neo', x: 560, y: 150, r: 7, label: 'Neoplatonism',
       body: 'Plotinus, Iamblichus, Proclus. A member of the International Society for Neoplatonic Studies since 2017. In 2026 I designed and taught the honours course <em>Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism</em>.', more: 'guide-c5' },
-    { id: 'theurgy', x: 860, y: 62, r: 5, label: 'Theurgy',
+    { id: 'theurgy', x: 680, y: 80, r: 5, label: 'Theurgy',
       body: 'Ritual as philosophy in late Platonism. Conference paper: <em>The Curious Case of Neoplatonic Ritual Magic</em>, PSSA, University of KwaZulu-Natal, 2020.', more: 'papers' },
-    { id: 'egypt', x: 905, y: 195, r: 5, label: 'Ancient Egypt',
+    { id: 'egypt', x: 690, y: 265, r: 5, label: 'Ancient Egypt',
       body: 'Where the rite of rebirth begins. The opening movement of the honours course <em>Philosophy as a Rite of Rebirth</em> (FIL710/810, 2026).', more: 'guide-c5' },
-    { id: 'eso', x: 660, y: 285, r: 7, label: 'Esotericism',
+    { id: 'eso', x: 520, y: 390, r: 7, label: 'Esotericism',
       body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'guide-c3' },
-    { id: 'african', x: 820, y: 338, r: 6, label: 'African esotericism',
+    { id: 'african', x: 650, y: 470, r: 6, label: 'African esotericism',
       body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.', more: 'posts' },
-    { id: 'life', x: 335, y: 295, r: 6, label: 'A way of life',
+    { id: 'life', x: 250, y: 400, r: 6, label: 'A way of life',
       body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).', more: 'guide-c4' },
-    { id: 'nature', x: 165, y: 340, r: 5, label: 'Animism & nature',
+    { id: 'nature', x: 120, y: 480, r: 5, label: 'Animism & nature',
       body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.', more: 'papers' },
-    { id: 'rorty', x: 125, y: 190, r: 4.5, label: 'Rorty',
+    { id: 'rorty', x: 95, y: 285, r: 4.5, label: 'Rorty',
       body: 'An early article: <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em>, Humanities, 2013.',
       links: [['Read the article', 'https://doi.org/10.3390/h2020313']] },
-    { id: 'meta', x: 500, y: 345, r: 5, label: 'Metacrisis',
-      body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' }
+    { id: 'meta', x: 380, y: 470, r: 5, label: 'Metacrisis',
+      body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' },
+    { id: 'ai', x: 300, y: 70, r: 6, label: 'AI & the humanities',
+      body: 'What is human teaching for, once a machine can write the essay? My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, reads Plato’s <em>Phaedrus</em> as a guide to what cannot be automated in learning, and to how teaching should be built around it. Proposed as a 2027 fellowship at the University of Pretoria.', more: 'ai' }
   ];
-  const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt']];
+  const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt'], ['plato', 'ai'], ['ai', 'life']];
   NODES.forEach(n => {
     const links = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
     library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p class="when">A star in my research</p><p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
@@ -610,6 +637,10 @@
   function centreSky() { if (skyWrap.scrollWidth > skyWrap.clientWidth + 4) skyWrap.scrollLeft = (skyWrap.scrollWidth - skyWrap.clientWidth) / 2; }
   centreSky(); window.addEventListener('resize', centreSky);
 
+  /* ---------- The study guides, folded away until asked for ---------- */
+  const gBtn = $('.guides-toggle'), gWrap = $('#guides');
+  if (gBtn) gBtn.addEventListener('click', () => { const open = gWrap.hidden; gWrap.hidden = !open; gBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); });
+
   /* ---------- Lectures: the player loads when you press play ---------- */
   $$('.lecture').forEach(l => {
     $('.play', l).addEventListener('click', () => {
@@ -630,7 +661,6 @@
   ];
   const wait = ms => new Promise(r => setTimeout(r, ms));
   (async function runTyper() {
-    if (reduced) { typer.textContent = PAIRS[0][1]; return; }
     let i = 0;
     for (;;) {
       const a = PAIRS[i % PAIRS.length][0], b = PAIRS[i % PAIRS.length][1]; i++;
@@ -655,7 +685,7 @@
   ];
   function layout(k) { LAYOUTS[k].forEach((r, i) => { const b = blocks[i]; b.style.transform = 'translate(' + r[0] + 'px,' + r[1] + 'px)'; b.style.width = r[2] + 'px'; b.style.height = r[3] + 'px'; }); }
   let lk = 0; layout(0);
-  if (!reduced) setInterval(() => { lk = (lk + 1) % LAYOUTS.length; layout(lk); }, 2800);
+  setInterval(() => { lk = (lk + 1) % LAYOUTS.length; layout(lk); }, 2800);
 
   /* ---------- The years: hover to peek, tap to open ---------- */
   const track = $('#track'), trackCap = $('#track-cap'), evs = $$('.ev');
@@ -689,7 +719,7 @@
   sizeField(); sizeSolid();
   let rt;
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { sizeField(); sizeSolid(); if (reduced) { drawField(0); drawSolid(performance.now()); } }, 120); });
-  if (reduced) { drawField(0); drawSolid(performance.now()); placeRunner(); }
-  else requestAnimationFrame(loop);
+  requestAnimationFrame(loop);
+  if ('ResizeObserver' in window) new ResizeObserver(() => sizeSolid()).observe(sc);
   openFromHash();
 })();

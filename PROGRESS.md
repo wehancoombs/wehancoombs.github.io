@@ -238,3 +238,36 @@ Wehan's third list, all done, and the first push since the one-page version went
 - Desktop (1280, 1180 and 1120 wide): the header fits with five pills; the voices in all three chapters; the stats; both new sheets; no console errors. Phone (375): the headshot, the CVs menu with full names, the voices inside the gutters, no sideways scroll. The Browser pane's phone screenshots were unreliable this time (it reported a 709px frame), so the phone checks were done by measuring the layout rather than by eye.
 
 **Pushed live** on Wehan's instruction ("Then push all of it live").
+
+---
+
+## 2026-10-28 (late): round four
+
+Wehan's fourth list, all done; committed, not pushed.
+
+**Why the shapes and the Make animations were dead on the laptop**
+- The site switched off every animation when the computer asked for "reduced motion", and Windows asks for that whenever Settings > Accessibility > Visual effects > Animation effects is off, which it often is on laptops. The Platonic solid then never turned, and the quill, typewriter, blocks and tetractys stood still. Now only the scroll settling and the fade-in reveals go instant in that mode; the gentle animations keep running. The solid's canvas also re-measures itself if its box changes.
+
+**Scrolling**
+- The settle-on-a-chapter behaviour is gentler: it waits 450ms after you stop and only pulls the page when a chapter edge is within 30% of the screen (was 160ms and 60%).
+
+**Header and welcome**
+- The headshot pops open to about 2.8 times its size on mouse-over (and keyboard focus) and shrinks back smoothly.
+- A welcome card on the first visit of a browser session: the headshot, "Hello. I'm Wehan.", two lines on what the page is, and three buttons: Explore (close), What I offer (goes to Start here), Write to me (opens the request sheet). Escape, the backdrop and the × close it. It does not appear when a link opens a sheet directly (`#s-…`).
+
+**PDFs** open in a new tab (every CV link, the Macbeth sheet, and anything added later, by a one-line script).
+
+**Scaling to the screen** (Wehan: "pages seem a bit big for a standard screen")
+- Headings, chapter padding, the hero solid, the stats, the service menu rows and the index lines now also scale with the height of the screen (vh), so Begin, Start here, So far and Write each fit a 1366×768 laptop screen. Teach, Think and Make are longer by nature and scroll inside themselves.
+
+**AI, and counselling folded into consulting**
+- New sheet "Teaching in the age of AI" (Teach and Think index lines, the map, the approach sheet): the argument from the UP postdoc proposal (Plato's Phaedrus on what cannot be automated), what it looks like in the classroom, the research project, and lines from Dr Black and Prof Finamore on it.
+- Counselling is now the "for one person" option inside "Philosophical and AI consulting": one menu row in Start here, one card in Make (the working-with-me card now spans two columns), one sheet, one request kind. The map, the index lines and the working sheet follow.
+- A new star in the constellation, "AI & the humanities", linked to Plato and to "A way of life". Two more Think voices on AI. Meta description updated.
+- CVs: a line on teaching what cannot be automated (Teaching CV, with "AI-aware teaching and assessment" among the strengths), the current research direction (Academic CV, with "Socratic pedagogy in the age of AI" in the interests), a fourth service "Philosophical and AI consulting" plus a profile line (Freelance CV, tightened to fit), and a profile line (General CV). All four re-rendered with the stricter overflow check, copied into `cv/`, and into the Drive CV folder with the previous versions archived as "(before 2026-10-28 pm)".
+
+**Think**
+- The constellation (now 760×560, squarer) sits beside the two lecture tiles again; the study guides are folded into a bar underneath ("Study guides I wrote · Five of them, 2018 to 2026 ▾") that opens to the five cards.
+
+**Checked**
+- Laptop size (1366×768): welcome card, hero and Start here fit the screen, headshot pop, Think side by side, guides bar, Make cards, the AI and consulting sheets; no console errors. Phone (375): welcome card, Start here, Think stacked with the guides bar, no sideways scroll.
