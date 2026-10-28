@@ -219,38 +219,46 @@
   const revIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } }); }, { threshold: .12 });
   const onScreen = el => { const r = el.getBoundingClientRect(); return r.top < innerHeight * .95 && r.bottom > 0; };
   $$('.reveal').forEach(el => {
-    if (onScreen(el)) { el.classList.add('in'); return; }   // above the fold: shown at once, no stagger
+    if (onScreen(el)) { el.classList.add('in'); return; }
     const sib = Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal'));
     el.style.transitionDelay = (sib.indexOf(el) * 110) + 'ms';
     revIO.observe(el);
   });
-  // Safety net: never leave something on screen invisible, whatever the browser is doing.
   setTimeout(() => $$('.reveal').forEach(el => { if (onScreen(el) && !el.classList.contains('in')) { el.style.transition = 'none'; el.classList.add('in'); } }), 2500);
 
-  /* ---------- Counting numbers ---------- */
+  /* ---------- Counting numbers and the star rating ---------- */
   const cntIO = new IntersectionObserver(es => {
     es.forEach(e => {
       if (!e.isIntersecting) return;
       cntIO.unobserve(e.target);
-      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', dec = +(el.dataset.decimals || 0), t0 = performance.now(), dur = 1600;
-      if (reduced) { el.textContent = to.toFixed(dec) + suf; return; }
+      const el = e.target, to = +el.dataset.count, suf = el.dataset.suffix || '', dec = +(el.dataset.decimals || 0), group = !!el.dataset.group, t0 = performance.now(), dur = 1600;
+      const fmt = v => (dec ? v.toFixed(dec) : (group ? Math.round(v).toLocaleString('en-US') : String(Math.round(v)))) + suf;
+      if (reduced) { el.textContent = fmt(to); return; }
       (function step(t) {
         const p = Math.min(1, (t - t0) / dur), v = to * (1 - Math.pow(1 - p, 3));
-        el.textContent = (dec ? v.toFixed(dec) : Math.round(v)) + suf;
+        el.textContent = fmt(v);
         if (p < 1) requestAnimationFrame(step);
       })(t0);
     });
   }, { threshold: .6 });
   $$('[data-count]').forEach(el => cntIO.observe(el));
+  const starIO = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      starIO.unobserve(e.target);
+      const r = +e.target.dataset.rating || 0;
+      requestAnimationFrame(() => { $('.stars-fg', e.target).style.width = (r / 5 * 100).toFixed(1) + '%'; });
+    });
+  }, { threshold: .6 });
+  $$('.stars').forEach(el => starIO.observe(el));
 
   /* ---------- The library, the sheet and the map ---------- */
   const library = {};
   $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML }; });
-  // Reading order for Previous / Next: the map's order, chapter by chapter.
   const ORDER = {};
   $$('.map-group').forEach(g => { ORDER[g.dataset.ch] = $$('[data-sheet]', g).map(b => b.dataset.sheet); });
 
-  const scrim = $('#scrim'), sheet = $('#sheet'), sheetCh = $('#sheet-ch'), sheetTitle = $('#sheet-title'), sheetBody = $('#sheet-body');
+  const scrim = $('#scrim'), sheet = $('#sheet'), sheetCh = $('#sheet-ch'), sheetTitle = $('#sheet-title'), sheetBody = $('#sheet-body'), sheetWhere = $('#sheet-where');
   const map = $('#map'), mapBtn = $('#map-btn');
   let openId = null, lastFocus = null, sheetTimer = null, mapTimer = null;
 
@@ -284,6 +292,7 @@
     activateEmbeds(sheetBody);
     const order = ORDER[item.ch] || [], i = order.indexOf(id);
     $('#sheet-prev').disabled = !(i > 0); $('#sheet-next').disabled = !(i >= 0 && i < order.length - 1);
+    sheetWhere.textContent = i >= 0 ? (i + 1) + ' of ' + order.length + ' · ' + (CH_LABEL[item.ch] || '') : '';
     sheet.hidden = false; showScrim(); lock();
     requestAnimationFrame(() => { sheet.classList.add('on'); sheetTitle.focus({ preventScroll: true }); });
     try { history.replaceState(null, '', '#s-' + id); } catch (e) {}
@@ -306,7 +315,6 @@
   $('#sheet-close').addEventListener('click', closeSheet);
   $('#sheet-prev').addEventListener('click', () => stepSheet(-1));
   $('#sheet-next').addEventListener('click', () => stepSheet(1));
-  $('#sheet-map').addEventListener('click', () => { closeSheet(); openMap(); });
 
   function openMap() {
     clearTimeout(mapTimer);
@@ -342,10 +350,7 @@
     if (s) { e.preventDefault(); const id = s.dataset.sheet, ch = library[id] && library[id].ch; const sec = ch && $('#' + ch); if (sec && map.classList.contains('on') && body.dataset.chapter !== ch) { sec.scrollIntoView({ behavior: 'auto', block: 'start' }); } openSheet(id); return; }
     const g = e.target.closest('[data-goto]');
     if (g) { e.preventDefault(); goTo(g.dataset.goto); return; }
-    const m = e.target.closest('[data-map]');
-    if (m) { e.preventDefault(); openMap(); }
   });
-  // Deep links: #s-courses opens that sheet.
   function openFromHash() {
     const h = location.hash || '';
     if (h.startsWith('#s-')) { const id = h.slice(3); if (library[id]) { const ch = library[id].ch, sec = $('#' + ch); if (sec) sec.scrollIntoView({ behavior: 'auto', block: 'start' }); openSheet(id); } }
@@ -388,18 +393,33 @@
     n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
   });
 
-  /* ---------- The shelf ---------- */
-  const shelfCap = $('#shelf-cap');
-  $$('.book').forEach(b => b.addEventListener('click', () => {
-    $$('.book').forEach(o => o.classList.toggle('is-on', o === b));
-    shelfCap.classList.add('swap');
-    setTimeout(() => {
-      shelfCap.textContent = b.dataset.cap + ' ';
-      const more = document.createElement('button'); more.type = 'button'; more.className = 'textlink'; more.dataset.sheet = b.dataset.sheetMore; more.textContent = 'More →';
-      shelfCap.appendChild(more);
-      shelfCap.classList.remove('swap');
-    }, 200);
-  }));
+  /* ---------- The shelf: what I taught in 2026 ---------- */
+  const SHELF = {
+    macbeth: { cap: '<strong>Macbeth.</strong> Grade 10 Home Language, three classes, August. Whose fault is the murder, a banquet with an empty chair, and a revision sheet of my own.', sheet: 'macbeth' },
+    tempest: { cap: '<strong>The Tempest.</strong> Grade 11 Home Language, five classes. A scene a day through Act 3, staged with desks, sweets and thunder; then the RSC.', sheet: 'tempest' },
+    grammar: { cap: '<strong>Grammar.</strong> Grade 10 First Additional Language at Hoërskool Garsfontein, May. Conditionals and prepositions, taught inside real situations.', sheet: 'grammar' },
+    film: { cap: '<strong>Film study.</strong> Grade 11. The language of film, then Spirited Away and Howl’s Moving Castle with a method called FRAME.', sheet: 'film' },
+    enrichment: { cap: '<strong>Philosophy for teenagers.</strong> Grade 11 enrichment, September. Prove your neighbour exists, trolley problems, an ask-me-anything, and English as the meta-skill.', sheet: 'enrichment' }
+  };
+  const POEMS = [
+    { id: 'poem-words', title: 'Too Many Words', poet: 'Bernard Levinson', where: 'Gr 10 · Garsfontein' },
+    { id: 'poem-clothes', title: 'The Clothes', poet: 'Mongane Wally Serote', where: 'Gr 10 · Garsfontein' },
+    { id: 'poem-oompiet', title: 'For Oom Piet', poet: 'Finuala Dowling', where: 'Gr 11 · Abbotts' },
+    { id: 'poem-herb', title: 'The Herb Garden', poet: 'Stephen Gray', where: 'Gr 11 · Abbotts' },
+    { id: 'poem-poet', title: 'The Poet', poet: 'Shakespeare, A Midsummer Night’s Dream', where: 'Gr 11 · Abbotts' }
+  ];
+  const shelfDetail = $('#shelf-detail'), spines = $$('.shelf [data-item]');
+  function showShelf(item) {
+    spines.forEach(b => { const on = b.dataset.item === item; b.classList.toggle('is-on', on); if (b.dataset.item === 'poems') b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
+    if (item === 'poems') {
+      shelfDetail.innerHTML = '<div class="fan" role="group" aria-label="The five poems I taught">' + POEMS.map((p, i) =>
+        '<button class="poem-card" type="button" data-sheet="' + p.id + '" style="animation-delay:' + (i * 90) + 'ms"><span class="p-title">' + p.title + '</span><span class="p-poet">' + p.poet + '</span><span class="p-where">' + p.where + '</span></button>').join('') + '</div>';
+    } else {
+      const d = SHELF[item];
+      shelfDetail.innerHTML = '<p class="caption">' + d.cap + ' <button class="textlink" type="button" data-sheet="' + d.sheet + '">Open →</button></p>';
+    }
+  }
+  spines.forEach(b => b.addEventListener('click', () => showShelf(b.dataset.item)));
 
   /* ---------- The constellation ---------- */
   const NODES = [
@@ -432,7 +452,7 @@
   const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt']];
   NODES.forEach(n => {
     const links = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
-    library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
+    library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p class="when">A star in my research</p><p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
   });
   const sky = $('#sky'), NS = 'http://www.w3.org/2000/svg';
   const mk = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
@@ -460,7 +480,6 @@
     g.addEventListener('click', () => openSheet('star-' + n.id));
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet('star-' + n.id); } });
   });
-  // On a phone the sky is wider than the screen: start it centred on Plato.
   const skyWrap = $('.sky');
   function centreSky() { if (skyWrap.scrollWidth > skyWrap.clientWidth + 4) skyWrap.scrollLeft = (skyWrap.scrollWidth - skyWrap.clientWidth) / 2; }
   centreSky(); window.addEventListener('resize', centreSky);
@@ -512,35 +531,23 @@
   let lk = 0; layout(0);
   if (!reduced) setInterval(() => { lk = (lk + 1) % LAYOUTS.length; layout(lk); }, 2800);
 
-  /* ---------- The marking tool ---------- */
-  const ranges = ['#r1', '#r2', '#r3'].map(s => $(s)), gfg = $('#gfg'), gTotal = $('#g-total'), gBand = $('#g-band');
-  const band = t => t >= 27 ? 'Distinction' : t >= 21 ? 'Strong' : t >= 15 ? 'Sound' : t >= 9 ? 'Developing' : 'Not yet';
-  function rubric() {
-    let t = 0;
-    ranges.forEach(r => { t += +r.value; r.nextElementSibling.textContent = r.value; });
-    gTotal.textContent = t; gBand.textContent = band(t);
-    gfg.style.strokeDashoffset = 100 - (t / 30) * 100;
-  }
-  ranges.forEach(r => r.addEventListener('input', rubric)); rubric();
-
-  /* ---------- The years ---------- */
-  const track = $('#track'), trackCap = $('#track-cap'), trackMore = $('#track-more'), evs = $$('.ev');
+  /* ---------- The years: hover to peek, tap to open ---------- */
+  const track = $('#track'), trackCap = $('#track-cap'), evs = $$('.ev');
+  ORDER.sofar = [];
+  evs.forEach(li => {
+    const b = $('button', li), id = 'year-' + b.dataset.year;
+    ORDER.sofar.push(id);
+    library[id] = { title: b.dataset.year + ' · ' + b.dataset.label, ch: 'sofar', html: '<p>' + b.dataset.cap + '</p>' + (b.dataset.more && library[b.dataset.more] ? '<p class="more"><button type="button" data-sheet="' + b.dataset.more + '">Go further →</button></p>' : '') };
+    b.dataset.sheet = id;
+    li.addEventListener('mouseenter', () => { trackCap.classList.add('swap'); setTimeout(() => { trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap'); }, 150); });
+  });
   let td = null, dragged = false;
   track.addEventListener('pointerdown', e => { if (e.pointerType === 'touch') return; td = { x: e.clientX, sl: track.scrollLeft, moved: 0 }; dragged = false; track.classList.add('dragging'); track.setPointerCapture(e.pointerId); });
   track.addEventListener('pointermove', e => { if (!td) return; const dx = e.clientX - td.x; td.moved += Math.abs(dx); if (td.moved > 6) dragged = true; track.scrollLeft = td.sl - dx; });
   const tEnd = () => { if (!td) return; td = null; track.classList.remove('dragging'); setTimeout(() => { dragged = false; }, 50); };
   track.addEventListener('pointerup', tEnd); track.addEventListener('pointercancel', tEnd);
-  function pickYear(li) {
-    evs.forEach(o => o.classList.toggle('is-on', o === li));
-    const b = $('button', li);
-    trackCap.classList.add('swap');
-    setTimeout(() => {
-      trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap');
-      if (b.dataset.more && library[b.dataset.more]) { trackMore.dataset.sheet = b.dataset.more; trackMore.hidden = false; } else { trackMore.hidden = true; }
-    }, 200);
-  }
-  evs.forEach(li => $('button', li).addEventListener('click', () => { if (dragged) return; pickYear(li); }));
-  new IntersectionObserver(es => { if (es[0].isIntersecting) { pickYear(evs[evs.length - 1]); track.scrollLeft = track.scrollWidth; } }, { threshold: .3 }).observe(track);
+  track.addEventListener('click', e => { if (dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
+  new IntersectionObserver(es => { if (es[0].isIntersecting) { track.scrollLeft = track.scrollWidth; } }, { threshold: .3 }).observe(track);
 
   /* ---------- Main loop ---------- */
   function loop(t) {

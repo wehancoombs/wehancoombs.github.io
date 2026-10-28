@@ -134,3 +134,37 @@ Wehan's brief: no separate "Full profile" page. Everything from it should be fou
 - Phone number stays off the public site (email and LinkedIn only) unless Wehan wants it on.
 - Local preview uses port 8931 because port 8765 is taken by another app on this computer.
 - A `.claude/` folder holds the preview-server settings for Claude Code; it is ignored by git and never goes online.
+
+---
+
+## 2026-10-28 (later): tweaks round one, and the CV routine
+
+Wehan's list after the one-page version went live, all done:
+
+**Teach**
+- "10 weeks in charge of classes" (three at Garsfontein, seven at Abbotts).
+- The shelf now has six spines: Macbeth, The Tempest, Poems, Grammar, a DVD-style case for Film study, and a slim Philosophy pamphlet. Tap Poems and five poem cards burst out of it (Too Many Words, The Clothes, For Oom Piet, The Herb Garden, The Poet); each opens its own sheet. The other spines show a one-line caption with an Open link.
+- Every book sheet is written from the actual lesson plans in Drive (lessons 1 to 22 at Abbotts, 1 to 9 at Garsfontein), so they are different and specific: the blame vote and the empty chair for Banquo in Macbeth; the staged Act 3 of The Tempest with desks, fizzy sweets and thunder; conditionals and prepositions; FRAME and the two Miyazaki films; the philosophy enrichment unit (trolley problems, ask-me-anything, English as the meta-skill).
+- Macbeth's sheet links to a real deliverable: `materials/macbeth-revision-sheet.pdf`, the one-page revision plan and quotation bank Wehan made for the Grade 10s (copied from Drive, 65 KB).
+
+**Think**
+- Stats are now: 15 years lecturing · 4,000+ students taught (an estimate, explained inside the Courses sheet: classes of 485 to 500 for first-years, about 300 for Philosophy of Medicine, 59 for The Good Life, from the evaluation PDF) · 5 self-designed modules · a five-star rating that fills to 4.81.
+- The constellation has a label, "My research, star by star", and sits in a left column beside the two lecture tiles and the five study guides.
+
+**Make**
+- The "things I have made" numbers and the marking-tool demo are gone.
+- Four service cards, each with three deliverable lines and a Request button that opens an email with the right questions already in it: Tutoring, Editing, Learning design, and new: Philosophical consulting (with its own sheet). The deliverable lines and the consulting text are drafted by Claude for Wehan to check.
+
+**Elsewhere**
+- Timeline: 2020 now reads "A paper on theurgy"; tapping any year opens a sheet (hover peeks at the caption); the "More" button is gone.
+- The extra map buttons (Paths, Write, sheet footer) are gone; the Map lives top left only. The sheet footer now shows "n of m · chapter".
+- Contact seals are coloured like their chapters (ember, lapis, verdigris) and the freelance seal says F.
+
+**CVs**
+- The three CVs now say "My website" instead of the address (sources in `../wehan-cvs/cv-bundle`, re-rendered with `render.py`, all pages overflow 0, copied into `cv/`). Note: on a printed copy the link text no longer shows the address; say the word to revert.
+- **Standing routine:** whenever the CVs change, copy the three PDFs into the synced Google Drive folder `D:\Google Drive\WORK­MIN\CV` (Google Drive for Desktop syncs it), after copying the previous versions into its `2026 Archive` subfolder with a "(before <date>)" suffix. Done today; checksums match.
+
+**Checked**
+- Desktop (1280) and phone (375): shelf and poem burst, stars, think layout, services, year sheets, seals; no console errors; no sideways scroll. One thing to know: the app's phone emulation in the Browser pane reports a window wider than the page, which makes the pop-up sheet look cut off there; that is the test tool, not the site (the sheet is sized to the real screen on a phone).
+
+**Not pushed yet.**
