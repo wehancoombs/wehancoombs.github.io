@@ -62,7 +62,7 @@ Feel: warm, scholarly, uncluttered. Plain static files (HTML + CSS), hosted on G
 
 ## 2026-10-27 (late evening): from brochure to experience
 
-Wehan asked for a bold, visual, interactive portfolio with very few words, that can be explored to reveal everything. Built, previewed on desktop and phone, committed. **Not pushed yet.**
+Wehan asked for a bold, visual, interactive portfolio with very few words, that can be explored to reveal everything. Built, previewed on desktop and phone, committed. **Pushed since.**
 
 **What the new front page is**
 - `index.html` is now a seven-chapter experience. The old words-only page lives on as `profile.html` ("Full profile" in the top bar, "The long version, in words" at the bottom), so recruiters who want the prose still have it.
@@ -167,7 +167,7 @@ Wehan's list after the one-page version went live, all done:
 **Checked**
 - Desktop (1280) and phone (375): shelf and poem burst, stars, think layout, services, year sheets, seals; no console errors; no sideways scroll. One thing to know: the app's phone emulation in the Browser pane reports a window wider than the page, which makes the pop-up sheet look cut off there; that is the test tool, not the site (the sheet is sized to the real screen on a phone).
 
-**Not pushed yet.**
+**Pushed since.**
 
 ---
 
@@ -209,7 +209,7 @@ Wehan's second list, all done:
 **Checked**
 - Desktop (1280) and phone (375): the top-bar CVs and the phone menu; scroll settling (five wheel ticks from the top land on Start here, a short scroll back returns, inside Teach it scrolls freely); the Start menu; request sheets on both sizes (the Gmail link is built correctly; copying falls back to the old method if the browser refuses); the film caption; the constellation; the guides; all six Make cards; a real click on 2024; the Write section; the top bar in light mode. No console errors, no sideways scroll.
 
-**Not pushed yet** (two commits ahead of the live site once this one lands).
+**Pushed since.**
 
 ---
 
@@ -243,7 +243,7 @@ Wehan's third list, all done, and the first push since the one-page version went
 
 ## 2026-10-28 (late): round four
 
-Wehan's fourth list, all done; committed, not pushed.
+Wehan's fourth list, all done; committed and pushed live on 2026-10-28.
 
 **Why the shapes and the Make animations were dead on the laptop**
 - The site switched off every animation when the computer asked for "reduced motion", and Windows asks for that whenever Settings > Accessibility > Visual effects > Animation effects is off, which it often is on laptops. The Platonic solid then never turned, and the quill, typewriter, blocks and tetractys stood still. Now only the scroll settling and the fade-in reveals go instant in that mode; the gentle animations keep running. The solid's canvas also re-measures itself if its box changes.
@@ -272,7 +272,7 @@ Wehan's fourth list, all done; committed, not pushed.
 **Checked**
 - Laptop size (1366×768): welcome card, hero and Start here fit the screen, headshot pop, Think side by side, guides bar, Make cards, the AI and consulting sheets; no console errors. Phone (375): welcome card, Start here, Think stacked with the guides bar, no sideways scroll.
 
-**Later the same night:** the welcome card now says "Hi, I’m Wehan.", and leaving it through "What I offer" no longer leaves the blurred backdrop behind (that route closed the card without clearing the scrim). Committed, not pushed.
+**Later the same night:** the welcome card now says "Hi, I’m Wehan.", and leaving it through "What I offer" no longer leaves the blurred backdrop behind (that route closed the card without clearing the scrim). Committed; pushed live on 2026-10-28 (night).
 
 ---
 
@@ -285,15 +285,15 @@ Wehan: "are you sure you can't make Teach, Think and Make a bit more compact? ..
 - **Think:** the constellation beside the two lecture tiles; the study-guides bar sits under the tiles and opens to three columns of cards. The "Students say" and "Colleagues say" entries are one "Testimonials" sheet (students with the ratings, then colleagues and referees, then the school mentors); the old links still open it.
 - **Make:** four compact cards. Each shows its little animation; hover (or keyboard focus) swaps it for the three deliverables, and Details opens the sheet. On phones the deliverables are simply listed. The "working with me" card is gone (the sheet remains, in the index line); the Freelance seal sits beside the title.
 - Start here and Write also tightened so they fit a 1080-tall monitor and a 768-tall laptop respectively (the Start heading was wrapping to four lines on a big monitor).
-- Checked at 1366x768, 1920x1080 and 375 wide; no console errors. Committed, not pushed.
+- Checked at 1366x768, 1920x1080 and 375 wide; no console errors. Committed; pushed live on 2026-10-28 (night).
 
-**Later:** the 4.5 stat is gone from Think (the stars and the Testimonials sheet carry the ratings). Teach and Make now grow with the height of the screen: the shelf, the arc, the service cards and their visuals scale by a steeper rule than the screen itself, and on screens wider than 1700px the column widens to 1340px. Measured at 1366x768, 1920x1080 and 2560x1440: every chapter is exactly one screen tall. Committed, not pushed.
+**Later:** the 4.5 stat is gone from Think (the stars and the Testimonials sheet carry the ratings). Teach and Make now grow with the height of the screen: the shelf, the arc, the service cards and their visuals scale by a steeper rule than the screen itself, and on screens wider than 1700px the column widens to 1340px. Measured at 1366x768, 1920x1080 and 2560x1440: every chapter is exactly one screen tall. Committed; pushed live on 2026-10-28 (night).
 
 ---
 
 ## 2026-10-28 (evening): round six
 
-Wehan's sixth list; committed, not pushed.
+Wehan's sixth list; committed and pushed live on 2026-10-28.
 
 - **Start here is a landing page again.** Wehan: "Make and What do you need are entirely redundant." The four-service menu is gone; in its place three doors, Teach, Think and Make, each in its chapter's colour with a line on who it is for ("A teacher for your school", "A lecturer or a researcher", "A tutor, an editor, a designer, a consultant"), a sentence on what the chapter holds, and that chapter's CV as a pill. The row goes to the chapter. The left column keeps "What do you need?" with a new line and three skip-ahead links (General CV, Write to me, How working with me works). The services and their Request buttons live in Make only.
 - **The glowing dot** in the middle of the ring behind the doors is gone; the slow dotted ring stays.
@@ -305,7 +305,7 @@ Wehan's sixth list; committed, not pushed.
 
 ## 2026-10-28 (night): round seven
 
-Wehan: "this seems basically perfect", three comments left. Committed, not pushed.
+Wehan: "this seems basically perfect", three comments left. Committed; pushed live on 2026-10-28 (night).
 
 - **The constellation breathes.** Its canvas is now wide and shallow (1040 by 450 instead of 760 by 560), the twelve stars are laid out across it, and the labels are a size up (22px, Plato 28px, in canvas units). At the same height on the page it now fills most of its column instead of a third of it; on tall monitors it fills the width.
 - **Testimonials, one place each.** No quotation now rotates in more than one chapter. Teach has the classroom ones (the two practicum assessors, Prof Ruttkamp-Bloem on control of a class and on discipline, a first-year on attention); Think has the scholarly ones (her recommendation, Prof Finamore and the examiner on the thesis, Dr Black on the scholar and the seminars, three students on the lectures and the honours course); Make has the one-to-one ones (consultations and feedback, simplifying complex ideas, Dr Black on bringing out the best in people, Prof Ruttkamp-Bloem on availability and organisation). The two AI lines live in the AI sheet only; Prof Finamore's one line stays on Write. The Testimonials sheet keeps the full set, with the three student quotes from Make and the discipline line added so nothing is lost.
