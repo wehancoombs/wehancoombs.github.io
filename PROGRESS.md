@@ -273,3 +273,16 @@ Wehan's fourth list, all done; committed, not pushed.
 - Laptop size (1366×768): welcome card, hero and Start here fit the screen, headshot pop, Think side by side, guides bar, Make cards, the AI and consulting sheets; no console errors. Phone (375): welcome card, Start here, Think stacked with the guides bar, no sideways scroll.
 
 **Later the same night:** the welcome card now says "Hi, I’m Wehan.", and leaving it through "What I offer" no longer leaves the blurred backdrop behind (that route closed the card without clearing the scrim). Committed, not pushed.
+
+---
+
+## 2026-10-29: round five, the compact chapters
+
+Wehan: "are you sure you can't make Teach, Think and Make a bit more compact? ... Keep what's crucial on the screen, let the rest be discoverable. Ideally a normal monitor shouldn't need awkward scrolling within the sections."
+
+- **Teach, Think and Make each fit one screen** now, measured at 1366x768 and 1920x1080 (every chapter is exactly the height of the screen at both sizes). The blurb lines are gone; the rotating testimonial sits under the chapter title instead. Stats and a small CV seal sit to the right of the title. Headings, the shelf, the arc, the constellation and the service cards all scale with the height of the screen.
+- **Teach:** the arc and the shelf side by side, both shorter; the poem fan still bursts out of the shelf.
+- **Think:** the constellation beside the two lecture tiles; the study-guides bar sits under the tiles and opens to three columns of cards. The "Students say" and "Colleagues say" entries are one "Testimonials" sheet (students with the ratings, then colleagues and referees, then the school mentors); the old links still open it.
+- **Make:** four compact cards. Each shows its little animation; hover (or keyboard focus) swaps it for the three deliverables, and Details opens the sheet. On phones the deliverables are simply listed. The "working with me" card is gone (the sheet remains, in the index line); the Freelance seal sits beside the title.
+- Start here and Write also tightened so they fit a 1080-tall monitor and a 768-tall laptop respectively (the Start heading was wrapping to four lines on a big monitor).
+- Checked at 1366x768, 1920x1080 and 375 wide; no console errors. Committed, not pushed.

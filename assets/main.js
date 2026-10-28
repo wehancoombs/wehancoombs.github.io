@@ -283,6 +283,7 @@
   /* ---------- The library, the sheet and the map ---------- */
   const library = {};
   $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML }; });
+  library.evaluations = library.said = library.testimonials; // old links still open the testimonials
 
   /* ---------- Request sheets: a drafted message you can send from your email app, from Gmail, or copy ---------- */
   const EMAIL = 'wehancoombs@gmail.com';
@@ -462,13 +463,13 @@
 
   /* ---------- Voices: what students, mentors and colleagues say, one at a time ---------- */
   const VOICES = {
-    teach: { more: 'said', items: [
+    teach: { more: 'testimonials', items: [
       ['Excellent knowledge and innovative way of using media.', 'University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026'],
       ['Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.', 'Prof Emma Ruttkamp-Bloem · lecture observation'],
       ['Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.', 'A first-year student, 2020'],
       ['He is friendly but also firm in terms of discipline.', 'Prof Emma Ruttkamp-Bloem · peer evaluation report, 2026']
     ] },
-    think: { more: 'said', items: [
+    think: { more: 'testimonials', items: [
       ['In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, and I recommend him without reservation.', 'Prof Emma Ruttkamp-Bloem · Head of Philosophy, University of Pretoria, 2026'],
       ['His dissertation was a careful, scholarly, deep investigation into the Platonic method.', 'Prof John F. Finamore · Emeritus Professor of Classics, University of Iowa, 2026'],
       ['A creative and rigorous scholar, and among the most capable early-career philosophers I have worked with.', 'Dr Mitchell-Ron Black · research collaborator, 2026'],
@@ -480,7 +481,7 @@
       ['I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.', 'Dr Mitchell-Ron Black · on teaching and AI, 2026'],
       ['Wehan is in an excellent position to consider ways of using Platonism to shed light on modern teaching with AI.', 'Prof John F. Finamore, 2026']
     ] },
-    make: { more: 'evaluations', items: [
+    make: { more: 'testimonials', items: [
       ['Dr. Coombs is passionate and knowledgeable in his field, he has the ability to simplify complex ideas, which is helpful as a student.', 'An honours student, 2024'],
       ['One-on-one consultations were especially useful for receiving advice and insights for essays and assignments. Additionally, assignment feedback was always helpful and detailed.', 'An honours student, 2024'],
       ['Professor Coombs is able to explain abstract concepts in a way that makes it easy to understand.', 'A first-year student, 2023'],

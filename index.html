@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body data-chapter="threshold">
 
@@ -121,8 +121,7 @@
         <li><button type="button" data-sheet="courses">Courses designed</button></li>
         <li><button type="button" data-sheet="guides">Study guides &amp; readers</button></li>
         <li><button type="button" data-sheet="lectures">Recorded lectures</button></li>
-        <li><button type="button" data-sheet="evaluations">What students say</button></li>
-        <li><button type="button" data-sheet="said">What colleagues say</button></li>
+        <li><button type="button" data-sheet="testimonials">Testimonials</button></li>
         <li><button type="button" data-sheet="publications">Research &amp; publications</button></li>
         <li><button type="button" data-sheet="papers">Conference papers</button></li>
         <li><button type="button" data-sheet="funding">Funding &amp; collaboration</button></li>
@@ -250,19 +249,30 @@
 </section>
 
 <!-- ===================== 3. Teach ===================== -->
-<section id="teach" class="chapter">
+<section id="teach" class="chapter compact">
   <div class="wrap">
     <div class="ch-head">
-      <div>
+      <div class="ch-lead">
         <p class="eyebrow reveal">For schools</p>
         <h2 class="display reveal">Teach</h2>
-        <p class="line reveal">English Home Language, FET Phase. Learners as real thinking partners.</p>
+        <div class="voices reveal" data-set="teach" aria-label="What people say about my teaching"></div>
       </div>
-      <ul class="stats reveal">
-        <li><button type="button" data-sheet="abbotts"><b data-count="95">0</b><span>/100 mentor assessment</span></button></li>
-        <li><button type="button" data-sheet="abbotts"><b data-count="98">0</b><span>/100 observed lesson</span></button></li>
-        <li><button type="button" data-sheet="approach"><b data-count="10">0</b><span>weeks in charge of classes</span></button></li>
-      </ul>
+      <div class="ch-side reveal">
+        <ul class="stats">
+          <li><button type="button" data-sheet="abbotts"><b data-count="95">0</b><span>/100 mentor assessment</span></button></li>
+          <li><button type="button" data-sheet="abbotts"><b data-count="98">0</b><span>/100 observed lesson</span></button></li>
+          <li><button type="button" data-sheet="approach"><b data-count="10">0</b><span>weeks in charge of classes</span></button></li>
+        </ul>
+        <a class="seal mini" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="sp-t" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+            <circle class="seal-ring" cx="60" cy="60" r="56"/>
+            <text class="seal-text"><textPath href="#sp-t">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
+            <text class="seal-letter" x="60" y="75">T</text>
+          </svg>
+          <span class="seal-label">Teaching CV<small>two pages, PDF</small></span>
+        </a>
+      </div>
     </div>
     <p class="index reveal">
       <button type="button" data-sheet="approach">Approach</button>
@@ -271,7 +281,6 @@
       <button type="button" data-sheet="beyond">Beyond the classroom</button>
       <button type="button" data-sheet="ai">In the age of AI</button>
     </p>
-    <div class="voices reveal" data-set="teach" aria-label="What people say about my teaching"></div>
 
     <div class="grid-2">
       <figure class="arc reveal">
@@ -294,7 +303,7 @@
       </figure>
 
       <div class="reveal">
-        <p class="eyebrow">What I taught in 2026</p>
+        <p class="eyebrow">What I taught in 2026 · tap a spine</p>
         <div class="shelf" role="group" aria-label="What I taught in 2026">
           <button class="book b-mac" type="button" data-item="macbeth"><span>Macbeth</span></button>
           <button class="book b-temp" type="button" data-item="tempest"><span>The Tempest</span></button>
@@ -303,64 +312,63 @@
           <button class="case b-film" type="button" data-item="film"><span>Film study</span></button>
           <button class="book b-phil" type="button" data-item="enrichment"><span>Philosophy</span></button>
         </div>
-        <div class="shelf-detail" id="shelf-detail" aria-live="polite"><p class="caption">Tap a spine. The poems open up.</p></div>
-        <a class="seal" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-t" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-t">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">T</text>
-          </svg>
-          <span class="seal-label">Teaching CV<small>Two pages, PDF</small></span>
-        </a>
+        <div class="shelf-detail" id="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson. The poems open up.</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===================== 4. Think ===================== -->
-<section id="think" class="chapter">
+<section id="think" class="chapter compact">
   <div class="wrap">
     <div class="ch-head">
-      <div>
+      <div class="ch-lead">
         <p class="eyebrow reveal">For universities</p>
         <h2 class="display reveal">Think</h2>
-        <p class="line reveal">Plato, Neoplatonism and the esoteric. Fifteen years in the lecture hall.</p>
+        <div class="voices reveal" data-set="think" aria-label="What students and colleagues say"></div>
       </div>
-      <ul class="stats reveal">
-        <li><button type="button" data-sheet="posts"><b data-count="15">0</b><span>years lecturing</span></button></li>
-        <li><button type="button" data-sheet="evaluations"><b data-count="4.5" data-decimals="1">0</b><span>/5 average student rating, eight courses</span></button></li>
-        <li><button type="button" data-sheet="courses"><b data-count="5">0</b><span>self-designed modules</span></button></li>
-        <li><button type="button" data-sheet="evaluations">
-          <span class="stars" data-rating="4.81" aria-label="4.81 out of 5">
-            <span class="stars-bg"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
-            <span class="stars-fg"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
-          </span>
-          <span>4.81 out of 5 · student rating, 2026</span>
-        </button></li>
-      </ul>
+      <div class="ch-side reveal">
+        <ul class="stats">
+          <li><button type="button" data-sheet="posts"><b data-count="15">0</b><span>years lecturing</span></button></li>
+          <li><button type="button" data-sheet="testimonials"><b data-count="4.5" data-decimals="1">0</b><span>/5 average student rating, eight courses</span></button></li>
+          <li><button type="button" data-sheet="courses"><b data-count="5">0</b><span>self-designed modules</span></button></li>
+          <li><button type="button" data-sheet="testimonials">
+            <span class="stars" data-rating="4.81" aria-label="4.81 out of 5">
+              <span class="stars-bg"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+              <span class="stars-fg"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+            </span>
+            <span>4.81 out of 5 · student rating, 2026</span>
+          </button></li>
+        </ul>
+        <a class="seal mini" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="sp-a" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+            <circle class="seal-ring" cx="60" cy="60" r="56"/>
+            <text class="seal-text"><textPath href="#sp-a">Academic CV · PDF · Academic CV · PDF · </textPath></text>
+            <text class="seal-letter" x="60" y="75">Φ</text>
+          </svg>
+          <span class="seal-label">Academic CV<small>two pages, PDF</small></span>
+        </a>
+      </div>
     </div>
     <p class="index reveal">
       <button type="button" data-sheet="posts">Posts</button>
       <button type="button" data-sheet="courses">Courses</button>
       <button type="button" data-sheet="guides">Study guides</button>
       <button type="button" data-sheet="lectures">Lectures</button>
-      <button type="button" data-sheet="evaluations">Students say</button>
-      <button type="button" data-sheet="said">Colleagues say</button>
+      <button type="button" data-sheet="testimonials">Testimonials</button>
       <button type="button" data-sheet="publications">Research</button>
       <button type="button" data-sheet="papers">Papers</button>
       <button type="button" data-sheet="philosophy">Teaching philosophy</button>
       <button type="button" data-sheet="ai">The age of AI</button>
     </p>
-    <div class="voices reveal" data-set="think" aria-label="What students and colleagues say"></div>
 
     <div class="think-grid reveal">
       <div class="sky-wrap">
-        <p class="eyebrow">My research, constellated</p>
+        <p class="eyebrow">My research, constellated · tap a star</p>
         <div class="sky">
           <svg id="sky" viewBox="0 0 760 560" role="group" aria-label="A constellation of my research interests. Each star opens a short note."></svg>
         </div>
-        <p class="hint">Hover or tap a star<span class="m-only"> · drag the sky sideways</span></p>
       </div>
       <div class="think-side">
         <p class="eyebrow">Watch me teach</p>
@@ -375,50 +383,48 @@
           </div>
         </div>
         <p class="hint">Recorded as they happened · <button class="textlink" type="button" data-sheet="lectures">about these</button></p>
-      </div>
-    </div>
-
-    <div class="guides-bar reveal">
-      <button class="guides-toggle" type="button" aria-expanded="false" aria-controls="guides">
-        <span class="eyebrow">Study guides I wrote</span>
-        <span class="g-list">Five of them, 2018 to 2026</span>
-        <span class="g-arrow" aria-hidden="true">▾</span>
-      </button>
-      <div class="guides-wrap" id="guides" hidden>
-        <div class="guides">
-          <button class="guide" type="button" data-sheet="guide-c5"><span class="g-code">FIL710 · 810</span><span class="g-title">Philosophy as a Rite of Rebirth</span><span class="g-year">2026</span></button>
-          <button class="guide" type="button" data-sheet="guide-c3"><span class="g-code">FIL710</span><span class="g-title">The (Secret) History of Thought</span><span class="g-year">2024</span></button>
-          <button class="guide" type="button" data-sheet="guide-c4"><span class="g-code">FIL220</span><span class="g-title">The Good Life</span><span class="g-year">2024</span></button>
-          <button class="guide" type="button" data-sheet="guide-c2"><span class="g-code">FIL110</span><span class="g-title">Metaphysics and Epistemology</span><span class="g-year">2021</span></button>
-          <button class="guide" type="button" data-sheet="guide-c1"><span class="g-code">FIL251</span><span class="g-title">Moral and Political Philosophy</span><span class="g-year">2018</span></button>
+        <div class="guides-bar">
+          <button class="guides-toggle" type="button" aria-expanded="false" aria-controls="guides">
+            <span class="eyebrow">Study guides I wrote</span>
+            <span class="g-list">Five, 2018 to 2026</span>
+            <span class="g-arrow" aria-hidden="true">▾</span>
+          </button>
+          <div class="guides-wrap" id="guides" hidden>
+            <div class="guides">
+              <button class="guide" type="button" data-sheet="guide-c5"><span class="g-code">FIL710 · 810</span><span class="g-title">Philosophy as a Rite of Rebirth</span><span class="g-year">2026</span></button>
+              <button class="guide" type="button" data-sheet="guide-c3"><span class="g-code">FIL710</span><span class="g-title">The (Secret) History of Thought</span><span class="g-year">2024</span></button>
+              <button class="guide" type="button" data-sheet="guide-c4"><span class="g-code">FIL220</span><span class="g-title">The Good Life</span><span class="g-year">2024</span></button>
+              <button class="guide" type="button" data-sheet="guide-c2"><span class="g-code">FIL110</span><span class="g-title">Metaphysics and Epistemology</span><span class="g-year">2021</span></button>
+              <button class="guide" type="button" data-sheet="guide-c1"><span class="g-code">FIL251</span><span class="g-title">Moral and Political Philosophy</span><span class="g-year">2018</span></button>
+            </div>
+            <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
+          </div>
         </div>
-        <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
       </div>
-    </div>
-
-    <div class="row-end reveal">
-      <a class="seal" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">
-        <svg viewBox="0 0 120 120" aria-hidden="true">
-          <defs><path id="sp-a" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-          <circle class="seal-ring" cx="60" cy="60" r="56"/>
-          <text class="seal-text"><textPath href="#sp-a">Academic CV · PDF · Academic CV · PDF · </textPath></text>
-          <text class="seal-letter" x="60" y="75">Φ</text>
-        </svg>
-        <span class="seal-label">Academic CV<small>Two pages, PDF</small></span>
-      </a>
-      <button class="textlink" type="button" data-sheet="publications">Publications, theses and profiles →</button>
     </div>
   </div>
 </section>
 
 <!-- ===================== 5. Make ===================== -->
-<section id="make" class="chapter">
+<section id="make" class="chapter compact">
   <div class="wrap">
     <div class="ch-head">
-      <div>
+      <div class="ch-lead">
         <p class="eyebrow reveal">For students &amp; clients</p>
         <h2 class="display reveal">Make</h2>
-        <p class="line reveal">Tutoring, editing, learning design, and philosophical and AI consulting. In Pretoria East, or online anywhere.</p>
+        <div class="voices reveal" data-set="make" aria-label="What students say about working with me"></div>
+      </div>
+      <div class="ch-side reveal">
+        <p class="side-note">Tutoring, editing, learning design, and philosophical and AI consulting. Pretoria East, or online anywhere.</p>
+        <a class="seal mini" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+            <circle class="seal-ring" cx="60" cy="60" r="56"/>
+            <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
+            <text class="seal-letter" x="60" y="75">F</text>
+          </svg>
+          <span class="seal-label">Freelance CV<small>two pages, PDF</small></span>
+        </a>
       </div>
     </div>
     <p class="index reveal">
@@ -428,105 +434,91 @@
       <button type="button" data-sheet="consulting">AI &amp; philosophical consulting</button>
       <button type="button" data-sheet="working">Working with me</button>
     </p>
-    <div class="voices reveal" data-set="make" aria-label="What students say about working with me"></div>
 
     <div class="services">
       <article class="svc reveal">
-        <div class="svc-vis">
-          <svg class="quill" viewBox="0 0 110 110" aria-hidden="true">
-            <g class="ghost">
+        <div class="svc-body">
+          <div class="svc-vis">
+            <svg class="quill" viewBox="0 0 110 110" aria-hidden="true">
+              <g class="ghost">
+                <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
+                <path d="M18 92 C 34 70, 52 50, 76 28"/>
+                <path d="M18 92 L 10 102"/>
+              </g>
               <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
               <path d="M18 92 C 34 70, 52 50, 76 28"/>
               <path d="M18 92 L 10 102"/>
-            </g>
-            <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
-            <path d="M18 92 C 34 70, 52 50, 76 28"/>
-            <path d="M18 92 L 10 102"/>
-          </svg>
+            </svg>
+          </div>
+          <ul class="deliv">
+            <li>One to one, in person or online</li>
+            <li>A plan for the term, with marked practice essays</li>
+            <li>Online English for non-native speakers</li>
+          </ul>
         </div>
         <h3>Tutoring</h3>
         <p class="svc-sub">English · Philosophy · TEFL</p>
-        <ul class="deliv">
-          <li>One-to-one sessions, in person in Pretoria East or online</li>
-          <li>A plan for the term, with marked practice essays and exam preparation</li>
-          <li>Online English lessons for non-native speakers</li>
-        </ul>
         <div class="svc-actions">
-          <button class="btn solid" type="button" data-sheet="request-tutoring">Request tutoring</button>
+          <button class="btn solid" type="button" data-sheet="request-tutoring">Request</button>
           <button class="textlink" type="button" data-sheet="tutoring">Details</button>
         </div>
       </article>
 
       <article class="svc reveal">
-        <div class="svc-vis"><span class="typer" id="typer"><span class="txt"></span><span class="caret"></span></span></div>
+        <div class="svc-body">
+          <div class="svc-vis"><span class="typer" id="typer"><span class="txt"></span><span class="caret"></span></span></div>
+          <ul class="deliv">
+            <li>Tracked changes and a note on what to fix next</li>
+            <li>The argument first, then the sentences</li>
+            <li>Study guides and course materials too</li>
+          </ul>
+        </div>
         <h3>Editing</h3>
         <p class="svc-sub">Essays · Theses · Course materials</p>
-        <ul class="deliv">
-          <li>Your document back with tracked changes and a short note on what to fix next</li>
-          <li>Structural feedback on the argument before the sentence-level pass</li>
-          <li>Study guides, readers and course materials, written or edited</li>
-        </ul>
         <div class="svc-actions">
-          <button class="btn solid" type="button" data-sheet="request-editing">Request editing</button>
+          <button class="btn solid" type="button" data-sheet="request-editing">Request</button>
           <button class="textlink" type="button" data-sheet="editing">Details</button>
         </div>
       </article>
 
       <article class="svc reveal">
-        <div class="svc-vis"><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="svc-body">
+          <div class="svc-vis"><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+          <ul class="deliv">
+            <li>A whole module, with its study guide</li>
+            <li>Rubrics and marking tools as simple web apps</li>
+            <li>Live-streamed or recorded lectures</li>
+          </ul>
+        </div>
         <h3>Learning design</h3>
         <p class="svc-sub">Courses · Rubrics · Web apps · Lectures</p>
-        <ul class="deliv">
-          <li>A whole module: outcomes, week-by-week structure, readings, assessments and a study guide</li>
-          <li>Rubrics and marking tools built as simple web apps</li>
-          <li>Live-streamed or recorded lectures with good audio and video</li>
-        </ul>
         <div class="svc-actions">
-          <button class="btn solid" type="button" data-sheet="request-design">Request a design</button>
+          <button class="btn solid" type="button" data-sheet="request-design">Request</button>
           <button class="textlink" type="button" data-sheet="design">Details</button>
         </div>
       </article>
 
       <article class="svc reveal">
-        <div class="svc-vis">
-          <svg class="tetractys" viewBox="0 0 120 110" aria-hidden="true">
-            <circle cx="60" cy="16" r="6"/>
-            <circle cx="42" cy="42" r="6"/><circle cx="78" cy="42" r="6"/>
-            <circle cx="24" cy="68" r="6"/><circle cx="60" cy="68" r="6"/><circle cx="96" cy="68" r="6"/>
-            <circle cx="6" cy="94" r="6"/><circle cx="42" cy="94" r="6"/><circle cx="78" cy="94" r="6"/><circle cx="114" cy="94" r="6"/>
-          </svg>
+        <div class="svc-body">
+          <div class="svc-vis">
+            <svg class="tetractys" viewBox="0 0 120 110" aria-hidden="true">
+              <circle cx="60" cy="16" r="6"/>
+              <circle cx="42" cy="42" r="6"/><circle cx="78" cy="42" r="6"/>
+              <circle cx="24" cy="68" r="6"/><circle cx="60" cy="68" r="6"/><circle cx="96" cy="68" r="6"/>
+              <circle cx="6" cy="94" r="6"/><circle cx="42" cy="94" r="6"/><circle cx="78" cy="94" r="6"/><circle cx="114" cy="94" r="6"/>
+            </svg>
+          </div>
+          <ul class="deliv">
+            <li>What to do about AI in your classroom or company</li>
+            <li>Talks, workshops, a written brief</li>
+            <li>One to one, for a question of your own</li>
+          </ul>
         </div>
         <h3>Philosophical &amp; AI consulting</h3>
         <p class="svc-sub">People · Schools · Organisations</p>
-        <ul class="deliv">
-          <li>What to do about AI in a classroom, a course or a company, thought through properly: a talk, a workshop, a written brief</li>
-          <li>Ethics and purpose for a team or a project, from a single session to a short series</li>
-          <li>One to one: a thinking partner for a question in your own life</li>
-        </ul>
         <div class="svc-actions">
-          <button class="btn solid" type="button" data-sheet="request-consulting">Request consulting</button>
+          <button class="btn solid" type="button" data-sheet="request-consulting">Request</button>
           <button class="textlink" type="button" data-sheet="consulting">Details</button>
-        </div>
-      </article>
-      <article class="svc svc-how reveal">
-        <p class="eyebrow">Working with me</p>
-        <h3>Ask, agree, begin.</h3>
-        <ul class="deliv">
-          <li>Press a Request button and tell me what you need. I reply with a plan, a rate and a start date</li>
-          <li>Everything agreed up front, in writing</li>
-          <li>In person in Pretoria East, or online anywhere</li>
-        </ul>
-        <div class="svc-actions">
-          <a class="seal" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">
-            <svg viewBox="0 0 120 120" aria-hidden="true">
-              <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-              <circle class="seal-ring" cx="60" cy="60" r="56"/>
-              <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
-              <text class="seal-letter" x="60" y="75">F</text>
-            </svg>
-            <span class="seal-label">Freelance CV<small>Two pages, PDF</small></span>
-          </a>
-          <button class="textlink" type="button" data-sheet="working">The details</button>
         </div>
       </article>
     </div>
@@ -998,9 +990,10 @@
     <p class="more"><a href="https://drive.google.com/file/d/1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ/view" target="_blank" rel="noopener">Lecture one in Drive ↗</a> <a href="https://drive.google.com/file/d/1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3/view" target="_blank" rel="noopener">Lecture two in Drive ↗</a></p>
   </article>
 
-  <article id="s-evaluations" data-ch="think" data-title="What students say">
+  <article id="s-testimonials" data-ch="think" data-title="Testimonials">
+    <p class="when">Students, mentors, examiners and colleagues, in their own words, with the numbers behind them.</p>
+    <h4>Students</h4>
     <p><strong>4.5 out of 5</strong> is my average rating across the eight university courses that had a numerical student evaluation, from a first-year class of 485 to an honours seminar of six. Weighted by the number of students who answered it is 4.3; the large second-year ethics class of 2018 pulls it down.</p>
-    <h4>Course by course</h4>
     <ul class="list ratings">
       <li><b>4.81</b> Philosophy as a Rite of Rebirth, honours (FIL710 and FIL810) · 2026 · 6 of 6 students</li>
       <li><b>4.71</b> The Good Life (FIL220) · 2024 · 7 of 59</li>
@@ -1011,7 +1004,6 @@
       <li><b>4.1</b> Moral and Political Philosophy (FIL251) · 2018 · 191 forms</li>
       <li><b>4.8</b> Metaphysics and Epistemology (FIL110) · 2017 · 9 forms</li>
     </ul>
-    <h4>In their words</h4>
     <blockquote>Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.<cite>A first-year student, 2020</cite></blockquote>
     <blockquote>Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present. The content is so thought-provoking and I love our assignments.<cite>A first-year student, 2023</cite></blockquote>
     <blockquote>He really knows his work and the way that it is translated in class is very impressive. I truly enjoyed every class that I’ve gone to.<cite>A second-year student, 2024</cite></blockquote>
@@ -1021,10 +1013,8 @@
     <blockquote>In a class of 300 Mr Coombs effortlessly attends to questions in the chat while still clearly and concisely going through the course content.<cite>A first-year student, online, 2021</cite></blockquote>
     <p>All ten evaluations from 2017 to 2026, surveys and emails, are collected in one document with a clickable contents page.</p>
     <div class="embed doc" data-src="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/preview"></div>
-    <p class="more"><a href="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/view" target="_blank" rel="noopener">Open the evaluations ↗</a> <button type="button" data-sheet="said">What colleagues say →</button></p>
-  </article>
-
-  <article id="s-said" data-ch="think" data-title="What colleagues say">
+    <p class="more"><a href="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/view" target="_blank" rel="noopener">Open the evaluations ↗</a></p>
+    <h4>Colleagues and referees</h4>
     <blockquote>In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, at first-year, second-year and honours level, and I recommend him without reservation.<cite>Prof Emma Ruttkamp-Bloem, Head of the Department of Philosophy, University of Pretoria · peer evaluation report, 2026</cite></blockquote>
     <p class="note">From her lecture observation: “Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.” On the honours seminars: “Students describe the seminars as challenging but highly interactive, and comment on his command of the material, his ability to make complex ideas accessible, his availability for consultation and the good organisation of his modules.”</p>
     <p class="more"><a href="https://drive.google.com/file/d/14sMcyd2eDuw2SgVbq4CGdC5wt1ADhErm/view" target="_blank" rel="noopener">Read the report ↗</a></p>
@@ -1036,7 +1026,7 @@
     <h4>In the school classroom</h4>
     <blockquote>Excellent knowledge and innovative way of using media.<cite>University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026 · 98 out of 100</cite></blockquote>
     <p class="note">My mentor teacher at Abbotts College gave 95 out of 100, with full marks for classroom competencies, and noted that I “enhanced the learners’ vocabulary through scaffolding”.</p>
-    <p class="more"><button type="button" data-sheet="evaluations">What students say →</button> <button type="button" data-sheet="referees">Referees →</button></p>
+    <p class="more"><button type="button" data-sheet="referees">Referees →</button> <button type="button" data-sheet="ai">Teaching in the age of AI →</button></p>
   </article>
 
   <article id="s-publications" data-ch="think" data-title="Research and publications">
@@ -1242,6 +1232,6 @@
 
 </div>
 
-<script src="assets/main.js?v=8"></script>
+<script src="assets/main.js?v=9"></script>
 </body>
 </html>
