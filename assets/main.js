@@ -464,29 +464,28 @@
   /* ---------- Voices: what students, mentors and colleagues say, one at a time ---------- */
   const VOICES = {
     teach: { more: 'testimonials', items: [
-      ['Excellent knowledge and innovative way of using media.', 'University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026'],
-      ['Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.', 'Prof Emma Ruttkamp-Bloem · lecture observation'],
-      ['Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.', 'A first-year student, 2020'],
-      ['He is friendly but also firm in terms of discipline.', 'Prof Emma Ruttkamp-Bloem · peer evaluation report, 2026']
+      ['Excellent knowledge and innovative way of using media.', 'University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026 · 98 out of 100'],
+      ['Enhanced the learners’ vocabulary through scaffolding.', 'Mentor teacher, Abbotts College Pretoria East · formal assessment, 2026 · 95 out of 100'],
+      ['Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.', 'Prof Emma Ruttkamp-Bloem · lecture observation, University of Pretoria'],
+      ['He is friendly but also firm in terms of discipline.', 'Prof Emma Ruttkamp-Bloem · peer evaluation report, 2026'],
+      ['Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present.', 'A first-year student, 2023']
     ] },
     think: { more: 'testimonials', items: [
       ['In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, and I recommend him without reservation.', 'Prof Emma Ruttkamp-Bloem · Head of Philosophy, University of Pretoria, 2026'],
       ['His dissertation was a careful, scholarly, deep investigation into the Platonic method.', 'Prof John F. Finamore · Emeritus Professor of Classics, University of Iowa, 2026'],
+      ['This is an exceptional thesis. I recommend this thesis receive a PhD without reservation.', 'PhD examiner · Ainigma, 2023'],
       ['A creative and rigorous scholar, and among the most capable early-career philosophers I have worked with.', 'Dr Mitchell-Ron Black · research collaborator, 2026'],
       ['Without exaggeration, those seminars changed the way I write and engage with the tradition in which I am trained.', 'Dr Mitchell-Ron Black · on the honours seminars, 2026'],
-      ['This is an exceptional thesis. I recommend this thesis receive a PhD without reservation.', 'PhD examiner · Ainigma, 2023'],
+      ['Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.', 'A first-year student, 2020'],
       ['The content was by far the most complex and difficult material I have encountered in my academic career so far, but the way in which seminars were presented made it much easier to grapple with.', 'An honours student, 2024'],
-      ['It is needless to say this course has been my favorite in honours so far.', 'An honours student, 2025'],
-      ['Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present.', 'A first-year student, 2023'],
-      ['I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.', 'Dr Mitchell-Ron Black · on teaching and AI, 2026'],
-      ['Wehan is in an excellent position to consider ways of using Platonism to shed light on modern teaching with AI.', 'Prof John F. Finamore, 2026']
+      ['It is needless to say this course has been my favorite in honours so far.', 'An honours student, 2025']
     ] },
     make: { more: 'testimonials', items: [
-      ['Dr. Coombs is passionate and knowledgeable in his field, he has the ability to simplify complex ideas, which is helpful as a student.', 'An honours student, 2024'],
       ['One-on-one consultations were especially useful for receiving advice and insights for essays and assignments. Additionally, assignment feedback was always helpful and detailed.', 'An honours student, 2024'],
+      ['Dr. Coombs is passionate and knowledgeable in his field, he has the ability to simplify complex ideas, which is helpful as a student.', 'An honours student, 2024'],
       ['Professor Coombs is able to explain abstract concepts in a way that makes it easy to understand.', 'A first-year student, 2023'],
-      ['His approach encourages independent thought and understanding, requiring active engagement in class and challenging us to think deeply.', 'An honours student, 2024'],
-      ['He really knows his work and the way that it is translated in class is very impressive. I truly enjoyed every class that I’ve gone to.', 'A second-year student, 2024']
+      ['He moves between close readings of Plato and present concerns without flattening either, bringing out the best in the people he works with as he goes along.', 'Dr Mitchell-Ron Black · research collaborator, 2026'],
+      ['Students describe the seminars as challenging but highly interactive, and comment on his command of the material, his ability to make complex ideas accessible, his availability for consultation and the good organisation of his modules.', 'Prof Emma Ruttkamp-Bloem · peer evaluation report, 2026']
     ] }
   };
   $$('.voices[data-set]').forEach(box => {
@@ -575,32 +574,32 @@
 
   /* ---------- The constellation ---------- */
   const NODES = [
-    { id: 'plato', x: 380, y: 270, r: 9, big: true, label: 'Plato',
+    { id: 'plato', x: 520, y: 225, r: 10, big: true, label: 'Plato',
       body: 'The centre of the map. My PhD, <em>Ainigma</em>, read Plato’s esotericism in its historical context: what he wrote, what he withheld, and why.',
       links: [['Ainigma: Plato’s Esotericism in Context (PhD, 2023)', 'https://repository.up.ac.za/handle/2263/89290']] },
-    { id: 'aristotle', x: 215, y: 150, r: 6, label: 'Aristotle',
+    { id: 'aristotle', x: 205, y: 150, r: 6.5, label: 'Aristotle',
       body: 'My MA, <em>Symphonia</em>, argued that Aristotle stays in harmony with Plato on the separable, immortal soul. The argument became a journal article in 2017.',
       links: [['Aristotle’s harmony with Plato on separable and immortal soul (SAJP, 2017)', 'https://doi.org/10.1080/02580136.2017.1385951'], ['Symphonia: Aristotle versus Plato Critiqued (MA, 2016)', 'https://repository.up.ac.za/handle/2263/57175']] },
-    { id: 'neo', x: 560, y: 150, r: 7, label: 'Neoplatonism',
+    { id: 'neo', x: 755, y: 148, r: 7.5, label: 'Neoplatonism',
       body: 'Plotinus, Iamblichus, Proclus. A member of the International Society for Neoplatonic Studies since 2017. In 2026 I designed and taught the honours course <em>Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism</em>.', more: 'guide-c5' },
-    { id: 'theurgy', x: 680, y: 80, r: 5, label: 'Theurgy',
+    { id: 'theurgy', x: 925, y: 55, r: 5.5, label: 'Theurgy',
       body: 'Ritual as philosophy in late Platonism. Conference paper: <em>The Curious Case of Neoplatonic Ritual Magic</em>, PSSA, University of KwaZulu-Natal, 2020.', more: 'papers' },
-    { id: 'egypt', x: 690, y: 265, r: 5, label: 'Ancient Egypt',
+    { id: 'egypt', x: 965, y: 240, r: 5.5, label: 'Ancient Egypt',
       body: 'Where the rite of rebirth begins. The opening movement of the honours course <em>Philosophy as a Rite of Rebirth</em> (FIL710/810, 2026).', more: 'guide-c5' },
-    { id: 'eso', x: 520, y: 390, r: 7, label: 'Esotericism',
+    { id: 'eso', x: 670, y: 335, r: 7.5, label: 'Esotericism',
       body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'guide-c3' },
-    { id: 'african', x: 650, y: 470, r: 6, label: 'African esotericism',
+    { id: 'african', x: 880, y: 405, r: 6.5, label: 'African esotericism',
       body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.', more: 'posts' },
-    { id: 'life', x: 250, y: 400, r: 6, label: 'A way of life',
+    { id: 'life', x: 265, y: 325, r: 6.5, label: 'A way of life',
       body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).', more: 'guide-c4' },
-    { id: 'nature', x: 120, y: 480, r: 5, label: 'Animism & nature',
+    { id: 'nature', x: 115, y: 400, r: 5.5, label: 'Animism & nature',
       body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.', more: 'papers' },
-    { id: 'rorty', x: 95, y: 285, r: 4.5, label: 'Rorty',
+    { id: 'rorty', x: 75, y: 250, r: 5, label: 'Rorty',
       body: 'An early article: <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em>, Humanities, 2013.',
       links: [['Read the article', 'https://doi.org/10.3390/h2020313']] },
-    { id: 'meta', x: 380, y: 470, r: 5, label: 'Metacrisis',
+    { id: 'meta', x: 450, y: 405, r: 5.5, label: 'Metacrisis',
       body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' },
-    { id: 'ai', x: 300, y: 70, r: 6, label: 'AI & the humanities',
+    { id: 'ai', x: 340, y: 55, r: 6.5, label: 'AI & the humanities',
       body: 'What is human teaching for, once a machine can write the essay? My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, reads Plato’s <em>Phaedrus</em> as a guide to what cannot be automated in learning, and to how teaching should be built around it. Proposed as a 2027 fellowship at the University of Pretoria.', more: 'ai' }
   ];
   const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt'], ['plato', 'ai'], ['ai', 'life']];
@@ -618,7 +617,7 @@
     g.appendChild(mk('circle', { class: 'hit', cx: n.x, cy: n.y, r: 28 }));
     g.appendChild(mk('circle', { class: 'glow', cx: n.x, cy: n.y, r: n.r * 2.4 }));
     const d = mk('circle', { class: 'dot', cx: n.x, cy: n.y, r: n.r }); d.style.animationDelay = (-Math.random() * 5).toFixed(2) + 's'; g.appendChild(d);
-    const tx = mk('text', { x: n.x, y: n.y + n.r + 22, 'text-anchor': 'middle' }); tx.textContent = n.label; g.appendChild(tx);
+    const tx = mk('text', { x: n.x, y: n.y + n.r + 24, 'text-anchor': 'middle' }); tx.textContent = n.label; g.appendChild(tx);
     sky.appendChild(g); nodeEls[n.id] = g;
     const lit = on => {
       g.classList.toggle('lit', on);

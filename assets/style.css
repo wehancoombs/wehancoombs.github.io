@@ -368,9 +368,9 @@ main { position: relative; z-index: 1; }
 @keyframes twinkle { 0%, 100% { opacity: .7; } 50% { opacity: 1; } }
 #sky .node:hover .glow, #sky .node.lit .glow, #sky .node.near .glow, #sky .node.sel .glow, #sky .node:focus-visible .glow { opacity: .4; transform: scale(1.7); }
 #sky .node:hover .dot, #sky .node.lit .dot, #sky .node.sel .dot { fill: var(--accent); }
-#sky text { font: 500 19px var(--serif); fill: var(--text-2); transition: fill .3s; pointer-events: none; }
+#sky text { font: 500 22px var(--serif); fill: var(--text-2); transition: fill .3s; pointer-events: none; }
 #sky .node:hover text, #sky .node.lit text, #sky .node.near text, #sky .node.sel text { fill: var(--text); }
-#sky .node.big text { font-size: 25px; }
+#sky .node.big text { font-size: 28px; }
 
 .lectures { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .lecture { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; background: radial-gradient(ellipse at 30% 20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 55%), linear-gradient(160deg, var(--surface), var(--bg-2)); transition: border-color .4s; }

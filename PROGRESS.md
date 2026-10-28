@@ -300,3 +300,14 @@ Wehan's sixth list; committed, not pushed.
 - **CV seals beside the numbers.** In Teach, Think and Make the mini seal sits in the same row as the stats (or the blurb, in Make), after a hairline, instead of under them.
 - **So far:** 2020 is "A paper presented" and 2025 is "More papers".
 - Assets at `?v=11`.
+
+---
+
+## 2026-10-28 (night): round seven
+
+Wehan: "this seems basically perfect", three comments left. Committed, not pushed.
+
+- **The constellation breathes.** Its canvas is now wide and shallow (1040 by 450 instead of 760 by 560), the twelve stars are laid out across it, and the labels are a size up (22px, Plato 28px, in canvas units). At the same height on the page it now fills most of its column instead of a third of it; on tall monitors it fills the width.
+- **Testimonials, one place each.** No quotation now rotates in more than one chapter. Teach has the classroom ones (the two practicum assessors, Prof Ruttkamp-Bloem on control of a class and on discipline, a first-year on attention); Think has the scholarly ones (her recommendation, Prof Finamore and the examiner on the thesis, Dr Black on the scholar and the seminars, three students on the lectures and the honours course); Make has the one-to-one ones (consultations and feedback, simplifying complex ideas, Dr Black on bringing out the best in people, Prof Ruttkamp-Bloem on availability and organisation). The two AI lines live in the AI sheet only; Prof Finamore's one line stays on Write. The Testimonials sheet keeps the full set, with the three student quotes from Make and the discipline line added so nothing is lost.
+- **Stray sentences fixed.** The two "big red button" lines (enrichment lesson and the AI sheet) now say plainly that the closing debate was whether AI should be deleted forever; "Mastering English" no longer lists "solarpunk" and "cognitive anti-fragility" bare; the Macbeth line puts "in blood stepped in so far" in quotation marks; the shelf caption reads "The poems spine opens five" instead of "The poems open up". Everything else read through, chapter by chapter and sheet by sheet, and left as it was.
+- Assets at `?v=12`.
