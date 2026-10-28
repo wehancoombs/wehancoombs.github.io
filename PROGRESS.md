@@ -286,3 +286,5 @@ Wehan: "are you sure you can't make Teach, Think and Make a bit more compact? ..
 - **Make:** four compact cards. Each shows its little animation; hover (or keyboard focus) swaps it for the three deliverables, and Details opens the sheet. On phones the deliverables are simply listed. The "working with me" card is gone (the sheet remains, in the index line); the Freelance seal sits beside the title.
 - Start here and Write also tightened so they fit a 1080-tall monitor and a 768-tall laptop respectively (the Start heading was wrapping to four lines on a big monitor).
 - Checked at 1366x768, 1920x1080 and 375 wide; no console errors. Committed, not pushed.
+
+**Later:** the 4.5 stat is gone from Think (the stars and the Testimonials sheet carry the ratings). Teach and Make now grow with the height of the screen: the shelf, the arc, the service cards and their visuals scale by a steeper rule than the screen itself, and on screens wider than 1700px the column widens to 1340px. Measured at 1366x768, 1920x1080 and 2560x1440: every chapter is exactly one screen tall. Committed, not pushed.

@@ -354,7 +354,7 @@ main { position: relative; z-index: 1; }
 .guides-toggle:hover .g-list, .guides-toggle:focus-visible .g-list { color: var(--text); }
 .guides-toggle[aria-expanded="true"] .g-arrow { transform: rotate(180deg); }
 .guides-wrap { padding: 6px 0 16px; }
-.sky { position: relative; height: clamp(190px, 32vh, 420px); }
+.sky { position: relative; height: clamp(190px, 32vh, 560px); }
 #sky { width: 100%; height: 100%; overflow: visible; display: block; }
 #sky line { stroke: var(--accent); stroke-opacity: .22; stroke-width: 1; transition: stroke-opacity .3s, stroke-width .3s; }
 #sky line.lit { stroke-opacity: .95; stroke-width: 1.6; }
@@ -430,13 +430,15 @@ main { position: relative; z-index: 1; }
 .compact .ch-head { align-items: flex-start; margin-bottom: clamp(10px, 2.2vh, 22px); gap: 28px; }
 .compact .ch-lead { flex: 1 1 440px; min-width: 0; }
 .compact .ch-side { display: flex; flex-direction: column; align-items: flex-end; gap: clamp(10px, 2vh, 18px); flex: 0 1 46%; }
-.compact .display { font-size: clamp(52px, min(9vw, 13vh), 120px); }
+.compact .display { font-size: clamp(52px, min(9vw, 13vh), 150px); }
 .compact .ch-lead .voices { margin: clamp(10px, 1.6vh, 16px) 0 0; max-width: 74ch; }
 .compact .voice p { font-size: clamp(16px, 2.1vh, 20px); }
+#teach .voice p, #make .voice p { font-size: clamp(16px, 2.1vh, 23px); }
 .compact .voice figcaption { margin-top: 8px; }
 .compact .voices-nav { margin-top: 10px; }
 .compact .stats { gap: clamp(14px, 1.6vw, 24px); justify-content: flex-end; flex-wrap: wrap; }
 .compact .stats b { font-size: clamp(34px, 5.2vh, 46px); }
+#teach .stats b { font-size: clamp(34px, 5.4vh, 60px); }
 .compact .stats span { max-width: 140px; font-size: 11px; }
 .compact .stats li button { min-width: 96px; }
 .compact .stars { height: 38px; padding-top: 8px; }
@@ -449,19 +451,19 @@ main { position: relative; z-index: 1; }
 .seal.mini .seal-label small { font-size: 12px; }
 .compact .index { margin-bottom: clamp(14px, 2.6vh, 28px); }
 .compact .grid-2 { gap: 40px; }
-.compact .arc svg { height: clamp(120px, 22vh, 250px); }
-.compact .arc-text { font-size: clamp(17px, 2.2vh, 21px); min-height: 2.9em; margin-top: 8px; }
+.compact .arc svg { height: clamp(120px, calc(44vh - 170px), 400px); }
+.compact .arc-text { font-size: clamp(17px, 2.5vh, 26px); min-height: 2.9em; margin-top: 8px; }
 .compact .arc .more { margin-top: 8px; }
-.compact .shelf { height: clamp(140px, 26vh, 240px); padding-bottom: 10px; }
-.compact .book { height: 82%; width: 48px; font-size: 16px; }
+.compact .shelf { height: clamp(140px, calc(56vh - 230px), 440px); padding-bottom: 10px; gap: clamp(7px, 1vh, 12px); }
+.compact .book { height: 82%; width: clamp(40px, 5.6vh, 72px); font-size: clamp(14px, 2vh, 24px); }
 .compact .book.b-mac { height: 88%; }
-.compact .book.b-temp { height: 83%; width: 46px; }
-.compact .book.b-poems { height: 78%; width: 44px; }
-.compact .book.b-gram { height: 72%; width: 36px; font-size: 14px; }
-.compact .book.b-phil { height: 67%; width: 28px; font-size: 13px; }
-.compact .case { height: 63%; width: 34px; }
+.compact .book.b-temp { height: 83%; width: clamp(38px, 5.4vh, 58px); }
+.compact .book.b-poems { height: 78%; width: clamp(36px, 5.2vh, 56px); }
+.compact .book.b-gram { height: 72%; width: clamp(30px, 4.4vh, 46px); font-size: clamp(12px, 1.8vh, 18px); }
+.compact .book.b-phil { height: 67%; width: clamp(24px, 3.4vh, 36px); font-size: clamp(11px, 1.6vh, 16px); }
+.compact .case { height: 63%; width: clamp(30px, 4.2vh, 44px); }
 .compact .shelf-detail { min-height: 0; margin-top: 10px; }
-.compact .shelf-detail .caption { font-size: clamp(15px, 2vh, 18px); }
+.compact .shelf-detail .caption { font-size: clamp(15px, 2.2vh, 22px); }
 .compact .poem-card { min-height: 92px; padding: 8px 8px 7px; }
 .compact .sky-wrap .eyebrow, .compact .think-side .eyebrow { margin-bottom: clamp(8px, 1.4vh, 14px); }
 .compact .lecture .play { width: 42px; height: 42px; }
@@ -469,23 +471,24 @@ main { position: relative; z-index: 1; }
 .compact .lecture .l-cap { font-size: 10.5px; left: 10px; right: 10px; bottom: 7px; }
 .compact .lecture .l-cap strong { font-size: 13px; }
 .compact .think-side .hint { margin-top: 10px; }
-.compact .svc { padding: 18px 18px 16px; }
-.compact .svc-body { position: relative; height: clamp(96px, 15vh, 130px); margin-bottom: 10px; }
+.compact .svc { padding: clamp(18px, 2.4vh, 26px) clamp(18px, 1.6vw, 26px) clamp(16px, 2vh, 22px); }
+.compact .svc-body { position: relative; height: clamp(96px, calc(30vh - 115px), 300px); margin-bottom: clamp(10px, 1.4vh, 16px); }
 .compact .svc-vis { position: absolute; inset: 0; height: auto; margin: 0; transition: opacity .35s var(--ease); }
 .compact .deliv { position: absolute; inset: 0; margin: 0; flex: none; overflow: hidden; opacity: 0; transition: opacity .35s var(--ease); }
-.compact .deliv li { font-size: 12.5px; line-height: 1.35; margin-bottom: 5px; padding-left: 12px; }
+.compact .deliv li { font-size: clamp(12.5px, 1.5vh, 15.5px); line-height: 1.35; margin-bottom: 5px; padding-left: 12px; }
 .compact .deliv li::before { top: .5em; width: 4px; height: 4px; }
 @media (hover: hover) {
   .compact .svc:hover .svc-vis, .compact .svc:focus-within .svc-vis { opacity: 0; }
   .compact .svc:hover .deliv, .compact .svc:focus-within .deliv { opacity: 1; }
 }
-.compact .svc h3 { font-size: clamp(19px, 2.6vh, 24px); }
-.compact .svc-sub { margin: 4px 0 10px; font-size: 10.5px; }
-.compact .svc-actions .btn { font-size: 12.5px; padding: 8px 13px; }
-.compact .quill { width: 74px; height: 74px; }
-.compact .typer { font-size: 15px; max-width: 20ch; }
+.compact .svc h3 { font-size: clamp(19px, 2.6vh, 28px); }
+.compact .svc-sub { margin: 4px 0 clamp(10px, 1.4vh, 16px); font-size: clamp(10.5px, 1.2vh, 12px); }
+.compact .svc-actions .btn { font-size: clamp(12.5px, 1.4vh, 14.5px); padding: 8px 13px; }
+.compact .quill { width: clamp(70px, 9.5vh, 104px); height: clamp(70px, 9.5vh, 104px); }
+.compact .typer { font-size: clamp(15px, 1.9vh, 20px); max-width: 20ch; }
 .compact .blocks { transform: scale(.72); }
-.compact .tetractys { width: 82px; height: 76px; }
+.compact .tetractys { width: clamp(78px, 10vh, 110px); height: clamp(72px, 9.3vh, 102px); }
+.services { gap: clamp(14px, 1.6vw, 24px); }
 
 /* ---------- 6. So far ---------- */
 .sofar-inner { width: 100%; }
@@ -531,6 +534,11 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 
 /* ---------- Theme change ---------- */
 .theming .pill, .theming .mono, .theming .svc, .theming .sheet, .theming .map, .theming footer { transition: background-color .8s, color .8s, border-color .8s; }
+
+/* ---------- Bigger screens ---------- */
+@media (min-width: 1700px) {
+  .wrap, .chapter > .wrap { width: min(1340px, 100% - 96px); }
+}
 
 /* ---------- Smaller screens ---------- */
 @media (max-width: 1100px) {
