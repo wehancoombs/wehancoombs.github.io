@@ -437,6 +437,52 @@
   }
   window.addEventListener('hashchange', openFromHash);
 
+  /* ---------- Voices: what students, mentors and colleagues say, one at a time ---------- */
+  const VOICES = {
+    teach: { more: 'said', items: [
+      ['Excellent knowledge and innovative way of using media.', 'University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026'],
+      ['Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.', 'Prof Emma Ruttkamp-Bloem · lecture observation'],
+      ['Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.', 'A first-year student, 2020'],
+      ['He is friendly but also firm in terms of discipline.', 'Prof Emma Ruttkamp-Bloem · peer evaluation report, 2026']
+    ] },
+    think: { more: 'said', items: [
+      ['In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, and I recommend him without reservation.', 'Prof Emma Ruttkamp-Bloem · Head of Philosophy, University of Pretoria, 2026'],
+      ['His dissertation was a careful, scholarly, deep investigation into the Platonic method.', 'Prof John F. Finamore · Emeritus Professor of Classics, University of Iowa, 2026'],
+      ['A creative and rigorous scholar, and among the most capable early-career philosophers I have worked with.', 'Dr Mitchell-Ron Black · research collaborator, 2026'],
+      ['Without exaggeration, those seminars changed the way I write and engage with the tradition in which I am trained.', 'Dr Mitchell-Ron Black · on the honours seminars, 2026'],
+      ['This is an exceptional thesis. I recommend this thesis receive a PhD without reservation.', 'PhD examiner · Ainigma, 2023'],
+      ['The content was by far the most complex and difficult material I have encountered in my academic career so far, but the way in which seminars were presented made it much easier to grapple with.', 'An honours student, 2024'],
+      ['It is needless to say this course has been my favorite in honours so far.', 'An honours student, 2025'],
+      ['Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present.', 'A first-year student, 2023']
+    ] },
+    make: { more: 'evaluations', items: [
+      ['Dr. Coombs is passionate and knowledgeable in his field, he has the ability to simplify complex ideas, which is helpful as a student.', 'An honours student, 2024'],
+      ['One-on-one consultations were especially useful for receiving advice and insights for essays and assignments. Additionally, assignment feedback was always helpful and detailed.', 'An honours student, 2024'],
+      ['Professor Coombs is able to explain abstract concepts in a way that makes it easy to understand.', 'A first-year student, 2023'],
+      ['His approach encourages independent thought and understanding, requiring active engagement in class and challenging us to think deeply.', 'An honours student, 2024'],
+      ['He really knows his work and the way that it is translated in class is very impressive. I truly enjoyed every class that I’ve gone to.', 'A second-year student, 2024']
+    ] }
+  };
+  $$('.voices[data-set]').forEach(box => {
+    const set = VOICES[box.dataset.set]; if (!set) return;
+    let i = 0, timer = null, visible = false;
+    box.innerHTML = '<figure class="voice"><p></p><figcaption></figcaption></figure><div class="voices-nav">' +
+      set.items.map((_, k) => '<button type="button" aria-label="Quotation ' + (k + 1) + ' of ' + set.items.length + '"></button>').join('') +
+      '<button class="textlink" type="button" data-sheet="' + set.more + '">More →</button></div>';
+    const fig = $('.voice', box), p = $('p', fig), cap = $('figcaption', fig), dots = $$('.voices-nav button:not(.textlink)', box);
+    function show(k, instant) {
+      i = (k + set.items.length) % set.items.length;
+      const go = () => { p.textContent = set.items[i][0]; cap.textContent = set.items[i][1]; fig.classList.remove('swap'); dots.forEach((d, n) => { if (n === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); }); };
+      if (instant || reduced) go(); else { fig.classList.add('swap'); setTimeout(go, 360); }
+    }
+    function arm() { clearTimeout(timer); if (!visible || reduced) return; timer = setTimeout(() => { show(i + 1); arm(); }, 8000); }
+    dots.forEach((d, k) => d.addEventListener('click', () => { show(k); arm(); }));
+    box.addEventListener('mouseenter', () => clearTimeout(timer));
+    box.addEventListener('mouseleave', arm);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; arm(); }, { threshold: .3 }).observe(box);
+    show(0, true);
+  });
+
   /* ---------- The arc of a lesson ---------- */
   const arcPath = $('#arcpath'), runner = $('.runner'), arcNodes = $$('.arc .node'), arcText = $('#arc-text');
   const arcLen = arcPath.getTotalLength();

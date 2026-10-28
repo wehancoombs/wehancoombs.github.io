@@ -210,3 +210,31 @@ Wehan's second list, all done:
 - Desktop (1280) and phone (375): the top-bar CVs and the phone menu; scroll settling (five wheel ticks from the top land on Start here, a short scroll back returns, inside Teach it scrolls freely); the Start menu; request sheets on both sizes (the Gmail link is built correctly; copying falls back to the old method if the browser refuses); the film caption; the constellation; the guides; all six Make cards; a real click on 2024; the Write section; the top bar in light mode. No console errors, no sideways scroll.
 
 **Not pushed yet** (two commits ahead of the live site once this one lands).
+
+---
+
+## 2026-10-28 (night): round three, pushed live
+
+Wehan's third list, all done, and the first push since the one-page version went live (rounds one, two and three go up together).
+
+**Header**
+- The W monogram is now the headshot: 44px with a gold ring, 40px on a phone.
+- A fifth link in the top bar, the new General CV (W). On a wide screen the bar reads CV · Teaching · Academic · Freelance · Resume; in the phone menu the full names come back.
+
+**Think**
+- The "4,000+ students" stat is now the student rating: **4.5 out of 5**, the plain average of the eight university courses that had a numerical evaluation, 2017 to 2026. Weighted by the number of respondents it is 4.3; both figures and the course-by-course list are in the "What students say" sheet. The star rating (4.81, the 2026 honours course) stays beside it.
+- For next time, the per-course means in the evaluations PDF: 4.8 (FIL110 2017, 9 forms), 4.1 (FIL251 2018, 191), 4.6 (FIL110 2019, 147), 4.07 (FIL110 2020, 100 of 349), 4.35 (FIL110 2021, 272 of 485), 4.23 (FIL155 2023, 294 of 734), 4.71 (FIL220 2024, 7 of 59), 4.81 (FIL710/810 2026, 6 of 6).
+
+**Voices (testimonials)**
+- A rotating quotation under the index line of Teach, Think and Make, each chapter with its own set: a new one every eight seconds, dots to pick one, pauses on hover, "More →" opens the sheet. Sources: the student evaluations in Drive, Prof Emma Ruttkamp-Bloem's peer evaluation report (16 October 2026), and the two postdoc recommendation letters of 23 October 2026 by Prof John Finamore and Dr Mitchell-Ron Black, found in Drive and quoted, not linked. Students are quoted without names ("an honours student, 2024").
+- A closing line from Prof Finamore in Write.
+- New sheet "What colleagues say" (in the map and the Think index) with the longer passages, the PhD examiners' verdicts and the mentor teachers' marks. "What students say" rewritten: the average, the ratings course by course, seven student quotations, the evaluations document.
+
+**General CV**
+- New `general-cv.html` in `../wehan-cvs/cv-bundle`, warm charcoal and gold to match the site: profile, four skill groups, experience, highlights with Prof Ruttkamp-Bloem's line, publications, service, four referees. Rendered to `out/Wehan Coombs General CV.pdf`, copied to `cv/Wehan-Coombs-CV.pdf` and to the Drive CV folder as `Wehan Coombs General CV.pdf` (checksums match). Linked from the top bar, the map, the "Hiring instead?" line and a fourth seal in Write.
+- `render.py` fix: its overflow check only looked inside each column and missed text spilling past the page edge, which is how the first draft of the general CV lost its last entries. It now measures the bottom of every block against the page. The three older CVs pass the stricter check as they are.
+
+**Checked**
+- Desktop (1280, 1180 and 1120 wide): the header fits with five pills; the voices in all three chapters; the stats; both new sheets; no console errors. Phone (375): the headshot, the CVs menu with full names, the voices inside the gutters, no sideways scroll. The Browser pane's phone screenshots were unreliable this time (it reported a 709px frame), so the phone checks were done by measuring the layout rather than by eye.
+
+**Pushed live** on Wehan's instruction ("Then push all of it live").

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 </head>
 <body data-chapter="threshold">
 
@@ -33,16 +33,17 @@
 <header class="top">
   <div class="left">
     <button class="pill map-btn" id="map-btn" type="button" aria-expanded="false" aria-controls="map"><span class="burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Map</span></button>
-    <a class="brand" href="#threshold"><span class="mono">W</span><span class="name">Dr Wehan M. Coombs</span></a>
+    <a class="brand" href="#threshold"><img class="face" src="headshot.jpg" alt="" width="44" height="44"><span class="name">Dr Wehan M. Coombs</span></a>
   </div>
   <div class="links">
     <div class="cvs" id="cvs">
       <button class="pill cvs-btn" id="cvs-btn" type="button" aria-expanded="false" aria-controls="cvs-menu">CVs ▾</button>
       <div class="cvs-menu" id="cvs-menu">
-        <a class="pill cv-link teach" href="cv/Wehan-Coombs-FET-CV.pdf" title="Teaching CV, for schools (PDF)"><b>T</b><span>Teaching CV</span></a>
-        <a class="pill cv-link think" href="cv/Wehan-Coombs-PhD-CV.pdf" title="Academic CV, for universities (PDF)"><b>Φ</b><span>Academic CV</span></a>
-        <a class="pill cv-link make" href="cv/Wehan-Coombs-Freelance-CV.pdf" title="Freelance CV, for clients (PDF)"><b>F</b><span>Freelance CV</span></a>
-        <button class="pill cv-link" type="button" data-sheet="resume" title="The full resume"><b>≡</b><span>Full resume</span></button>
+        <a class="pill cv-link gen" href="cv/Wehan-Coombs-CV.pdf" title="General CV, two pages (PDF)"><b>W</b><span><i>General </i>CV</span></a>
+        <a class="pill cv-link teach" href="cv/Wehan-Coombs-FET-CV.pdf" title="Teaching CV, for schools (PDF)"><b>T</b><span>Teaching<i> CV</i></span></a>
+        <a class="pill cv-link think" href="cv/Wehan-Coombs-PhD-CV.pdf" title="Academic CV, for universities (PDF)"><b>Φ</b><span>Academic<i> CV</i></span></a>
+        <a class="pill cv-link make" href="cv/Wehan-Coombs-Freelance-CV.pdf" title="Freelance CV, for clients (PDF)"><b>F</b><span>Freelance<i> CV</i></span></a>
+        <button class="pill cv-link" type="button" data-sheet="resume" title="The full resume"><b>≡</b><span><i>Full </i>resume</span></button>
       </div>
     </div>
     <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
@@ -75,6 +76,7 @@
         <li><button type="button" data-sheet="about">About me</button></li>
         <li><button type="button" data-sheet="qualifications">Qualifications</button></li>
         <li><button type="button" data-sheet="why">Why I teach</button></li>
+        <li><a href="cv/Wehan-Coombs-CV.pdf">General CV (PDF) ↓</a></li>
       </ul>
     </section>
 
@@ -103,6 +105,7 @@
         <li><button type="button" data-sheet="guides">Study guides &amp; readers</button></li>
         <li><button type="button" data-sheet="lectures">Recorded lectures</button></li>
         <li><button type="button" data-sheet="evaluations">What students say</button></li>
+        <li><button type="button" data-sheet="said">What colleagues say</button></li>
         <li><button type="button" data-sheet="publications">Research &amp; publications</button></li>
         <li><button type="button" data-sheet="papers">Conference papers</button></li>
         <li><button type="button" data-sheet="funding">Funding &amp; collaboration</button></li>
@@ -200,6 +203,7 @@
       <p class="line reveal">Pick a service and send a request in one tap. I reply with a plan, a rate and a start date.</p>
       <p class="hire reveal">
         <span class="hint">Hiring instead?</span>
+        <a href="cv/Wehan-Coombs-CV.pdf">General CV, two pages →</a>
         <a href="cv/Wehan-Coombs-FET-CV.pdf">Teaching CV, for schools →</a>
         <a href="cv/Wehan-Coombs-PhD-CV.pdf">Academic CV, for universities →</a>
         <button type="button" class="textlink" data-sheet="working">How working with me works →</button>
@@ -254,6 +258,7 @@
       <button type="button" data-sheet="garsfontein">Hoërskool Garsfontein</button>
       <button type="button" data-sheet="beyond">Beyond the classroom</button>
     </p>
+    <div class="voices reveal" data-set="teach" aria-label="What people say about my teaching"></div>
 
     <div class="grid-2">
       <figure class="arc reveal">
@@ -311,7 +316,7 @@
       </div>
       <ul class="stats reveal">
         <li><button type="button" data-sheet="posts"><b data-count="15">0</b><span>years lecturing</span></button></li>
-        <li><button type="button" data-sheet="courses"><b data-count="4000" data-suffix="+" data-group="1">0</b><span>students taught</span></button></li>
+        <li><button type="button" data-sheet="evaluations"><b data-count="4.5" data-decimals="1">0</b><span>/5 average student rating, eight courses</span></button></li>
         <li><button type="button" data-sheet="courses"><b data-count="5">0</b><span>self-designed modules</span></button></li>
         <li><button type="button" data-sheet="evaluations">
           <span class="stars" data-rating="4.81" aria-label="4.81 out of 5">
@@ -328,10 +333,12 @@
       <button type="button" data-sheet="guides">Study guides</button>
       <button type="button" data-sheet="lectures">Lectures</button>
       <button type="button" data-sheet="evaluations">Students say</button>
+      <button type="button" data-sheet="said">Colleagues say</button>
       <button type="button" data-sheet="publications">Research</button>
       <button type="button" data-sheet="papers">Papers</button>
       <button type="button" data-sheet="philosophy">Teaching philosophy</button>
     </p>
+    <div class="voices reveal" data-set="think" aria-label="What students and colleagues say"></div>
 
     <div class="sky-wrap reveal">
       <p class="eyebrow">My research, constellated</p>
@@ -402,6 +409,7 @@
       <button type="button" data-sheet="consulting">Consulting</button>
       <button type="button" data-sheet="working">Working with me</button>
     </p>
+    <div class="voices reveal" data-set="make" aria-label="What students say about working with me"></div>
 
     <div class="services">
       <article class="svc reveal">
@@ -569,7 +577,17 @@
       <button type="button" data-sheet="referees">Referees</button>
       <button type="button" data-sheet="resume">The full resume</button>
     </p>
+    <p class="voice-line reveal">“Wehan is an excellent teacher and researcher who knows Plato’s philosophy well.” <cite>Prof John F. Finamore, Emeritus Professor of Classics, University of Iowa, 2026</cite></p>
     <div class="seals reveal">
+      <a class="seal" href="cv/Wehan-Coombs-CV.pdf">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><path id="sp-g2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+          <circle class="seal-ring" cx="60" cy="60" r="56"/>
+          <text class="seal-text"><textPath href="#sp-g2">General CV · PDF · General CV · PDF · </textPath></text>
+          <text class="seal-letter" x="60" y="75">W</text>
+        </svg>
+        <span class="seal-label">General CV<small>two pages, all of it</small></span>
+      </a>
       <a class="seal teach" href="cv/Wehan-Coombs-FET-CV.pdf">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="sp-t2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
@@ -879,7 +897,7 @@
   </article>
 
   <article id="s-courses" data-ch="think" data-title="Courses designed and taught">
-    <p class="note">How many students? Counting only the years I lectured and the class sizes on record, the honest figure is more than 4,000: first-year classes of 485 to 500 in 2017 and 2019 to 2021, two first-year modules in 2014, large second-year ethics classes in 2016 and 2018, a Philosophy of Medicine class of about 300 in 2023, and the smaller honours and second-year groups since. Four years of tutorials before that are not counted.</p>
+    <p class="note">How many students? Counting only the years I lectured and the class sizes on record, the honest figure is more than 4,000: first-year classes of 485 to 500 in 2017 and 2019 to 2021, two first-year modules in 2014, large second-year ethics classes in 2016 and 2018, a Philosophy of Medicine class of several hundred in 2023, and the smaller honours and second-year groups since. Four years of tutorials before that are not counted.</p>
     <h4>Designed from scratch</h4>
     <ul class="list">
       <li><strong>FIL710 and FIL810</strong> Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism · Honours · 2026 · <button type="button" class="inline" data-sheet="guide-c5">study guide</button></li>
@@ -965,14 +983,44 @@
   </article>
 
   <article id="s-evaluations" data-ch="think" data-title="What students say">
-    <p><strong>4.81 out of 5.</strong> The average student rating for Philosophy as a Rite of Rebirth (FIL710 and FIL810) in the university’s 2026 module evaluation.</p>
-    <blockquote>In a class of 300 Mr Coombs effortlessly attends to questions in the chat while still clearly and concisely going through the course content.</blockquote>
-    <p>Ten evaluations from 2017 to 2026, from first-year surveys of classes of up to 485 to honours feedback emails, are collected in one document with a clickable contents page.</p>
+    <p><strong>4.5 out of 5</strong> is my average rating across the eight university courses that had a numerical student evaluation, from a first-year class of 485 to an honours seminar of six. Weighted by the number of students who answered it is 4.3; the large second-year ethics class of 2018 pulls it down.</p>
+    <h4>Course by course</h4>
+    <ul class="list ratings">
+      <li><b>4.81</b> Philosophy as a Rite of Rebirth, honours (FIL710 and FIL810) · 2026 · 6 of 6 students</li>
+      <li><b>4.71</b> The Good Life (FIL220) · 2024 · 7 of 59</li>
+      <li><b>4.23</b> Philosophy of Medicine (FIL155) · 2023 · 294 of 734</li>
+      <li><b>4.35</b> Metaphysics and Epistemology (FIL110), online · 2021 · 272 of 485</li>
+      <li><b>4.07</b> Metaphysics and Epistemology (FIL110), the lockdown year · 2020 · 100 of 349</li>
+      <li><b>4.6</b> Metaphysics and Epistemology (FIL110) · 2019 · 147 forms</li>
+      <li><b>4.1</b> Moral and Political Philosophy (FIL251) · 2018 · 191 forms</li>
+      <li><b>4.8</b> Metaphysics and Epistemology (FIL110) · 2017 · 9 forms</li>
+    </ul>
+    <h4>In their words</h4>
+    <blockquote>Mr Coombs is a fantastic lecturer who manages to explain deep philosophical topics in a manner that is easy to grasp.<cite>A first-year student, 2020</cite></blockquote>
+    <blockquote>Mr Coombs does an incredible job at grabbing our attention and forcing us to truly think and be present. The content is so thought-provoking and I love our assignments.<cite>A first-year student, 2023</cite></blockquote>
+    <blockquote>He really knows his work and the way that it is translated in class is very impressive. I truly enjoyed every class that I’ve gone to.<cite>A second-year student, 2024</cite></blockquote>
+    <blockquote>The content was by far the most complex and difficult material I have encountered in my academic career so far, but the way in which seminars were presented made it much easier to grapple with.<cite>An honours student, 2024</cite></blockquote>
+    <blockquote>The readings took me on a journey that came full circle in the end. The lessons taught in the module are applicable to all my other modules and has deeply shaped my thinking.<cite>An honours student, 2024</cite></blockquote>
+    <blockquote>It is needless to say this course has been my favorite in honours so far.<cite>An honours student, 2025</cite></blockquote>
+    <blockquote>In a class of 300 Mr Coombs effortlessly attends to questions in the chat while still clearly and concisely going through the course content.<cite>A first-year student, online, 2021</cite></blockquote>
+    <p>All ten evaluations from 2017 to 2026, surveys and emails, are collected in one document with a clickable contents page.</p>
     <div class="embed doc" data-src="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/preview"></div>
-    <p class="more"><a href="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/view" target="_blank" rel="noopener">Open the evaluations ↗</a></p>
-    <h4>Peer evaluation</h4>
-    <p>A signed peer evaluation report by Prof Emma Ruttkamp-Bloem, Head of the Department of Philosophy, University of Pretoria, 16 October 2026.</p>
+    <p class="more"><a href="https://drive.google.com/file/d/13XoJ5AYoRfWfu_iO7lNjWMQgzwqgOZsK/view" target="_blank" rel="noopener">Open the evaluations ↗</a> <button type="button" data-sheet="said">What colleagues say →</button></p>
+  </article>
+
+  <article id="s-said" data-ch="think" data-title="What colleagues say">
+    <blockquote>In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, at first-year, second-year and honours level, and I recommend him without reservation.<cite>Prof Emma Ruttkamp-Bloem, Head of the Department of Philosophy, University of Pretoria · peer evaluation report, 2026</cite></blockquote>
+    <p class="note">From her lecture observation: “Dr Coombs was in total control of the material and guided and facilitated student learning actively by successfully engaging students in learning.” On the honours seminars: “Students describe the seminars as challenging but highly interactive, and comment on his command of the material, his ability to make complex ideas accessible, his availability for consultation and the good organisation of his modules.”</p>
     <p class="more"><a href="https://drive.google.com/file/d/14sMcyd2eDuw2SgVbq4CGdC5wt1ADhErm/view" target="_blank" rel="noopener">Read the report ↗</a></p>
+    <blockquote>His dissertation was a careful, scholarly, deep investigation into the Platonic method. Wehan is an excellent teacher and researcher who knows Plato’s philosophy well.<cite>Prof John F. Finamore, Emeritus Professor of Classics, University of Iowa · my PhD adviser · recommendation, 2026</cite></blockquote>
+    <blockquote>Across both papers I have found him a creative and rigorous scholar, and among the most capable early-career philosophers I have worked with. He moves between close readings of Plato and present concerns without flattening either, bringing out the best in the people he works with as he goes along.<cite>Dr Mitchell-Ron Black · research collaborator · recommendation, 2026</cite></blockquote>
+    <p class="note">On the honours seminars he sat in on: “Without exaggeration, those seminars changed the way I write and engage with the tradition in which I am trained.” And on my former students: “I have yet to meet one who does not speak highly of him.”</p>
+    <blockquote>This is an exceptional thesis. I recommend this thesis receive a PhD without reservation.<cite>PhD examiner, Ainigma, 2023</cite></blockquote>
+    <p class="note">A second examiner called it “a clear, and indeed distinguished, pass”.</p>
+    <h4>In the school classroom</h4>
+    <blockquote>Excellent knowledge and innovative way of using media.<cite>University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026 · 98 out of 100</cite></blockquote>
+    <p class="note">My mentor teacher at Abbotts College gave 95 out of 100, with full marks for classroom competencies, and noted that I “enhanced the learners’ vocabulary through scaffolding”.</p>
+    <p class="more"><button type="button" data-sheet="evaluations">What students say →</button> <button type="button" data-sheet="referees">Referees →</button></p>
   </article>
 
   <article id="s-publications" data-ch="think" data-title="Research and publications">
@@ -1192,6 +1240,6 @@
 
 </div>
 
-<script src="assets/main.js?v=5"></script>
+<script src="assets/main.js?v=6"></script>
 </body>
 </html>

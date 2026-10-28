@@ -92,11 +92,28 @@ main { position: relative; z-index: 1; }
 .index button:hover, .index button:focus-visible { color: var(--accent); }
 .hero-text .index { margin: 26px 0 0; }
 
+/* Voices: one quotation at a time, from students, mentors and colleagues. */
+.voices { margin: -16px 0 44px; max-width: 760px; }
+.voice { margin: 0; transition: opacity .35s var(--ease), transform .35s var(--ease); }
+.voice.swap { opacity: 0; transform: translateY(6px); }
+.voice p { margin: 0; font: italic 500 clamp(19px, 2.1vw, 24px)/1.4 var(--serif); color: var(--text); }
+.voice p::before { content: "“"; color: var(--accent); }
+.voice p::after { content: "”"; color: var(--accent); }
+.voice figcaption, .voice-line cite { display: block; margin-top: 10px; font: 600 11.5px/1.5 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--text-3); font-style: normal; }
+.voices-nav { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+.voices-nav button { all: unset; cursor: pointer; width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); transition: background-color .3s, transform .3s; }
+.voices-nav button:hover { background: var(--text-3); }
+.voices-nav button[aria-current] { background: var(--accent); transform: scale(1.45); }
+.voices-nav .textlink { all: unset; cursor: pointer; margin-left: 10px; font: 600 11.5px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--text-2); border-bottom: 1px solid var(--line-2); padding-bottom: 3px; transition: color .3s, border-color .3s; }
+.voices-nav .textlink:hover { color: var(--accent); border-color: var(--accent); }
+
 /* ---------- Top bar ---------- */
 .top { position: fixed; inset: 0 0 auto 0; z-index: 40; display: flex; justify-content: space-between; align-items: center; padding: 16px 26px; pointer-events: none; }
 .top > * { pointer-events: auto; }
 .top .left { display: flex; align-items: center; gap: 12px; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--text); font-family: var(--serif); font-size: 19px; }
+.face { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 1.5px solid var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg) 65%, transparent); background: var(--surface); flex: none; transition: border-color .6s, filter .3s; }
+.brand:hover .face { filter: brightness(1.1); }
 .mono { width: 34px; height: 34px; border: 1px solid var(--accent); border-radius: 50%; display: grid; place-items: center; font-family: var(--serif); font-size: 17px; color: var(--accent); transition: border-color .6s, color .6s; background: color-mix(in srgb, var(--bg) 70%, transparent); backdrop-filter: blur(10px); }
 .links { display: flex; gap: 8px; align-items: center; }
 .pill { display: inline-flex; align-items: center; gap: 8px; font: 600 12px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); background: color-mix(in srgb, var(--bg) 72%, transparent); border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; backdrop-filter: blur(10px); cursor: pointer; transition: color .3s, border-color .3s; }
@@ -107,6 +124,8 @@ main { position: relative; z-index: 1; }
 .cvs-menu { display: flex; gap: 8px; }
 .cv-link { text-decoration: none; }
 .cv-link b { font: 500 15px/1 var(--serif); color: var(--accent); transition: color .3s; }
+.cv-link i { font-style: normal; display: none; }
+.cv-link.gen { --accent: var(--gold); }
 .cv-link.teach { --accent: var(--teach); }
 .cv-link.think { --accent: var(--think); }
 .cv-link.make { --accent: var(--make); }
@@ -162,6 +181,8 @@ main { position: relative; z-index: 1; }
 .sheet-body .motto-line { font-family: var(--serif); font-size: 20px; color: var(--text-2); }
 .sheet-body .motto-line em { color: var(--accent); }
 .sheet-body blockquote { margin: 0 0 18px; padding: 4px 0 4px 18px; border-left: 2px solid var(--accent); font: italic 19px/1.45 var(--serif); color: var(--text); }
+.sheet-body blockquote cite { display: block; margin-top: 8px; font: 600 11px/1.5 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--text-3); font-style: normal; }
+.sheet-body .ratings li b { font: 500 18px/1 var(--serif); color: var(--accent); margin-right: 8px; }
 .sheet-body .pub { padding-left: 18px; text-indent: -18px; }
 .sheet-body a { border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
 .sheet-body a.btn { border-bottom: 1px solid var(--accent); }
@@ -418,6 +439,7 @@ main { position: relative; z-index: 1; }
 .mail { display: inline-block; font: 500 clamp(22px, 3.4vw, 40px) var(--serif); color: var(--text); margin-top: 28px; border-bottom: 1px solid var(--accent); transition: color .3s; }
 .mail:hover { color: var(--accent); }
 .mail-row { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 18px; }
+.voice-line { margin: 34px 0 0; max-width: 62ch; font: italic 500 clamp(19px, 2vw, 23px)/1.4 var(--serif); color: var(--text-2); }
 .copy { all: unset; cursor: pointer; font: 600 11.5px var(--sans); letter-spacing: .18em; text-transform: uppercase; color: var(--text-3); border: 1px solid var(--line-2); border-radius: 999px; padding: 7px 13px; transition: color .3s, border-color .3s; }
 .copy:hover, .copy:focus-visible { color: var(--accent); border-color: var(--accent); }
 #write .index { margin: 26px 0 0; }
@@ -442,6 +464,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .cvs.on .cvs-menu { display: flex; }
   .cvs-menu .pill { background: transparent; border-color: transparent; backdrop-filter: none; justify-content: flex-start; padding: 10px 12px; }
   .cvs-menu .pill:hover { border-color: var(--line-2); }
+  .cvs-menu .cv-link i { display: inline; }
 }
 @media (max-width: 1000px) {
   .services { grid-template-columns: 1fr 1fr; }
@@ -467,6 +490,9 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .ch-head { margin-bottom: 24px; }
   .index { gap: 6px 16px; margin-bottom: 32px; }
   .m-name { font-size: 22px; }
+  .face { width: 40px; height: 40px; }
+  .voice p { font-size: 18px; }
+  .voices { margin-top: -10px; }
   .m-desc { font-size: 13.5px; }
   .menu-row { gap: 12px; padding: 14px 0; }
   .menu-row .btn { font-size: 13px; padding: 8px 13px; }
