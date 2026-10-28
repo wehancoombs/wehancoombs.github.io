@@ -123,7 +123,8 @@ Wehan's brief: no separate "Full profile" page. Everything from it should be fou
 **Not done / ideas**
 - Lesson plans and observation reports from the practicum exist on Drive but are not shared publicly and may contain learners' names, so they are not on the site.
 - A photo of Wehan is still only used for link previews.
-- Not pushed: the live site still shows the earlier version.
+- Wehan reviewed it in the preview (after a hard refresh: the old preview server had let the browser cache yesterday's page) and said push. Pushed to GitHub on 2026-10-28; this is now the live site.
+- The local preview server is now a tiny no-cache script in the ignored `.claude` folder, so a stale page cannot happen again. Start it from the site folder with `python -I .claude/serve.py 8931 .`
 - Possible later additions: a short "Teaching portfolio" page or section with sample lesson plans; a proper 404 page; a dark-mode variant if wanted.
 
 **Decisions**
