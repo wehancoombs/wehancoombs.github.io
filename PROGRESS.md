@@ -350,3 +350,4 @@ Find-and-replace edits from Wehan's text review in another chat, in `index.html`
 - Link-preview description now reads "Philosopher working on Plato and esotericism".
 - Not done: the Philosophy for teenagers header, because the text to find ("five classes · four lessons") is not on the page word for word; it reads "five classes · September 2026 · four lessons".
 - `site-text.md` in the parent folder is now out of date for these lines.
+- Later the same evening: the tagline on the first screen was rewritten ("I teach people to think for themselves…") and its TODO comment removed; site-text.md regenerated. Pushed live.
