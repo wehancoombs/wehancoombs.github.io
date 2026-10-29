@@ -340,7 +340,7 @@ Wehan's eleven-point list, imported from another chat. Pushed live on 2026-10-29
 
 ## 2026-10-29 (evening): twelve wording changes
 
-Find-and-replace edits from Wehan's text review in another chat, in `index.html` only. Committed, not pushed.
+Find-and-replace edits from Wehan's text review in another chat, in `index.html` only. Pushed live on 2026-10-29.
 
 - Tutoring and Editing "Why me" lines; the Consulting opener and its "For one person" paragraph rewritten.
 - Teaching in the age of AI: the AI-in-class sentence and the assessment line.
