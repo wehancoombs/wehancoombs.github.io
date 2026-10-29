@@ -320,4 +320,4 @@ Wehan: "this seems basically perfect", three comments left. Committed; pushed li
 - **No settling on phones and tablets.** The ease-to-the-nearest-chapter behaviour now stands down on touch screens and on any window up to 1024px wide; it fought the phone's own momentum scrolling. Desktops keep it.
 - **"Contact" in the menus.** The chapter is called Contact in the side dots and in the Map; the heading on the page is still "Write to me." (Wehan: "in the menu it HAS to be called contact".)
 - The phone preview inside the Claude app is not a faithful phone: it lays the page out as if the window were 769px wide and then shows only 375px of it, which leaves a blank strip on the right. Wehan's own phone fills the screen, which is the real test.
-- Assets at `?v=14`. Committed, not pushed.
+- Assets at `?v=14`. Pushed live on 2026-10-29.
