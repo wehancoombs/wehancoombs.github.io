@@ -312,3 +312,12 @@ Wehan: "this seems basically perfect", three comments left. Committed; pushed li
 - **Stray sentences fixed.** The two "big red button" lines (enrichment lesson and the AI sheet) now say plainly that the closing debate was whether AI should be deleted forever; "Mastering English" no longer lists "solarpunk" and "cognitive anti-fragility" bare; the Macbeth line puts "in blood stepped in so far" in quotation marks; the shelf caption reads "The poems spine opens five" instead of "The poems open up". Everything else read through, chapter by chapter and sheet by sheet, and left as it was.
 - Assets at `?v=12`.
 - **Write is plainer.** The Finamore line under the contact links is gone; it rotates in Think instead (nine quotations there now). Assets at `?v=13`.
+
+---
+
+## 2026-10-29: mobile settling off, and "Contact"
+
+- **No settling on phones and tablets.** The ease-to-the-nearest-chapter behaviour now stands down on touch screens and on any window up to 1024px wide; it fought the phone's own momentum scrolling. Desktops keep it.
+- **"Contact" in the menus.** The chapter is called Contact in the side dots and in the Map; the heading on the page is still "Write to me." (Wehan: "in the menu it HAS to be called contact".)
+- The phone preview inside the Claude app is not a faithful phone: it lays the page out as if the window were 769px wide and then shows only 375px of it, which leaves a blank strip on the right. Wehan's own phone fills the screen, which is the real test.
+- Assets at `?v=14`. Committed, not pushed.

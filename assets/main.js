@@ -13,7 +13,7 @@
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
   $$('a[href$=".pdf"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
-  const CH_LABEL = { threshold: 'Begin', start: 'Start here', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Write' };
+  const CH_LABEL = { threshold: 'Begin', start: 'Start here', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Contact' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
   function cssVar(name, el) { return getComputedStyle(el || body).getPropertyValue(name).trim(); }
@@ -225,9 +225,11 @@
   /* ---------- Settle on a whole chapter ---------- */
   // You scroll freely. When you stop, the page eases to the nearest place where one chapter fills the screen.
   // A chapter taller than the screen scrolls freely inside itself; the foot of the page is a resting place too.
+  // Phones and tablets (touch screens, or anything up to 1024px wide) are left alone: their own momentum scrolling fights it.
   let settleTimer = null;
   function settle() {
     if (body.classList.contains('locked')) return;
+    if (coarse || innerWidth <= 1024) return; // phones and tablets scroll freely
     const y = scrollY, vh = innerHeight, max = Math.max(0, document.documentElement.scrollHeight - vh);
     const targets = [max];
     for (const c of chapters) {
