@@ -326,7 +326,7 @@ Wehan: "this seems basically perfect", three comments left. Committed; pushed li
 
 ## 2026-10-29 (afternoon): the imported list
 
-Wehan's eleven-point list, imported from another chat. Committed, not pushed.
+Wehan's eleven-point list, imported from another chat. Pushed live on 2026-10-29, together with the CV repo.
 
 - **Pop-ups fit a phone.** The real fault was not in the pop-ups. On phones the constellation (720px wide so it can scroll sideways) forced its grid column to 720px, the page became 768px wide, and the phone browser laid out every fixed layer (welcome card, sheets, top bar) at that width, hanging off the right edge. That was also the "blank strip on the right" of 2026-10-29 (morning), wrongly blamed on the preview. The stacked grids now use `minmax(0, 1fr)`, so a column can shrink below its content and the page is 390px wide on a 390px phone. On top of that: the welcome card has tighter padding, a smaller photo and three full-width buttons; close buttons are 44px on phones; long words wrap inside sheets; pictures and embeds never exceed the sheet. All 43 pop-ups were measured at 390px: none wider than the screen.
 - **The scroll cue is an arrow.** The faint line at the foot of the first screen is now a small chevron that bobs gently, fixed at the bottom of the screen (centre on a desktop, bottom-right on a phone), and fades out once the visitor scrolls. It keeps still under reduced motion.
