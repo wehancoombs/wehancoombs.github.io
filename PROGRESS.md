@@ -335,3 +335,18 @@ Wehan's eleven-point list, imported from another chat. Pushed live on 2026-10-29
 - **CVs** (`../wehan-cvs/cv-bundle`, its own repo): no "Page 2" labels; the website row reads "Website: wehancoombs.github.io ↗", underlined in the accent colour and linked; all four re-rendered with `overflow: 0` on every page; copied into `cv/` and to Drive, old ones archived as "(before 2026-10-29)". The QR code was checked and left alone: it encodes the Full Resume link, the doc opens without a Google login, and it decodes from the PDFs rasterised at 96 and 150 dpi.
 - **site-text.md** in the parent folder (`D:\Coding Projects\Personal Website\site-text.md`): every visible piece of text, page by page and pop-up by pop-up, for review in another chat. Made by a script, not by hand.
 - Assets at `?v=15`.
+
+---
+
+## 2026-10-29 (evening): twelve wording changes
+
+Find-and-replace edits from Wehan's text review in another chat, in `index.html` only. Committed, not pushed.
+
+- Tutoring and Editing "Why me" lines; the Consulting opener and its "For one person" paragraph rewritten.
+- Teaching in the age of AI: the AI-in-class sentence and the assessment line.
+- Grammar: a second-conditional bullet (the dictator-for-a-day decree) between the first and third.
+- Philosophy for teenagers: the intro line and the "Ask me anything" ending.
+- The Tempest Act 3 Scene 1 note; the Courses student count no longer says "honest".
+- Link-preview description now reads "Philosopher working on Plato and esotericism".
+- Not done: the Philosophy for teenagers header, because the text to find ("five classes · four lessons") is not on the page word for word; it reads "five classes · September 2026 · four lessons".
+- `site-text.md` in the parent folder is now out of date for these lines.
