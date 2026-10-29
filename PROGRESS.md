@@ -321,3 +321,17 @@ Wehan: "this seems basically perfect", three comments left. Committed; pushed li
 - **"Contact" in the menus.** The chapter is called Contact in the side dots and in the Map; the heading on the page is still "Write to me." (Wehan: "in the menu it HAS to be called contact".)
 - The phone preview inside the Claude app is not a faithful phone: it lays the page out as if the window were 769px wide and then shows only 375px of it, which leaves a blank strip on the right. Wehan's own phone fills the screen, which is the real test.
 - Assets at `?v=14`. Pushed live on 2026-10-29.
+
+---
+
+## 2026-10-29 (afternoon): the imported list
+
+Wehan's eleven-point list, imported from another chat. Committed, not pushed.
+
+- **Pop-ups fit a phone.** The real fault was not in the pop-ups. On phones the constellation (720px wide so it can scroll sideways) forced its grid column to 720px, the page became 768px wide, and the phone browser laid out every fixed layer (welcome card, sheets, top bar) at that width, hanging off the right edge. That was also the "blank strip on the right" of 2026-10-29 (morning), wrongly blamed on the preview. The stacked grids now use `minmax(0, 1fr)`, so a column can shrink below its content and the page is 390px wide on a 390px phone. On top of that: the welcome card has tighter padding, a smaller photo and three full-width buttons; close buttons are 44px on phones; long words wrap inside sheets; pictures and embeds never exceed the sheet. All 43 pop-ups were measured at 390px: none wider than the screen.
+- **The scroll cue is an arrow.** The faint line at the foot of the first screen is now a small chevron that bobs gently, fixed at the bottom of the screen (centre on a desktop, bottom-right on a phone), and fades out once the visitor scrolls. It keeps still under reduced motion.
+- **Shelf caption** reads "Each spine opens a lesson." The sentence about the poems spine is gone.
+- **Tagline** unchanged; an HTML comment above it marks it as being rewritten.
+- **CVs** (`../wehan-cvs/cv-bundle`, its own repo): no "Page 2" labels; the website row reads "Website: wehancoombs.github.io ↗", underlined in the accent colour and linked; all four re-rendered with `overflow: 0` on every page; copied into `cv/` and to Drive, old ones archived as "(before 2026-10-29)". The QR code was checked and left alone: it encodes the Full Resume link, the doc opens without a Google login, and it decodes from the PDFs rasterised at 96 and 150 dpi.
+- **site-text.md** in the parent folder (`D:\Coding Projects\Personal Website\site-text.md`): every visible piece of text, page by page and pop-up by pop-up, for review in another chat. Made by a script, not by hand.
+- Assets at `?v=15`.

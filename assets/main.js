@@ -245,6 +245,14 @@
   }
   window.addEventListener('scroll', () => { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 450); }, { passive: true });
 
+  // The scroll cue on the first screen goes once the visitor starts scrolling.
+  const cue = $('.cue');
+  if (cue) {
+    const hideCue = () => { if (scrollY > 40) { cue.classList.add('gone'); window.removeEventListener('scroll', hideCue); } };
+    window.addEventListener('scroll', hideCue, { passive: true });
+    hideCue();
+  }
+
   /* ---------- Reveal on scroll ---------- */
   const revIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revIO.unobserve(e.target); } }); }, { threshold: .12 });
   const onScreen = el => { const r = el.getBoundingClientRect(); return r.top < innerHeight * .95 && r.bottom > 0; };
