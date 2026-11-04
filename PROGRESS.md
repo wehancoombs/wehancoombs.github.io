@@ -369,7 +369,7 @@ Wehan found the pop-ups boring and text-heavy. Measured: 43 pop-ups, about 8,600
 
 ## 2026-11-04 (later): round B of the pop-up redesign
 
-The drawer itself, reshaped. Committed, not pushed.
+The drawer itself, reshaped. Pushed live on 2026-11-04.
 
 - **Wider, roomier.** The drawer is 720px on a laptop (was 580px) with more padding; phones are unchanged.
 - **Chips and a lede, added at open time.** When a pop-up opens, the script splits its date line (the italic line with middle dots) into small pills and makes the first plain paragraph a larger lede. The HTML is untouched, so the text export and the Google Doc see the same words as before.
