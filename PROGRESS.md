@@ -364,3 +364,15 @@ Wehan found the pop-ups boring and text-heavy. Measured: 43 pop-ups, about 8,600
 - **Ratings as bars.** The eight student ratings draw a bar out of five, filled from the number already in the text (JavaScript sets a CSS variable; no HTML changed).
 - The text exporter notes which pop-ups open as a full-page read. `site-text.md` regenerated; the Google Doc is left alone until Wehan's edits are in.
 - Assets at `?v=16`. Checked at 1366 and 390 wide, dark and light, and the drawer-to-page switch via Next.
+
+---
+
+## 2026-11-04 (later): round B of the pop-up redesign
+
+The drawer itself, reshaped. Committed, not pushed.
+
+- **Wider, roomier.** The drawer is 720px on a laptop (was 580px) with more padding; phones are unchanged.
+- **Chips and a lede, added at open time.** When a pop-up opens, the script splits its date line (the italic line with middle dots) into small pills and makes the first plain paragraph a larger lede. The HTML is untouched, so the text export and the Google Doc see the same words as before.
+- **Big figures** at the top of four pop-ups, every number taken from that pop-up's own text: Abbotts (95, 98, 7 weeks), Hoërskool Garsfontein (3 weeks, 2 poems, 8 hours), Courses designed (4,000+, 4, 1), Academic posts (2010, 500, 2024).
+- **The board.** Six lesson pop-ups open with a blackboard panel showing the word the text says went on the board, or the method's name: XENIA (For Oom Piet), RESIDUE (The Herb Garden), POIESIS (The Poet), AMBITION → DECEPTION → GUILT (Macbeth), FRAME (Film study), and "If I were…", not "If I was…" (Grammar). The Tempest and Philosophy for teenagers have no board word in their text, so they have none.
+- The exporter labels the figures and the board panels. Assets at `?v=17`. Checked at 1366 and 390 wide, dark and light.

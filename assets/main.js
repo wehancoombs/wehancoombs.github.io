@@ -385,6 +385,16 @@
     const t = $('#' + j.dataset.jump, sheetBody);
     if (t) sheetBody.scrollTo({ top: t.getBoundingClientRect().top - sheetBody.getBoundingClientRect().top + sheetBody.scrollTop - 12, behavior: 'smooth' });
   });
+  // Dressing at open time, so the HTML stays plain: the date line becomes chips, the opening paragraph a lede.
+  function dressSheet(container) {
+    const when = $(':scope > .when', container);
+    if (when && when.innerHTML.includes(' \u00b7 ')) {
+      const parts = when.innerHTML.split(' \u00b7 ');
+      if (parts.length >= 2 && parts.length <= 6) { when.innerHTML = parts.map(p => '<span>' + p.trim() + '</span>').join(''); when.classList.add('chips'); }
+    }
+    const lede = $$(':scope > *', container).slice(0, 4).find(k => k.tagName === 'P' && !k.className);
+    if (lede && lede.textContent.length > 80) lede.classList.add('lede');
+  }
   // Student ratings draw themselves as bars, scaled out of five.
   function activateRatings(container) {
     const rows = $$('.ratings li', container);
@@ -408,6 +418,7 @@
     sheetBody.innerHTML = item.html;
     sheetBody.scrollTop = 0;
     sheet.classList.toggle('read', !!item.read);
+    dressSheet(sheetBody);
     if (item.read) addContents(sheetBody);
     activateEmbeds(sheetBody); activateRequest(sheetBody); activateRatings(sheetBody);
     const order = ORDER[item.ch] || [], i = order.indexOf(id);
