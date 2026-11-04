@@ -292,7 +292,7 @@
 
   /* ---------- The library, the sheet and the map ---------- */
   const library = {};
-  $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML }; });
+  $$('#library article').forEach(a => { library[a.id.replace(/^s-/, '')] = { title: a.dataset.title, ch: a.dataset.ch, html: a.innerHTML, read: a.hasAttribute('data-read') }; });
   library.evaluations = library.said = library.testimonials; // old links still open the testimonials
 
   /* ---------- Request sheets: a drafted message you can send from your email app, from Gmail, or copy ---------- */
@@ -366,6 +366,34 @@
     });
   }
 
+  // The long pieces (data-read) open as a centred page with a contents line; everything else stays a drawer.
+  function addContents(container) {
+    const heads = $$('h4', container);
+    if (heads.length < 3) return;
+    const nav = document.createElement('nav');
+    nav.className = 'contents'; nav.setAttribute('aria-label', 'Contents');
+    heads.forEach((h, i) => {
+      h.id = 'read-' + i;
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = h.textContent; b.dataset.jump = h.id;
+      nav.appendChild(b);
+    });
+    container.prepend(nav);
+  }
+  sheetBody.addEventListener('click', e => {
+    const j = e.target.closest('[data-jump]');
+    if (!j) return;
+    const t = $('#' + j.dataset.jump, sheetBody);
+    if (t) sheetBody.scrollTo({ top: t.getBoundingClientRect().top - sheetBody.getBoundingClientRect().top + sheetBody.scrollTop - 12, behavior: 'smooth' });
+  });
+  // Student ratings draw themselves as bars, scaled out of five.
+  function activateRatings(container) {
+    const rows = $$('.ratings li', container);
+    if (!rows.length) return;
+    requestAnimationFrame(() => requestAnimationFrame(() => rows.forEach(li => {
+      const b = li.querySelector('b'), v = b && parseFloat(b.textContent);
+      if (v) li.style.setProperty('--v', (v / 5).toFixed(3));
+    })));
+  }
   function openSheet(id) {
     const item = library[id];
     if (!item) return;
@@ -379,7 +407,9 @@
     sheetTitle.textContent = item.title;
     sheetBody.innerHTML = item.html;
     sheetBody.scrollTop = 0;
-    activateEmbeds(sheetBody); activateRequest(sheetBody);
+    sheet.classList.toggle('read', !!item.read);
+    if (item.read) addContents(sheetBody);
+    activateEmbeds(sheetBody); activateRequest(sheetBody); activateRatings(sheetBody);
     const order = ORDER[item.ch] || [], i = order.indexOf(id);
     $('#sheet-prev').disabled = !(i > 0); $('#sheet-next').disabled = !(i >= 0 && i < order.length - 1);
     sheetWhere.textContent = i >= 0 ? (i + 1) + ' of ' + order.length + ' · ' + (CH_LABEL[item.ch] || '') : '';

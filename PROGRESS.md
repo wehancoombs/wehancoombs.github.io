@@ -352,3 +352,15 @@ Find-and-replace edits from Wehan's text review in another chat, in `index.html`
 - `site-text.md` in the parent folder is now out of date for these lines.
 - Later the same evening: the tagline on the first screen was rewritten ("I teach people to think for themselves…") and its TODO comment removed; site-text.md regenerated. Pushed live.
 - And the Philosophy for teenagers header now reads "four lessons, taught to five classes" (change 8 done). Tagged as v1.0-stable: a known-good version to fall back to.
+
+---
+
+## 2026-11-04: round A of the pop-up redesign
+
+Wehan found the pop-ups boring and text-heavy. Measured: 43 pop-ups, about 8,600 words, a 580px drawer on a laptop with nothing but text in it. A Red/Blue review settled the order: structure first, decoration later, and keep the Google Doc round trip. Committed, not pushed.
+
+- **A reading layer.** The five long pieces (Teaching philosophy, Curriculum and course development, Assessment practices, Student support, Testimonials) are marked `data-read` in the library. They open as a centred page (980px, full height, both sides bordered) instead of the right-hand drawer, with a bigger title, a larger first paragraph, serif section headings and a numbered contents line that jumps within the page. On a phone it fills the screen like before. Everything else is still a drawer.
+- **Testimonials as cards.** Every quotation is a card in a grid (two columns on a laptop, one on a phone). The side notes that quoted people in passing (Prof Ruttkamp-Bloem's lecture observation, Dr Black's two remarks, the second examiner, the Abbotts mentor) are now cards of their own, with the attribution in the card. No words changed, no quotes dropped; Wehan will choose which to keep in the Google Doc.
+- **Ratings as bars.** The eight student ratings draw a bar out of five, filled from the number already in the text (JavaScript sets a CSS variable; no HTML changed).
+- The text exporter notes which pop-ups open as a full-page read. `site-text.md` regenerated; the Google Doc is left alone until Wehan's edits are in.
+- Assets at `?v=16`. Checked at 1366 and 390 wide, dark and light, and the drawer-to-page switch via Next.

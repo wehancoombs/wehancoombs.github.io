@@ -647,3 +647,47 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .reveal { opacity: 1; transform: none; transition: none; }
   .cue svg { animation: none; }
 }
+
+/* ---------- Reading layer: the long pieces open as a centred page, not a drawer ---------- */
+.sheet.read { left: 50%; right: auto; width: min(980px, 100%); border-left: 1px solid var(--line); border-right: 1px solid var(--line); transform: translate(-50%, 28px); opacity: 0; transition: transform .5s var(--ease), opacity .4s var(--ease); box-shadow: 0 0 90px -20px rgba(0, 0, 0, .8); }
+.sheet.read.on { transform: translate(-50%, 0); opacity: 1; }
+.sheet.read .sheet-head { padding: 44px clamp(24px, 9vw, 110px) 22px; }
+.sheet.read .sheet-head h3 { font-size: clamp(32px, 4.6vw, 46px); max-width: 22ch; }
+.sheet.read .sheet-body { padding: 26px clamp(24px, 9vw, 110px) 80px; font-size: 17.5px; line-height: 1.68; }
+.sheet.read .sheet-body > :not(.quotes):not(.contents):not(.embed) { max-width: 66ch; }
+.sheet.read .sheet-body > p:first-of-type:not(.when):not(.note) { font-size: 20.5px; line-height: 1.55; color: var(--text); }
+.sheet.read .sheet-body p { margin-bottom: 16px; }
+.sheet.read .sheet-body .when { font-size: 19px; }
+.sheet.read .sheet-body h4 { font: 500 24px/1.2 var(--serif); letter-spacing: 0; text-transform: none; color: var(--text); margin: 40px 0 14px; padding-top: 20px; border-top: 1px solid var(--line); }
+.sheet.read .sheet-body h4:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.sheet.read .sheet-foot { padding: 14px clamp(24px, 9vw, 110px); }
+
+/* The contents line at the top of a long piece */
+.contents { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 30px; padding: 0 0 20px; border-bottom: 1px solid var(--line); counter-reset: contents; }
+.contents button { all: unset; cursor: pointer; font: 600 11.5px var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--text-2); padding: 2px 0; border-bottom: 1px solid transparent; }
+.contents button::before { counter-increment: contents; content: counter(contents, decimal-leading-zero) "\2002"; color: var(--accent); }
+.contents button:hover, .contents button:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* Quotations as cards */
+.quotes { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 14px; margin: 0 0 26px; }
+.sheet-body .quotes blockquote { margin: 0; padding: 22px 22px 20px; border: 1px solid var(--line); border-left: 2px solid var(--accent); border-radius: 14px; background: var(--bg-2); font-size: 17px; line-height: 1.5; display: flex; flex-direction: column; }
+.sheet-body .quotes blockquote::before { content: "\201C"; display: block; font: 500 46px/.5 var(--serif); color: var(--accent); opacity: .85; margin: 10px 0 12px; }
+.sheet-body .quotes blockquote cite { margin-top: auto; padding-top: 14px; }
+
+/* Student ratings as bars */
+.sheet-body .ratings { display: grid; gap: 12px; margin: 0 0 28px; }
+.sheet-body .ratings li { display: grid; grid-template-columns: 56px 1fr; column-gap: 14px; align-items: center; padding-left: 0; margin: 0; }
+.sheet-body .ratings li::before { content: none; }
+.sheet-body .ratings li b { grid-row: 1 / 3; font-size: 22px; margin: 0; }
+.sheet-body .ratings li::after { content: ""; grid-column: 2; height: 4px; margin-top: 7px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--gold-2)) no-repeat, var(--line); background-size: calc(var(--v, 0) * 100%) 100%, 100% 100%; transition: background-size .9s var(--ease); }
+
+@media (max-width: 640px) {
+  .sheet.read .sheet-head { padding: 26px 20px 14px; }
+  .sheet.read .sheet-head h3 { font-size: 30px; }
+  .sheet.read .sheet-body { padding: 18px 20px 56px; font-size: 17px; }
+  .sheet.read .sheet-foot { padding: 12px 20px; }
+  .sheet-body .quotes blockquote { padding: 18px 18px 16px; font-size: 16.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sheet.read, .sheet-body .ratings li::after { transition: none; }
+}
