@@ -409,7 +409,7 @@ A Red Team review of the site as a way to get hired and win clients (verdict: a 
 
 ## 2026-11-07 (evening): the funnel, pushes 1 and 3. A counter, a booking page, a form that leaves a trace, rates
 
-Wehan set up the accounts in a Claude chat (the prompt pattern is now a standing rule) and brought back the details. Committed, not pushed.
+Wehan set up the accounts in a Claude chat (the prompt pattern is now a standing rule) and brought back the details. Pushed live on 2026-11-07.
 
 - **The counter (push 1).** GoatCounter, one script line before the closing body tag, code wehancoombs. The named clicks from push 2 now report to it: CV links, the doors, ORCID, the booking buttons and every request send. Dashboard: https://wehancoombs.goatcounter.com/
 - **Booking.** A Google Calendar appointment schedule, Free 20-minute intro call, Tuesday to Thursday 09:00 to 12:00 and 14:00 to 16:00, Google Meet, no Google account needed. It lives in a new Make pop-up, Book a free intro call, with the calendar embedded and a link to the booking page. Buttons: the Make door (Book a call, replacing How it works), the Make index row, the Contact row, the Map, each request pop-up (Book a free intro call instead) and the Working with me list.
