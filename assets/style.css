@@ -218,15 +218,6 @@ main { position: relative; z-index: 1; }
 .req-to .inline { color: var(--text); }
 
 /* ---------- Welcome card ---------- */
-.welcome { position: fixed; inset: 0; z-index: 75; display: grid; place-items: center; padding: 24px; opacity: 0; transition: opacity .45s var(--ease); pointer-events: none; }
-.welcome.on { opacity: 1; pointer-events: auto; }
-.welcome-card { position: relative; width: min(560px, 100%); max-height: calc(100vh - 48px); overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 40px 40px 34px; text-align: center; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8); transform: translateY(14px) scale(.96); transition: transform .5s var(--ease); }
-.welcome.on .welcome-card { transform: none; }
-.welcome-face { display: block; width: 128px; height: 128px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 2px solid var(--accent); box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 12%, transparent); margin: 0 auto 22px; }
-.welcome-card .eyebrow { margin-bottom: 12px; }
-.welcome-card h2 { font: 500 clamp(30px, 5vw, 42px)/1.05 var(--serif); margin: 0 0 14px; color: var(--text); }
-.welcome-card p:not(.eyebrow) { font-family: var(--serif); font-size: 19px; line-height: 1.45; color: var(--text-2); margin: 0 auto; max-width: 40ch; }
-.welcome-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
 
 /* ---------- Chapters ---------- */
 .chapter { position: relative; min-height: 100vh; display: flex; align-items: center; padding: clamp(84px, 13vh, 120px) 0 clamp(56px, 10vh, 100px); }
@@ -386,7 +377,7 @@ main { position: relative; z-index: 1; }
 .lecture.playing .play, .lecture.playing .l-cap { display: none; }
 
 .guides { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.guide { all: unset; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 3 / 4.2; border: 1px solid var(--line-2); border-top: 4px solid var(--accent); border-radius: 4px 4px 6px 6px; background: linear-gradient(180deg, var(--surface), var(--bg-2)); padding: 10px 10px 9px; box-sizing: border-box; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s; box-shadow: 0 12px 22px -16px #000; }
+.guide { all: unset; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 3 / 4.2; border: 1px solid var(--line-2); border-top: 4px solid var(--accent); border-radius: 4px 4px 6px 6px; background: linear-gradient(180deg, var(--surface), var(--bg-2)); padding: 10px 10px 9px; box-sizing: border-box; overflow: hidden; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s; box-shadow: 0 12px 22px -16px #000; }
 /* The guides pop out of the shelf, one after the other, when the row comes into view. */
 .reveal.in .guide { animation: pop .9s cubic-bezier(.2, 1.3, .4, 1) backwards; }
 .reveal.in .guide:nth-child(2) { animation-delay: .08s; }
@@ -626,13 +617,6 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .sheet-body { padding: 18px 20px 28px; }
   .sheet-foot { padding: 12px 20px; }
   .embed.doc { max-height: 56vh; }
-  .welcome { padding: 14px; }
-  .welcome-card { padding: 30px 22px 24px; border-radius: 20px; max-height: calc(100vh - 28px); max-height: calc(100dvh - 28px); }
-  .welcome-face { width: 92px; height: 92px; margin-bottom: 16px; }
-  .welcome-card h2 { font-size: 30px; }
-  .welcome-card p:not(.eyebrow) { font-size: 17px; }
-  .welcome-actions { margin-top: 22px; gap: 8px; }
-  .welcome-actions .btn { flex: 1 1 100%; padding: 12px 16px; font-size: 15px; }
   .close { width: 44px; height: 44px; font-size: 30px; right: 6px; top: 6px; }
   .sheet-head h3 { padding-right: 48px; }
   .sheet-body { overflow-wrap: anywhere; }
@@ -719,4 +703,42 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .sheet:not(.read) .sheet-body { padding: 18px 22px 36px; font-size: 16px; }
   .sheet:not(.read) .sheet-foot { padding: 12px 22px; }
   .sheet-body .facts b { font-size: 28px; }
+}
+
+/* ---------- Round C: covers, a timeline, a video ---------- */
+/* The guide cards on the shelf wear their own first page */
+.guide .g-cover { display: block; flex: 1 1 0; min-height: 0; width: calc(100% + 20px); margin: -10px -10px 8px; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line-2); background: #fff; }
+
+/* The five guides as covers in the pop-up */
+.sheet-body .covers { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 108px), 1fr)); gap: 14px 12px; }
+.sheet-body .covers li { margin: 0; padding: 0; }
+.sheet-body .covers button { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.sheet-body .covers img, .sheet-body .cover-link img { display: block; width: 100%; height: auto; aspect-ratio: 560 / 793; object-fit: cover; object-position: top; border: 1px solid var(--line-2); border-radius: 6px; background: #fff; box-shadow: 0 12px 22px -16px #000; transition: transform .4s var(--ease), border-color .3s, box-shadow .4s; }
+.sheet-body .covers button:hover img, .sheet-body .covers button:focus-visible img, .sheet-body .cover-link:hover img { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 18px 26px -16px #000; }
+.sheet-body .covers span { font: 500 13px/1.3 var(--serif); color: var(--text-2); }
+.sheet-body .covers button:hover span { color: var(--text); }
+.sheet-body .cover-link { display: block; width: min(200px, 60%); margin: 4px 0 18px; border: 0; }
+
+/* Conference papers down the years */
+.sheet-body .timeline { list-style: none; margin: 0 0 10px; padding: 0; }
+.sheet-body .timeline li { position: relative; display: grid; grid-template-columns: 56px 1fr; column-gap: 30px; padding: 0 0 18px; margin: 0; }
+.sheet-body .timeline li::before { content: ""; position: absolute; left: 70px; top: 10px; bottom: -6px; width: 1px; background: var(--line-2); }
+.sheet-body .timeline li:last-child::before { display: none; }
+.sheet-body .timeline li::after { content: ""; position: absolute; left: 66.5px; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg); }
+.sheet-body .timeline b { font: 500 17px/1.3 var(--serif); color: var(--accent); text-align: right; }
+.sheet-body .timeline b.again { visibility: hidden; }
+.sheet-body .timeline b { grid-column: 1; grid-row: 1; }
+.sheet-body .timeline .t-title { grid-column: 2; grid-row: 1; display: block; color: var(--text); }
+.sheet-body .timeline .t-where { grid-column: 2; grid-row: 2; display: block; font-size: 14px; line-height: 1.45; color: var(--text-3); margin-top: 3px; }
+
+/* A video that plays in place */
+.embed video { position: absolute; inset: 0; width: 100%; height: 100%; background: #000; }
+
+@media (max-width: 640px) {
+  .sheet-body .timeline li { grid-template-columns: 44px 1fr; column-gap: 24px; }
+  .sheet-body .timeline li::before { left: 55px; }
+  .sheet-body .timeline li::after { left: 51.5px; }
+  .sheet-body .timeline b { font-size: 15px; }
+  .sheet-body .covers { grid-template-columns: repeat(3, 1fr); gap: 12px 10px; }
+  .sheet-body .covers span { font-size: 12px; }
 }

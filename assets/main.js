@@ -279,7 +279,7 @@
       })(t0);
     });
   }, { threshold: .6 });
-  $$('[data-count]').forEach(el => cntIO.observe(el));
+  $$('[data-count]').forEach(el => { if (!reduced) el.textContent = '0' + (el.dataset.suffix || ''); cntIO.observe(el); });
   const starIO = new IntersectionObserver(es => {
     es.forEach(e => {
       if (!e.isIntersecting) return;
@@ -352,13 +352,18 @@
   let openId = null, lastFocus = null, sheetTimer = null, mapTimer = null;
 
   function showScrim() { scrim.hidden = false; requestAnimationFrame(() => scrim.classList.add('on')); }
-  function hideScrimIfIdle() { if (sheet.classList.contains('on') || map.classList.contains('on') || welcomeOpen) return; scrim.classList.remove('on'); setTimeout(() => { if (!scrim.classList.contains('on')) scrim.hidden = true; }, 360); }
+  function hideScrimIfIdle() { if (sheet.classList.contains('on') || map.classList.contains('on')) return; scrim.classList.remove('on'); setTimeout(() => { if (!scrim.classList.contains('on')) scrim.hidden = true; }, 360); }
   function lock() { body.classList.add('locked'); }
   function unlockIfIdle() { if (!sheet.classList.contains('on') && !map.classList.contains('on')) body.classList.remove('locked'); }
 
   function activateEmbeds(container) {
     $$('.embed', container).forEach(e => {
-      if (e.querySelector('iframe')) return;
+      if (e.querySelector('iframe, video')) return;
+      if (e.dataset.video) {
+        const v = document.createElement('video');
+        v.src = e.dataset.video; v.controls = true; v.preload = 'metadata'; v.playsInline = true;
+        e.appendChild(v); return;
+      }
       const f = document.createElement('iframe');
       f.src = e.dataset.src; f.loading = 'lazy'; f.setAttribute('allow', 'autoplay; fullscreen'); f.setAttribute('allowfullscreen', '');
       f.title = sheetTitle.textContent;
@@ -394,6 +399,17 @@
     }
     const lede = $$(':scope > *', container).slice(0, 4).find(k => k.tagName === 'P' && !k.className);
     if (lede && lede.textContent.length > 80) lede.classList.add('lede');
+    let lastYear = null;
+    $$('.timeline li', container).forEach(li => {
+      const b = $('b', li);
+      if (!b) return;
+      if (b.textContent === lastYear) b.classList.add('again');
+      lastYear = b.textContent;
+      if (li.querySelector('.t-title')) return;
+      const rest = li.innerHTML.slice(li.innerHTML.indexOf('</b>') + 4).trim();
+      const k = rest.indexOf(' \u00b7 ');
+      li.innerHTML = b.outerHTML + '<span class="t-title">' + (k < 0 ? rest : rest.slice(0, k)) + '</span>' + (k < 0 ? '' : '<span class="t-where">' + rest.slice(k + 3) + '</span>');
+    });
   }
   // Student ratings draw themselves as bars, scaled out of five.
   function activateRatings(container) {
@@ -408,7 +424,6 @@
     const item = library[id];
     if (!item) return;
     clearTimeout(sheetTimer);
-    closeWelcome(true);
     if (map.classList.contains('on')) closeMap(true);
     if (!sheet.classList.contains('on')) lastFocus = document.activeElement;
     openId = id;
@@ -464,35 +479,13 @@
   }
   mapBtn.addEventListener('click', () => { if (map.classList.contains('on')) closeMap(); else openMap(); });
   $('#map-close').addEventListener('click', () => closeMap());
-  scrim.addEventListener('click', () => { closeSheet(); closeMap(); closeWelcome(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); closeWelcome(); } });
-
-  /* ---------- Welcome: a card on the first visit of a session ---------- */
-  const welcome = $('#welcome');
-  let welcomeOpen = false;
-  function closeWelcome(keep) {
-    if (!welcomeOpen) return;
-    welcomeOpen = false; welcome.classList.remove('on');
-    setTimeout(() => { welcome.hidden = true; }, 480);
-    if (!keep) { unlockIfIdle(); hideScrimIfIdle(); }
-  }
-  function openWelcome() {
-    welcomeOpen = true; welcome.hidden = false; showScrim(); lock();
-    requestAnimationFrame(() => { welcome.classList.add('on'); $('#welcome-go').focus({ preventScroll: true }); });
-  }
-  $('#welcome-close').addEventListener('click', () => closeWelcome());
-  $('#welcome-go').addEventListener('click', () => closeWelcome());
-  (function () {
-    let seen = false; try { seen = sessionStorage.getItem('welcomed') === '1'; } catch (e) {}
-    if (seen || location.hash.startsWith('#s-')) return;
-    try { sessionStorage.setItem('welcomed', '1'); } catch (e) {}
-    setTimeout(openWelcome, 700);
-  })();
+  scrim.addEventListener('click', () => { closeSheet(); closeMap(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); } });
 
   function goTo(sel) {
     const el = $(sel);
     if (!el) return;
-    closeSheet(); closeMap(); closeWelcome();
+    closeSheet(); closeMap();
     body.classList.remove('locked');
     setTimeout(() => el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }), 60);
   }
@@ -742,12 +735,13 @@
   /* ---------- The years: hover to peek, tap to open ---------- */
   const track = $('#track'), trackCap = $('#track-cap'), evs = $$('.ev');
   ORDER.sofar = [];
+  let capTimer = null;
   evs.forEach(li => {
     const b = $('button', li), id = 'year-' + b.dataset.year;
     ORDER.sofar.push(id);
     library[id] = { title: b.dataset.year + ' · ' + b.dataset.label, ch: 'sofar', html: '<p>' + b.dataset.cap + '</p>' + (b.dataset.more && library[b.dataset.more] ? '<p class="more"><button type="button" data-sheet="' + b.dataset.more + '">Go further →</button></p>' : '') };
     b.dataset.sheet = id;
-    li.addEventListener('mouseenter', () => { trackCap.classList.add('swap'); setTimeout(() => { trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap'); }, 150); });
+    li.addEventListener('mouseenter', () => { clearTimeout(capTimer); trackCap.classList.add('swap'); capTimer = setTimeout(() => { trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap'); }, 150); });
   });
   // Drag the strip with a mouse. The pointer is captured only once you have actually moved, so a plain click on a year still opens it.
   let td = null, dragged = false;

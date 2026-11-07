@@ -376,3 +376,16 @@ The drawer itself, reshaped. Pushed live on 2026-11-04.
 - **Big figures** at the top of four pop-ups, every number taken from that pop-up's own text: Abbotts (95, 98, 7 weeks), Hoërskool Garsfontein (3 weeks, 2 poems, 8 hours), Courses designed (4,000+, 4, 1), Academic posts (2010, 500, 2024).
 - **The board.** Six lesson pop-ups open with a blackboard panel showing the word the text says went on the board, or the method's name: XENIA (For Oom Piet), RESIDUE (The Herb Garden), POIESIS (The Poet), AMBITION → DECEPTION → GUILT (Macbeth), FRAME (Film study), and "If I were…", not "If I was…" (Grammar). The Tempest and Philosophy for teenagers have no board word in their text, so they have none.
 - The exporter labels the figures and the board panels. Assets at `?v=17`. Checked at 1366 and 390 wide, dark and light.
+
+---
+
+## 2026-11-07: round C of the pop-up redesign, and the welcome card goes
+
+Committed, not pushed.
+
+- **No more welcome card.** Wehan asked for it to go. The markup, its styles and its script are gone; the page opens straight on the first screen. (The text exporter no longer lists it.)
+- **Covers from the PDFs.** The first page of each of the five study guides (fetched from the Drive links already on the site) and of the Macbeth revision sheet, rendered with PyMuPDF at 560px wide into `materials/covers/` (23 to 77 KB each). They appear on the guide cards on the Think shelf, as a row of five covers in the Study guides pop-up (replacing the plain list; the wording is unchanged), and as a thumbnail link to the PDF in the Macbeth pop-up.
+- **Conference papers as a timeline.** Same twelve lines, now an ordered list down the years: a year in the margin (shown once per run, so 2025 appears once above its three papers), a rail with dots, the title in full and the venue in smaller grey type. The split happens at open time, like the chips; the HTML lines are untouched.
+- **From the portfolio chat.** Wehan brought suggestions from the chat that built his PGCE portfolio (https://wehancoombs.github.io/ves310-portfolio/). Taken: the two sites now link (Teach chapter and the Abbotts pop-up point to the portfolio); the micro-lesson on adjectives for Grade 10 (10 min 53 s, hosted on the portfolio) plays inside the Teaching approach pop-up; the stat counters carry their real number in the HTML so search engines and readers without scripts see 95, not 0 (the script resets them to 0 only when it is about to count up); the year strip's hover caption no longer fires several swaps when the mouse crosses the strip quickly.
+- Left alone, on purpose: the top bar's blur (small elements only), the brand image's empty alt (decorative, the name sits next to it), the shared `theme` key with the portfolio (same origin, and the same theme on both sites is a feature), print styles (the CVs are the printable things), and the quiz and icons (they live on the portfolio, which is now linked). The 22 quotes are Wehan's to cut in the Google Doc.
+- Assets at `?v=18`. Checked at 1366 and 390 wide: no overflow, no console errors, the video loads (1280 by 720).

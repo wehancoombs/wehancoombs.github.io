@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=17">
+<link rel="stylesheet" href="assets/style.css?v=18">
 </head>
 <body data-chapter="threshold">
 
@@ -49,22 +49,6 @@
     <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
   </div>
 </header>
-
-<!-- ===================== Welcome (once per visit) ===================== -->
-<div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
-  <div class="welcome-card">
-    <button class="close" id="welcome-close" type="button" aria-label="Close">×</button>
-    <img class="welcome-face" src="headshot.jpg" alt="Wehan Coombs" width="128" height="128">
-    <p class="eyebrow">Welcome</p>
-    <h2 id="welcome-title">Hi, I’m Wehan.</h2>
-    <p>Teacher, philosopher, and maker of things that help people learn. This page is a place to explore: scroll through the chapters, tap whatever glows, or open the Map to see everything at once.</p>
-    <div class="welcome-actions">
-      <button class="btn solid" type="button" id="welcome-go">Explore</button>
-      <button class="btn" type="button" data-goto="#start">What I offer</button>
-      <button class="btn" type="button" data-sheet="request-any">Write to me</button>
-    </div>
-  </div>
-</div>
 
 <nav class="dots" aria-label="Chapters">
   <a href="#threshold"><span>Begin</span></a>
@@ -254,9 +238,9 @@
       </div>
       <div class="ch-side reveal">
         <ul class="stats">
-          <li><button type="button" data-sheet="abbotts"><b data-count="95">0</b><span>/100 mentor assessment</span></button></li>
-          <li><button type="button" data-sheet="abbotts"><b data-count="98">0</b><span>/100 observed lesson</span></button></li>
-          <li><button type="button" data-sheet="approach"><b data-count="10">0</b><span>weeks in charge of classes</span></button></li>
+          <li><button type="button" data-sheet="abbotts"><b data-count="95">95</b><span>/100 mentor assessment</span></button></li>
+          <li><button type="button" data-sheet="abbotts"><b data-count="98">98</b><span>/100 observed lesson</span></button></li>
+          <li><button type="button" data-sheet="approach"><b data-count="10">10</b><span>weeks in charge of classes</span></button></li>
         </ul>
         <a class="seal mini" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">
           <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -294,7 +278,7 @@
           </g>
         </svg>
         <p class="arc-text" id="arc-text">Start from what they already know.</p>
-        <p class="more"><button class="textlink" type="button" data-sheet="approach">How I plan a lesson →</button></p>
+        <p class="more"><button class="textlink" type="button" data-sheet="approach">How I plan a lesson →</button> <a class="textlink" href="https://wehancoombs.github.io/ves310-portfolio/" target="_blank" rel="noopener">My PGCE portfolio ↗</a></p>
       </figure>
 
       <div class="reveal">
@@ -324,8 +308,8 @@
       </div>
       <div class="ch-side reveal">
         <ul class="stats">
-          <li><button type="button" data-sheet="posts"><b data-count="15">0</b><span>years lecturing</span></button></li>
-          <li><button type="button" data-sheet="courses"><b data-count="5">0</b><span>self-designed modules</span></button></li>
+          <li><button type="button" data-sheet="posts"><b data-count="15">15</b><span>years lecturing</span></button></li>
+          <li><button type="button" data-sheet="courses"><b data-count="5">5</b><span>self-designed modules</span></button></li>
           <li><button type="button" data-sheet="testimonials">
             <span class="stars" data-rating="4.81" aria-label="4.81 out of 5">
               <span class="stars-bg"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
@@ -385,11 +369,11 @@
           </button>
           <div class="guides-wrap" id="guides" hidden>
             <div class="guides">
-              <button class="guide" type="button" data-sheet="guide-c5"><span class="g-code">FIL710 · 810</span><span class="g-title">Philosophy as a Rite of Rebirth</span><span class="g-year">2026</span></button>
-              <button class="guide" type="button" data-sheet="guide-c3"><span class="g-code">FIL710</span><span class="g-title">The (Secret) History of Thought</span><span class="g-year">2024</span></button>
-              <button class="guide" type="button" data-sheet="guide-c4"><span class="g-code">FIL220</span><span class="g-title">The Good Life</span><span class="g-year">2024</span></button>
-              <button class="guide" type="button" data-sheet="guide-c2"><span class="g-code">FIL110</span><span class="g-title">Metaphysics and Epistemology</span><span class="g-year">2021</span></button>
-              <button class="guide" type="button" data-sheet="guide-c1"><span class="g-code">FIL251</span><span class="g-title">Moral and Political Philosophy</span><span class="g-year">2018</span></button>
+              <button class="guide" type="button" data-sheet="guide-c5"><img class="g-cover" src="materials/covers/guide-c5.jpg" alt="" width="560" height="793" loading="lazy"><span class="g-code">FIL710 · 810</span><span class="g-title">Philosophy as a Rite of Rebirth</span><span class="g-year">2026</span></button>
+              <button class="guide" type="button" data-sheet="guide-c3"><img class="g-cover" src="materials/covers/guide-c3.jpg" alt="" width="560" height="793" loading="lazy"><span class="g-code">FIL710</span><span class="g-title">The (Secret) History of Thought</span><span class="g-year">2024</span></button>
+              <button class="guide" type="button" data-sheet="guide-c4"><img class="g-cover" src="materials/covers/guide-c4.jpg" alt="" width="560" height="793" loading="lazy"><span class="g-code">FIL220</span><span class="g-title">The Good Life</span><span class="g-year">2024</span></button>
+              <button class="guide" type="button" data-sheet="guide-c2"><img class="g-cover" src="materials/covers/guide-c2.jpg" alt="" width="560" height="793" loading="lazy"><span class="g-code">FIL110</span><span class="g-title">Metaphysics and Epistemology</span><span class="g-year">2021</span></button>
+              <button class="guide" type="button" data-sheet="guide-c1"><img class="g-cover" src="materials/covers/guide-c1.jpg" alt="" width="560" height="793" loading="lazy"><span class="g-code">FIL251</span><span class="g-title">Moral and Political Philosophy</span><span class="g-year">2018</span></button>
             </div>
             <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
           </div>
@@ -661,6 +645,8 @@
 
   <article id="s-approach" data-ch="teach" data-title="Teaching approach">
     <blockquote>Learners do their best thinking when they feel known and respected. I start from what they already know, then set a challenge they reason through together in discussion, and end by applying the new skill to their own lives, so they leave with ideas they can call their own.</blockquote>
+    <div class="embed vid" data-video="https://wehancoombs.github.io/ves310-portfolio/video/Wehan-Coombs-Micro-Lesson.mp4"></div>
+    <p class="note">A micro-lesson on adjectives for Grade 10, recorded for English Methodology (VES 310) in 2026 · 10 min 53 s · from my PGCE portfolio</p>
     <p>I plan most lessons as a three-part arc. First, I activate what learners already know, often through a vivid scenario or a playful dilemma resonant with their own lives. Then we move to an application phase, a scaffolded exercise that requires them to try something new and potentially fail. Finally, the newly developed skill is actualised by connecting it to some concrete project or real issue in the world that they can apply it to.</p>
     <p>Ten weeks in charge of classes in 2026: three at Hoërskool Garsfontein in May, seven at Abbotts College Pretoria East from July to September. Learners at this age respond very well to being treated as intellectual partners, much as I treat my university students, with age-appropriate content and careful scaffolding towards curriculum outcomes.</p>
     <p>Reading difficult texts closely, building arguments and writing clear, well-structured essays are foundational skills in philosophy, and they make up a large part of what English Home Language asks of learners in Grades 10 to 12. I am used to running courses for cohorts of 500, planning full semesters of lessons and assessments, and marking large volumes of written work fairly and consistently. Tutoring early in my career and honours seminars more recently taught me to work with small groups, so classes of 20 to 40 learners felt natural.</p>
@@ -682,7 +668,7 @@
       <li><strong>98 out of 100</strong> from my University of Pretoria mentor lecturer for an observed Grade 11 poetry lesson, commending “excellent knowledge and innovative way of using media.”</li>
       <li>Several learners gave me farewell gifts and asked me to come back.</li>
     </ul>
-    <p class="more"><button type="button" data-sheet="garsfontein">Hoërskool Garsfontein →</button> <button type="button" data-sheet="approach">How I plan a lesson →</button></p>
+    <p class="more"><button type="button" data-sheet="garsfontein">Hoërskool Garsfontein →</button> <button type="button" data-sheet="approach">How I plan a lesson →</button> <a href="https://wehancoombs.github.io/ves310-portfolio/" target="_blank" rel="noopener">My PGCE portfolio ↗</a></p>
   </article>
 
   <article id="s-garsfontein" data-ch="teach" data-title="Hoërskool Garsfontein">
@@ -707,6 +693,7 @@
     </ul>
     <h4>A sheet I made for them</h4>
     <p>A 45-minute revision plan on one page, built around AMBITION → DECEPTION → GUILT, with a quotation bank for Acts 1 and 2 keyed to the two essay questions.</p>
+    <a class="cover-link" href="materials/macbeth-revision-sheet.pdf" target="_blank" rel="noopener"><img src="materials/covers/macbeth.jpg" alt="The first page of the Macbeth revision sheet" width="560" height="792" loading="lazy"></a>
     <p class="more"><a href="materials/macbeth-revision-sheet.pdf" target="_blank" rel="noopener">Open the revision sheet (PDF) ↗</a> <button type="button" data-sheet="tempest">The Tempest →</button></p>
   </article>
 
@@ -934,12 +921,12 @@
 
   <article id="s-guides" data-ch="think" data-title="Study guides and readers">
     <p>Every module I designed came with its own study guide, written from scratch: outcomes, week-by-week structure, readings, assessment plans and student support. Five of them are here to read.</p>
-    <ul class="list">
-      <li><button type="button" class="inline" data-sheet="guide-c5">FIL710 and FIL810 · Philosophy as a Rite of Rebirth (2026)</button></li>
-      <li><button type="button" class="inline" data-sheet="guide-c3">FIL710 · The (Secret) History of Thought (2024)</button></li>
-      <li><button type="button" class="inline" data-sheet="guide-c4">FIL220 · The Good Life (2024)</button></li>
-      <li><button type="button" class="inline" data-sheet="guide-c2">FIL110 · Introduction to Metaphysics and Epistemology (2021)</button></li>
-      <li><button type="button" class="inline" data-sheet="guide-c1">FIL251 · Introduction to Moral and Political Philosophy (2018)</button></li>
+    <ul class="covers">
+      <li><button type="button" data-sheet="guide-c5"><img src="materials/covers/guide-c5.jpg" alt="" width="560" height="793" loading="lazy"><span>FIL710 and FIL810 · Philosophy as a Rite of Rebirth (2026)</span></button></li>
+      <li><button type="button" data-sheet="guide-c3"><img src="materials/covers/guide-c3.jpg" alt="" width="560" height="793" loading="lazy"><span>FIL710 · The (Secret) History of Thought (2024)</span></button></li>
+      <li><button type="button" data-sheet="guide-c4"><img src="materials/covers/guide-c4.jpg" alt="" width="560" height="793" loading="lazy"><span>FIL220 · The Good Life (2024)</span></button></li>
+      <li><button type="button" data-sheet="guide-c2"><img src="materials/covers/guide-c2.jpg" alt="" width="560" height="793" loading="lazy"><span>FIL110 · Introduction to Metaphysics and Epistemology (2021)</span></button></li>
+      <li><button type="button" data-sheet="guide-c1"><img src="materials/covers/guide-c1.jpg" alt="" width="560" height="793" loading="lazy"><span>FIL251 · Introduction to Moral and Political Philosophy (2018)</span></button></li>
     </ul>
     <p class="more"><a href="https://drive.google.com/file/d/191gkWwiWEuzJ5qDniNJKjTl5v95n6hoQ/view" target="_blank" rel="noopener">All five guides in one PDF ↗</a></p>
     <h4>Readers and course packages</h4>
@@ -1068,7 +1055,7 @@
 
   <article id="s-papers" data-ch="think" data-title="Conference papers">
     <p>Thirteen papers at conferences, colloquia and workshops since 2012.</p>
-    <ul class="list years-list">
+    <ol class="timeline">
       <li><b>2026</b> Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis · PSSA Annual Conference, University of Cape Town · co-presented with Mitchell Black</li>
       <li><b>2025</b> Animism, Consilience and the Rights of Nature: South African Conservational Philosophy in the Context of Metacrisis · South African Society for Environmental Philosophy, North-West University · co-presented</li>
       <li><b>2025</b> Is Philosophy A(gnostic)? Post-disciplinary Insights from Alternative Epistemologies, Decoloniality and Esoteric Studies · Postgraduate Philosophy Symposium, North-West University · co-presented</li>
@@ -1081,7 +1068,7 @@
       <li><b>2015</b> Did Aristotle Outgrow Plato · 40th PSSA Conference, Nelson Mandela Metropolitan University</li>
       <li><b>2013</b> In the Wake of Struggle · 39th PSSA Conference, University of KwaZulu-Natal</li>
       <li><b>2012</b> The Struggle for Recognition · Philosophy Postgraduate Association Conference, University of Pretoria</li>
-    </ul>
+    </ol>
     <h4>Workshops and colloquia</h4>
     <ul class="list">
       <li>Workshop on publishing in international journals, University of Pretoria (June 2024), led by Prof Thaddeus Metz</li>
@@ -1248,6 +1235,6 @@
 
 </div>
 
-<script src="assets/main.js?v=17"></script>
+<script src="assets/main.js?v=18"></script>
 </body>
 </html>
