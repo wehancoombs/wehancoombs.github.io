@@ -761,8 +761,8 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 :root:not([data-theme="light"]) .embed.doc.cal { background: #fff; }
 :root:not([data-theme="light"]) .embed.doc.cal iframe { filter: invert(.92) hue-rotate(180deg); }
 /* The filter inverts the small profile photo inside the frame too, so the real one is laid over it */
-:root:not([data-theme="light"]) .embed.doc.cal::after { content: ""; position: absolute; left: 8px; top: 8px; width: 34px; height: 34px; border-radius: 50%; background: #141414 url(../headshot.jpg) center / cover; pointer-events: none; }
-@media (max-width: 640px) { :root:not([data-theme="light"]) .embed.doc.cal::after { left: 12px; top: 64px; width: 40px; height: 40px; } }
+:root:not([data-theme="light"]) .embed.doc.cal::after { content: ""; position: absolute; left: 4px; top: 4px; width: 42px; height: 42px; border-radius: 50%; background: #141414 url(../headshot.jpg) center / cover; pointer-events: none; }
+@media (max-width: 640px) { :root:not([data-theme="light"]) .embed.doc.cal::after { left: 8px; top: 60px; width: 48px; height: 48px; } }
 /* Tall enough that the booking page needs no scrollbar of its own; the drawer scrolls instead */
 .embed.doc.cal { aspect-ratio: auto; height: 660px; max-height: none; }
 @media (max-width: 640px) { .embed.doc.cal { height: 1130px; } }
