@@ -715,7 +715,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .hero-id { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
 .hero-me { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 210px; }
 .hero-face { display: block; width: 210px; height: 210px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); box-shadow: 0 24px 40px -26px #000, 0 0 0 8px color-mix(in srgb, var(--accent) 10%, transparent); }
-.hero-me .btn { font-size: 13px; padding: 9px 16px; }
+.hero-me .btn { font-size: 13px; padding: 9px 16px; margin-top: 14px; }
 .hero-me .index { margin: 0; flex-direction: column; align-items: flex-start; gap: 6px; }
 .hero-me .index button { font-size: 11px; }
 .hero .display { font-size: clamp(48px, min(7.5vw, 11vh), 96px); }
@@ -756,3 +756,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .req-from { display: block; width: 100%; box-sizing: border-box; font: 15.5px/1.4 var(--sans); color: var(--text); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; }
 .req-from:focus { outline: none; border-color: var(--accent); }
 .req-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* The booking calendar is a white Google page; in dark mode its colours are inverted so that it sits in the dark drawer */
+:root:not([data-theme="light"]) .embed.doc.cal { background: #fff; }
+:root:not([data-theme="light"]) .embed.doc.cal iframe { filter: invert(.92) hue-rotate(180deg); }
