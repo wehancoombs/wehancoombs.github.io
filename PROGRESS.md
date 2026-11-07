@@ -416,4 +416,4 @@ Wehan set up the accounts in a Claude chat (the prompt pattern is now a standing
 - **Send from here.** The request pop-ups gain an email field and a Send from here button that posts to Formspree (free tier, 50 a month, honeypot field against spam). The email-app, Gmail and copy buttons stay. A note under the form says Formspree stores messages abroad. Not yet tested with a real send; Wehan should send one after the push.
 - **Rates and availability.** On each Make card and at the top of each service pop-up: tutoring from R350 an hour; editing from R0.30 a word or R450 an hour; learning design and consulting quoted per project after a free intro call; all with Taking new clients for 2027. Working with me has a Rates list.
 - **Decided against.** No WhatsApp link and no phone number. The photo stays as it is; at 210px it holds.
-- Assets at . Checked at 1366 and 390 wide: the calendar renders inside the pop-up, no overflow, no console errors.
+- Assets at `?v=22`. Checked at 1366 and 390 wide: the calendar renders inside the pop-up, no overflow, no console errors.
