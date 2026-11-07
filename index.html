@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=19">
+<link rel="stylesheet" href="assets/style.css?v=20">
 </head>
 <body data-chapter="threshold">
 
@@ -162,13 +162,30 @@
 <section id="threshold" class="chapter hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <p class="eyebrow reveal">Pretoria East · South Africa</p>
-      <h1 class="display reveal">Wehan<br>Coombs</h1>
-      <p class="line reveal">I teach people to think for themselves: English in the classroom, philosophy at university, and tutoring, editing and course design for anyone who needs it.</p>
+      <div class="hero-id reveal">
+        <div class="hero-me">
+          <img class="hero-face" src="headshot.jpg" alt="Wehan Coombs" width="300" height="300">
+          <button class="btn solid" type="button" data-sheet="request-any" data-track="write-hero">Write to me</button>
+          <p class="index">
+            <button type="button" data-sheet="about">About me</button>
+            <button type="button" data-sheet="qualifications">Qualifications</button>
+            <button type="button" data-sheet="why">Why I teach</button>
+          </p>
+        </div>
+        <div class="hero-words">
+          <p class="eyebrow">Pretoria East · South Africa</p>
+          <h1 class="display">Wehan<br>Coombs</h1>
+      <p class="line">I teach people to think for themselves: English in the classroom, philosophy at university, and tutoring, editing and course design for anyone who needs it.</p>
+          <p class="whisper">
+            <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
+        <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
+          </p>
+        </div>
+      </div>
       <ol class="menu doors hero-doors reveal">
         <li class="menu-row door" data-ch="teach">
           <a class="menu-main" href="#teach" data-goto="#teach" data-track="door-teach"><span class="m-for">A teacher for your school</span><span class="m-name">Teach</span></a>
-          <span class="door-acts"><a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV</a><button class="btn" type="button" data-sheet="request-any">Write to me</button></span>
+          <span class="door-acts"><a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV</a><button class="btn" type="button" data-sheet="referees">Referees</button></span>
         </li>
         <li class="menu-row door" data-ch="think">
           <a class="menu-main" href="#think" data-goto="#think" data-track="door-think"><span class="m-for">A lecturer or a researcher</span><span class="m-name">Think</span></a>
@@ -180,19 +197,10 @@
         </li>
       </ol>
     </div>
-    <div class="hero-side reveal">
-      <img class="hero-face" src="headshot.jpg" alt="Wehan Coombs" width="300" height="300">
-      <p class="index">
-        <button type="button" data-sheet="about">About me</button>
-        <button type="button" data-sheet="qualifications">Qualifications</button>
-        <button type="button" data-sheet="why">Why I teach</button>
-      </p>
-      <p class="whisper badge-row">
-        <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
-        <span class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></span>
-        <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
-        <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
-      </p>
+    <div class="solid-wrap reveal">
+      <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
+      <p class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></p>
+      <p class="solid-hint">After Plato’s <em>Timaeus</em> · drag to turn · tap to change</p>
     </div>
   </div>
   <a class="cue" href="#teach" aria-label="Scroll down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
@@ -1194,6 +1202,6 @@
 
 </div>
 
-<script src="assets/main.js?v=19"></script>
+<script src="assets/main.js?v=20"></script>
 </body>
 </html>
