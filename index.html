@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=18">
+<link rel="stylesheet" href="assets/style.css?v=19">
 </head>
 <body data-chapter="threshold">
 
@@ -39,10 +39,10 @@
     <div class="cvs" id="cvs">
       <button class="pill cvs-btn" id="cvs-btn" type="button" aria-expanded="false" aria-controls="cvs-menu">CVs ▾</button>
       <div class="cvs-menu" id="cvs-menu">
-        <a class="pill cv-link gen" href="cv/Wehan-Coombs-CV.pdf" target="_blank" rel="noopener" title="General CV, two pages (PDF)"><b>W</b><span><i>General </i>CV</span></a>
-        <a class="pill cv-link teach" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener" title="Teaching CV, for schools (PDF)"><b>T</b><span>Teaching<i> CV</i></span></a>
-        <a class="pill cv-link think" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener" title="Academic CV, for universities (PDF)"><b>Φ</b><span>Academic<i> CV</i></span></a>
-        <a class="pill cv-link make" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener" title="Freelance CV, for clients (PDF)"><b>F</b><span>Freelance<i> CV</i></span></a>
+        <a class="pill cv-link gen" href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener" title="General CV, two pages (PDF)"><b>W</b><span><i>General </i>CV</span></a>
+        <a class="pill cv-link teach" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener" title="Teaching CV, for schools (PDF)"><b>T</b><span>Teaching<i> CV</i></span></a>
+        <a class="pill cv-link think" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener" title="Academic CV, for universities (PDF)"><b>Φ</b><span>Academic<i> CV</i></span></a>
+        <a class="pill cv-link make" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener" title="Freelance CV, for clients (PDF)"><b>F</b><span>Freelance<i> CV</i></span></a>
         <button class="pill cv-link" type="button" data-sheet="resume" title="The full resume"><b>≡</b><span><i>Full </i>resume</span></button>
       </div>
     </div>
@@ -52,11 +52,9 @@
 
 <nav class="dots" aria-label="Chapters">
   <a href="#threshold"><span>Begin</span></a>
-  <a href="#start"><span>Start</span></a>
   <a href="#teach"><span>Teach</span></a>
   <a href="#think"><span>Think</span></a>
   <a href="#make"><span>Make</span></a>
-  <a href="#sofar"><span>So far</span></a>
   <a href="#write"><span>Contact</span></a>
 </nav>
 
@@ -76,7 +74,7 @@
         <li><button type="button" data-sheet="about">About me</button></li>
         <li><button type="button" data-sheet="qualifications">Qualifications</button></li>
         <li><button type="button" data-sheet="why">Why I teach</button></li>
-        <li><a href="cv/Wehan-Coombs-CV.pdf" target="_blank" rel="noopener">General CV (PDF) ↓</a></li>
+        <li><a href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener">General CV (PDF) ↓</a></li>
       </ul>
     </section>
 
@@ -94,7 +92,7 @@
         <li><button type="button" data-sheet="enrichment">Philosophy for teenagers</button></li>
         <li><button type="button" data-sheet="beyond">Beyond the classroom</button></li>
         <li><button type="button" data-sheet="ai">Teaching in the age of AI</button></li>
-        <li><a href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">Teaching CV (PDF) ↓</a></li>
+        <li><a href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV (PDF) ↓</a></li>
       </ul>
     </section>
 
@@ -113,7 +111,7 @@
         <li><button type="button" data-sheet="curriculum">Curriculum design</button></li>
         <li><button type="button" data-sheet="assessment">Assessment</button></li>
         <li><button type="button" data-sheet="support">Student support</button></li>
-        <li><a href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></li>
+        <li><a href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></li>
       </ul>
     </section>
 
@@ -125,14 +123,7 @@
         <li><button type="button" data-sheet="design">Learning design</button></li>
         <li><button type="button" data-sheet="consulting">Philosophical &amp; AI consulting</button></li>
         <li><button type="button" data-sheet="working">Working with me</button></li>
-        <li><a href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">Freelance CV (PDF) ↓</a></li>
-      </ul>
-    </section>
-
-    <section class="map-group" data-ch="sofar">
-      <a class="map-ch" href="#sofar" data-goto="#sofar">So far <small>2010 to 2026</small></a>
-      <ul>
-        <li><button type="button" data-goto="#sofar">The years</button></li>
+        <li><a href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">Freelance CV (PDF) ↓</a></li>
       </ul>
     </section>
 
@@ -174,57 +165,37 @@
       <p class="eyebrow reveal">Pretoria East · South Africa</p>
       <h1 class="display reveal">Wehan<br>Coombs</h1>
       <p class="line reveal">I teach people to think for themselves: English in the classroom, philosophy at university, and tutoring, editing and course design for anyone who needs it.</p>
-      <p class="whisper reveal">
-        <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
-        <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
-      </p>
-      <p class="index reveal">
+      <ol class="menu doors hero-doors reveal">
+        <li class="menu-row door" data-ch="teach">
+          <a class="menu-main" href="#teach" data-goto="#teach" data-track="door-teach"><span class="m-for">A teacher for your school</span><span class="m-name">Teach</span></a>
+          <span class="door-acts"><a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV</a><button class="btn" type="button" data-sheet="request-any">Write to me</button></span>
+        </li>
+        <li class="menu-row door" data-ch="think">
+          <a class="menu-main" href="#think" data-goto="#think" data-track="door-think"><span class="m-for">A lecturer or a researcher</span><span class="m-name">Think</span></a>
+          <span class="door-acts"><a class="btn" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">Academic CV</a><a class="btn" href="https://orcid.org/0000-0001-9151-7344" target="_blank" rel="noopener" data-track="orcid">ORCID</a></span>
+        </li>
+        <li class="menu-row door" data-ch="make">
+          <a class="menu-main" href="#make" data-goto="#make" data-track="door-make"><span class="m-for">A tutor, an editor, a designer, a consultant</span><span class="m-name">Make</span></a>
+          <span class="door-acts"><a class="btn" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">Freelance CV</a><button class="btn" type="button" data-sheet="working">How it works</button></span>
+        </li>
+      </ol>
+    </div>
+    <div class="hero-side reveal">
+      <img class="hero-face" src="headshot.jpg" alt="Wehan Coombs" width="300" height="300">
+      <p class="index">
         <button type="button" data-sheet="about">About me</button>
         <button type="button" data-sheet="qualifications">Qualifications</button>
         <button type="button" data-sheet="why">Why I teach</button>
       </p>
-    </div>
-    <div class="solid-wrap reveal">
-      <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
-      <p class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></p>
-      <p class="solid-hint">After Plato’s <em>Timaeus</em> · drag to turn · tap to change</p>
-    </div>
-  </div>
-  <a class="cue" href="#start" aria-label="Scroll down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
-</section>
-
-<!-- ===================== 2. Start here ===================== -->
-<section id="start" class="chapter">
-  <div class="wrap start-grid">
-    <div class="start-text">
-      <p class="eyebrow reveal">Start here</p>
-      <h2 class="display reveal">What do<br><em>you need?</em></h2>
-      <p class="line reveal">Three chapters, for three kinds of work. Pick the one that is yours. Each has its own CV.</p>
-      <p class="hire reveal">
-        <span class="hint">Or skip ahead</span>
-        <a href="cv/Wehan-Coombs-CV.pdf" target="_blank" rel="noopener">General CV, two pages →</a>
-        <button type="button" class="textlink" data-sheet="request-any">Write to me →</button>
-        <button type="button" class="textlink" data-sheet="working">How working with me works →</button>
+      <p class="whisper badge-row">
+        <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
+        <span class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></span>
+        <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
+        <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
       </p>
     </div>
-    <div class="menu-wrap reveal">
-      <svg class="menu-ring" viewBox="0 0 400 400" aria-hidden="true"><circle class="ring" cx="200" cy="200" r="190"/></svg>
-      <ol class="menu doors">
-        <li class="menu-row door" data-ch="teach">
-          <a class="menu-main" href="#teach" data-goto="#teach"><span class="m-for">A teacher for your school</span><span class="m-name">Teach</span><span class="m-desc">English and philosophy in the high-school classroom: the practicum record, the lessons, and a way of teaching built for the age of AI.</span></a>
-          <a class="btn" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">Teaching CV</a>
-        </li>
-        <li class="menu-row door" data-ch="think">
-          <a class="menu-main" href="#think" data-goto="#think"><span class="m-for">A lecturer or a researcher</span><span class="m-name">Think</span><span class="m-desc">Fifteen years of university philosophy: Plato and Neoplatonism, five modules designed from scratch, lectures, study guides and papers.</span></a>
-          <a class="btn" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">Academic CV</a>
-        </li>
-        <li class="menu-row door" data-ch="make">
-          <a class="menu-main" href="#make" data-goto="#make"><span class="m-for">A tutor, an editor, a designer, a consultant</span><span class="m-name">Make</span><span class="m-desc">Tutoring, editing, learning design, and philosophical and AI consulting, for students, families, schools and teams. Pretoria East, or online anywhere.</span></a>
-          <a class="btn" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">Freelance CV</a>
-        </li>
-      </ol>
-    </div>
   </div>
+  <a class="cue" href="#teach" aria-label="Scroll down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7"/></svg></a>
 </section>
 
 <!-- ===================== 3. Teach ===================== -->
@@ -242,7 +213,7 @@
           <li><button type="button" data-sheet="abbotts"><b data-count="98">98</b><span>/100 observed lesson</span></button></li>
           <li><button type="button" data-sheet="approach"><b data-count="10">10</b><span>weeks in charge of classes</span></button></li>
         </ul>
-        <a class="seal mini" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">
+        <a class="seal mini" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="sp-t" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
             <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -318,7 +289,7 @@
             <span>4.81 out of 5 · student rating, 2026</span>
           </button></li>
         </ul>
-        <a class="seal mini" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">
+        <a class="seal mini" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="sp-a" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
             <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -394,7 +365,7 @@
       </div>
       <div class="ch-side reveal">
         <p class="side-note">Tutoring, editing, learning design, and philosophical and AI consulting. Pretoria East, or online anywhere.</p>
-        <a class="seal mini" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">
+        <a class="seal mini" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
             <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -440,6 +411,7 @@
           <button class="btn solid" type="button" data-sheet="request-tutoring">Request</button>
           <button class="textlink" type="button" data-sheet="tutoring">Details</button>
         </div>
+        <p class="proof"><b>98/100</b> for an observed Grade 11 lesson, 2026 · “…able to explain abstract concepts in a way that makes it easy to understand.”<small>A first-year student, 2023</small></p>
       </article>
 
       <article class="svc reveal">
@@ -457,6 +429,7 @@
           <button class="btn solid" type="button" data-sheet="request-editing">Request</button>
           <button class="textlink" type="button" data-sheet="editing">Details</button>
         </div>
+        <p class="proof"><b>5</b> study guides, 2 readers and a course package, written or compiled · “…assignment feedback was always helpful and detailed.”<small>An honours student, 2024</small></p>
       </article>
 
       <article class="svc reveal">
@@ -474,6 +447,7 @@
           <button class="btn solid" type="button" data-sheet="request-design">Request</button>
           <button class="textlink" type="button" data-sheet="design">Details</button>
         </div>
+        <p class="proof"><b>4.81</b> out of 5, student rating for a module designed from scratch, 2026 · “…the good organisation of his modules.”<small>Prof Emma Ruttkamp-Bloem · peer evaluation report</small></p>
       </article>
 
       <article class="svc reveal">
@@ -498,39 +472,8 @@
           <button class="btn solid" type="button" data-sheet="request-consulting">Request</button>
           <button class="textlink" type="button" data-sheet="consulting">Details</button>
         </div>
+        <p class="proof"><b>15</b> years of university philosophy · “He moves between close readings of Plato and present concerns without flattening either…”<small>Dr Mitchell-Ron Black · research collaborator, 2026</small></p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 6. So far ===================== -->
-<section id="sofar" class="chapter">
-  <div class="sofar-inner">
-    <div class="wrap">
-      <p class="eyebrow reveal">2010 → 2026</p>
-      <h2 class="display reveal">So far.</h2>
-    </div>
-    <div class="track-wrap reveal">
-      <div class="track" id="track">
-        <ol class="years">
-          <li class="ev"><button type="button" data-year="2010" data-label="A degree and a first tutorial" data-cap="BA Humanities in English Literature and Philosophy at the University of Pretoria, and a first year as a philosophy tutor." data-more="about"><b>2010</b><span>A degree and a first tutorial</span></button></li>
-          <li class="ev"><button type="button" data-year="2012" data-label="Honours, cum laude" data-cap="BA Honours in Philosophy, cum laude. First paper at a philosophy conference." data-more="papers"><b>2012</b><span>Honours, cum laude</span></button></li>
-          <li class="ev"><button type="button" data-year="2013" data-label="First article" data-cap="Contingency, irony and morality: a critical review of Rorty’s liberal utopia, published in Humanities." data-more="publications"><b>2013</b><span>First article</span></button></li>
-          <li class="ev"><button type="button" data-year="2014" data-label="Assistant lecturer" data-cap="Assistant Lecturer in the Department of Philosophy, University of Pretoria, teaching two first-year modules." data-more="posts"><b>2014</b><span>Assistant lecturer</span></button></li>
-          <li class="ev"><button type="button" data-year="2016" data-label="MA, cum laude. Head lecturer" data-cap="MA in Philosophy, cum laude: Symphonia, Aristotle versus Plato Critiqued. Head lecturer from this year. Co-organised the Aristotle Colloquium for his 2400th birth year." data-more="publications"><b>2016</b><span>MA, cum laude. Head lecturer</span></button></li>
-          <li class="ev"><button type="button" data-year="2017" data-label="Journal article" data-cap="Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies. Presented at a Wits workshop on Plato’s Republic." data-more="publications"><b>2017</b><span>Journal article</span></button></li>
-          <li class="ev"><button type="button" data-year="2018" data-label="A module redesigned" data-cap="Partly redesigned Introduction to Moral and Political Philosophy for business students. UP Doctoral Support Bursary for Ainigma, 2018 to 2020." data-more="guide-c1"><b>2018</b><span>A module redesigned</span></button></li>
-          <li class="ev"><button type="button" data-year="2019" data-label="A first-year course of my own" data-cap="Created Introduction to Metaphysics and Epistemology from scratch and ran it as head lecturer for classes of around 500, 2019 to 2021. Still in use at UP." data-more="curriculum"><b>2019</b><span>A first-year course of my own</span></button></li>
-          <li class="ev"><button type="button" data-year="2020" data-label="A paper presented" data-cap="The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal." data-more="papers"><b>2020</b><span>A paper presented</span></button></li>
-          <li class="ev"><button type="button" data-year="2023" data-label="Doctorate" data-cap="PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of about 300." data-more="publications"><b>2023</b><span>Doctorate</span></button></li>
-          <li class="ev"><button type="button" data-year="2024" data-label="Postdoc at UJ" data-cap="Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life. Workshop on publishing in international journals with Prof Thaddeus Metz." data-more="posts"><b>2024</b><span>Postdoc at UJ</span></button></li>
-          <li class="ev"><button type="button" data-year="2025" data-label="More papers" data-cap="Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy." data-more="papers"><b>2025</b><span>More papers</span></button></li>
-          <li class="ev"><button type="button" data-year="2026" data-label="Into the classroom" data-cap="PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black." data-more="abbotts"><b>2026</b><span>Into the classroom</span></button></li>
-        </ol>
-      </div>
-      <div class="wrap">
-        <p class="track-cap" id="track-cap">Tap a year to open it.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -547,7 +490,7 @@
       <button type="button" data-sheet="resume">The full resume</button>
     </p>
     <div class="seals reveal">
-      <a class="seal" href="cv/Wehan-Coombs-CV.pdf" target="_blank" rel="noopener">
+      <a class="seal" href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="sp-g2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
           <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -556,7 +499,7 @@
         </svg>
         <span class="seal-label">General CV<small>two pages, all of it</small></span>
       </a>
-      <a class="seal teach" href="cv/Wehan-Coombs-FET-CV.pdf" target="_blank" rel="noopener">
+      <a class="seal teach" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="sp-t2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
           <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -565,7 +508,7 @@
         </svg>
         <span class="seal-label">Teaching CV<small>for schools</small></span>
       </a>
-      <a class="seal think" href="cv/Wehan-Coombs-PhD-CV.pdf" target="_blank" rel="noopener">
+      <a class="seal think" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="sp-a2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
           <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -574,7 +517,7 @@
         </svg>
         <span class="seal-label">Academic CV<small>for universities</small></span>
       </a>
-      <a class="seal make" href="cv/Wehan-Coombs-Freelance-CV.pdf" target="_blank" rel="noopener">
+      <a class="seal make" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">
         <svg viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="sp-f2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
           <circle class="seal-ring" cx="60" cy="60" r="56"/>
@@ -617,6 +560,22 @@
       <li>English (home language) and Afrikaans (fluent)</li>
       <li>Based in Pretoria East, Gauteng; in person or online</li>
     </ul>
+    <h4>In brief</h4>
+    <ol class="timeline brief">
+      <li><b>2010</b> A degree and a first tutorial · BA Humanities in English Literature and Philosophy at the University of Pretoria, and a first year as a philosophy tutor.</li>
+      <li><b>2012</b> Honours, cum laude · BA Honours in Philosophy, cum laude. First paper at a philosophy conference.</li>
+      <li><b>2013</b> First article · Contingency, irony and morality: a critical review of Rorty’s liberal utopia, published in Humanities.</li>
+      <li><b>2014</b> Assistant lecturer · Assistant Lecturer in the Department of Philosophy, University of Pretoria, teaching two first-year modules.</li>
+      <li><b>2016</b> MA, cum laude. Head lecturer · MA in Philosophy, cum laude: Symphonia, Aristotle versus Plato Critiqued. Head lecturer from this year. Co-organised the Aristotle Colloquium for his 2400th birth year.</li>
+      <li><b>2017</b> Journal article · Aristotle’s harmony with Plato on separable and immortal soul, in the South African Journal of Philosophy. Joined the PSSA and the International Society for Neoplatonic Studies. Presented at a Wits workshop on Plato’s Republic.</li>
+      <li><b>2018</b> A module redesigned · Partly redesigned Introduction to Moral and Political Philosophy for business students. UP Doctoral Support Bursary for Ainigma, 2018 to 2020.</li>
+      <li><b>2019</b> A first-year course of my own · Created Introduction to Metaphysics and Epistemology from scratch and ran it as head lecturer for classes of around 500, 2019 to 2021. Still in use at UP.</li>
+      <li><b>2020</b> A paper presented · The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal.</li>
+      <li><b>2023</b> Doctorate · PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of about 300.</li>
+      <li><b>2024</b> Postdoc at UJ · Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life. Workshop on publishing in international journals with Prof Thaddeus Metz.</li>
+      <li><b>2025</b> More papers · Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy.</li>
+      <li><b>2026</b> Into the classroom · PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black.</li>
+    </ol>
     <p class="more"><button type="button" data-sheet="qualifications">Qualifications in full →</button> <button type="button" data-sheet="why">Why I teach →</button></p>
   </article>
 
@@ -1235,6 +1194,6 @@
 
 </div>
 
-<script src="assets/main.js?v=18"></script>
+<script src="assets/main.js?v=19"></script>
 </body>
 </html>

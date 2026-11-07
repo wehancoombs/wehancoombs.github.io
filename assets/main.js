@@ -13,7 +13,7 @@
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
   $$('a[href$=".pdf"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
-  const CH_LABEL = { threshold: 'Begin', start: 'Start here', teach: 'Teach', think: 'Think', make: 'Make', sofar: 'So far', write: 'Contact' };
+  const CH_LABEL = { threshold: 'Begin', teach: 'Teach', think: 'Think', make: 'Make', write: 'Contact' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
   function cssVar(name, el) { return getComputedStyle(el || body).getPropertyValue(name).trim(); }
@@ -210,6 +210,10 @@
   let heroVisible = true;
   new IntersectionObserver(es => { heroVisible = es[0].isIntersecting; }, { threshold: 0 }).observe(sc);
 
+  /* ---------- Named clicks, counted only once a counter script is on the page ---------- */
+  function track(name) { try { if (window.goatcounter && goatcounter.count) goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
+  document.addEventListener('click', e => { const t = e.target.closest('[data-track]'); if (t) track(t.dataset.track); });
+
   /* ---------- Which chapter are we in? (dots, accent colour) ---------- */
   const chapters = $$('.chapter'), dots = $$('.dots a');
   const chapIO = new IntersectionObserver(es => {
@@ -339,6 +343,7 @@
     form.addEventListener('click', e => {
       const b = e.target.closest('[data-send]'); if (!b) return;
       const text = ta.value;
+      track('send-' + form.dataset.kind + '-' + b.dataset.send);
       if (b.dataset.send === 'mail') location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text);
       else if (b.dataset.send === 'gmail') window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text), '_blank', 'noopener');
       else copyText('To: ' + EMAIL + '\nSubject: ' + r.subject + '\n\n' + text).then(() => flash(b, 'Copied ✓'), () => flash(b, 'Could not copy'));
@@ -731,31 +736,6 @@
   function layout(k) { LAYOUTS[k].forEach((r, i) => { const b = blocks[i]; b.style.transform = 'translate(' + r[0] + 'px,' + r[1] + 'px)'; b.style.width = r[2] + 'px'; b.style.height = r[3] + 'px'; }); }
   let lk = 0; layout(0);
   setInterval(() => { lk = (lk + 1) % LAYOUTS.length; layout(lk); }, 2800);
-
-  /* ---------- The years: hover to peek, tap to open ---------- */
-  const track = $('#track'), trackCap = $('#track-cap'), evs = $$('.ev');
-  ORDER.sofar = [];
-  let capTimer = null;
-  evs.forEach(li => {
-    const b = $('button', li), id = 'year-' + b.dataset.year;
-    ORDER.sofar.push(id);
-    library[id] = { title: b.dataset.year + ' · ' + b.dataset.label, ch: 'sofar', html: '<p>' + b.dataset.cap + '</p>' + (b.dataset.more && library[b.dataset.more] ? '<p class="more"><button type="button" data-sheet="' + b.dataset.more + '">Go further →</button></p>' : '') };
-    b.dataset.sheet = id;
-    li.addEventListener('mouseenter', () => { clearTimeout(capTimer); trackCap.classList.add('swap'); capTimer = setTimeout(() => { trackCap.textContent = b.dataset.cap; trackCap.classList.remove('swap'); }, 150); });
-  });
-  // Drag the strip with a mouse. The pointer is captured only once you have actually moved, so a plain click on a year still opens it.
-  let td = null, dragged = false;
-  track.addEventListener('pointerdown', e => { if (e.pointerType === 'touch' || e.button !== 0) return; td = { x: e.clientX, sl: track.scrollLeft, id: e.pointerId }; dragged = false; });
-  track.addEventListener('pointermove', e => {
-    if (!td) return;
-    const dx = e.clientX - td.x;
-    if (!dragged && Math.abs(dx) > 6) { dragged = true; track.classList.add('dragging'); try { track.setPointerCapture(td.id); } catch (err) {} }
-    if (dragged) track.scrollLeft = td.sl - dx;
-  });
-  const tEnd = () => { if (!td) return; td = null; track.classList.remove('dragging'); setTimeout(() => { dragged = false; }, 50); };
-  track.addEventListener('pointerup', tEnd); track.addEventListener('pointercancel', tEnd);
-  track.addEventListener('click', e => { if (dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
-  new IntersectionObserver(es => { if (es[0].isIntersecting) { track.scrollLeft = track.scrollWidth; } }, { threshold: .3 }).observe(track);
 
   /* ---------- Main loop ---------- */
   function loop(t) {
