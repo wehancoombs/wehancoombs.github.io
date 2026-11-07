@@ -715,7 +715,7 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 .hero-id { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
 .hero-me { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 210px; }
 .hero-face { display: block; width: 210px; height: 210px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line-2); box-shadow: 0 24px 40px -26px #000, 0 0 0 8px color-mix(in srgb, var(--accent) 10%, transparent); }
-.hero-me .btn { font-size: 13px; padding: 9px 16px; margin-top: 14px; }
+.hero-me .btn { font-size: 13px; padding: 9px 16px; margin-top: 40px; }
 .hero-me .index { margin: 0; flex-direction: column; align-items: flex-start; gap: 6px; }
 .hero-me .index button { font-size: 11px; }
 .hero .display { font-size: clamp(48px, min(7.5vw, 11vh), 96px); }
@@ -760,3 +760,9 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
 /* The booking calendar is a white Google page; in dark mode its colours are inverted so that it sits in the dark drawer */
 :root:not([data-theme="light"]) .embed.doc.cal { background: #fff; }
 :root:not([data-theme="light"]) .embed.doc.cal iframe { filter: invert(.92) hue-rotate(180deg); }
+/* The filter inverts the small profile photo inside the frame too, so the real one is laid over it */
+:root:not([data-theme="light"]) .embed.doc.cal::after { content: ""; position: absolute; left: 8px; top: 8px; width: 34px; height: 34px; border-radius: 50%; background: #141414 url(../headshot.jpg) center / cover; pointer-events: none; }
+@media (max-width: 640px) { :root:not([data-theme="light"]) .embed.doc.cal::after { left: 12px; top: 64px; width: 40px; height: 40px; } }
+/* Tall enough that the booking page needs no scrollbar of its own; the drawer scrolls instead */
+.embed.doc.cal { aspect-ratio: auto; height: 660px; max-height: none; }
+@media (max-width: 640px) { .embed.doc.cal { height: 1130px; } }
