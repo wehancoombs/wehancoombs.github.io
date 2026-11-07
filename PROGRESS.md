@@ -381,7 +381,7 @@ The drawer itself, reshaped. Pushed live on 2026-11-04.
 
 ## 2026-11-07: round C of the pop-up redesign, and the welcome card goes
 
-Committed, not pushed.
+Pushed live on 2026-11-07.
 
 - **No more welcome card.** Wehan asked for it to go. The markup, its styles and its script are gone; the page opens straight on the first screen. (The text exporter no longer lists it.)
 - **Covers from the PDFs.** The first page of each of the five study guides (fetched from the Drive links already on the site) and of the Macbeth revision sheet, rendered with PyMuPDF at 560px wide into `materials/covers/` (23 to 77 KB each). They appear on the guide cards on the Think shelf, as a row of five covers in the Study guides pop-up (replacing the plain list; the wording is unchanged), and as a thumbnail link to the PDF in the Macbeth pop-up.
