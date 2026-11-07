@@ -394,7 +394,7 @@ Pushed live on 2026-11-07. Tagged v1.1-stable (the fallback version is now this 
 
 ## 2026-11-07 (later): the funnel, push 2 of 3. The first screen is the funnel
 
-A Red Team review of the site as a way to get hired and win clients (verdict: a beautiful proof annex, not yet a funnel) and a Blue Team plan settled three pushes: a counter first, then the first screen, then booking, form and rates. Push 1 waits for Wehan's GoatCounter code; this is push 2, built locally. Committed, not pushed.
+A Red Team review of the site as a way to get hired and win clients (verdict: a beautiful proof annex, not yet a funnel) and a Blue Team plan settled three pushes: a counter first, then the first screen, then booking, form and rates. Push 1 waits for Wehan's GoatCounter code; this is push 2. Pushed live on 2026-11-07, with takes two and three, before the counter: Wehan chose to push.
 
 - **The first screen.** Wehan's face, large, where the Platonic solid turned (the solid is now a 64px badge beside the riddle word, still draggable). Under the name and tagline, the three doors from the old "What do you need?" chapter, each with its "for you" line and two buttons: Teach (Teaching CV, Write to me), Think (Academic CV, ORCID), Make (Freelance CV, How it works; "Book a call" replaces How it works in push 3). About me, Qualifications and Why I teach sit under the face. The name is smaller in the hero so that everything fits a 1366 by 768 laptop without scrolling.
 - **The Start chapter is gone.** Its doors moved up; its skip-ahead links already lived in Contact and Make. Five chapter dots remain: Begin, Teach, Think, Make, Contact.
