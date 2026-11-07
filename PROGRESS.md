@@ -404,3 +404,16 @@ A Red Team review of the site as a way to get hired and win clients (verdict: a 
 - **Take two, same day.** Wehan wanted the Platonic solid back at full size, so it is: the solid turns on the right as before. His face (150px, which the 300px headshot serves well) sits to the left of his name with a general Write to me button and the About me, Qualifications and Why I teach links under it. Write to me is no longer a Teach button; Teach has Teaching CV and Referees. Assets at `?v=20`.
 - **Take three.** The face up to 210px on a laptop (150px on a phone). On tablets and phones the solid goes back above everything, as the first screen always had it, instead of dangling under the doors. The top-bar icon is a serif W in a circle again, since the face is on the first screen; its hover peek is gone. Assets at `?v=21`.
 - **Still to come.** A larger photo would help at 210px, soft at this size, until Wehan sends the original or names one of the 2022 Drive photos. The exporter's JS constants (jstext.json) were trimmed by hand because the extractor script is gone. Assets at `?v=19`. Checked at 1366 and 390 wide: no overflow, no console errors.
+
+---
+
+## 2026-11-07 (evening): the funnel, pushes 1 and 3. A counter, a booking page, a form that leaves a trace, rates
+
+Wehan set up the accounts in a Claude chat (the prompt pattern is now a standing rule) and brought back the details. Committed, not pushed.
+
+- **The counter (push 1).** GoatCounter, one script line before the closing body tag, code wehancoombs. The named clicks from push 2 now report to it: CV links, the doors, ORCID, the booking buttons and every request send. Dashboard: https://wehancoombs.goatcounter.com/
+- **Booking.** A Google Calendar appointment schedule, Free 20-minute intro call, Tuesday to Thursday 09:00 to 12:00 and 14:00 to 16:00, Google Meet, no Google account needed. It lives in a new Make pop-up, Book a free intro call, with the calendar embedded and a link to the booking page. Buttons: the Make door (Book a call, replacing How it works), the Make index row, the Contact row, the Map, each request pop-up (Book a free intro call instead) and the Working with me list.
+- **Send from here.** The request pop-ups gain an email field and a Send from here button that posts to Formspree (free tier, 50 a month, honeypot field against spam). The email-app, Gmail and copy buttons stay. A note under the form says Formspree stores messages abroad. Not yet tested with a real send; Wehan should send one after the push.
+- **Rates and availability.** On each Make card and at the top of each service pop-up: tutoring from R350 an hour; editing from R0.30 a word or R450 an hour; learning design and consulting quoted per project after a free intro call; all with Taking new clients for 2027. Working with me has a Rates list.
+- **Decided against.** No WhatsApp link and no phone number. The photo stays as it is; at 210px it holds.
+- Assets at . Checked at 1366 and 390 wide: the calendar renders inside the pop-up, no overflow, no console errors.

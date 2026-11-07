@@ -749,3 +749,10 @@ footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; g
   .door-acts { flex-basis: 100%; justify-content: flex-start; }
   .hero-doors .door .m-name { font-size: 24px; }
 }
+
+/* ---------- Push 3: rates, the form that leaves a trace, booking ---------- */
+.svc .rate { margin: -6px 0 12px; font: italic 500 13.5px/1.45 var(--serif); color: var(--text-2); }
+.sheet-body .rate { font: italic 16px/1.45 var(--serif); color: var(--text-2); border-left: 2px solid var(--accent); padding-left: 12px; margin: 0 0 16px; }
+.req-from { display: block; width: 100%; box-sizing: border-box; font: 15.5px/1.4 var(--sans); color: var(--text); background: var(--bg-2); border: 1px solid var(--line-2); border-radius: 10px; padding: 10px 12px; margin: 0 0 14px; }
+.req-from:focus { outline: none; border-color: var(--accent); }
+.req-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

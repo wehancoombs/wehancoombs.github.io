@@ -302,7 +302,7 @@
   /* ---------- Request sheets: a drafted message you can send from your email app, from Gmail, or copy ---------- */
   const EMAIL = 'wehancoombs@gmail.com';
   // Paste a booking link here (a Google Calendar appointment page, or Calendly) and every request sheet gets a "Book a call" button. Empty hides it.
-  const BOOKING_URL = '';
+  const BOOKING_URL = 'https://calendar.app.google/LnQHr42n4ykTqa4ZA', FORM_URL = 'https://formspree.io/f/xnppyzon';
   const REQUESTS = {
     tutoring: { ch: 'make', title: 'Request tutoring', subject: 'Tutoring request', intro: 'Tell me the subject, the level and when suits you. I reply with a plan, a rate and a start date.', body: 'Hi Wehan,\n\nI’d like to ask about tutoring.\n\nSubject and grade or level: \nWhen and how often: \nIn person or online: \n\nThanks,\n' },
     editing: { ch: 'make', title: 'Request editing', subject: 'Editing request', intro: 'Tell me what the document is and when you need it back. I reply with a rate and a date.', body: 'Hi Wehan,\n\nI’d like to ask about editing.\n\nWhat the document is and roughly how long: \nWhen I need it back: \n\nThanks,\n' },
@@ -316,15 +316,20 @@
     library['request-' + k] = { title: r.title, ch: r.ch, html:
       '<p class="when">' + r.intro + '</p>' +
       '<div class="req" data-kind="' + k + '">' +
+        '<label class="req-label" for="req-from">Your email <small>so that I can reply</small></label>' +
+        '<input id="req-from" class="req-from" type="email" autocomplete="email" placeholder="you@example.com">' +
+        '<input class="req-trap" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">' +
         '<label class="req-label" for="req-body">Your message <small>change anything you like</small></label>' +
         '<textarea id="req-body" class="req-body" rows="9" spellcheck="false">' + esc(r.body) + '</textarea>' +
         '<div class="req-actions">' +
-          '<button class="btn solid" type="button" data-send="mail">Send from my email app</button>' +
+          '<button class="btn solid" type="button" data-send="here">Send from here</button>' +
+          '<button class="btn" type="button" data-send="mail">Send from my email app</button>' +
           '<button class="btn" type="button" data-send="gmail">Send from Gmail</button>' +
           '<button class="btn" type="button" data-send="copy">Copy the message</button>' +
         '</div>' +
         '<p class="req-to">To <button type="button" class="inline" data-copy="' + EMAIL + '">' + EMAIL + '</button> · subject: ' + r.subject + '</p>' +
-        (BOOKING_URL ? '<p class="more"><a class="btn" href="' + BOOKING_URL + '" target="_blank" rel="noopener">Book a call instead ↗</a></p>' : '') +
+        '<p class="note">Send from here goes through Formspree, which stores messages on servers abroad; I reply from Gmail. The other buttons use your own email.</p>' +
+        (k !== 'any' ? '<p class="more"><button type="button" data-sheet="book">Book a free intro call instead →</button></p>' : '') +
       '</div>' };
   });
   function copyText(t) {
@@ -344,6 +349,17 @@
       const b = e.target.closest('[data-send]'); if (!b) return;
       const text = ta.value;
       track('send-' + form.dataset.kind + '-' + b.dataset.send);
+      if (b.dataset.send === 'here') {
+        const from = $('.req-from', form), trap = $('.req-trap', form);
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(from.value)) { from.focus(); flash(b, 'Add your email first'); return; }
+        if (text.trim().length < 10) { ta.focus(); flash(b, 'Write a message first'); return; }
+        b.disabled = true; b.textContent = 'Sending…';
+        fetch(FORM_URL, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: from.value, message: text, _subject: r.subject, _gotcha: trap.value }) })
+          .then(res => { if (!res.ok) throw new Error(res.status); b.textContent = 'Sent ✓ I will reply by email'; })
+          .catch(() => { b.disabled = false; b.textContent = 'Could not send. Try the email buttons'; setTimeout(() => { b.textContent = 'Send from here'; }, 3000); });
+        return;
+      }
       if (b.dataset.send === 'mail') location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text);
       else if (b.dataset.send === 'gmail') window.open('https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(EMAIL) + '&su=' + encodeURIComponent(r.subject) + '&body=' + encodeURIComponent(text), '_blank', 'noopener');
       else copyText('To: ' + EMAIL + '\nSubject: ' + r.subject + '\n\n' + text).then(() => flash(b, 'Copied ✓'), () => flash(b, 'Could not copy'));
