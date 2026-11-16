@@ -1536,3 +1536,19 @@ p.map-ch:hover { color: var(--text); }
   .item-btn:hover, .item-btn:focus-visible { transform: none !important; }
   .bb-detail, .bb-head, .bb-short > *, .bb-extra, .bb-text > .more { animation: none; }
 }
+
+/* The price on a details card is a button: it opens the form for that service (the booking pop-up where a service has no form) */
+.bb-head button.bb-rate { -webkit-appearance: none; appearance: none; cursor: pointer; text-align: left; transition: background-color .3s, border-color .3s, transform .3s var(--ease); }
+.bb-head button.bb-rate::after { content: "\00a0\2192"; letter-spacing: 0; }   /* tied to the last word, so the arrow never drops to a line of its own */
+.bb-head button.bb-rate:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (hover: hover) { .bb-head button.bb-rate:hover { background: color-mix(in srgb, var(--accent) 26%, transparent); border-color: var(--accent); transform: translateY(-1px); } }
+
+/* On a phone an open details card is part of the page, not a box that scrolls inside itself (that box kept the scroll to itself, so its end stayed
+   under the contact bar). The boxes and the object step aside while it is open, and the page scrolls to the very end of the card. */
+@media (max-width: 900px) {
+  .stage.detail-open .bb-menu, .stage.detail-open .bb-stage { display: none; }
+  .stage.detail-open .bb-body { min-height: 0; }
+  .bb-detail { position: static; order: 2; overflow: visible; overscroll-behavior: auto; animation: fadein .35s var(--ease) both; }
+  .bb-chev { position: static; order: 3; flex: none; }
+}
+@media (prefers-reduced-motion: reduce) { .bb-detail { animation: none; } .bb-head button.bb-rate { transition: none; } }

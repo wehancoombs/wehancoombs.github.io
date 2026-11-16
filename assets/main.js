@@ -719,7 +719,7 @@
     const ul = d.lines ? '<ul class="bb-lines' + (d.long ? ' long' : '') + '">' + d.lines().map(l => '<li>' + l + '</li>').join('') + '</ul>' : '';
     detailFocus = document.activeElement;
     bbDetail.innerHTML = '<button class="close" type="button" data-detail-close aria-label="Close">×</button>' +
-      '<div class="bb-head"><span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 48 48">' + ART[DETAIL_ART[id]] + '</svg></span><div><h3 class="bb-title" id="bb-title" tabindex="-1"></h3><p class="bb-rate">' + $('.item-rate', it).innerHTML + '</p></div></div>' +
+      '<div class="bb-head"><span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 48 48">' + ART[DETAIL_ART[id]] + '</svg></span><div><h3 class="bb-title" id="bb-title" tabindex="-1"></h3><button class="bb-rate" type="button" data-sheet="' + (d.request ? 'request-' + d.request : 'book') + '" data-track="rate-' + id + '">' + $('.item-rate', it).innerHTML + '</button></div></div>' +   // the price is a button: it opens this service's form, or the booking pop-up where there is no form
       '<div class="sheet-body bb-text"><div class="bb-short' + (d.wide ? ' wide' : '') + '"><div>' +
         (d.line ? '<p class="bb-line">' + $('.item-line', it).innerHTML + '</p>' : '') +
         (d.head ? '<p class="eyebrow bb-sub">' + d.head + '</p>' : '') +

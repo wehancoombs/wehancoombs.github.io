@@ -867,3 +867,10 @@ His word: "Final changes below then push to my LIVE SITE and fix all the CV's to
 
 **Published** by merging `services` into `main` (keeping `CNAME`) and pushing. The live site was v=40 (the five-cabinet site, tag `before-services`) until then.
 
+## 2026-11-16, evening: four notes after the launch (v=81, PUBLISHED the same evening on his "Yes, publish")
+
+1. **Phone: a details card would not scroll to its end**, so the quotation's attribution stayed under the contact bar. The card was a box that scrolled inside itself and kept the scroll to itself (`overscroll-behavior: contain`), so the page under it could not be moved from inside the card. On a phone the open card is now part of the page: the boxes and the object step aside (`display: none`), the card is in the flow, and the page scrolls to the end of the card and its back bar, clear of the contact bar. Checked at 375x812 on five cards. The laptop layout is unchanged (all ten cards still fit at 1280x800).
+2. **The price on a details card is a button** (with a small arrow): it opens that service's request form; for Classes and Lectures, which have no form, the booking pop-up. Counted as `rate-<service>`.
+3. **Landing page, Consult box:** "For You · For Your School · For Your University".
+4. **Testimonials pop-up:** the sentence "Weighted by the number of students who answered it is 4.3; the large second-year ethics class of 2018 pulls it down." is removed. He wrote "from both"; it was on the site in this one place only.
+
