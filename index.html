@@ -3,23 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wehan Coombs · Teacher, philosopher, maker</title>
-<meta name="description" content="Dr Wehan M. Coombs teaches English, lectures and writes on Plato, Neoplatonism and esotericism, builds tools for learning, and asks what human teaching is for in the age of AI. Courses, study guides, recorded lectures, research and CVs, all on one page. Pretoria East, South Africa.">
-<meta property="og:title" content="Wehan Coombs · Teacher, philosopher, maker">
-<meta property="og:description" content="English teacher. Philosopher working on Plato and esotericism. Tutor, editor, learning designer, philosophical and AI consultant in Pretoria East.">
+<title>Wehan Coombs · Teaching and Learning Solutions</title>
+<meta name="description" content="Dr Wehan Coombs: bespoke educational solutions, from one-to-one tutoring to university curricula and AI policy. Pretoria East or online.">
+<meta property="og:title" content="Wehan Coombs · Teaching and Learning Solutions">
+<meta property="og:description" content="Dr Wehan Coombs: bespoke educational solutions, from one-to-one tutoring to university curricula and AI policy. Pretoria East or online.">
 <meta property="og:image" content="https://wehancoombs.github.io/headshot.jpg">
 <meta property="og:url" content="https://wehancoombs.github.io/">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#100F0D">
 <script>
-  // Apply a remembered light-mode choice before the page paints, so there is no flash.
-  try { if (localStorage.getItem('theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {}
+  // Before the page paints: light or dark (the remembered choice if the switch has been used, otherwise the visitor's system setting),
+  // and whether this is a first visit (the sketch fades in once only).
+  (function () {
+    var d = document.documentElement, t = null, seen = false;
+    try { t = localStorage.getItem('theme'); seen = !!localStorage.getItem('seen'); localStorage.setItem('seen', '1'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    if (t === 'light') d.setAttribute('data-theme', 'light');
+    if (!seen) d.classList.add('first-visit');
+  })();
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23100F0D'/%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23C9A24D' stroke-width='2'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Georgia,serif' font-size='28' fill='%23ECE4D6'%3EW%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=40">
+<link rel="stylesheet" href="assets/style.css?v=80">
 </head>
 <body data-chapter="threshold">
 
@@ -54,10 +61,8 @@
   <button class="pager-btn" id="pane-prev" type="button" aria-label="Previous">↑</button>
   <nav class="dots" aria-label="Chapters">
     <a href="#threshold"><span>Begin</span></a>
-    <a href="#teach"><span>Teach</span></a>
-    <a href="#think"><span>Think</span></a>
-    <a href="#make"><span>Make</span></a>
-    <a href="#write"><span>Contact</span></a>
+    <a href="#services"><span>My services</span></a>
+    <a href="#about"><span>About me</span></a>
   </nav>
   <button class="pager-btn" id="pane-next" type="button" aria-label="Next">↓</button>
 </div>
@@ -70,64 +75,64 @@
     <button class="close" id="map-close" type="button" aria-label="Close the map">×</button>
   </div>
   <div class="map-body">
-    <p class="map-intro">Everything lives on this one page. Pick a place and it opens.</p>
-
-    <section class="map-group" data-ch="threshold">
+    <section class="map-group" data-ch="begin">
       <a class="map-ch" href="#threshold" data-goto="#threshold">Begin</a>
+    </section>
+
+    <section class="map-group" data-ch="services">
+      <a class="map-ch" href="#services" data-goto="#services">My services</a>
+      <div class="map-tabs">
+        <div data-tone="teach">
+          <a class="map-tab" href="#teach" data-goto="#teach">Teach</a>
+          <ul>
+            <li><button type="button" data-svc="tutoring">Tutoring</button></li>
+            <li><button type="button" data-svc="writing">Writing</button></li>
+            <li><button type="button" data-svc="classes">Classes</button></li>
+            <li><button type="button" data-svc="lectures">Lectures</button></li>
+          </ul>
+        </div>
+        <div data-tone="design">
+          <a class="map-tab" href="#design" data-goto="#design">Design</a>
+          <ul>
+            <li><button type="button" data-svc="lesson">Lessons</button></li>
+            <li><button type="button" data-svc="module">Modules</button></li>
+            <li><button type="button" data-svc="curriculum">Curricula</button></li>
+          </ul>
+        </div>
+        <div data-tone="consult">
+          <a class="map-tab" href="#consult" data-goto="#consult">Consult</a>
+          <ul>
+            <li><button type="button" data-svc="person">For You</button></li>
+            <li><button type="button" data-svc="school">For Your School</button></li>
+            <li><button type="button" data-svc="university">For Your University</button></li>
+          </ul>
+        </div>
+      </div>
+      <ul>
+        <li><button type="button" data-sheet="working">Working with me</button></li>
+        <li><button type="button" data-sheet="book">Book a free intro call</button></li>
+      </ul>
+    </section>
+
+    <section class="map-group" data-ch="about">
+      <a class="map-ch" href="#about" data-goto="#about">About me</a>
       <ul>
         <li><button type="button" data-sheet="about">About me</button></li>
         <li><button type="button" data-sheet="qualifications">Qualifications</button></li>
-        <li><button type="button" data-sheet="why">Why I teach</button></li>
-        <li><a href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener">General CV (PDF) ↓</a></li>
-      </ul>
-    </section>
-
-    <section class="map-group" data-ch="teach">
-      <a class="map-ch" href="#teach" data-goto="#teach">Teach <small>for schools</small></a>
-      <ul>
-        <li><button type="button" data-sheet="approach">Teaching approach</button></li>
-        <li><button type="button" data-sheet="abbotts">Abbotts College</button></li>
-        <li><button type="button" data-sheet="garsfontein">Hoërskool Garsfontein</button></li>
-        <li><button type="button" data-sheet="macbeth">Macbeth</button></li>
-        <li><button type="button" data-sheet="tempest">The Tempest</button></li>
-        <li><button type="button" data-sheet="poems">Five poems</button></li>
-        <li><button type="button" data-sheet="grammar">Grammar</button></li>
-        <li><button type="button" data-sheet="film">Film study</button></li>
-        <li><button type="button" data-sheet="enrichment">Philosophy for teenagers</button></li>
-        <li><button type="button" data-sheet="beyond">Beyond the classroom</button></li>
-        <li><button type="button" data-sheet="ai">Teaching in the age of AI</button></li>
-        <li><a href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV (PDF) ↓</a></li>
-      </ul>
-    </section>
-
-    <section class="map-group" data-ch="think">
-      <a class="map-ch" href="#think" data-goto="#think">Think <small>for universities</small></a>
-      <ul>
-        <li><button type="button" data-sheet="posts">Academic posts</button></li>
-        <li><button type="button" data-sheet="courses">Courses designed</button></li>
-        <li><button type="button" data-sheet="guides">Study guides &amp; readers</button></li>
-        <li><button type="button" data-sheet="lectures">Recorded lectures</button></li>
-        <li><button type="button" data-sheet="testimonials">Testimonials</button></li>
         <li><button type="button" data-sheet="publications">Research &amp; publications</button></li>
-        <li><button type="button" data-sheet="papers">Conference papers</button></li>
-        <li><button type="button" data-sheet="funding">Funding &amp; collaboration</button></li>
-        <li><button type="button" data-sheet="philosophy">Teaching philosophy</button></li>
-        <li><button type="button" data-sheet="curriculum">Curriculum design</button></li>
-        <li><button type="button" data-sheet="assessment">Assessment</button></li>
-        <li><button type="button" data-sheet="support">Student support</button></li>
-        <li><a href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></li>
+        <li><button type="button" data-sheet="posts">Posts</button></li>
+        <li><button type="button" data-sheet="ai">The age of AI</button></li>
+        <li><button type="button" data-sheet="testimonials">Testimonials</button></li>
+        <li><button type="button" data-sheet="resume">My full resume</button></li>
       </ul>
     </section>
 
-    <section class="map-group" data-ch="make">
-      <a class="map-ch" href="#make" data-goto="#make">Make <small>for students &amp; clients</small></a>
+    <section class="map-group" data-ch="cvs">
+      <p class="map-ch">CVs</p>
       <ul>
-        <li><button type="button" data-sheet="tutoring">Tutoring &amp; TEFL</button></li>
-        <li><button type="button" data-sheet="editing">Editing &amp; writing</button></li>
-        <li><button type="button" data-sheet="design">Learning design</button></li>
-        <li><button type="button" data-sheet="consulting">Philosophical &amp; AI consulting</button></li>
-        <li><button type="button" data-sheet="working">Working with me</button></li>
-        <li><button type="button" data-sheet="book">Book a free intro call</button></li>
+        <li><a href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener">General CV (PDF) ↓</a></li>
+        <li><a href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">Teaching CV (PDF) ↓</a></li>
+        <li><a href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">Academic CV (PDF) ↓</a></li>
         <li><a href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">Freelance CV (PDF) ↓</a></li>
       </ul>
     </section>
@@ -135,9 +140,7 @@
     <section class="map-group" data-ch="write">
       <a class="map-ch" href="#write" data-goto="#write">Contact</a>
       <ul>
-        <li><button type="button" data-sheet="request-any">Write to me</button></li>
-        <li><button type="button" data-sheet="referees">Referees</button></li>
-        <li><button type="button" data-sheet="resume">The full resume</button></li>
+        <li><button type="button" data-goto="#write">Write to me</button></li>
         <li><a href="https://www.linkedin.com/in/wehan-coombs">LinkedIn ↗</a></li>
       </ul>
     </section>
@@ -174,20 +177,23 @@
           <img class="hero-face" src="headshot.jpg" alt="Wehan Coombs" width="300" height="300">
           <h1 class="display">Wehan<br>Coombs</h1>
         </div>
-        <p class="line">I teach people to think for themselves: English in the classroom, philosophy at university, and tutoring, editing and course design for anyone who needs it.</p>
+        <p class="line">Philosopher and educator. I teach people to think for themselves by providing specialised teaching and learning support for individuals, schools and universities.</p>
         <p class="whisper">
           <button class="ainigma" type="button" aria-describedby="ainigma-tip">αἴνιγμα</button>
           <span id="ainigma-tip" role="tooltip"><em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.</span>
         </p>
         <nav class="cab-doors" aria-label="Sections">
-          <a class="cab-door" data-ch="teach" href="#teach" data-goto="#teach" data-track="door-teach"><b>Teach</b><small>for schools</small></a>
-          <a class="cab-door" data-ch="think" href="#think" data-goto="#think" data-track="door-think"><b>Think</b><small>for universities</small></a>
-          <a class="cab-door" data-ch="make" href="#make" data-goto="#make" data-track="door-make"><b>Make</b><small>a tutor, an editor, a designer, a consultant</small></a>
+          <a class="cab-door" data-door="teach" href="#teach" data-goto="#teach" data-track="door-teach"><b>Teach</b><small>Tutoring&nbsp;· Writing&nbsp;· Classes&nbsp;· Lectures</small></a>
+          <a class="cab-door" data-door="design" href="#design" data-goto="#design" data-track="door-design"><b>Design</b><small>Lessons&nbsp;· Modules&nbsp;· Curricula</small></a>
+          <a class="cab-door" data-door="consult" href="#consult" data-goto="#consult" data-track="door-consult"><b>Consult</b><small>A&nbsp;person&nbsp;· A&nbsp;school&nbsp;· A&nbsp;university</small></a>
+          <a class="cab-door" href="#about" data-goto="#about" data-track="door-about"><b>About me</b><small>Qualifications&nbsp;· Research&nbsp;· Resume</small></a>
         </nav>
-        <p class="cab-write"><a class="textlink" href="#write" data-goto="#write" data-track="write-hero">Write to me</a></p>
       </div>
       <div class="cab-object solid-wrap">
-      <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
+      <div class="solid-box">
+        <canvas id="solid" tabindex="0" aria-label="A slowly turning Platonic solid. Drag to turn it, press Enter to change it."></canvas>
+        <blockquote class="solid-voice" id="solid-voice" aria-hidden="true"><p></p><small></small></blockquote>
+      </div>
       <p class="solid-label"><span id="solid-el">The cosmos</span> · <span id="solid-name">Dodecahedron</span></p>
       <p class="solid-hint">After Plato’s <em>Timaeus</em> · drag to turn · tap to change</p>
       </div>
@@ -195,17 +201,217 @@
   </div>
 </section>
 
-<!-- ===================== 3. Teach ===================== -->
-<section id="teach" class="chapter compact cabinet">
-  <div class="cab pane">
-    <div class="wrap cab-grid obj-wide">
-      <div class="cab-words">
-        <p class="eyebrow">For schools</p>
-        <h2 class="display">Teach</h2>
-        <p class="line">Learners do their best thinking when they feel known and respected.</p>
-        <a class="btn cab-down" href="#teach-detail" data-goto="#teach-detail" data-track="down-teach">More →</a>
+<!-- ===================== 2. My services: the sketch pointing at the blackboard ===================== -->
+<section id="services" class="chapter cabinet">
+  <div class="cab pane svc-pane">
+    <div class="wrap">
+      <div class="stage">
+        <header class="svc-head">
+          <p class="eyebrow">For students &amp; clients</p>
+          <h2 class="svc-title">My services</h2>
+          <p class="rate r-avail">Taking new clients now</p>
+        </header>
+
+        <div class="bb" id="board" data-open="teach">
+          <div class="tabs" role="group" aria-label="My services">
+            <button type="button" data-tab="teach" aria-pressed="true">Teach</button>
+            <button type="button" data-tab="design" aria-pressed="false">Design</button>
+            <button type="button" data-tab="consult" aria-pressed="false">Consult</button>
+          </div>
+          <div class="bb-body">
+            <div class="bb-menu" id="bb-menu">
+              <ul class="items" data-col="teach">
+              <li class="item" data-shape="0">
+                <button class="item-btn" type="button" data-detail="tutoring">
+                  <span class="item-a"><span class="item-name">Tutoring</span> <span class="item-rate">From R350 an hour</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">One to one, in person or online</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="1">
+                <button class="item-btn" type="button" data-detail="writing">
+                  <span class="item-a"><span class="item-name">Writing</span> <span class="item-rate">From R450 an hour</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">Feedback on your writing, from argument to style</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="4">
+                <button class="item-btn" type="button" data-detail="classes">
+                  <span class="item-a"><span class="item-name">Classes</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">Workshops on set works, for a class or group</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="5">
+                <button class="item-btn" type="button" data-detail="lectures">
+                  <span class="item-a"><span class="item-name">Lectures</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">Guest lectures and contract teaching</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              </ul>
+              <ul class="items" data-col="design">
+              <li class="item" data-shape="2">
+                <button class="item-btn" type="button" data-detail="lesson">
+                  <span class="item-a"><span class="item-name">Lessons</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">Lessons, with all their materials, ready to teach</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="6">
+                <button class="item-btn" type="button" data-detail="module">
+                  <span class="item-a"><span class="item-name">Modules</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">A whole module, with its study guide</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="7">
+                <button class="item-btn" type="button" data-detail="curriculum">
+                  <span class="item-a"><span class="item-name">Curricula</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">Modules ordered so that each builds on the last.</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              </ul>
+              <ul class="items" data-col="consult">
+              <li class="item" data-shape="8">
+                <button class="item-btn" type="button" data-detail="person">
+                  <span class="item-a"><span class="item-name">For You</span> <span class="item-rate">R450 an hour</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">One to one, for a question of your own</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="3">
+                <button class="item-btn" type="button" data-detail="school">
+                  <span class="item-a"><span class="item-name">For Your School</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">An AI policy, and a workshop for your staff</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              <li class="item" data-shape="9">
+                <button class="item-btn" type="button" data-detail="university">
+                  <span class="item-a"><span class="item-name">For Your University</span> <span class="item-rate">Quoted per project, after a free intro call</span> <span class="item-hint" aria-hidden="true"></span></span>
+                  <span class="item-b"><span class="item-line">An AI review of a module or a whole department</span> <span class="item-pts"></span></span>
+                </button>
+              </li>
+              </ul>
+            </div>
+            <button class="bb-chev" id="bb-chev" type="button" aria-label="Back to all the services" aria-controls="bb-menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+            <div class="bb-stage">
+              <canvas class="tetra" id="tetra" tabindex="0" aria-label="A slowly turning shape, one for each service. Drag to turn it, press Enter to change it."></canvas>
+              <p class="solid-label"><span id="maker-name">Tutoring</span><span id="maker-what" hidden></span></p>
+              <p class="solid-hint" id="maker-hint">drag to turn · tap to change</p>
+            </div>
+            <div class="bb-detail" id="bb-detail" aria-labelledby="bb-title" hidden></div>
+          </div>
+          <div class="me" role="img" aria-label="A line drawing of Wehan Coombs, pointing at the board"></div>
+        </div>
       </div>
-      <div class="cab-object">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. About me ===================== -->
+<section id="about" class="chapter compact cabinet">
+  <div class="cab pane about-pane">
+    <div class="wrap about-grid">
+      <div class="ab-side">
+        <p class="eyebrow">Pretoria East · South Africa</p>
+        <div class="ab-id">
+          <button class="ab-seal" id="ab-seal" type="button" aria-label="Docendo discimus. Press to spin the coin.">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <defs>
+                <path id="sp-ab" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/>
+                <filter id="coin-pits" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="11"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.5 -.62"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+                <filter id="coin-wear" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.4 -.5"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+              </defs>
+              <circle class="coin-side" cx="60" cy="66" r="55.5"/>
+              <circle class="coin-mill" cx="60" cy="66" r="54.2"/>
+              <circle class="coin-back" cx="60" cy="60" r="55.5"/>
+              <circle class="seal-ring" cx="60" cy="60" r="55.5"/>
+              <circle class="coin-wear" cx="60" cy="60" r="55" filter="url(#coin-wear)"/>
+              <circle class="coin-pits" cx="60" cy="60" r="55" filter="url(#coin-pits)"/>
+              <circle class="coin-inner" cx="60" cy="60" r="35.5"/>
+              <text class="seal-text"><textPath href="#sp-ab">Docendo discimus · Docendo discimus · </textPath></text>
+              <text class="seal-letter" x="60" y="75">W</text>
+              <path class="seal-hex" d="M60,35 L81.7,72.5 L38.3,47.5 L60,85 L81.7,47.5 L38.3,72.5 Z"/>
+            </svg>
+          </button>
+          <h2 class="ab-title">About<br>me</h2>
+        </div>
+        <p class="ab-open">Also open to teaching and lecturing posts.</p>
+        <blockquote class="ab-why">I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives. Above all, I keep learning from the people I teach.</blockquote>
+      </div>
+
+      <div class="ab-main">
+        <div class="ab-figs room">
+        <ul class="stats">
+          <li><button type="button" data-sheet="posts"><b>15</b><span>years teaching at university</span></button></li>
+          <li><button type="button" data-sheet="courses"><b>4,000+</b><span>students taught</span></button></li>
+          <li><button type="button" data-sheet="courses"><b>5</b><span>self-designed modules</span></button></li>
+          <li><button type="button" data-sheet="testimonials"><b>4.81</b><span>out of 5 · student rating, 2026</span></button></li>
+          <li><button type="button" data-sheet="abbotts"><b>95</b><span>/100 mentor assessment</span></button></li>
+          <li><button type="button" data-sheet="abbotts"><b>98</b><span>/100 observed lesson</span></button></li>
+        </ul>
+        </div>
+        <div class="ab-sky">
+          <p class="eyebrow">My research, constellated · tap a star</p>
+          <div class="sky">
+            <svg id="sky" viewBox="0 0 1040 450" role="group" aria-label="A constellation of my research interests. Each star opens a short note."></svg>
+          </div>
+        </div>
+        <p class="index">
+          <button type="button" data-sheet="publications">Research &amp; publications</button>
+          <button type="button" data-sheet="posts">Posts</button>
+          <button type="button" data-sheet="ai">The age of AI</button>
+          <button type="button" data-sheet="testimonials">Testimonials</button>
+        </p>
+      </div>
+
+      <div class="ab-more write-side">
+        <p class="ab-btns">
+          <button class="btn" type="button" data-sheet="about">About me</button>
+          <button class="btn" type="button" data-sheet="qualifications">Qualifications</button>
+        </p>
+        <p class="index ab-links">
+          <a href="https://www.linkedin.com/in/wehan-coombs">LinkedIn</a>
+          <a href="https://orcid.org/0000-0001-9151-7344">ORCID</a>
+          <a href="https://www.researchgate.net/profile/Wehan-Coombs">ResearchGate</a>
+        </p>
+        <p class="ab-resume"><button type="button" data-sheet="resume">My full resume</button></p>
+        <p class="ab-note">Referees are listed in my full resume.</p>
+        <p class="ab-foot"><span class="motto-wrap"><button class="motto" type="button" aria-describedby="motto-tip"><em>Docendo discimus.</em></button><span id="motto-tip" role="tooltip"><em>Docendo discimus</em>: by teaching, we learn. After Seneca, <em>Letters to Lucilius</em>, 7.8.</span></span> <span>© 2026 Wehan M. Coombs</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Kept out of sight until a details card on the services board asks for them: the lesson shelf, the two recordings, the study-guide shelf, the arc of a lesson -->
+<div class="stash" id="stash" aria-hidden="true">
+        <p class="eyebrow">What I taught in 2026 · tap a spine</p>
+        <div class="shelf" role="group" aria-label="What I taught in 2026">
+          <button class="book b-mac" type="button" data-item="macbeth"><span>Macbeth</span></button>
+          <button class="book b-temp" type="button" data-item="tempest"><span>The Tempest</span></button>
+          <button class="book b-poems" type="button" data-item="poems" aria-expanded="false"><span>Poems</span></button>
+          <button class="book b-gram" type="button" data-item="grammar"><span>Grammar</span></button>
+          <button class="case b-film" type="button" data-item="film"><span>Film study</span></button>
+          <button class="book b-phil" type="button" data-item="enrichment"><span>Philosophy</span></button>
+        </div>
+        <div class="shelf-detail" id="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson.</p></div>
+        <p class="eyebrow">Watch me teach</p>
+        <div class="lectures">
+          <div class="lecture" data-src="https://drive.google.com/file/d/1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ/preview">
+            <button class="play" type="button" aria-label="Play: first-year metaphysics lecture, live online, 4 May 2021"><span></span></button>
+            <p class="l-cap"><strong>First-year metaphysics, live</strong>FIL110 · 2021 · a class of 485</p>
+          </div>
+          <div class="lecture" data-src="https://drive.google.com/file/d/1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3/preview">
+            <button class="play" type="button" aria-label="Play: honours seminar on esotericism, live online, 21 February 2024"><span></span></button>
+            <p class="l-cap"><strong>Honours seminar, live</strong>FIL710 · 2024 · esotericism</p>
+          </div>
+        </div>
+        <p class="hint">Recorded as they happened · <button class="textlink" type="button" data-sheet="lectures">about these</button></p>
+        <button class="guides-label" type="button" data-sheet="guides"><span class="eyebrow">Study guides I wrote</span><span class="g-list">Five, 2018 to 2026</span></button>
+        <div class="guide-shelf" role="group" aria-label="Study guides I wrote">
+          <button class="gbook" type="button" data-sheet="guide-c5" title="FIL710 · 810 · 2026"><span>Philosophy as a Rite of Rebirth</span></button>
+          <button class="gbook" type="button" data-sheet="guide-c3" title="FIL710 · 2024"><span>The (Secret) History of Thought</span></button>
+          <button class="gbook" type="button" data-sheet="guide-c4" title="FIL220 · 2024"><span>The Good Life</span></button>
+          <button class="gbook" type="button" data-sheet="guide-c2" title="FIL110 · 2021"><span>Metaphysics and Epistemology</span></button>
+          <button class="gbook" type="button" data-sheet="guide-c1" title="FIL251 · 2018"><span>Moral and Political Philosophy</span></button>
+        </div>
+        <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
         <figure class="arc">
           <figcaption class="eyebrow">The arc of a lesson</figcaption>
           <svg viewBox="0 0 520 300" aria-label="A lesson rises from what learners know, through a challenge, to ideas they own">
@@ -223,342 +429,29 @@
           </svg>
           <p class="arc-text" id="arc-text">Start from what they already know.</p>
         </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 4. Think ===================== -->
-<section id="think" class="chapter compact cabinet">
-  <div class="cab pane">
-    <div class="wrap cab-grid obj-wider">
-      <div class="cab-words">
-        <p class="eyebrow">For universities</p>
-        <h2 class="display">Think</h2>
-        <p class="line">I believe philosophy is much more than academic discourse.</p>
-        <a class="btn cab-down" href="#think-detail" data-goto="#think-detail" data-track="down-think">More →</a>
-      </div>
-      <div class="cab-object">
-      <div class="sky-wrap">
-        <p class="eyebrow">My research, constellated · tap a star</p>
-        <div class="sky">
-          <svg id="sky" viewBox="0 0 1040 450" role="group" aria-label="A constellation of my research interests. Each star opens a short note."></svg>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 5. Make ===================== -->
-<section id="make" class="chapter compact cabinet">
-  <div class="cab pane">
-    <div class="wrap cab-grid">
-      <div class="cab-words">
-        <p class="eyebrow">For students &amp; clients</p>
-        <h2 class="display">Make</h2>
-        <p class="line">Tutoring, editing, learning design, and philosophical and AI consulting. Pretoria East, or online anywhere.</p>
-        <a class="btn cab-down" href="#make-detail" data-goto="#make-detail" data-track="down-make">More →</a>
-      </div>
-      <div class="cab-object">
-        <div class="solid-wrap maker">
-          <canvas class="tetra" id="tetra" tabindex="0" aria-label="A slowly turning shape, one for each service. Drag to turn it, press Enter to change it."></canvas>
-          <p class="solid-label"><button class="maker-name" id="maker-name" type="button" data-sheet="tutoring" data-track="maker-open">Tutoring</button> · <span id="maker-what">Quills</span></p>
-          <p class="solid-hint">drag to turn · tap to change</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== 7. Write ===================== -->
-<section id="write" class="chapter cabinet">
-  <div class="pane write-pane">
-  <div class="wrap cab-grid write-grid">
-    <div class="cab-words">
-      <p class="eyebrow">Contact</p>
-      <h2 class="display">Write<br><em>to me.</em></h2>
-      <p class="mail-row"><a class="mail" href="mailto:wehancoombs@gmail.com">wehancoombs@gmail.com</a><button class="copy" type="button" data-copy="wehancoombs@gmail.com">Copy</button></p>
-      <p class="write-acts">
-        <button class="btn solid" type="button" data-sheet="request-any">Request a service</button>
-        <button class="btn" type="button" data-sheet="book" data-track="book-contact">Book an intro call</button>
-      </p>
-    </div>
-    <div class="write-side">
-      <div class="seals">
-        <a class="seal" href="cv/Wehan-Coombs-CV.pdf" data-track="cv-general" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-g2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-g2">General CV · PDF · General CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">W</text>
-          </svg>
-          <span class="seal-label">General CV<small>two pages, all of it</small></span>
-        </a>
-        <a class="seal teach" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-t2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-t2">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">T</text>
-          </svg>
-          <span class="seal-label">Teaching CV<small>for schools</small></span>
-        </a>
-        <a class="seal think" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-a2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-a2">Academic CV · PDF · Academic CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">Φ</text>
-          </svg>
-          <span class="seal-label">Academic CV<small>for universities</small></span>
-        </a>
-        <a class="seal make" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-f2" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-f2">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">F</text>
-          </svg>
-          <span class="seal-label">Freelance CV<small>for clients</small></span>
-        </a>
-      </div>
-      <p class="index">
-        <button type="button" data-sheet="about">About me</button>
-        <button type="button" data-sheet="qualifications">Qualifications</button>
-        <button type="button" data-sheet="why">Why I teach</button>
-        <button type="button" data-sheet="referees">Referees</button>
-        <button type="button" data-sheet="resume">The full resume</button>
-      </p>
-      <p class="write-links">
-        <a href="https://www.linkedin.com/in/wehan-coombs">LinkedIn</a> ·
-        <a href="https://orcid.org/0000-0001-9151-7344">ORCID</a> ·
-        <a href="https://www.researchgate.net/profile/Wehan-Coombs">ResearchGate</a> ·
-        <a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view">Full resume in Google Docs</a>
-      </p>
-    </div>
-  </div>
-  <footer>
-    <div class="wrap">
-      <button class="motto" type="button" data-sheet="why"><em>Docendo discimus.</em></button>
-      <span>© 2026 Wehan M. Coombs</span>
-    </div>
-  </footer>
-  </div>
-</section>
-
-</main>
-
-<!-- ===================== The details: side rooms that slide in from the right ===================== -->
-<div class="pane detail cab-detail compact" id="teach-detail" data-ch="teach">
-  <div class="wrap room room-teach">
-    <button class="detail-back textlink" type="button" data-goto="#teach">← Teach</button>
-    <div class="room-grid">
-      <div class="r-shelf">
-        <p class="eyebrow">What I taught in 2026 · tap a spine</p>
-        <div class="shelf" role="group" aria-label="What I taught in 2026">
-          <button class="book b-mac" type="button" data-item="macbeth"><span>Macbeth</span></button>
-          <button class="book b-temp" type="button" data-item="tempest"><span>The Tempest</span></button>
-          <button class="book b-poems" type="button" data-item="poems" aria-expanded="false"><span>Poems</span></button>
-          <button class="book b-gram" type="button" data-item="grammar"><span>Grammar</span></button>
-          <button class="case b-film" type="button" data-item="film"><span>Film study</span></button>
-          <button class="book b-phil" type="button" data-item="enrichment"><span>Philosophy</span></button>
-        </div>
-        <div class="shelf-detail" id="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson.</p></div>
-      </div>
-      <div class="r-figs">
-        <ul class="stats">
-          <li><button type="button" data-sheet="abbotts"><b data-count="95">95</b><span>/100 mentor assessment</span></button></li>
-          <li><button type="button" data-sheet="abbotts"><b data-count="98">98</b><span>/100 observed lesson</span></button></li>
-          <li><button type="button" data-sheet="approach"><b data-count="10">10</b><span>weeks in charge of classes</span></button></li>
-        </ul>
-      </div>
-      <div class="r-quote">
-        <div class="voices" data-set="teach" aria-label="What people say about my teaching"></div>
-      </div>
-      <div class="r-where">
-        <p class="eyebrow">Where I taught</p>
-        <p class="index">
-          <button type="button" data-sheet="abbotts">Abbotts College</button>
-          <button type="button" data-sheet="garsfontein">Hoërskool Garsfontein</button>
-        </p>
-      </div>
-      <div class="r-how">
-        <p class="eyebrow">How I work</p>
-        <p class="index">
-          <button type="button" data-sheet="approach">Approach</button>
-          <button type="button" data-sheet="beyond">Beyond the classroom</button>
-          <button type="button" data-sheet="ai">In the age of AI</button>
-          <button type="button" data-sheet="approach">How I plan a lesson →</button>
-        </p>
-      </div>
-      <div class="r-cv">
-        <a class="seal mini" href="cv/Wehan-Coombs-FET-CV.pdf" data-track="cv-teaching" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-t" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-t">Teaching CV · PDF · Teaching CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">T</text>
-          </svg>
-          <span class="seal-label">Teaching CV<small>two pages, PDF</small></span>
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
 
-<div class="pane detail cab-detail compact" id="think-detail" data-ch="think">
-  <div class="wrap room room-think">
-    <button class="detail-back textlink" type="button" data-goto="#think">← Think</button>
-    <div class="room-grid">
-      <div class="r-lect">
-        <p class="eyebrow">Watch me teach</p>
-        <div class="lectures">
-          <div class="lecture" data-src="https://drive.google.com/file/d/1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ/preview">
-            <button class="play" type="button" aria-label="Play: first-year metaphysics lecture, live online, 4 May 2021"><span></span></button>
-            <p class="l-cap"><strong>First-year metaphysics, live</strong>FIL110 · 2021 · a class of 485</p>
-          </div>
-          <div class="lecture" data-src="https://drive.google.com/file/d/1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3/preview">
-            <button class="play" type="button" aria-label="Play: honours seminar on esotericism, live online, 21 February 2024"><span></span></button>
-            <p class="l-cap"><strong>Honours seminar, live</strong>FIL710 · 2024 · esotericism</p>
-          </div>
-        </div>
-        <p class="hint">Recorded as they happened · <button class="textlink" type="button" data-sheet="lectures">about these</button></p>
-      </div>
-      <div class="r-figs">
-        <ul class="stats">
-          <li><button type="button" data-sheet="posts"><b data-count="15">15</b><span>years lecturing</span></button></li>
-          <li><button type="button" data-sheet="courses"><b data-count="5">5</b><span>self-designed modules</span></button></li>
-          <li><button type="button" data-sheet="testimonials"><b>4.81</b><span>out of 5 · student rating, 2026</span></button></li>
-        </ul>
-      </div>
-      <div class="r-quote">
-        <div class="voices" data-set="think" aria-label="What students and colleagues say"></div>
-        <p class="voices-extra"><button class="textlink" type="button" data-sheet="testimonials">Testimonials</button></p>
-      </div>
-      <div class="r-guides">
-        <button class="guides-label" type="button" data-sheet="guides"><span class="eyebrow">Study guides I wrote</span><span class="g-list">Five, 2018 to 2026</span></button>
-        <div class="guide-shelf" role="group" aria-label="Study guides I wrote">
-          <button class="gbook" type="button" data-sheet="guide-c5" title="FIL710 · 810 · 2026"><span>Philosophy as a Rite of Rebirth</span></button>
-          <button class="gbook" type="button" data-sheet="guide-c3" title="FIL710 · 2024"><span>The (Secret) History of Thought</span></button>
-          <button class="gbook" type="button" data-sheet="guide-c4" title="FIL220 · 2024"><span>The Good Life</span></button>
-          <button class="gbook" type="button" data-sheet="guide-c2" title="FIL110 · 2021"><span>Metaphysics and Epistemology</span></button>
-          <button class="gbook" type="button" data-sheet="guide-c1" title="FIL251 · 2018"><span>Moral and Political Philosophy</span></button>
-        </div>
-        <p class="hint">Tap a guide to read it here · <button class="textlink" type="button" data-sheet="guides">all five, and the readers</button></p>
-      </div>
-      <div class="r-links">
-        <p class="eyebrow">Teaching</p>
-        <p class="index">
-          <button type="button" data-sheet="courses">Courses</button>
-          <button type="button" data-sheet="lectures">Lectures</button>
-          <button type="button" data-sheet="philosophy">Teaching philosophy</button>
-        </p>
-        <p class="eyebrow">Research</p>
-        <p class="index">
-          <button type="button" data-sheet="publications">Research</button>
-          <button type="button" data-sheet="papers">Papers</button>
-          <button type="button" data-sheet="posts">Posts</button>
-          <button type="button" data-sheet="ai">The age of AI</button>
-        </p>
-      </div>
-      <div class="r-cv">
-        <a class="seal mini" href="cv/Wehan-Coombs-PhD-CV.pdf" data-track="cv-academic" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-a" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-a">Academic CV · PDF · Academic CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">Φ</text>
-          </svg>
-          <span class="seal-label">Academic CV<small>two pages, PDF</small></span>
-        </a>
-      </div>
-    </div>
+<!-- ===================== Contact: a slim bar fixed to the bottom of every cabinet, and the small panel that opens from it ===================== -->
+<div class="bar" id="bar">
+  <div class="bar-in">
+    <button class="btn solid bar-book" type="button" data-sheet="book" data-track="book-bar">Book a free intro call</button>
+    <span class="bar-mail"><a class="bar-addr" href="mailto:wehancoombs@gmail.com" data-track="mail-bar">wehancoombs@gmail.com</a><button class="copy" type="button" data-copy="wehancoombs@gmail.com">Copy</button></span>
+    <button class="btn bar-write" id="bar-write" type="button" aria-expanded="false" aria-controls="panel" data-track="write-bar">Write to me</button>
+    <button class="btn solid bar-one" id="bar-one" type="button" aria-expanded="false" aria-controls="panel" data-track="contact-bar">Book a free intro call · Write to me</button>
   </div>
 </div>
-
-<div class="pane detail cab-detail compact" id="make-detail" data-ch="make">
-  <div class="wrap room room-make">
-    <button class="detail-back textlink" type="button" data-goto="#make">← Make</button>
-    <div class="room-grid">
-      <p class="rate r-avail">Taking new clients for 2027</p>
-      <div class="services r-cards">
-        <article class="svc">
-          <div class="svc-vis">
-            <svg class="quill" viewBox="0 0 110 110" aria-hidden="true">
-              <g class="ghost">
-                <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
-                <path d="M18 92 C 34 70, 52 50, 76 28"/>
-                <path d="M18 92 L 10 102"/>
-              </g>
-              <path d="M18 92 C 30 60, 50 38, 86 16 C 80 44, 66 66, 36 84 Z"/>
-              <path d="M18 92 C 34 70, 52 50, 76 28"/>
-              <path d="M18 92 L 10 102"/>
-            </svg>
-          </div>
-          <h3><button type="button" data-sheet="tutoring">Tutoring</button></h3>
-          <p class="rate">From R350 an hour</p>
-          <div class="svc-actions">
-            <button class="btn solid" type="button" data-sheet="request-tutoring">Request</button>
-            <button class="textlink" type="button" data-sheet="tutoring">Details</button>
-          </div>
-        </article>
-        <article class="svc">
-          <div class="svc-vis"><span class="typer"><span class="txt"></span><span class="caret"></span></span></div>
-          <h3><button type="button" data-sheet="editing">Editing</button></h3>
-          <p class="rate">From R0.30 a word, or R450 an hour</p>
-          <div class="svc-actions">
-            <button class="btn solid" type="button" data-sheet="request-editing">Request</button>
-            <button class="textlink" type="button" data-sheet="editing">Details</button>
-          </div>
-        </article>
-        <article class="svc">
-          <div class="svc-vis"><span class="blocks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
-          <h3><button type="button" data-sheet="design">Learning design</button></h3>
-          <p class="rate">Quoted per project, after a free intro call</p>
-          <div class="svc-actions">
-            <button class="btn solid" type="button" data-sheet="request-design">Request</button>
-            <button class="textlink" type="button" data-sheet="design">Details</button>
-          </div>
-        </article>
-        <article class="svc">
-          <div class="svc-vis">
-            <svg class="tetractys" viewBox="0 0 120 110" aria-hidden="true">
-              <circle cx="60" cy="16" r="6"/>
-              <circle cx="42" cy="42" r="6"/><circle cx="78" cy="42" r="6"/>
-              <circle cx="24" cy="68" r="6"/><circle cx="60" cy="68" r="6"/><circle cx="96" cy="68" r="6"/>
-              <circle cx="6" cy="94" r="6"/><circle cx="42" cy="94" r="6"/><circle cx="78" cy="94" r="6"/><circle cx="114" cy="94" r="6"/>
-            </svg>
-          </div>
-          <h3><button type="button" data-sheet="consulting">Philosophical &amp; AI consulting</button></h3>
-          <p class="rate">Quoted per project, after a free intro call</p>
-          <div class="svc-actions">
-            <button class="btn solid" type="button" data-sheet="request-consulting">Request</button>
-            <button class="textlink" type="button" data-sheet="consulting">Details</button>
-          </div>
-        </article>
-      </div>
-      <div class="r-book">
-        <button class="btn solid book-big" type="button" data-sheet="book" data-track="book-make">Book a free intro call</button>
-        <button class="textlink" type="button" data-sheet="working">Working with me</button>
-      </div>
-      <div class="r-quote">
-        <div class="voices" data-set="make" aria-label="What students say about working with me"></div>
-      </div>
-      <div class="r-cv">
-        <a class="seal mini" href="cv/Wehan-Coombs-Freelance-CV.pdf" data-track="cv-freelance" target="_blank" rel="noopener">
-          <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="sp-f" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
-            <circle class="seal-ring" cx="60" cy="60" r="56"/>
-            <text class="seal-text"><textPath href="#sp-f">Freelance CV · PDF · Freelance CV · PDF · </textPath></text>
-            <text class="seal-letter" x="60" y="75">F</text>
-          </svg>
-          <span class="seal-label">Freelance CV<small>two pages, PDF</small></span>
-        </a>
-      </div>
-    </div>
+<aside class="panel" id="panel" aria-labelledby="panel-title" hidden>
+  <div class="panel-head">
+    <p class="eyebrow">Contact</p>
+    <h3 id="panel-title" tabindex="-1">Write to me</h3>
+    <button class="close" id="panel-close" type="button" aria-label="Close">×</button>
   </div>
-</div>
+  <div class="panel-top">
+    <button class="btn solid" type="button" data-sheet="book" data-track="book-panel">Book a free intro call</button>
+    <span class="bar-mail"><a class="bar-addr" href="mailto:wehancoombs@gmail.com" data-track="mail-panel">wehancoombs@gmail.com</a><button class="copy" type="button" data-copy="wehancoombs@gmail.com">Copy</button></span>
+  </div>
+  <div class="panel-body sheet-body" id="panel-body"></div>
+</aside>
 
 <!-- ===================== The library: everything the sheets can show ===================== -->
 <div id="library" hidden>
@@ -566,7 +459,7 @@
   <article id="s-about" data-art="person" data-ch="threshold" data-title="About me">
     <p>I joined the Department of Philosophy at the University of Pretoria as a tutor in 2010 and stayed on as assistant lecturer and then head lecturer, teaching first-year classes of around five hundred students and designing four modules from scratch. From 2024 to 2026 I held a postdoctoral research fellowship at the University of Johannesburg on Platonic and African esotericism.</p>
     <p>In 2026 I turned to the school classroom. During my Postgraduate Certificate in Education I taught Grade 10 and 11 English at Abbotts College Pretoria East and Hoërskool Garsfontein, and found the same pleasure there that I had found in the lecture hall: watching a room of people start to think together.</p>
-    <p>Alongside teaching I tutor, edit, build study materials and simple web tools for learning, and think things through with people who need a philosopher in the room.</p>
+    <p>Alongside teaching I tutor, give feedback on writing, build study materials, and think things through with people who need a philosopher in the room.</p>
     <h4>At a glance</h4>
     <ul class="list">
       <li>PhD in Philosophy (2023), MA and BA Honours cum laude, BA in English Literature and Philosophy, all from the University of Pretoria</li>
@@ -586,12 +479,12 @@
       <li><b>2018</b> A module redesigned · Partly redesigned Introduction to Moral and Political Philosophy for business students. UP Doctoral Support Bursary for Ainigma, 2018 to 2020.</li>
       <li><b>2019</b> A first-year course of my own · Created Introduction to Metaphysics and Epistemology from scratch and ran it as head lecturer for classes of around 500, 2019 to 2021. Still in use at UP.</li>
       <li><b>2020</b> A paper presented · The Curious Case of Neoplatonic Ritual Magic: a case study in divergent approaches to esoteric religious philosophy, at the PSSA Conference, University of KwaZulu-Natal.</li>
-      <li><b>2023</b> Doctorate · PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of about 300.</li>
+      <li><b>2023</b> Doctorate · PhD in Philosophy: Ainigma, Plato’s Esotericism in Context. Also taught Philosophy of Medicine to a class of more than 700.</li>
       <li><b>2024</b> Postdoc at UJ · Postdoctoral Research Fellow at the University of Johannesburg: Platonic and African Esotericism. Designed The (Secret) History of Thought and The Good Life. Workshop on publishing in international journals with Prof Thaddeus Metz.</li>
       <li><b>2025</b> More papers · Reflexive Esotericism at the PSSA, and Animism, Consilience and the Rights of Nature at the South African Society for Environmental Philosophy.</li>
       <li><b>2026</b> Into the classroom · PGCE practicums at Hoërskool Garsfontein and Abbotts College Pretoria East. 120-hour TESOL/TEFL. Honours course: Philosophy as a Rite of Rebirth. PSSA paper with Mitchell Black.</li>
     </ol>
-    <p class="more"><button type="button" data-sheet="qualifications">Qualifications in full →</button> <button type="button" data-sheet="why">Why I teach →</button></p>
+    <p class="more"><button type="button" data-sheet="qualifications">Qualifications in full →</button></p>
   </article>
 
   <article id="s-qualifications" data-art="scroll" data-ch="threshold" data-title="Qualifications">
@@ -611,18 +504,13 @@
     </ul>
   </article>
 
-  <article id="s-why" data-art="lamp" data-ch="threshold" data-title="Why I teach">
-    <p>I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives. I bring fifteen years of teaching experience to any school or department, along with a collaborative spirit, high professional standards and genuine care. Above all, I keep learning from the people I teach.</p>
-    <p class="motto-line"><em>Docendo discimus.</em> By teaching, we learn.</p>
-    <p class="more"><button type="button" data-sheet="philosophy">My teaching philosophy, at length →</button></p>
-  </article>
-
   <article id="s-approach" data-art="compass" data-ch="teach" data-title="Teaching approach">
-    <blockquote>Learners do their best thinking when they feel known and respected. I start from what they already know, then set a challenge they reason through together in discussion, and end by applying the new skill to their own lives, so they leave with ideas they can call their own.</blockquote>
-    <p>I plan most lessons as a three-part arc. First, I activate what learners already know, often through a vivid scenario or a playful dilemma resonant with their own lives. Then we move to an application phase, a scaffolded exercise that requires them to try something new and potentially fail. Finally, the newly developed skill is actualised by connecting it to some concrete project or real issue in the world that they can apply it to.</p>
-    <p>Ten weeks in charge of classes in 2026: three at Hoërskool Garsfontein in May, seven at Abbotts College Pretoria East from July to September. Learners at this age respond very well to being treated as intellectual partners, much as I treat my university students, with age-appropriate content and careful scaffolding towards curriculum outcomes.</p>
+    <blockquote>Learners do their best thinking when they feel known and respected.</blockquote>
+    <p>I plan most lessons as a three-part arc. First, I wake up what learners already know, often with a vivid scenario or a playful dilemma from their own lives. Then comes a guided exercise where they try something new and are allowed to fail. Finally, they put the new skill to work on a real project or a real issue in the world.</p>
+    <p>Ten weeks in charge of classes in 2026: three at Hoërskool Garsfontein in May, seven at Abbotts College Pretoria East from July to September. Learners this age respond well to being treated as thinking partners, the way I treat my university students, with content pitched at their age and careful steps towards the curriculum outcomes.</p>
     <p>Reading difficult texts closely, building arguments and writing clear, well-structured essays are foundational skills in philosophy, and they make up a large part of what English Home Language asks of learners in Grades 10 to 12. I am used to running courses for cohorts of 500, planning full semesters of lessons and assessments, and marking large volumes of written work fairly and consistently. Tutoring early in my career and honours seminars more recently taught me to work with small groups, so classes of 20 to 40 learners felt natural.</p>
     <p>In the classroom I rely on continual informal assessment: quick questioning, short written tasks and quizzes such as Kahoot, which my mentor at Abbotts singled out as a strength. This lets me adjust a lesson while it is still happening.</p>
+    <p>My full teaching philosophy is in my resume.</p>
     <p class="more"><button type="button" data-sheet="abbotts">Abbotts College →</button> <button type="button" data-sheet="garsfontein">Hoërskool Garsfontein →</button> <button type="button" data-sheet="ai">Teaching in the age of AI →</button></p>
   </article>
 
@@ -648,10 +536,10 @@
     <ul class="facts"><li><b>3</b> <span>weeks in charge of classes</span></li><li><b>2</b> <span>poems, three lessons each</span></li><li><b>8</b> <span>hours of community engagement</span></li></ul>
     <ul class="list">
       <li>Planned and taught Grade 10 English First Additional Language: <button type="button" class="inline" data-sheet="grammar">grammar</button> (conditionals and prepositions) and <button type="button" class="inline" data-sheet="poems">two poems</button>, Bernard Levinson’s <em>Too Many Words</em> and Mongane Wally Serote’s <em>The Clothes</em></li>
-      <li>Built each poem across three lessons: a hook that connected it to the learners’ own lives, a stanza-by-stanza Socratic reading, then marked homework and a personal response</li>
+      <li>Built each poem across three lessons, from a hook in the learners’ own lives to a personal response.</li>
       <li>Eight hours of community engagement with the school’s <em>Kersfees in die Winter</em> charity drive</li>
     </ul>
-    <p class="more"><button type="button" data-sheet="abbotts">Abbotts College →</button> <button type="button" data-sheet="beyond">Beyond the classroom →</button></p>
+    <p class="more"><button type="button" data-sheet="abbotts">Abbotts College →</button></p>
   </article>
 
   <article id="s-macbeth" data-art="crown" data-tone="mac" data-ch="teach" data-title="Macbeth">
@@ -694,8 +582,8 @@
     <div class="lesson-bar"><span style="flex:5"><b>5</b>Hook</span><span style="flex:5"><b>5</b>Introduction</span><span style="flex:25"><b>25</b>Body</span><span style="flex:5"><b>5</b>Consolidation</span></div>
     <ol class="steps">
       <li><b>Hook.</b> I drew little black wings on the whiteboard and physically rearranged the classroom before the learners arrived. I arranged a group of desks into a central banquet table for the nobles, set up the remaining desks in a semi-circle formation around it, and placed fizzy sweets on the central table to act as stand-ins for the magical banquet.</li>
-      <li><b>Introduction.</b> I assigned the reading roles and positioned the learners physically in the space. I placed the noble characters at the central banquet table and designated the rest of the classroom in the semi-circle as the surrounding spirits, placing the learner reading Ariel front and center. I set the context for the scene, explaining that Prospero’s trap for the elites was finally closing after they had been wandering the island in exhaustion and increasing hopelessness and plotting.</li>
-      <li><b>Body.</b> We read the scene aloud. I paused to analyze the nobles’ physical exhaustion and Alonso’s despair over his missing son. When we reached the climax of the scene, I triggered dramatic music and thunderstorm effects while Ariel delivered the Harpy speech condemning the “three men of sin.” We broke down the mechanics of the scene, analyzing how Prospero used the disappearing banquet and Ariel’s accusations as psychological warfare to drive his enemies to madness.</li>
+      <li><b>Introduction.</b> I assigned the reading roles and positioned the learners physically in the space. I placed the noble characters at the central banquet table and designated the rest of the classroom in the semi-circle as the surrounding spirits, placing the learner reading Ariel front and centre. I set the context for the scene, explaining that Prospero’s trap for the elites was finally closing after they had been wandering the island in exhaustion and increasing hopelessness and plotting.</li>
+      <li><b>Body.</b> We read the scene aloud. I paused to analyse the nobles’ physical exhaustion and Alonso’s despair over his missing son. When we reached the climax of the scene, I triggered dramatic music and thunderstorm effects while Ariel delivered the Harpy speech condemning the “three men of sin.” We broke down the mechanics of the scene, analysing how Prospero used the disappearing banquet and Ariel’s accusations as psychological warfare to drive his enemies to madness.</li>
       <li><b>Consolidation.</b> I wrapped up the lesson by highlighting how this sensory overload broke the nobles’ sanity, leaving them completely at Prospero’s mercy. This immersive reading set them up perfectly for the following Monday, where we would watch the Royal Shakespeare Company execute this exact scene with high-budget stage production.</li>
     </ol>
     <p class="more"><button type="button" data-sheet="macbeth">Macbeth →</button> <button type="button" data-sheet="poems">The poems →</button></p>
@@ -746,7 +634,7 @@
       <li><b>Hook.</b> The poem is read quietly by all and then out loud by one learner. We are introduced to the gripping story of the life of the poet. I prompt learners to guess what the poem might be about based on the title and the life and circumstances of the poet.</li>
       <li><b>Introduction.</b> I prompt the learners to imagine someone they care about very much, and then recall a set of clothes often worn by them. Then, imagine coming home to see those clothes hanging, but knowing that person will never return - this drives home the emotional resonance of the poem, and primes us to proceed with the analysis. The type and structure of the poem are briefly introduced.</li>
       <li><b>Body.</b> The analysis of the poem proceeds stanza by stanza through dynamic Socratic questioning and activation of prior knowledge. Specific imagery for the first half of the poem is analysed and open discussion is allowed.</li>
-      <li><b>Consolidation.</b> Findings and discussion is summarized and learners are primed to expect an assessment in the next lesson.</li>
+      <li><b>Consolidation.</b> Findings and discussion is summarised and learners are primed to expect an assessment in the next lesson.</li>
     </ol>
     <p class="more"><button type="button" data-sheet="poem-oompiet">For Oom Piet →</button> <button type="button" data-sheet="poems">All five →</button></p>
   </article>
@@ -768,7 +656,7 @@
       <li><b>Hook.</b> Write XENIA on the board - introduce Christopher Nolan’s recent film adaptation of The Odyssey as a topical pop culture reference to the concept of hospitality - a key theme in the poem. Explain the etymology of the word as a meta-instruction on gaining vocabulary.</li>
       <li><b>Introduction.</b> Get a baseline of learners’ attitudes and general approach to reading and learning poetry. Learners number poem lines. Learners read the poem quietly to themselves, then one volunteer reads it out loud to the class.</li>
       <li><b>Body.</b> The poem is analysed and open discussion is allowed. First the basic narrative structure of the poem and its use of anecdotes is explored. Then specific poetic devices are identified and explained, including role-inversion in lines 1-3, enjambment and symbolism in the first stanza, and consonance in lines 8-9. New vocabulary is also discussed, with a focus on independent learning by mastering etymological basics.</li>
-      <li><b>Consolidation.</b> First half of poem is recapped, next parts of poem are anticipated. Pay attention to which learners have struggled with certain aspects of poetic interpretation in general, and note which aspects of classroom management could be improved for next class.</li>
+      <li><b>Consolidation.</b> First half of poem is recapped, next parts of poem are anticipated.</li>
     </ol>
     <p class="more"><button type="button" data-sheet="poem-herb">The Herb Garden →</button> <button type="button" data-sheet="poems">All five →</button></p>
   </article>
@@ -787,10 +675,10 @@
     <p class="note">6 August 2026</p>
     <div class="lesson-bar"><span style="flex:5"><b>5</b>Hook</span><span style="flex:10"><b>10</b>Introduction</span><span style="flex:20"><b>20</b>Body</span><span style="flex:5"><b>5</b>Consolidation</span></div>
     <ol class="steps">
-      <li><b>Hook.</b> Activation will consist of basically justasking the learners about their past week and weekend, then asking whether they had any particular moments that stood out. This segues into group discussions about memories from their lives with particularly strong sensory components. As this is happening, I will pass around a small bag of lavender root, thereby emphasizing the theme of the connection between memory and senses.</li>
-      <li><b>Introduction.</b> The word RESIDUE will be up on the board and we’ll share some sensory memories. I will read the poem aloud to the students and prompt them to pay special attention to the sensory imagery in the poem. Then we’ll unpack what residue means in this context.</li>
-      <li><b>Body.</b> I will explain the method of identifying and then explaining poetic devices. In other words, learners are instructed that it is not enough to just notice a poetic device, but that they also need to be able to explain what it achieves in the context of the poem. Then learners work in groups to find and explain poetic devices, focusing on stanza 1 &amp; 2 for this lesson.</li>
-      <li><b>Consolidation.</b> We anticipate the next two stanzas and recap what we discovered so far, leaving room for some open discussion. The lesson directly flows into the next one.</li>
+      <li><b>Hook.</b> Activation consisted of basically just asking the learners about their past week and weekend, then asking whether they had any particular moments that stood out. This segued into group discussions about memories from their lives with particularly strong sensory components. As this was happening, I passed around a small bag of lavender root, thereby emphasising the theme of the connection between memory and senses.</li>
+      <li><b>Introduction.</b> The word RESIDUE was up on the board and we shared some sensory memories. I read the poem aloud to the students and prompted them to pay special attention to the sensory imagery in the poem. Then we unpacked what residue means in this context.</li>
+      <li><b>Body.</b> I explained the method of identifying and then explaining poetic devices. In other words, learners were instructed that it is not enough to just notice a poetic device, but that they also need to be able to explain what it achieves in the context of the poem. Then learners worked in groups to find and explain poetic devices, focusing on stanza 1 &amp; 2 for this lesson.</li>
+      <li><b>Consolidation.</b> We anticipated the next two stanzas and recapped what we had discovered so far, leaving room for some open discussion. The lesson directly flowed into the next one.</li>
     </ol>
     <p class="more"><button type="button" data-sheet="poem-poet">The Poet →</button> <button type="button" data-sheet="poems">All five →</button></p>
   </article>
@@ -811,7 +699,7 @@
       <li><b>Hook.</b> A break from assessments: one learner reads, I read for rhythm, gut reactions, then the plot of the play in two minutes.</li>
       <li><b>Device hunt.</b> Groups race the clock to find two devices every few lines, following the clue key. Enjambment is a freebie; scores are held back.</li>
       <li><b>Poiesis.</b> Speech is everyday magic: a skateboarding giraffe appears in every head. Line by line, the groups supply the held-back answers.</li>
-      <li><b>The dilemma.</b> Xenia, residue, a square triangle, and a vote: truth or imagination? Cut right before the bell.</li>
+      <li><b>The dilemma.</b> Xenia, residue, a square circle, and a vote: truth or imagination? Cut right before the bell.</li>
     </ol>
     <blockquote>They struggled with the abstract elements, but they resonated strongly with the connections between the three poems.<cite>My reflection after teaching it</cite></blockquote>
     <p class="more"><button type="button" data-sheet="poems">All five →</button> <button type="button" data-sheet="enrichment">Philosophy for teenagers →</button></p>
@@ -858,7 +746,7 @@
     <p class="note">20 August 2026</p>
     <div class="lesson-bar"><span style="flex:15"><b>15</b>Hook</span><span style="flex:5"><b>5</b>Introduction</span><span style="flex:20"><b>20</b>Body</span><span style="flex:5"><b>5</b>Consolidation</span></div>
     <ol class="steps">
-      <li><b>Hook.</b> I start the lesson by asking, of course, whether they watched the movie, and ask those that did what they thought of it, especially the protagonist Chihiro, and whether she is a traditional hero. Then I pivot to recapping the opening scenes to emphasize the core themes of the film, including environmental degradation, modernisation, adult hypocrisy and identity.</li>
+      <li><b>Hook.</b> I start the lesson by asking, of course, whether they watched the movie, and ask those that did what they thought of it, especially the protagonist Chihiro, and whether she is a traditional hero. Then I pivot to recapping the opening scenes to emphasise the core themes of the film, including environmental degradation, modernisation, adult hypocrisy and identity.</li>
       <li><b>Introduction.</b> I cover the first slide or two and the FRAME technique, as well as some initial notes on the Blog Review assessment.</li>
       <li><b>Body.</b> We work through the slide deck, with focus at every stage on how Miyazaki uses visual storytelling to achieve affects and meanings. Spirited Away turns out to be an excellent and rich example of this, since the spirit world itself is a place that turns abstract ideas into physical effects (eg greed turning people into literal pigs). Key terms are defined and connected to clear examples.</li>
       <li><b>Consolidation.</b> Learners who have not are strongly encouraged to watch the movie and the one they will be comparing it to, Howl’s Moving Castle. Chihiro’s movement through liminal spaces and navigation of complex adult dynamics are framed as a growing sense of identity and courage and overall symbol for the coming of age story of the film.</li>
@@ -884,10 +772,10 @@
       <li><b>Body.</b> I introduce the theoretical framework on the board: Metaphysics (Worldbuilding) vs. Epistemology (POV/Perspective). We work through the presentation, scaffolding the three types of illusion (Literal, Symbolic, Meta). Discuss what it actually means to wake up to reality. I draw the distinction between characters breaking the 4th wall for themselves (Truman) versus characters breaking it for the audience (The Tempest).</li>
       <li><b>Consolidation.</b> I end with a rhetorical question about what it would be like to have the 4th wall broken in real life, pivoting to directly addressing a single learner that ‘you’ve been in a coma, we’ve been trying to reach you, wake up’ to make the point hit home, and then relate this to the concept of awakening in wisdom traditions. Finally, I end with a teaser for the next lesson, asking whether or why any of these abstract philosophical considerations actually matter.</li>
     </ol>
-    <p class="more"><button type="button" data-sheet="film">Film study →</button> <button type="button" data-sheet="philosophy">How I teach at university →</button></p>
+    <p class="more"><button type="button" data-sheet="film">Film study →</button></p>
   </article>
 
-  <article id="s-ai" data-art="spark" data-ch="teach" data-title="Teaching in the age of AI">
+  <article id="s-ai" data-tone="c-consult" data-art="spark" data-ch="teach" data-title="Teaching in the age of AI">
     <p>Generative AI can now write the kind of essay most classrooms use to teach and to assess. The usual response has been reactive: bans, detection software, policing. That leaves the real question open. If a machine can produce the standard essay, what part of learning cannot be automated, and how should teaching be built around it?</p>
     <p>My answer comes from Plato. In the <em>Phaedrus</em> he warned that writing cannot answer for itself: ask a text a question and it only repeats what it says. Philosophy, for him, was dialogue, question and answer between people, which changes the people who take part. That is the part no model can do for a learner, and it is the part I teach.</p>
     <h4>In my classrooms</h4>
@@ -898,34 +786,10 @@
       <li><strong>Assessment rewards thinking that happens in front of me, in class.</strong></li>
     </ul>
     <h4>And in my research</h4>
-    <p>My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, proposed as a 2027 fellowship at the University of Pretoria, works this out properly: what a Platonic account of learning says about teaching once the essay can be automated, and what to design instead.</p>
+    <p>My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, works this out properly: what a Platonic account of learning says about teaching once the essay can be automated, and what to design instead.</p>
     <blockquote>I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.<cite>Dr Mitchell-Ron Black, 2026</cite></blockquote>
     <blockquote>Wehan is in an excellent position to consider ways of using Platonism to shed light on modern teaching with AI.<cite>Prof John F. Finamore, Emeritus Professor of Classics, University of Iowa, 2026</cite></blockquote>
     <p class="more"><button type="button" data-sheet="approach">How I plan a lesson →</button> <button type="button" data-sheet="consulting">AI consulting for schools and teams →</button></p>
-  </article>
-
-  <article id="s-beyond" data-art="people" data-ch="teach" data-title="Beyond the classroom">
-    <h4>Strengths</h4>
-    <div class="pills">
-      <span>Dynamic, engaged classrooms</span><span>Question-led discussion</span><span>Close reading of literature and poetry</span>
-      <span>Essay and argument writing</span><span>Lesson planning and module design</span><span>Rubric design and marking</span>
-      <span>Online and hybrid teaching</span><span>Training and mentoring tutors</span>
-    </div>
-    <h4>Extramurals</h4>
-    <ul class="list">
-      <li><strong>Squash:</strong> league player at Irene Squash Club; keen to help coach or run a school team</li>
-      <li><strong>Debating and public speaking:</strong> can coach debaters and adjudicate</li>
-      <li><strong>General duties:</strong> glad to help with sport (I know the rules of most major codes, from cricket and rugby to soccer and tennis), events and supervision wherever needed</li>
-      <li><strong>Student society:</strong> long-time member of Footnotes, the UP philosophy society (2010 to 2025), helping to organise talks and film screenings</li>
-    </ul>
-    <h4>Professional development</h4>
-    <ul class="list">
-      <li>120-hour TESOL/TEFL certificate, World TESOL Academy (2026), covering grammar, lesson planning and classroom management</li>
-      <li>Faculty of Education Teaching and Learning Week, University of Pretoria (October 2026): AI in School, a workshop and keynote by Ms E. Conradie, Principal of La Rochelle Girls, Paarl; and The Quiet Erosion of Indigenous Language Literacy and the Faculty Language Plan</li>
-      <li>Thirteen research papers presented at philosophy conferences, colloquia and workshops since 2012</li>
-    </ul>
-    <h4>Registration</h4>
-    <p>SACE provisional registration as a student teacher (2026).</p>
   </article>
 
   <article id="s-posts" data-art="cap" data-ch="think" data-title="Academic posts">
@@ -958,7 +822,12 @@
 
   <article id="s-courses" data-art="board" data-ch="think" data-title="Courses designed and taught">
     <ul class="facts"><li><b>4,000+</b> <span>students lectured</span></li><li><b>4</b> <span>modules designed from scratch</span></li><li><b>1</b> <span>partly redesigned</span></li></ul>
-    <p class="note">How many students? Counting only the years I lectured and the class sizes on record, the figure is more than 4,000: first-year classes of 485 to 500 in 2017 and 2019 to 2021, two first-year modules in 2014, large second-year ethics classes in 2016 and 2018, a Philosophy of Medicine class of several hundred in 2023, and the smaller honours and second-year groups since. Four years of tutorials before that are not counted.</p>
+    <p class="note">How many students? Counting only the years I lectured and the class sizes on record, the figure is more than 4,000: first-year classes of 485 to 500 in 2017 and 2019 to 2021, two first-year modules in 2014, large second-year ethics classes in 2016 and 2018, a Philosophy of Medicine class of more than 700 in 2023, and the smaller honours and second-year groups since. Four years of tutorials before that are not counted.</p>
+    <h4>Watch me teach</h4>
+    <p class="small">First-year metaphysics · FIL110 · 4 May 2021 · a class of 485</p>
+    <div class="embed vid" data-src="https://drive.google.com/file/d/1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ/preview"></div>
+    <p class="small">Honours seminar on esotericism · FIL710 · 21 February 2024</p>
+    <div class="embed vid" data-src="https://drive.google.com/file/d/1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3/preview"></div>
     <h4>Designed from scratch</h4>
     <ul class="list">
       <li><strong>FIL710 and FIL810</strong> Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism · Honours · 2026 · <button type="button" class="inline" data-sheet="guide-c5">study guide</button></li>
@@ -1091,7 +960,8 @@
       <blockquote>Excellent knowledge and innovative way of using media.<cite>University of Pretoria mentor lecturer · observed Grade 11 poetry lesson, 2026 · 98 out of 100</cite></blockquote>
       <blockquote>Enhanced the learners’ vocabulary through scaffolding.<cite>Mentor teacher, Abbotts College Pretoria East · formal assessment, 2026 · 95 out of 100, with full marks for classroom competencies</cite></blockquote>
     </div>
-    <p class="more"><button type="button" data-sheet="referees">Referees →</button> <button type="button" data-sheet="ai">Teaching in the age of AI →</button></p>
+    <p>Referees are listed in my full resume.</p>
+    <p class="more"><button type="button" data-sheet="ai">Teaching in the age of AI →</button></p>
   </article>
 
   <article id="s-publications" data-art="scroll" data-ch="think" data-title="Research and publications">
@@ -1106,16 +976,7 @@
     <h4>Theses</h4>
     <p class="pub">PhD (2023). <a href="https://repository.up.ac.za/handle/2263/89290" target="_blank" rel="noopener"><em>Ainigma: Plato’s Esotericism in Context</em></a>. University of Pretoria.</p>
     <p class="pub">MA, cum laude (2016). <a href="https://repository.up.ac.za/handle/2263/57175" target="_blank" rel="noopener"><em>Symphonia: Aristotle versus Plato Critiqued</em></a>. University of Pretoria.</p>
-    <h4>Profiles</h4>
-    <ul class="list">
-      <li><a href="https://orcid.org/0000-0001-9151-7344" target="_blank" rel="noopener">ORCID 0000-0001-9151-7344</a></li>
-      <li><a href="https://www.researchgate.net/profile/Wehan-Coombs" target="_blank" rel="noopener">ResearchGate</a></li>
-      <li><a href="https://repository.up.ac.za/handle/2263/89290" target="_blank" rel="noopener">UP Research Repository</a></li>
-    </ul>
-    <p class="more"><button type="button" data-sheet="papers">Conference papers →</button> <button type="button" data-sheet="funding">Funding and collaboration →</button></p>
-  </article>
-
-  <article id="s-papers" data-art="mic" data-ch="think" data-title="Conference papers">
+    <h4 data-anchor="papers">Conference papers</h4>
     <p>Thirteen papers at conferences, colloquia and workshops since 2012.</p>
     <ol class="timeline">
       <li><b>2026</b> Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis · PSSA Annual Conference, University of Cape Town · co-presented with Mitchell Black</li>
@@ -1137,75 +998,40 @@
       <li>Workshop on Laurence Bloom’s <em>The Principle of Non-contradiction in Plato’s Republic</em>, University of the Witwatersrand (2017) · presenter: The Whole Soul’s Goal: Some Apposite Neoplatonic Perspectives on Embodiment</li>
       <li>Aristotle Colloquium, University of Pretoria (November 2016), held for Aristotle’s 2400th birth year · member of the organising committee and presenter</li>
     </ul>
-  </article>
-
-  <article id="s-funding" data-art="people" data-ch="think" data-title="Funding and collaboration">
-    <h4>Research funding</h4>
+    <h4>Profiles</h4>
     <ul class="list">
-      <li><strong>UJ Postdoctoral Fellowship</strong> · Platonic and African Esotericism · 2024 to 2026</li>
-      <li><strong>UP Doctoral Support Bursary</strong> · Ainigma: Plato’s Esotericism in Context · 2018 to 2020</li>
-      <li><strong>UP Department of Philosophy</strong> · internal funding for conference presentations in 2012, 2013, 2015, 2016, 2017 and 2020</li>
+      <li><a href="https://orcid.org/0000-0001-9151-7344" target="_blank" rel="noopener">ORCID 0000-0001-9151-7344</a></li>
+      <li><a href="https://www.researchgate.net/profile/Wehan-Coombs" target="_blank" rel="noopener">ResearchGate</a></li>
+      <li><a href="https://repository.up.ac.za/handle/2263/89290" target="_blank" rel="noopener">UP Research Repository</a></li>
     </ul>
-    <h4>Collaboration</h4>
-    <p>Research collaboration with Dr Mitchell Black (University of Pretoria) since 2025, including three co-presented conference papers in 2025 and 2026. Postdoctoral research at the University of Johannesburg (2024 to 2026), hosted and mentored by Dr Asheel Singh. Co-compiled the custom reader <em>Lovers of Wisdom</em> with Prof Emma Ruttkamp-Bloem for FIL110 (2019 and 2020).</p>
-    <h4>Memberships</h4>
-    <ul class="list">
-      <li>Philosophical Society of Southern Africa, since 2017</li>
-      <li>International Society for Neoplatonic Studies, since 2017</li>
-    </ul>
-  </article>
-
-  <article id="s-philosophy" data-art="temple" data-ch="think" data-title="Teaching philosophy" data-read>
-    <p>I have been teaching philosophy at university, from tutoring to full lectureships, for more than fifteen years, and my teaching philosophy has evolved a great deal in that time. Since I first encountered philosophy in my teens, I have been drawn to a wider view of the subject than the heavily Western curriculum taught at most modern universities, and it was always a dream of mine to create a broader introduction to philosophy for novice students. The turning point came when the #FeesMustFall movement of 2016 to 2018 raised demands for free and decolonised education at South African universities. Moved by my own commitments and the legitimate concerns of these students, I leapt at the opportunity to create a more inclusive and diverse introductory module at the University of Pretoria in 2019. Students responded overwhelmingly positively to it, I kept improving it each year I taught it, and the University still uses it as of 2026.</p>
-    <h4>Teaching style</h4>
-    <p>My teaching style is relaxed and engaging. I want students to feel what it is like to <em>do</em> philosophy, not only to learn a historical outline of influential ideas. My curricula give them a broad, global overview of that history, and alongside it they work through thought experiments together. For example, early in the semester, I might ask groups to “prove to me that the person sitting next to you exists”. After a few minutes I hear their answers and point out what works and where they run into issues. Exercises like this let students practise metaphysics and epistemology for themselves: alongside seeing how famous philosophers have tackled the same questions, they feel part of a tradition of thought from the start, rather than outsiders peering into some esoteric domain of inscrutable theory. These exercises also make dialogue the standard way of working in my classroom, and that habit of dialogue is what affords students a real grounding in philosophy. When students speak up, they can count on encouragement. I can critique a position without making anyone feel attacked, and I almost always start with what is worthwhile and clever in a comment, drawing out connections the student may not have seen.</p>
-    <h4>Engagement</h4>
-    <p>I am a firm believer in having an energetic, personable presence in the classroom: I walk around the class, give each section its own attention, and deliver the material in plain language, with energy and often humour, without detracting from the profundity of the topics. I ground abstract ideas in practical examples and analogies so that students can relate them to their own lives. Online, I present live and encourage students to chat in the comments as much as they like. The “live-stream” feel resonates with students, makes the recordings livelier for those watching later, and gives me an easy way to gauge engagement as I teach. Many students have told me they wished I could teach them for more than one semester.</p>
-    <h4>Respect and discipline</h4>
-    <p>Though my classrooms are lively, I have had few problems with discipline, in person or online. Over the years I have developed a manner that is friendly without being familiar: students can relate to me without feeling they can take advantage. On the few occasions I have had to speak sternly to a class, I dealt with it quickly and got back to teaching without awkwardness. Students feel respected in my classrooms. I make sure a wide variety of voices get their chance, and I cultivate a culture of listening when others speak.</p>
-    <h4>Fairness and understanding</h4>
-    <p>Besides engagement and respect, a core value of my teaching is fairness. I treat all students equally, so that everyone has the same opportunity to succeed, and the deciding factor is the effort and dedication each student puts in. In assessments I look for understanding rather than memorisation. At the introductory level, I want to see that students grasp the ideas, not just repeat key words. At the postgraduate level, I look for meaningful engagement that brings forth original insights.</p>
-    <h4>The purpose of philosophy</h4>
-    <p>This emphasis on doing philosophy, rather than merely receiving it, matters even more now that artificial intelligence can retrieve vast libraries of information and produce polished essays in seconds. The value of a classroom no longer lies in delivering content (arguably it never did). What AI threatens in education and the humanities is productive friction: the uncomfortable but necessary work of building cognitive connections through trial and error. Thus, in my lectures students work through problems together, defend their views aloud and answer each other’s objections, and I make the increasing value of this, in our current technological moment, clear.</p>
-    <p>All of this comes from my own meta-philosophical commitments. I believe philosophy is much more than academic discourse. Taught and learned properly, it is an emancipatory tool that can uplift students in every part of their lives. That, to me, is its ultimate purpose, and the guiding principle of how I teach it.</p>
-    <p class="more"><button type="button" data-sheet="curriculum">Curriculum design →</button> <button type="button" data-sheet="assessment">Assessment →</button> <button type="button" data-sheet="support">Student support →</button></p>
   </article>
 
   <article id="s-curriculum" data-art="blocks" data-ch="think" data-title="Curriculum and course development" data-read>
-    <p>My first foray into curriculum design was in 2018, when I redesigned FIL251: Introduction to Moral and Political Philosophy, an enrichment course at the University of Pretoria. The course introduces business students to major ethical theories, including utilitarianism, virtue ethics, Ubuntu and social contract theory, and was built around presenting a theory and then immediately immersing students in case studies where its application to real-life scenarios could be explored. Two introductory weeks focused on understanding the study of ethics and morality in general, and business ethics in particular, through pertinent South African examples of corruption and State Capture. Reports from lecturers in later years have confirmed the continuing efficacy of combining theory with practical, topical examples. <button type="button" class="inline" data-sheet="guide-c1">Study guide</button></p>
-    <p>In 2019 I was given the opportunity to create my own introductory philosophy curriculum from scratch, and so created FIL110: Introduction to Metaphysics and Epistemology, a course still in use at the University of Pretoria today. It traces the history of philosophy around the globe from prehistoric times and ancient philosophy to contemporary traditions, with a special focus on metaphysics and epistemology. The course has been hugely successful and popular, and is in my estimation an excellent example of what a decolonised philosophy curriculum may look like in practice. For it I also collaborated with Prof Emma Ruttkamp-Bloem on a custom reader for 2019 and 2020 (<em>Lovers of Wisdom</em>, Cengage), and in 2021 created a bespoke course package of freely available encyclopaedia entries and primary readings, <em>Living Philosophy</em>. <button type="button" class="inline" data-sheet="guide-c2">Study guide</button></p>
-    <p>In 2023 I designed two more courses. FIL710: The (Secret) History of Thought: Introduction to Philosophical Esotericism is a postgraduate course exploring the concept of esotericism, both literary and ideological, within philosophy: different types of esotericism, close readings of theories of esotericism, and then the phenomenon in depth as it appears in Plato. FIL220: The Good Life is an undergraduate ethics course on theories of human flourishing, structured around weekly themes such as Gratification, Community, Nature, Salvation and Purpose, and introducing a wide range of traditions, from Greek philosophy and African communitarianism to non-dualism and contemporary virtue ethics. It is supported by a custom reader, <em>The Flourishing Reader</em>, and a structured tutorial programme that develops philosophical writing and argumentation week by week. Both courses are designed around active engagement with primary and secondary texts, and encourage students to examine and develop their own conceptions of meaning, value, and the role of philosophy in life. <button type="button" class="inline" data-sheet="guide-c3">FIL710 guide</button> · <button type="button" class="inline" data-sheet="guide-c4">FIL220 guide</button></p>
+    <p>My first foray into curriculum design was in 2018, when I redesigned FIL251: Introduction to Moral and Political Philosophy, an enrichment course at the University of Pretoria. The course introduces business students to major ethical theories, including utilitarianism, virtue ethics, Ubuntu and social contract theory, and was built around presenting a theory and then immediately immersing students in case studies where its application to real-life scenarios could be explored. Two introductory weeks focused on understanding the study of ethics and morality in general, and business ethics in particular, through pertinent South African examples of corruption and State Capture. Lecturers who taught it in later years report that pairing theory with topical examples still works. <button type="button" class="inline" data-sheet="guide-c1">Study guide</button></p>
+    <p>In 2019 I was given the opportunity to create my own introductory philosophy curriculum from scratch, and so created FIL110: Introduction to Metaphysics and Epistemology, a course still in use at the University of Pretoria today. It traces the history of philosophy around the globe from prehistoric times and ancient philosophy to contemporary traditions, with a special focus on metaphysics and epistemology. Students took to it, and in my view it shows what a decolonised philosophy curriculum can look like in practice. For it I also collaborated with Prof Emma Ruttkamp-Bloem on a custom reader for 2019 and 2020 (<em>Lovers of Wisdom</em>, Cengage), and in 2021 created a bespoke course package of freely available encyclopaedia entries and primary readings, <em>Living Philosophy</em>. <button type="button" class="inline" data-sheet="guide-c2">Study guide</button></p>
+    <p>In 2024 I designed two more courses. FIL710: The (Secret) History of Thought: Introduction to Philosophical Esotericism is a postgraduate course exploring the concept of esotericism, both literary and ideological, within philosophy: different types of esotericism, close readings of theories of esotericism, and then the phenomenon in depth as it appears in Plato. FIL220: The Good Life is an undergraduate ethics course on theories of human flourishing, structured around weekly themes such as Gratification, Community, Nature, Salvation and Purpose, and introducing a wide range of traditions, from Greek philosophy and African communitarianism to non-dualism and contemporary virtue ethics. It is supported by a custom reader, <em>The Flourishing Reader</em>, and a structured tutorial programme that develops philosophical writing and argumentation week by week. Both courses are designed around active engagement with primary and secondary texts, and encourage students to examine and develop their own conceptions of meaning, value, and the role of philosophy in life. <button type="button" class="inline" data-sheet="guide-c3">FIL710 guide</button> · <button type="button" class="inline" data-sheet="guide-c4">FIL220 guide</button></p>
     <p>In 2026 I designed and presented a further honours seminar, FIL710 and FIL810: Philosophy as a Rite of Rebirth: From Ancient Egypt to Neoplatonism. The course asks what the point of philosophy is, through a close reading of Algis Uždavinys’ <em>Philosophy as a Rite of Rebirth</em> (2008). It was my most experimental course to date, with demanding weekly in-person symposiums, punctuated by assessments that included multimodal outputs ranging from video essays and podcasts to written work, and a final sit-down essay that asked students an unseen question about the role of philosophy in a world where AI can produce high-quality philosophical content. In the university’s module evaluation, students gave the course an average of 4.81 out of 5. <button type="button" class="inline" data-sheet="guide-c5">Study guide</button></p>
-  </article>
-
-  <article id="s-assessment" data-art="check" data-ch="think" data-title="Assessment practices" data-read>
-    <p>In preparing assessments, I follow best practice based on the core outcomes of modules in philosophy. For introductory courses this means training students in analysis and synthesis: memorising and understanding core concepts and facts, and interpreting that information to deliver insightful answers to difficult questions. I use a three-pronged approach. Practical skills in argumentation are taught in tutorials by tutors I coach closely; short questions test insight; and essay questions ask students to explain philosophers’ theories and arguments in their own words. Readings are chosen to give context to the lectures, and I encourage students to read before class, come with questions, review before assessments and practise their reasoning in tutorials.</p>
-    <p>For small postgraduate groups I set longer essays and regular smaller assessments on the readings, and I take each student’s participation in discussion into account. My long-form postgraduate seminars, usually a weekly three-hour session, encourage direct participation and close reading of difficult material, resulting in lively discussion where I play less the part of a lecturer and more that of a philosophical peer, guiding students to their own insights while illuminating the finer aspects of each reading and the intertextual intricacies that arise from a deliberately curated reading list.</p>
-    <p>Students are continually reminded that success in philosophy requires not only learning but understanding, and that understanding makes all the difference in their assessments. They are given clear instructions on what assessments entail and what is expected, and have ample opportunities for feedback from me and from the tutor teams I manage. In the high school classroom I rely on continual informal assessment: quick questioning, short written tasks and quizzes such as Kahoot, which my mentor at Abbotts singled out as a strength. This lets me adjust a lesson while it is still happening.</p>
-    <p class="more"><button type="button" data-sheet="macbeth">A revision sheet I made for Grade 10 →</button></p>
-  </article>
-
-  <article id="s-support" data-art="heart" data-ch="think" data-title="Student support, mentoring and coaching" data-read>
-    <p>The university experience can be challenging, and I firmly believe in giving students every opportunity to succeed. I use a diversified approach to student support, mentoring and coaching outside contact lectures. My study guides always contain detailed information on all available support structures at the university, as well as the relevant grievance procedures. I make myself available during ample consultation hours, am always available before and after lectures, and am happy to chat to students should they see me outside those times.</p>
-    <p>For every course I have designed I have set up dedicated email addresses for administrative enquiries, more recently supplemented with dedicated support forums online. I engage regularly with elected class representatives, making sure that students have good representation and various extracurricular avenues of peer engagement, such as social media groups and instant messaging services. Finally, I track student progress through learning-platform analytics that flag students at risk, weekly meetings and regular contact with my tutor teams, so that students who are struggling can be contacted early.</p>
+    <h4>Assessment</h4>
+    <p>For introductory courses I train students in analysis and synthesis: memorising and understanding core concepts and facts, and interpreting that information to deliver insightful answers to difficult questions. I use a three-pronged approach. Practical skills in argumentation are taught in tutorials by tutors I coach closely; short questions test insight; and essay questions ask students to explain philosophers’ theories and arguments in their own words. Readings are chosen to give context to the lectures, and I encourage students to read before class, come with questions, review before assessments and practise their reasoning in tutorials.</p>
+    <p>For small postgraduate groups I set longer essays and regular smaller assessments on the readings, and I take each student’s participation in discussion into account. My long-form postgraduate seminars, usually a weekly three-hour session, encourage direct participation and close reading of difficult material, resulting in lively discussion where I play less the part of a lecturer and more that of a philosophical peer, guiding students to their own insights while bringing out the finer points of each reading and how the readings speak to each other.</p>
   </article>
 
   <article id="s-book" data-art="calendar" data-ch="make" data-title="Book a free intro call">
     <p class="when">Twenty minutes · Tuesday to Thursday · Google Meet · no Google account needed</p>
     <p>Pick a time that suits you. We talk through what you need, and afterwards I send a plan, a rate and a start date.</p>
-    <div class="embed doc tall cal" data-src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ11pU0NRSw__vUJWAweRPa2YJCnNXR6dOgexH-VRCX0PfJg78W8FIM9bO59qfqQOc2UBE0PDRxP?gv=true"></div>
     <p class="more"><a class="btn solid" href="https://calendar.app.google/LnQHr42n4ykTqa4ZA" target="_blank" rel="noopener" data-track="book-open">Open the booking page ↗</a> <button type="button" data-sheet="working">How working with me works →</button></p>
-    <p class="note">Mornings 09:00 to 12:00 and afternoons 14:00 to 16:00, South African time. If nothing suits, write to me instead.</p>
+    <div class="embed doc tall cal" data-src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ11pU0NRSw__vUJWAweRPa2YJCnNXR6dOgexH-VRCX0PfJg78W8FIM9bO59qfqQOc2UBE0PDRxP?gv=true"></div>
+    <p class="note">Mornings 09:00 to 12:00 and afternoons 14:00 to 16:00, South African time. If nothing suits, <button class="inline" type="button" data-goto="#write">write to me</button> instead.</p>
   </article>
 
-  <article id="s-tutoring" data-art="quill" data-ch="make" data-title="Tutoring and TEFL">
-    <p class="rate">From R350 an hour · Taking new clients for 2027</p>
+  <article id="s-tutoring" data-tone="c-teach" data-art="quill" data-ch="make" data-title="Tutoring">
+    <p class="rate">From R350 an hour · Taking new clients now</p>
     <div class="svc-summary">
       <div class="svc-summary-text">
         <p class="svc-sub">English · Philosophy · TEFL</p>
         <ul class="deliv">
           <li>One to one, in person or online</li>
-          <li>A plan for the term, with marked practice essays</li>
+          <li>A plan for the term, with marked practice</li>
           <li>Online English for non-native speakers</li>
         </ul>
       </div>
@@ -1229,46 +1055,56 @@
     <p class="more"><button class="btn solid" type="button" data-sheet="request-tutoring">Request tutoring</button> <button type="button" data-sheet="working">How it works →</button></p>
   </article>
 
-  <article id="s-editing" data-art="edit" data-ch="make" data-title="Editing and writing support">
-    <p class="rate">From R0.30 a word, or R450 an hour · Taking new clients for 2027</p>
+  <article id="s-classes" data-tone="c-teach" data-art="people" data-ch="make" data-title="Classes">
+    <p class="rate">Quoted per project, after a free intro call · Taking new clients now</p>
+    <p>Workshops on set works, for a class or group</p>
+    <h4>What I taught in 2026</h4>
+    <ul class="list">
+      <li><button type="button" class="inline" data-sheet="macbeth">Macbeth</button></li>
+      <li><button type="button" class="inline" data-sheet="tempest">The Tempest</button></li>
+      <li><button type="button" class="inline" data-sheet="poems">Five poems</button></li>
+      <li><button type="button" class="inline" data-sheet="grammar">Grammar</button></li>
+      <li><button type="button" class="inline" data-sheet="film">Film study</button></li>
+      <li><button type="button" class="inline" data-sheet="enrichment">Philosophy for teenagers</button></li>
+    </ul>
+    <p class="more"><button class="btn solid" type="button" data-sheet="book">Book a free intro call</button></p>
+  </article>
+
+  <article id="s-editing" data-tone="c-teach" data-art="edit" data-ch="make" data-title="Writing support">
+    <p class="rate">From R450 an hour · Taking new clients now</p>
     <div class="svc-summary">
       <div class="svc-summary-text">
-        <p class="svc-sub">Essays · Theses · Course materials</p>
+        <p class="svc-sub">Essays · Theses</p>
         <ul class="deliv">
-          <li>Tracked changes and a note on what to fix next</li>
+          <li>Comments in the margin and a note on what to fix next</li>
           <li>The argument first, then the sentences</li>
-          <li>Study guides and course materials too</li>
         </ul>
       </div>
     </div>
     <p class="proof"><b>5</b> study guides, 2 readers and a course package, written or compiled · “…assignment feedback was always helpful and detailed.”<small>An honours student, 2024</small></p>
     <h4>What you get</h4>
     <ul class="list">
-      <li>Your document back with tracked changes, and a short note on the patterns worth fixing next time</li>
-      <li>For arguments and drafts: structural feedback first, then the sentence-level pass</li>
-      <li>Study guides, readers and course materials, written from scratch or edited into shape</li>
+      <li>Your document back with comments in the margin, and a short note on the patterns worth fixing next time</li>
+      <li>For arguments and drafts: structural feedback first, then comments on the sentences</li>
     </ul>
-    <h4>What I edit</h4>
+    <h4>What I work on</h4>
     <ul class="list">
-      <li>Essays, theses and academic writing: editing and proofreading</li>
-      <li>Structural feedback on arguments and drafts, drawing on years of marking and commenting on undergraduate and honours essays</li>
-      <li>Study guides, readers and course materials</li>
-      <li>Digital PR campaign writing, freelance for a digital marketing agency since 2026</li>
+      <li>Essays, theses and academic writing</li>
     </ul>
     <h4>Why me</h4>
-    <p>I have marked and commented on thousands of essays and exams, and written five study guides, and put together two readers and a course package. I edit for the argument first, then the sentence.</p>
-    <p class="more"><button class="btn solid" type="button" data-sheet="request-editing">Request editing</button> <button type="button" data-sheet="guides">See the study guides →</button></p>
+    <p>I have marked and commented on thousands of essays and exams, written five study guides, and put together two readers and a course package. I read for the argument first, then the style.</p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-editing">Request writing support</button> <button type="button" data-sheet="guides">See the study guides →</button></p>
   </article>
 
-  <article id="s-design" data-art="blocks" data-ch="make" data-title="Learning design and tools">
-    <p class="rate">Quoted per project, after a free intro call · Taking new clients for 2027</p>
+  <article id="s-design" data-art="blocks" data-ch="make" data-title="Lessons, modules and curricula">
+    <p class="rate">Quoted per project, after a free intro call · Taking new clients now</p>
     <div class="svc-summary">
       <div class="svc-summary-text">
-        <p class="svc-sub">Courses · Rubrics · Web apps · Lectures</p>
+        <p class="svc-sub">Lessons · Modules · Curricula · Tools</p>
         <ul class="deliv">
+          <li>One lesson, with all its materials, ready to teach</li>
           <li>A whole module, with its study guide</li>
-          <li>Rubrics and marking tools as simple web apps</li>
-          <li>Live-streamed or recorded lectures</li>
+          <li>A curriculum, with modules that build on each other</li>
         </ul>
       </div>
     </div>
@@ -1278,18 +1114,17 @@
       <li>A whole module, if you need one: outcomes, a week-by-week structure, readings, assessments and a study guide</li>
       <li>Rubrics and marking tools built as simple, standalone web apps that run in a browser</li>
       <li>Interactive web apps for learning and practice</li>
-      <li>Live-streamed or recorded lectures with good audio and video</li>
     </ul>
     <h4>Why me</h4>
     <p>Four university modules designed from scratch and a fifth redesigned, each with its study guide, tutorial programme and assessments, and two years of live online teaching with my own equipment. The five study guides on this page are the kind of thing I make.</p>
-    <p class="more"><button class="btn solid" type="button" data-sheet="request-design">Request a design</button> <button type="button" data-sheet="guides">See the study guides →</button> <button type="button" data-sheet="lectures">Watch a lecture →</button></p>
+    <p class="more"><button class="btn solid" type="button" data-sheet="request-design">Request a design</button> <button type="button" data-sheet="guides">See the study guides →</button></p>
   </article>
 
-  <article id="s-consulting" data-art="dots" data-ch="make" data-title="Philosophical and AI consulting">
-    <p class="rate">Quoted per project, after a free intro call · Taking new clients for 2027</p>
+  <article id="s-consulting" data-tone="c-consult" data-art="dots" data-ch="make" data-title="Consulting: for you, your school, your university">
+    <p class="rate">Quoted per project, after a free intro call · Taking new clients now</p>
     <div class="svc-summary">
       <div class="svc-summary-text">
-        <p class="svc-sub">People · Schools · Organisations</p>
+        <p class="svc-sub">People · Schools · Universities</p>
         <ul class="deliv">
           <li>What to do about AI in your classroom or company</li>
           <li>Talks, workshops, a written brief</li>
@@ -1304,6 +1139,7 @@
       <li><strong>AI, thought through.</strong> What it should and should not do in your classroom, course or company, and how to teach and assess what it cannot do. Policy, practice and a plan.</li>
       <li>Talks, workshops and reading groups on ethics, purpose, AI and the humanities, from a single session to a short series</li>
       <li>A written brief you can act on: the question stated properly, the positions worth taking seriously, and a recommendation</li>
+      <li>For a university: an AI review of a module or a whole department, with a written report, the weak assessments redesigned, and a meeting with your staff to talk it through.</li>
     </ul>
     <h4>For one person</h4>
     <p>Philosophical counselling: one-to-one conversations about a question in your own life, such as a hard decision or work that has stopped making sense. In person in Pretoria East or online. It is not therapy; if your question belongs with a psychologist or a doctor, I will say so.</p>
@@ -1315,25 +1151,30 @@
   <article id="s-working" data-art="envelope" data-ch="make" data-title="Working with me">
     <h4>How it works</h4>
     <ul class="list">
-      <li>Press a Request button anywhere on this page. It drafts a message with the right questions in it, which you send from your own email app or from Gmail, or copy and send however you like.</li>
+      <li>Open Details on any service and press Request. It drafts a message with the right questions in it, which you send from your own email app or from Gmail, or copy and send however you like (for Classes and Lectures, book a call instead).</li>
       <li>Or <button type="button" class="inline" data-sheet="book">book a free 20-minute intro call</button>, Tuesday to Thursday, on Google Meet</li>
       <li>We agree a plan, a rate and a deadline up front, in writing</li>
-      <li>Sessions in person in Pretoria East or online; editing and written work are returned by the agreed date</li>
+      <li>Sessions in person in Pretoria East or online; written work is returned by the agreed date</li>
+      <li>I reply within two working days.</li>
+      <li>R350 an hour is the rate for school English. University-level work costs more.</li>
+      <li>In-person sessions are in Pretoria East, at a place we agree on.</li>
+      <li>For writing feedback, email me the document or share a Google Doc link. I quote once I have seen the chapter.</li>
+      <li>A one-to-one conversation (For You) is R450 an hour.</li>
     </ul>
     <h4>Rates</h4>
     <ul class="list">
-      <li><strong>Tutoring and TEFL</strong> · From R350 an hour</li>
-      <li><strong>Editing and writing support</strong> · From R0.30 a word, or R450 an hour</li>
-      <li><strong>Learning design</strong> · quoted per project, after a free intro call</li>
-      <li><strong>Philosophical and AI consulting</strong> · quoted per project, after a free intro call</li>
+      <li><strong>Tutoring</strong> · From R350 an hour</li>
+      <li><strong>Writing</strong> · From R450 an hour</li>
+      <li><strong>For You</strong> · R450 an hour</li>
+      <li><strong>Classes and lectures, Design, For Your School, For Your University</strong> · quoted per project, after a free intro call</li>
     </ul>
-    <p class="rate">Taking new clients for 2027.</p>
+    <p class="rate">Taking new clients now.</p>
     <h4>Services</h4>
     <ul class="list">
-      <li><button type="button" class="inline" data-sheet="tutoring">Tutoring and TEFL</button></li>
-      <li><button type="button" class="inline" data-sheet="editing">Editing and writing support</button></li>
-      <li><button type="button" class="inline" data-sheet="design">Learning design and tools</button></li>
-      <li><button type="button" class="inline" data-sheet="consulting">Philosophical and AI consulting</button></li>
+      <li><button type="button" class="inline" data-sheet="tutoring">Tutoring</button></li>
+      <li><button type="button" class="inline" data-sheet="editing">Writing support</button></li>
+      <li><button type="button" class="inline" data-sheet="design">Lessons, modules and curricula</button></li>
+      <li><button type="button" class="inline" data-sheet="consulting">Consulting: for you, your school, your university</button></li>
     </ul>
     <h4>Strengths</h4>
     <div class="pills">
@@ -1341,17 +1182,6 @@
       <span>Course and materials design</span><span>Online teaching</span><span>Reliable deadlines</span>
     </div>
     <p class="more"><button class="btn solid" type="button" data-sheet="request-any">Write to me</button></p>
-  </article>
-
-  <article id="s-referees" data-art="people" data-ch="write" data-title="Referees">
-    <ul class="list refs">
-      <li><strong>Prof Emma Ruttkamp-Bloem</strong><br>Head of the Department of Philosophy, University of Pretoria<br><a href="mailto:emma.ruttkamp-bloem@up.ac.za">emma.ruttkamp-bloem@up.ac.za</a></li>
-      <li><strong>Prof John F. Finamore</strong><br>University of Iowa<br><a href="mailto:john-finamore@uiowa.edu">john-finamore@uiowa.edu</a></li>
-      <li><strong>Dr Asheel Singh</strong><br>University of Johannesburg<br><a href="mailto:asheels@uj.ac.za">asheels@uj.ac.za</a></li>
-      <li><strong>Dr Mitchell Black</strong><br>Colleague and research collaborator, University of Pretoria<br><a href="mailto:mblackmitchell@gmail.com">mblackmitchell@gmail.com</a></li>
-      <li><strong>Heloïse van der Spuy</strong><br>English teacher and PGCE mentor, Hoërskool Garsfontein<br><a href="mailto:heloise@garsies.co.za">heloise@garsies.co.za</a></li>
-      <li><strong>Eben van Dien</strong><br>English teacher and PGCE mentor, Abbotts College Pretoria East<br><a href="mailto:evdien@abbotts.co.za">evdien@abbotts.co.za</a></li>
-    </ul>
   </article>
 
   <article id="s-resume" data-art="scroll" data-ch="write" data-title="The full resume">
@@ -1362,7 +1192,7 @@
 
 </div>
 
-<script src="assets/main.js?v=40"></script>
+<script src="assets/main.js?v=80"></script>
 <script data-goatcounter="https://wehancoombs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

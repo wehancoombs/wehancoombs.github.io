@@ -567,3 +567,303 @@ Wehan briefed a sixth cabinet, Counsel, with the services re-sorted (Tutoring un
 
 What he said along the way, worth remembering: a detail page that is a list of text is "terrible, boring"; he wants them visual and alive. The tetraktys he likes is the 3D one.
 
+## 2026-11-15: the services rebuild, started (branch `services`, nothing live)
+
+Wehan briefed a rebuild as a plain services site: who he is, what he sells, what it costs, how to book. First screen: his name and one-sentence description, a line drawing of him pointing at a board of three columns (Teach, Design, Consult); About below it; contact as a slim bar fixed to the bottom of every screen. Light and dark follow the visitor's system setting.
+
+- The live site is tagged `before-services` (f07bae5, on GitHub). To go back he says: "Restore the site to before-services".
+- All new work is on the local branch `services`. `main` and the live site are untouched until he says "publish".
+- His drawing is saved as supplied at `assets/wehan-drawing.webp` (1024 x 1536, black lines on white). A see-through version that takes the text colour is still to be made from it.
+- The list of pieces worth keeping and a short plan were given to him, and he said go ahead with three changes (below).
+
+## 2026-11-15: the services site built on `services` (v=41, not pushed, waiting for "publish")
+
+His three changes to the plan: Classes gets its own small pop-up (the placeholder line, then links to the six lessons); Lectures opens "Courses designed and taught", with the two recorded lectures added to that pop-up; the pop-up links from the old Map menu sit in About under a few short headings.
+
+What the page is now:
+
+- It scrolls. The cabinets, the side rooms, the Map menu and the side dots are gone. The top bar is the name, the CV menu and the light/dark switch.
+- First screen: his name and sentence, the line drawing, and the board (Teach, Design, Consult). Each item has a name, one line, a rate and a Details link. From 1100px wide and narrower the board is three tabs under a small drawing, Teach open.
+- The drawing: `assets/wehan-line.webp` is made from his `assets/wehan-drawing.webp` (white made see-through, cropped). It is used as a CSS mask, so the lines take the text colour. It fades in on the first visit only (a `seen` flag in the browser's storage).
+- The board's sizes hang off one unit (`--u`, the tighter of the screen's width and height), so the first screen fits from 1366 x 650 up to 1920 x 1080 without scrolling.
+- About: headshot, the six figures, the constellation, the two lectures, the study guide spines, the lesson spines, the arc of a lesson, three sets of quotations, the four CVs, the placeholder line, the grouped links, the outside links, the motto.
+- The constellation has a second, tall layout for phones (640px and narrower): all twelve stars and names fit, checked by measuring that no two names touch.
+- Contact: a bar fixed to the bottom (booking button, email with Copy, "Write to me"); on screens 760px and narrower it is one button. "Write to me" opens a small panel holding the existing form. Booking link, form address and visit counter are unchanged.
+- Light and dark follow the system setting until the switch is used; the switch is remembered. Dark keeps near-black and gold with a slate board; light is warm paper with a white board.
+- Old addresses: `#teach`, `#make` (and `#make-detail`) go to the board, `#think` (and both other `-detail` addresses) go to About, `#write` opens the contact panel, `#s-…` still opens that pop-up.
+- `?plain` on the address hides the three small heading animations, so that he can compare. Take it out once he has chosen.
+
+Nine placeholder lines are tagged `DRAFT-WEHAN` in `index.html` and listed at the top of `../site-text.md`.
+
+How it was built: `build_services.py` (in the session scratchpad) rebuilds `index.html`, `assets/main.js` and `assets/style.css` from the tag `before-services`, so nothing depends on hand edits. `style.css` still carries the old cabinet and room rules that nothing uses now; they can be pruned later. Preview pictures are in `.claude/services-preview/`, made by `.claude/shot.html` and headless Chrome.
+
+Left off the page (all still in the tag `before-services`): the Platonic solids, the four Make shapes at full size (only the tetraktys survives, small), the four Make card drawings, the star background and the glow that follows the mouse, the Map menu's opening line, the side dots, the three cabinet sentences (Teach, Think, Make), "Taking new clients for 2027" as a line on the page (it is still in every service pop-up), the Request buttons on the cards (still inside each service pop-up), "How I plan a lesson →" (a second label for the Teaching approach pop-up).
+
+Known rough edges: the small label at the top of each pop-up still says Begin, Teach, Think, Make or Contact; "Working with me" still says "Press a Request button anywhere on this page"; the tab title still reads "Teacher, philosopher, maker".
+
+## 2026-11-15, later: the scrolling services page turned down; three cabinets in the earlier look (v=42, not pushed)
+
+Wehan looked at the scrolling services page and said no: go back to the earlier look (starry background, cabinets), with three cabinets, the Map menu back, and a note that the sketch needs a proper white-on-black version for dark mode.
+
+What the site is now (built by `build_cabinets.py` in the session scratchpad, again from the tag `before-services`; the styles are the old file plus one new block at the end):
+
+- Cabinet 1, the landing page (`#threshold`): as it was, Platonic solids and all. The three doors are now two buttons down, My services and About me.
+- Cabinet 2, My services (`#services`): a plain near-black board with a hairline round it and three tabs (Teach, Design, Consult). The list of services is on the board's far left; the turning shapes from the old Make cabinet are in the middle (Teach: the quills and the words; Design: the lesson stages; Consult: the tetraktys). The sketch stands bottom right, mirrored so that it points left at the shape. Details folds the list into a chevron and lays the details over the dimmed shape; the chevron, the cross or Escape brings the list back. On a narrow screen the shape and the sketch sit above the list and the chevron is at the bottom.
+- Cabinet 3, About me (`#about`): headshot, title, the placeholder line, the four CVs and the old Contact links on the left; a second board with the same three tabs on the right. Teach: the two lectures, the six figures, the lesson spines, a quotation. Design: the study guide spines, the arc of a lesson, a quotation, four links. Consult: the constellation, a quotation, four links. This is a first take; he wants to talk it over (tabs, or dots to swipe between sections).
+- The Map menu is back, adjusted: Begin, My services, About me for schools, About me for universities, Contact. The label at the top of each pop-up follows it (My services, For schools, For universities).
+- Contact is still the bar fixed to the bottom, with the small panel for the form. `#write` opens the panel.
+- Light and dark still follow the system setting until the switch is used.
+- Old addresses: `#teach`, `#make` go to My services; `#think` and the old `-detail` addresses go to About me.
+- A change of shape now takes the same time whatever the screen's frame rate.
+
+To do, from him: a white-on-black version of the drawing for dark mode (the present one is the black drawing painted light, which reads as a negative). It is in his Todoist under Personal website. When he has it: save as `assets/wehan-drawing-dark.webp` and use it under dark mode only.
+
+Pictures: `.claude/services-preview/`. The window-less Chrome used for them does not advance the shapes at laptop size, so the Design and Consult tab pictures at laptop size were taken from the preview pane.
+
+Not on the page any more: the three old cabinet sentences (Teach, Think, Make), the four Make card drawings, the old Write to me cabinet (its parts are in About me and the bar).
+
+## 2026-11-15, evening: his rounds on the three cabinets (v=51 on `services`, on the staging site, not live)
+
+Staging: he asked for a separate live site to test on his phone. It is https://wehancoombs.github.io/site-preview/ (repo `wehancoombs/site-preview`, remote `preview`). After every change: copy `services` to a `preview` branch, add a noindex meta and take out the visit counter, force-push to `preview:main`. He said to treat it as the staging platform, so refresh it without asking. The live site still needs "publish".
+
+What changed, at his word:
+
+- Landing page: the "Write to me" link is gone (the bar has it). The small word under the sentence changes each time the solid changes: ainigma, then nous, psyche, aporia, sympaideia (his own word, rendered συμπαιδεία), maat (a feather hieroglyph), jñāna, ḥokhmah, schola, dào, ubuntu, each with one line. The ten new lines are drafts, marked DRAFT-WEHAN in `main.js`.
+- My services: every item has its own object, named for the item. Teach: quills (Tutoring), words (Writing), a ring of seats (Classes), a raked hall (Lectures). Design: lesson stages (A lesson), a shelf of boxes (A module), a spiral stair (A curriculum). Consult: linked centres that gather into one sphere (A person), the tetraktys, which flickers to ones and noughts now and then (A school), a star tetrahedron with nodes all along its edges (A university). Pointing at an item brings up its object; a tap steps through the tab's objects.
+- Details: each of the ten items opens its own short card over the board (the object is hidden while it is open): a drawing in a ring, the name, the rate as a tag, a few lines or a paragraph, one whole testimonial, then Request / Book a free intro call / More. Classes shows the lesson bookshelf; Lectures shows the two recordings side by side and the study-guide bookshelf; A lesson shows the arc of a lesson. All the words are lifted from the pop-ups and the quotations; the table that says what goes where is `DETAILS` in `main.js`.
+- About me: slimmed to one screen so that it does not repeat the details. Left: headshot, title, the placeholder line, four CVs, bio links. Right: the six figures, the constellation, five links. The shelves, recordings and arc sit in a hidden `#stash` and are borrowed by the details cards.
+
+Tried and taken out again: ten old words on the tetraktys points.
+
+Still open: the white-on-black drawing (his Todoist); nine placeholder lines plus the ten word lines; `../site-text.md` describes the site as it was before this evening's rounds and needs redoing once the design settles; nothing here has been seen on a real phone by me.
+
+## 2026-11-15, late: three colours, four boxes, one CVs menu (v=52 on `services`, on the staging site, not live)
+
+- Colours, at his word: Teach green, Design orange, Consult purple (`--c-teach`, `--c-design`, `--c-consult` in `style.css`, a dark and a light value each). The open tab colours the board, its object, the details card, and the whole services cabinet with it (stars, contact bar, the W). The pop-ups and the CV seals keep the older colours (schools terracotta, universities blue, services teal).
+- Landing page: four boxes, two by two: Teach, Design, Consult (each in its colour, each opening My services on that tab) and About me (gold). `#design` and `#consult` are new addresses beside `#teach`.
+- Top bar: the CVs are one dropdown at every width (it used to fold only under 1100px).
+- About me on a phone: one column in the order headshot, figures, CVs, links, motto, and then the constellation with a view to itself and the five research links under it. Nothing sits under the contact bar at 375x812.
+- "Edit" taken out of his own words, since he has no editing experience: the landing sentence now says "writing support" (his own phrase, from "Editing and writing support"), the About pop-up says "give feedback on writing", and the share description lost "editor". Both sentences are marked DRAFT-WEHAN (eleven placeholders in `index.html` now).
+- Left alone and flagged to him: the pop-up "Editing and writing support" (its title, "What I edit", "Request editing", "I edit for the argument first"), the Map entry "Editing & writing", and the rates list in "Working with me".
+
+## 2026-11-15, night: his list of small fixes (v=53 on `services`, on the staging site, not live)
+
+- Landing page: the headshot is larger (and gone from About me); the sentence is his own ("Thinking for ourselves is more critical now than ever. I specialise in bespoke educational solutions for individuals, schools, and universities."; he typed "specialize", set with an s to match the rest of the site); each of the four boxes names what is behind it in small type.
+- Tab title "Wehan Coombs · Teaching and Learning Solutions" (the share title follows it). Search description is his placeholder, tagged DRAFT-WEHAN.
+- Objects: A module is six small copies of the lesson box (four layers each, no words, each of its own size, three by two on a board); A curriculum is a spiral stair of planks whose lengths repeat the six lesson sizes, with a light climbing it; A person is one soft glowing sphere (`orb` in the shape, drawn in `paint`); A university has 56 points where it had 128.
+- Details cards: the price pill under each name is larger. Lectures shows the two recordings large, one in front of the other, with a round chevron that brings the other forward (a recording that was playing stops when it goes behind). The study guides moved from Lectures to A module, which also took the paragraph about the modules he has designed. A curriculum now shows two sentences lifted whole from the pop-up "Curriculum and course development"; what that service is, is still open (he may settle it in a chat). A university no longer leans on the proposed fellowship: "My research focuses on teaching in the age of AI: ..." (DRAFT-WEHAN, in `main.js`). The same fellowship clause was taken out of the AI star's note and the pop-up "Teaching in the age of AI".
+- The Classes shelf: spine names are set smaller there so that "The Tempest" stays on its spine; on a phone the shelf is tall enough for the spines.
+- About me: no headshot, no CV coins, no "full resume" bullet, no "Full resume in Google Docs" link. The four bullets (About me, Qualifications, Why I teach, Referees) sit one to a line; LinkedIn, ORCID and ResearchGate have a row of their own. The CVs and the resume are still in the top bar's CVs menu and in the Map.
+- The constellation on a wide screen: heavier lines, stars a third larger, larger names in the full text colour, and 58 small unnamed stars behind (`.dust`). The phone layout is as it was.
+- "Edit" taken out of the writing pop-up (he answered "Sure" to the question): it is now "Writing support" (title, Map entry, the two labels in "Working with me", the request draft), with "What I work on", "I read for the argument first, then the sentence." The rates are untouched. "Tracked changes" is still there and flagged to him.
+- "Working with me": "Open Details on any service, or book a free intro call." in place of "Press a Request button anywhere on this page." (his words). Classes and Lectures have no Request button (they never had one); the pop-up "Classes" gained the rate line.
+- Site text: `../site-text.md` is written afresh from the built site by `.claude/export_text.py` (run it again after any change of wording: `python -I .claude/export_text.py "..\site-text.md"`); the old file is kept as `../site-text-live-site-2026-11-14.md` because it describes the site that is still live. A copy is in his Drive as the Google Doc "Site text – three-cabinet site (v53, 15 Nov 2026)", beside the older "Site text – wehancoombs.github.io".
+- Twelve DRAFT-WEHAN placeholders in `index.html`, plus the university line and the ten landing-word lines in `main.js`.
+- Still his to send: the white-on-black drawing for dark mode; the current one stays until then.
+
+## 2026-11-15, late night: his second list (v=54 on `services`, on the staging site, not live)
+
+- A person is a small planet with an aura: a solid, shaded core, a halo that swells and fades, and a ring of light that leaves it every few seconds. In light mode the core is the dark purple, so it no longer washes out.
+- A module is a row again (six small lesson boxes side by side; the three-by-two block read as "a little city"). A curriculum is a spiral stair whose every step is such a row: five lesson boxes laid from the post outwards, twelve steps, a light climbing a module at a time.
+- A curriculum, item line and card: new drafts from his own account of it ("modules stacked in an order that makes sense", done for first- and second-year modules at UP). He has no document that proves it; the wording is DRAFT-WEHAN.
+- A university card: two lines added under the research sentence (how his 2026 honours module was assessed; facts from the pop-up "Curriculum and course development") and the quotation swapped for Dr Black's on what cannot be automated (from the pop-up "Teaching in the age of AI"). All DRAFT-WEHAN. `linesLast` in DETAILS puts the list under the paragraph.
+- About me: a turning seal beside the title (the motto round a W; it opens "Why I teach", so the motto left the foot); the four bullets are buttons, two by two; LinkedIn, ORCID and ResearchGate are a dotted list; "The full resume" is large and underlined and opens the resume pop-up.
+- The constellation's look is back as it was (the heavier lines and the small stars are gone). He meant more stars, not thicker ones: content, for a chat.
+- One palette everywhere: `--teach`, `--think` and `--make` now point at the green, purple and orange, so the Map, the CVs menu and every pop-up follow. Service pop-ups carry `data-tone` (tutoring, writing, classes green; consulting and "Teaching in the age of AI" purple; design is orange by its chapter), request sheets likewise, and a pop-up opened from the board keeps the colour of the open tab. The lesson and study-guide pop-ups keep the colours of their spines.
+- `../site-text.md` written again by `.claude/export_text.py`; the Google Doc is now "Site text – three-cabinet site (v54, 15 Nov 2026)" (the v53 one is renamed "OLD (replaced by v54) ..." and can be deleted).
+- For a chat (prompt given to him): the curriculum wording and what could stand as proof; what a university gets from an AI review; which stars to add to the constellation; the fifteen drafts.
+
+## 2026-11-15, last round of the night (v=55 on `services`, on the staging site, not live)
+
+- The planet (A person) answers a touch: pressed, it sends out a ring and wobbles like a drop of water, with ripples crossing its face; dragged, it is pulled along and swings back; a pointer passing over it stirs it a little (`ORB` in `main.js`). Still with reduced motion.
+- The stair (A curriculum): the lessons in each step lie flat, as tiles of their own length and width.
+- About me: the motto is back in the foot beside the copyright line (the seal stays); the resume link reads "My full resume".
+- Site text and Google Doc refreshed: "Site text – three-cabinet site (v55, 15 Nov 2026)". The v53 and v54 docs are renamed "OLD ..." for him to delete.
+- His rule from this round: anything mentioned that has a link gets the link.
+
+## 2026-11-15, one more (v=56 on `services`, on the staging site, not live)
+
+- The planet is calmer ("more water and less jello"): the wobble is a quarter of what it was and four times slower, a touch sends one slow ring that eases out as on a pond, a drag pulls it gently and it drifts back without bouncing, and the ripples across its face are two slow ones.
+- About me: "10 weeks in charge of classes" is out; "4,000+ students taught" is in, second in the row after "15 years lecturing" (the figure is the one explained in the pop-up "Courses designed and taught", which it opens). The six figures are one row. The ten weeks are still mentioned inside the pop-ups about the two schools.
+- The Google Doc is now simply "Site text – three-cabinet site" (no version in the name); small changes are made in it with find-and-replace, so no new copy each time.
+
+## 2026-11-15, his lines from the chat (v=57 on `services`, on the staging site, not live)
+
+- Tag `draft-stable` (local): the site at v=56, saved at his word before these changes. To go back: "Restore the draft to draft-stable".
+- A curriculum: his line ("Modules ordered so that each builds on the last.") and his card text. No longer drafts.
+- A university: his card. Left: the line, "What you receive" and three points. Right: his research sentence, the two points about his 2026 honours module, and Dr Black's quotation under them (`head` and `side` in DETAILS). The one-line description is kept by him as it is.
+- The constellation has fifteen stars. "Rorty" is "Ethics & politics" (joined to A way of life and Metacrisis; its old link to Plato is gone, since his list of connections did not include it). New: The soul, Reading hidden texts, Decolonial curricula, with his notes and connections; each has a "Go further" button like the other stars (papers, papers, the FIL110 study guide). A way of life moved a little on the wide layout to keep a line clear of it. The phone layout was laid out again in a slightly taller frame (360 by 548); a check in the preview found no name touching another name or star, at laptop or phone size.
+- Writing: one rate, "From R450 an hour", on the board, the card, the pop-up and "Working with me". No "tracked changes" ("comments in the margin"), "comments on the sentences" for "the sentence-level pass", the study-guide and course-material lines and the digital PR line removed, and the small line reads "Essays · Theses".
+- "Working with me", first bullet: "Open Details on any service and press Request. It drafts a message ..."
+- The description shown when the link is shared is the same as the search description.
+- Ten DRAFT-WEHAN placeholders in `index.html` now, plus the ten landing-word lines in `main.js`.
+- Site text written again; fresh Google Doc "Site text – three-cabinet site (fresh, v57)". The earlier one is renamed "OLD ...".
+
+## 2026-11-16: pop-ups folded in and removed (v=59 on `services`, on the staging site, not live)
+
+- v=58: the line from Ethics & politics to Plato put back, at his word.
+- From his chat notes: 38 pop-ups where there were 45.
+  - Folded in: Conference papers is now a section of Research and publications (before Profiles); the two assessment paragraphs on first-years and on honours groups are now a section "Assessment" at the end of Curriculum and course development. The third assessment paragraph (school classroom, Kahoot) was not moved; the same lines are already in Teaching approach.
+  - Removed: Teaching philosophy, Beyond the classroom, Funding and collaboration, Student support, Referees, with every button to them (Map, About me, and inside the pop-ups Why I teach, Hoërskool Garsfontein, Philosophy for teenagers, Testimonials, Research and publications).
+  - New lines, his: "My full teaching philosophy is in my resume." at the end of Teaching approach; "Referees are listed in my full resume." under the resume link on About me and at the end of Testimonials, where the Referees buttons were.
+  - About me has three buttons (About me, Qualifications, Why I teach) and four research links (Papers is gone, since the papers are inside Research). Five stars that had "Go further" to the papers now have only "Research and publications".
+  - The build stops if anything on the page still asks for a removed pop-up.
+- Site text written again; Google Doc "Site text – three-cabinet site (v59, 38 pop-ups)".
+
+## 2026-11-16: the papers links come back (v=60 on `services`, on the staging site, not live)
+
+- He was not happy to lose the Papers link under the constellation and the stars' button to the papers. Both are back and open Research and publications at its Conference papers section (`data-at="papers"` on the button, `data-anchor="papers"` on the heading; the click handler scrolls the pop-up there). On the five stars the button reads "Conference papers →".
+
+## 2026-11-16: Why I teach becomes a quotation (v=61 on `services`, on the staging site, not live)
+
+- The pop-up "Why I teach" is gone (37 pop-ups), with its Map entry, its About me button and the button to it inside the pop-up "About me". Its first and last sentences are a quotation under the title on About me; the middle sentence (fifteen years, collaborative spirit) was left out.
+- The motto in the foot of About me has a tooltip: "Docendo discimus: by teaching, we learn. After Seneca, Letters to Lucilius, 7.8." (Seneca wrote "homines dum docent discunt"; the two-word motto is the later short form, hence "after".)
+- The coin beside the title no longer opens anything: pressed, it spins and the whole page sways once (not with reduced motion).
+- The About me box on the landing page reads "Qualifications · Research · Resume", since Referees is no longer a place.
+- About me has two buttons: About me, Qualifications.
+- Site text written again; Google Doc "Site text – three-cabinet site (v61, 37 pop-ups)".
+
+## 2026-11-16: the coin's signs (v=62 on `services`, on the staging site, not live)
+
+- The page sway is gone. While the coin spins, its W flickers through phi, the unicursal hexagram (drawn in the seal as a path), Om, yin and yang, the eye of Ra (the hieroglyph U+13080) and back to W, 135 ms each. "Ohm" was read as Om.
+
+## 2026-11-16: the coin, a little fancier (v=63 on `services`, on the staging site, not live)
+
+- Each sign on the coin shows for a fifth of a second (200 ms); the spin lasts 1.65 s to hold all six.
+- The coin has a milled edge (a dashed ring), a face lit from the upper left (a radial gradient), a thin inner ring, a short highlight on the rim and a soft shadow. He asked for "a little 3d, textured ... dont overdo it".
+
+## 2026-11-16: a thicker coin (v=64 on `services`, on the staging site, not live)
+
+- The glint on the rim is gone and the face is lit less. The coin has thickness by a sleight: a second, darker disc six units below the face carries the milling, so the coin reads as seen slightly from above with its edge showing (`.coin-side`, `.coin-mill`, `.coin-back`). It is still a flat drawing; in the spin it turns as one piece.
+
+## 2026-11-16: an older coin (v=65 on `services`, on the staging site, not live)
+
+- No shine left on the coin: the face is one flat, dull colour. It is aged with two SVG noise filters (`#coin-wear` for worn patches, `#coin-pits` for fine pitting) and three small nicks in the rim; the lettering is a little duller. The thick milled edge stays.
+
+## 2026-11-16: his final lines; no drafts left (v=66 on `services`, on the staging site, not live)
+
+- Every DRAFT-WEHAN mark is gone (the build now requires none). His final lines from the chat: the search and shared description; the one-line descriptions of Writing, Classes, Lectures, A lesson and A school (and the Classes pop-up); the third paragraph of the About me pop-up; "I read for the argument first, then the style."; six of the landing-word notes (Nous, Maat, Jñāna, Ḥokhmah, Schola, Ubuntu). The rest he kept as they were.
+- The coin: the nicks are gone; the wear and pitting are a little stronger.
+- The cards have slightly less padding at the top and bottom on a laptop, so that the longer lines fit without scrolling (all ten fit at 1280 by 800).
+- `.claude/export_text.py` lists drafts only if the site has any. Fresh Google Doc "Site text – three-cabinet site" (37 pop-ups, no drafts).
+
+## 2026-11-16: pop-up text edits from his chat (v=68 on `services`, on the staging site, not live)
+
+- Eighteen edits (`POPUP_EDITS` in the build script, each checked to be found once): Teaching approach, Hoërskool Garsfontein, Writing support, Learning design and tools, Philosophical and AI consulting, Working with me, Curriculum and course development. The School card on the board still shows three points; the new fourth point in the consulting pop-up is for universities.
+- Four lesson fixes (`LESSON_EDITS`): The Herb Garden ("just asking", its four stage notes in the past tense); For Oom Piet (one sentence deleted); South African spelling (centre, analyse, analysing in The Tempest; emphasise in Philosophy for teenagers; also emphasising in The Herb Garden and summarised in a poem lesson); The Poet ("a square circle" both times).
+- The cards have a little less padding at the top again, so that all ten still fit on a laptop.
+- Fresh Google Doc "Site text – three-cabinet site".
+
+## 2026-11-16: the services list as buttons (v=69 on `services`, on the staging site, not live)
+
+- Tag `before-buttons` (local): the site at v=68, saved at his word before this change. To go back: "Restore the draft to before-buttons".
+- A trial he asked to see: each service on the board is one large button (`.item-btn`) with its name, its price and "click for details" ("tap for details" on a touch screen) in place of the small Details link. The one-line description is no longer shown in the list; it is still in the page (hidden) because the details card reads it. With a pointer, a button swells a little on hover; on a phone the name and the hint share a line so that four buttons fit one screen.
+- Consult names: For You, For Your School, For Your University (on the buttons, the card titles and under the objects). The Consult box on the landing page still reads "A person · A school · A university".
+- Fresh Google Doc "Site text – three-cabinet site".
+
+## 2026-11-16: the descriptions back as tooltips (v=70 on `services`, on the staging site, not live)
+
+- He likes the buttons. Each service's one-line description is back as a tooltip that appears to the right of its button, over the board, on hover or keyboard focus. Only where there is a pointer and the screen is wider than 900px; on a phone it stays off (the line is on the card).
+
+## 2026-11-16: a new landing sentence (v=71 on `services`, on the staging site, not live)
+
+- His: "Philosopher and educator. I teach people to think for themselves by providing specialised educational support for individuals, schools and universities." He typed "school and universities"; set as "schools" and flagged to him.
+
+## 2026-11-16: room at the top of the cards, Design names, stills, tabs (v=72 on `services`, on the staging site, not live)
+
+- The details cards have more room above the title again (the study-guide shelf on the Modules card is a little shorter to pay for it; all ten fit at 1280 by 800).
+- Design names: Lessons, Modules, Curricula (buttons, card titles, under the objects, and the Design box on the landing page). The Lessons line: "Lessons, with all their materials, ready to teach".
+- The two recordings on the Lectures card show a still: Google Drive's own preview picture, loaded from drive.google.com/thumbnail by file id (not saved in the repo), darkened at the foot under the caption.
+- A tab pressed while a details card is open on that same tab closes the card and brings the list back.
+- Fresh Google Doc "Site text – three-cabinet site".
+
+## 2026-11-16: the big-boxes board, muted colours (v=73 on `services`, on the staging site, not live)
+
+His ask: "simplify even further, particularly by muting the colors a bit and then relegating the animated objects the left of the service boxes on the TDC page, and have those boxes dominate the 'whiteboard' space with most important details immediately visible, and then clicking one expands it over the others, showing the rest of the detail." The version before this is tagged `before-boxes` (v=72, local tag). To go back: "Restore the draft to before-boxes".
+
+- **Layout.** The turning object is now small, in a narrow column on the far left of the board (it still follows the box under the pointer; "drag to turn · tap to change" is hidden on a computer). The rest of the board is the services as wide boxes, one under the other: four on Teach, three on Design and Consult.
+- **A box shows** the name, the price and "click for details" on the left; on the right the one-line description (no longer a tooltip) and, where the details card has them, a point or two copied from that card (`PEEK` in main.js; no new wording): Tutoring and Writing two points each, Classes "What I taught in 2026", Lectures "Watch me teach", Lessons "The arc of a lesson", Modules "Study guides I wrote", For Your University two points. Curricula, For You and For Your School show the description only.
+- **Opening.** A pressed box grows (a clip-path animation from the box's own outline) until its details card covers the whole board under the tabs, the object column included, so the ten cards keep the room they were fitted to (all ten fit without scrolling at 1280x800). The cross, the tab and Escape close it; on a phone the bar at the foot of the card does too, and the card is scrolled so its title sits under the tabs.
+- **Colours.** The three colours are muted everywhere they are used (tabs, boxes, cards, pop-ups, landing boxes): dark theme sage #8FB79A, clay #D3A377, lavender #AA9FCC; light theme #426F53, #8E5C33, #675A8E.
+- **Site text.** `.claude/export_text.py` now lists the points under each box.
+- **Samples.** He wants a sample offering for each service. Present today: Classes (the lesson bookshelf), Lectures (two recordings), Lessons (the arc, and the lesson pop-ups), Modules (five study guides). Missing: Tutoring, Writing, Curricula, For You, For Your School, For Your University. He was given a chat prompt to brainstorm the six.
+- Checked in the preview at 1280x800 (both themes), 1366x700 and 375x812. Not checked on a real phone.
+
+## 2026-11-16: his own points on the boxes (v=74 on `services`, on the staging site, not live)
+
+He kept the big boxes ("I really like the big boxes, keep them") but found the points weak, took them to a chat, and pasted back two points for each of eight services (Tutoring and Writing kept theirs). They are in `PEEK` in main.js, one service to a line; the text export reads them from there. For Your University now reads "An AI review of a module or a whole department"; its card ends "A meeting with your staff to talk it through"; the consulting pop-up bullet says the same.
+
+## 2026-11-16: the dark-mode drawing, the hand over the board, About me tiles (v=75 on `services`, on the staging site, not live)
+
+- **The drawing.** He supplied the white-on-black drawing (kept as he sent it in `assets/wehan-drawing-dark.webp`). It lines up with the light one to within a few pixels, so both share one frame (1004 x 1416, pointing right, mirrored by the page). `.me` is now two layers: `::before` is the figure's solid shape (`wehan-fill.webp`, `wehan-fill-dark.webp`) painted in the page colour, `::after` is the lines (`wehan-line.webp`, `wehan-line-dark.webp`) in the text colour. Because the figure is solid, the board's edge no longer shows through his hand, in either mode. The four masks are made by `draw_dark.py` (session scratchpad; it needs the path of his picture). The prerequisite he set for publishing ("we need the improved white on black image before pushing to the real site") is therefore met; publishing still waits for his word.
+- **About me.** The six figures are outlined tiles with a small arrow after each label and lift under the pointer, so that they read as buttons. Under the constellation, "Papers" is gone and "Research" is "Research & publications".
+
+## 2026-11-16: a trial, testimonials between the solids (v=76 on `services`, on the staging site, not live)
+
+His ask: "should we maybe mix in some testimonials between the shapes on the landing page? let's see how it looks". After a solid has had its nine seconds it dims and one testimonial stands over it for eight seconds, then the next solid comes; a tap or a drag puts the words away. Five testimonials, all from `VOICES` (`LANDING_VOICES` in main.js): two first-year students, the UP mentor lecturer, Prof Finamore, Dr Black. Not shown where motion is reduced (the solid does not change by itself there). To take it out: undo `round76.py` (three blocks in the build script, one in `cabinets.css`), or check out commit 3ae79fe.
+
+## 2026-11-16: his suggestions in the site text doc (v=77 on `services`, on the staging site, not live)
+
+He marked the site text Google Doc (the v74 copy) with three suggestions and three comments. The suggestions are applied:
+
+1. Landing sentence: "specialised educational support" is now "specialised teaching and learning support".
+2. Tutoring box, first point: "A plan for the term, with marked practice" ("essays" cut). He marked only the box; the same line on the Tutoring details card and in the Tutoring pop-up still ends "practice essays" (asked whether to cut it there too).
+3. The Map no longer opens with "Everything lives on this one page. Pick a place and it opens."
+
+His three comments, answered in chat and not yet acted on: (a) Lessons card quotation ("Enhanced the learners' vocabulary through scaffolding"): "We sure we don't have a better one for this?"; (b) For You card quotation (Dr Black, "He moves between close readings of Plato and present concerns..."): "This is great but maybe more suited to a different section?"; (c) the Map from My services down: "I think all of this needs updating or streamlining?". A fourth suggestion thread, "Add space", could not be found in the text and carries no wording.
+
+The text export now also lists the five landing testimonials of the trial.
+
+## 2026-11-16: the Map rebuilt, two quotations, "essays" (v=78 on `services`, on the staging site, not live)
+
+- **The Map** mirrors the site as it is: Begin; My services (Teach, Design and Consult side by side, each with its services, then Working with me and Book a free intro call); About me (About me, Qualifications, Research & publications, Posts, The age of AI, Testimonials, My full resume); CVs (the four PDFs); Contact (Write to me, LinkedIn). A service in the Map opens its details card (`data-svc`). The school and lesson pop-ups are no longer listed there; they are reached from the cards. The order of the pop-ups (for the arrows and "3 of 7" inside a pop-up) used to be read off the Map and is now written out in main.js (`ORDER`).
+- **Lessons card quotation:** "The lesson plans were well crafted and engaged learners, allowing them to partake and ask questions." (Mentor teacher, Hoërskool Garsfontein · formal assessment, 2026). His chat read it from a handwritten, scanned form (Mentor Assessment 2, 27 May 2026) and said to check it against the original before it goes live.
+- **For You card quotation:** "…he has been a guide and mentor to me there as much as in the academy." (Dr Mitchell-Ron Black · research collaborator, 2026). His chat advised asking Dr Black first; he said to use it without waiting. The earlier Black quotation is still in the Testimonials pop-up.
+- **"essays"** is cut from "A plan for the term, with marked practice" at its source, so the box, the card and the Tutoring pop-up all match ("yes dropping the word 'essay' was deliberate").
+- The landing testimonials stay ("keep testimonials").
+
+## 2026-11-16: the final pass (v=79 on `services`, on the staging site, not live)
+
+He asked for a final pass on the whole site, whether it funnels customers, and whether the visit counter works.
+
+**Checked by script (`audit.py`, session scratchpad):** no duplicate ids, every pop-up a button names exists, no local file missing, every outside link answers (the 403/999 answers are sites refusing a script, not broken links), no placeholder, WhatsApp or phone number, no z-spellings in the text.
+
+**The visit counter.** The live site loads GoatCounter's script and sends a count for each visit (seen in the browser: a request to `wehancoombs.goatcounter.com/count`). The dashboard needs his sign-in, so the recorded numbers were not seen. The staging copy leaves the counter out on purpose.
+
+**Fixed without new wording:**
+- Counting. "Write to me" on the bar and the single phone button "Book a free intro call · Write to me" were never counted (their click was stopped before the counter saw it); fixed. Newly counted: arriving at a pane (`see-services`, `see-about`), every pop-up opened (`open-<id>`), Request / Book / More on each card by service (`request-lesson`, `book-school`, `more-tutoring`), a message that was really sent (`sent-<kind>`), the address copied (`copy-address`). Tried in the preview with a stand-in counter.
+- Booking pop-up: "Open the booking page" now sits above the calendar (it was under a tall frame, out of sight if the calendar is slow or blocked), and "write to me" in its note opens the form.
+- The site text now shows the request form's own words (it used to leave the form out).
+
+**An independent first-visitor review** (a second agent, four visitors: a parent, a postgraduate, a principal, a head of department) found the contact routes sound (the bar on every screen, four ways to send, about four clicks from landing to a sent message) but the information before contact uneven. Left for his decision, most valuable first:
+1. ~~"Send from here" (Formspree) has never been confirmed with a real message.~~ Confirmed 2026-11-16: with his yes, one test message was sent through the form on the local preview (the browser would not open the staging address); the form said "Sent ✓" and Formspree's email reached his Gmail within a minute, subject "Hello", but under the **Updates** tab, not Primary. Not yet tried from a phone or from the staging address itself.
+2. The Tutoring box and card do not say school English or grades until the pop-up; the lines exist there.
+3. The For Your School card is vaguer than its box (general consulting bullets, a first-year student's quotation).
+4. The consulting request form does not mention an AI policy, a review or a university, and a message does not say which card it came from.
+5. The Lectures card gives an employer no way to write and no link to the Academic CV.
+6. Not answered anywhere: how soon he replies, what "From R350" depends on, where in-person sessions happen, how to send a document and roughly what a chapter costs, a price for For You.
+7. Old names: pop-up titles "Tutoring and TEFL", "Learning design and tools", "Philosophical and AI consulting"; the small labels "For schools" / "For universities" in pop-ups; "Working with me" lists the old names and says "Open Details".
+8. Numbers that disagree: "5 self-designed modules" against "4 from scratch, 1 partly redesigned"; "15 years lecturing" against posts that start lecturing in 2014; "a class of about 300" against "294 of 734"; the headline 4.81 is six students.
+9. The search title and description do not name what people search for.
+10. "Taking new clients for 2027" may read as "not available now".
+
+## 2026-11-16: his final text changes, the CVs, and PUBLISHED (v=80, live)
+
+His word: "Final changes below then push to my LIVE SITE and fix all the CV's to wehancoombs.com".
+
+**Text (from his chat, applied as given):**
+1. Tutoring box points: "School English, Grades 10 to 12" and "Home Language and First Additional Language".
+2. For Your School card: a "What you receive" list of three lines. It replaces the three general consulting points that were there (they are still in the consulting pop-up); with both, the card would not fit.
+3. Request on the For Your School and For Your University cards opens a new message for institutions (`REQUESTS.institution`); For You keeps the old one less two lines.
+4. "Working with me" has five more lines under How it works (reply within two working days; what R350 is for; where sessions are; how to send writing; For You is R450 an hour). For You shows "R450 an hour" on its box and card, and has its own line in Rates; the last Rates line now names "Classes and lectures, Design, For Your School, For Your University" so that it does not contradict it.
+5. Pop-up titles: "Tutoring", "Lessons, modules and curricula", "Consulting: for you, your school, your university".
+6. "15 years teaching at university"; Philosophy of Medicine is "a class of more than 700" (the About me pop-up and the note on the 4,000 figure). "5 self-designed modules" kept.
+7. Search title and description: no change.
+8. "Taking new clients now" in all seven places.
+
+**The domain.** He had already added the `CNAME` file on GitHub (commit 852821f on `main`, "wehancoombs.com") and pointed the domain at GitHub Pages. wehancoombs.github.io now redirects to http://wehancoombs.com/. On 2026-11-16 the secure address (https) did not yet work: GitHub had not issued the certificate. There is no `www` record. The `CNAME` file lives on `main` only; `services` does not have it, so the staging copy is not affected. **When publishing, merge `services` into `main`; never replace `main` with `services`, or the CNAME file is lost and the domain stops working.**
+
+**The CVs.** The website line in all five CVs (FET, PhD, Freelance, General, and the Afrikaans general one) reads "wehancoombs.com" and links to http://wehancoombs.com (http, because https did not work yet; with Enforce HTTPS on, it will redirect). Re-rendered, every page overflow 0; old copies archived in Drive as "(before 2026-11-16)"; the four English ones copied into `cv/` here. The QR codes point at the full resume Google Docs and needed no change.
+
+**Published** by merging `services` into `main` (keeping `CNAME`) and pushing. The live site was v=40 (the five-cabinet site, tag `before-services`) until then.
+

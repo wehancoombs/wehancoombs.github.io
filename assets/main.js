@@ -13,7 +13,9 @@
   const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
   const TAU = Math.PI * 2;
   $$('a[href$=".pdf"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
-  const CH_LABEL = { threshold: 'Begin', teach: 'Teach', think: 'Think', make: 'Make', write: 'Contact' };
+  // The small label at the top of each pop-up, and the cabinet each kind of pop-up belongs to.
+  const CH_LABEL = { threshold: 'Begin', teach: 'For schools', think: 'For universities', make: 'My services', write: 'Contact' };
+  const CH_PLACE = { threshold: '#threshold', make: '#services', teach: '#about', think: '#about' };
 
   /* ---------- Colours (read from the CSS so both themes just work) ---------- */
   function cssVar(name, el) { return getComputedStyle(el || body).getPropertyValue(name).trim(); }
@@ -35,24 +37,29 @@
   };
   pal.refresh();
 
-  /* ---------- Theme toggle ---------- */
-  const themeBtn = $('#theme');
+  /* ---------- Light and dark: the visitor's system setting, until the switch is used; the switch is remembered ---------- */
+  const themeBtn = $('#theme'), sysLight = matchMedia('(prefers-color-scheme: light)');
   const isLight = () => root.getAttribute('data-theme') === 'light';
+  function setTheme(light) { if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme'); }
   function paintTheme() {
     themeBtn.innerHTML = isLight() ? '☾<span class="lbl"> Dark</span>' : '☀<span class="lbl"> Light</span>';
     pal.refresh();
+    const m = $('meta[name="theme-color"]'); if (m) m.setAttribute('content', cssVar('--bg'));
   }
+  const repaintStill = () => { if (reduced) { pal.accent = Object.assign({}, pal.target); drawField(0); drawSolid(performance.now()); } };
   themeBtn.addEventListener('click', () => {
     body.classList.add('theming');
-    if (isLight()) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', 'light');
+    setTheme(!isLight());
     try { localStorage.setItem('theme', isLight() ? 'light' : 'dark'); } catch (e) {}
-    paintTheme();
-    if (reduced) { pal.accent = Object.assign({}, pal.target); drawField(0); drawSolid(performance.now()); }
+    paintTheme(); repaintStill();
     setTimeout(() => body.classList.remove('theming'), 1000);
   });
+  // If the system setting changes while the page is open, follow it, unless the switch has been used.
+  const followSystem = () => { let saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {} if (saved !== 'light' && saved !== 'dark') { setTheme(sysLight.matches); paintTheme(); repaintStill(); } };
+  if (sysLight.addEventListener) sysLight.addEventListener('change', followSystem); else if (sysLight.addListener) sysLight.addListener(followSystem);
   paintTheme();
 
-  /* ---------- The CVs in the top bar: a dropdown on narrow screens ---------- */
+  /* ---------- The CVs in the top bar: one dropdown, at every width ---------- */
   const cvs = $('#cvs'), cvsBtn = $('#cvs-btn');
   function closeCvs() { if (!cvs.classList.contains('on')) return; cvs.classList.remove('on'); cvsBtn.setAttribute('aria-expanded', 'false'); }
   cvsBtn.addEventListener('click', e => { e.stopPropagation(); const on = cvs.classList.toggle('on'); cvsBtn.setAttribute('aria-expanded', on ? 'true' : 'false'); });
@@ -149,7 +156,37 @@
   }
   const S = { cur: 4, nxt: -1, mix: 0, ax: .55, ay: .35, vx: 0, vy: 0, tx: 0, ty: 0, drag: null, last: performance.now(), lastSwitch: performance.now(), labelDone: false };
   const elLabel = $('#solid-el'), nameLabel = $('#solid-name');
-  function setLabel(i) { elLabel.textContent = SOLIDS[i].el; nameLabel.textContent = SOLIDS[i].name; }
+  // The small word under the sentence changes with the solid: ainigma first, then ten more, each in its own script with a line about it.
+  // The lines are his (chat of 2026-11-16).
+  const RIDDLES = [
+    ['αἴνιγμα', '<em>Ainigma</em>: a riddle. The title of my PhD on Plato, and a fair description of teaching.'],
+    ['νοῦς', '<em>Nous</em>: mind, the eye of the soul. What teaching tries to wake.'],
+    ['ψυχή', '<em>Psychē</em>: soul, breath. The whole person who comes to a lesson, not only the intellect.'],
+    ['ἀπορία', '<em>Aporia</em>: being at a loss. The honest moment of not knowing, where learning starts.'],
+    ['συμπαιδεία', '<em>Sympaideia</em>: learning together. My own word for teaching built on rapport and mutual curiosity.'],
+    ['𓆄', '<em>Maat</em>: truth, balance, right order. The feather the heart was weighed against.'],
+    ['ज्ञान', '<em>Jñāna</em>: knowledge that changes the knower, kin to the Greek <em>gnōsis</em>.'],
+    ['חכמה', '<em>Ḥokhmah</em>: wisdom, knowing how to live, not only what is true.'],
+    ['schola', '<em>Schola</em>: the leisure required to think.'],
+    ['道', '<em>Dào</em>: the way. Chinese, for a path that is learnt by walking it.'],
+    ['ubuntu', '<em>Ubuntu</em>: <em>umuntu ngumuntu ngabantu</em>, a person is a person through other people.']
+  ];
+  const riddleBtn = $('.ainigma'), riddleTip = $('#ainigma-tip'); let riddleAt = 0;
+  function setLabel(i) {
+    elLabel.textContent = SOLIDS[i].el; nameLabel.textContent = SOLIDS[i].name;
+    if (!riddleBtn) return;
+    riddleAt = (riddleAt + 1) % RIDDLES.length;
+    riddleBtn.textContent = RIDDLES[riddleAt][0]; riddleTip.innerHTML = RIDDLES[riddleAt][1];
+  }
+  // Between one solid and the next, a testimonial (all five are on the site already, in VOICES).
+  const voiceBox = $('.solid-box'), voiceEl = $('#solid-voice'); let voiceOn = false, voiceAt = 0, voiceN = -1;
+  const LANDING_VOICES = [['think', 6], ['teach', 0], ['think', 1], ['think', 4], ['teach', 4]];
+  function showVoice(t) {
+    voiceN = (voiceN + 1) % LANDING_VOICES.length; const v = VOICES[LANDING_VOICES[voiceN][0]].items[LANDING_VOICES[voiceN][1]];
+    $('p', voiceEl).textContent = v[0]; $('small', voiceEl).textContent = v[1];
+    voiceOn = true; voiceAt = t; voiceBox.classList.add('voiced'); voiceEl.setAttribute('aria-hidden', 'false');
+  }
+  function hideVoice() { voiceOn = false; voiceBox.classList.remove('voiced'); voiceEl.setAttribute('aria-hidden', 'true'); }
   function switchSolid() { if (S.nxt >= 0) return; S.nxt = (S.cur + 1) % SOLIDS.length; S.mix = 0; S.labelDone = false; }
   function rot(p, ax, ay) {
     const cy = Math.cos(ax), sy = Math.sin(ax);
@@ -185,7 +222,8 @@
     grad.addColorStop(0, 'rgba(' + g.r + ',' + g.g + ',' + g.b + ',' + ((pal.light ? .09 : .13) * br + .04).toFixed(3) + ')');
     grad.addColorStop(1, 'rgba(' + g.r + ',' + g.g + ',' + g.b + ',0)');
     sx.fillStyle = grad; sx.fillRect(0, 0, SW, SW);
-    if (S.nxt < 0 && !S.drag && t - S.lastSwitch > 9000) switchSolid();
+    if (S.drag && voiceOn) hideVoice();
+    if (S.nxt < 0 && !S.drag && t - S.lastSwitch > 9000) { if (!voiceBox) switchSolid(); else if (!voiceOn) showVoice(t); else if (t - voiceAt > 8000) { hideVoice(); switchSolid(); } }
     if (S.nxt >= 0) {
       S.mix = Math.min(1, S.mix + dt / 1500);
       const m = S.mix < .5 ? 2 * S.mix * S.mix : 1 - Math.pow(-2 * S.mix + 2, 2) / 2;
@@ -204,7 +242,7 @@
     S.drag.x = e.clientX; S.drag.y = e.clientY; S.drag.moved += Math.abs(dx) + Math.abs(dy);
     S.ay += dx * .008; S.ax -= dy * .008; S.vy = dx * .0012; S.vx = -dy * .0012;
   });
-  function endDrag() { if (!S.drag) return; const tap = S.drag.moved < 6; S.drag = null; sc.classList.remove('dragging'); if (tap) switchSolid(); }
+  function endDrag() { if (!S.drag) return; const tap = S.drag.moved < 6; S.drag = null; sc.classList.remove('dragging'); if (tap) { if (voiceOn) hideVoice(); switchSolid(); } }
   sc.addEventListener('pointerup', endDrag); sc.addEventListener('pointercancel', endDrag);
   sc.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); switchSolid(); } });
   let heroVisible = true;
@@ -214,21 +252,22 @@
   function track(name) { try { if (window.goatcounter && goatcounter.count) goatcounter.count({ path: name, title: name, event: true }); } catch (e) {} }
   document.addEventListener('click', e => { const t = e.target.closest('[data-track]'); if (t) track(t.dataset.track); });
 
-  /* ---------- The cabinets: a vertical stack of full-screen panes, and a side room of detail for three of them ---------- */
-  const strip = $('main'), panes = $$('main .pane'), details = $$('.detail'), dots = $$('.dots a');
+  /* ---------- The cabinets: a vertical stack of full-screen panes, one on screen at a time ---------- */
+  const strip = $('main'), panes = $$('main .pane'), dots = $$('.dots a');
   const prevBtn = $('#pane-prev'), nextBtn = $('#pane-next');
-  let cur = 0, room = null;
+  let cur = 0;
   function paintPager() { prevBtn.disabled = cur === 0; nextBtn.disabled = cur === panes.length - 1; }
   function markPane(i) {
-    cur = i;
     const ch = panes[i].closest('section').id;
+    if (i !== cur) track('see-' + ch);   // counted: a visitor arrives at this pane, by a button or by scrolling
+    cur = i;
     body.dataset.chapter = ch;
     dots.forEach(d => { if (d.getAttribute('href') === '#' + ch) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
     paintPager();
     pal.refresh();
   }
   // The pane that fills more than half the screen is the one we are in.
-  const paneIO = new IntersectionObserver(es => { if (room) return; es.forEach(e => { if (e.isIntersecting) markPane(panes.indexOf(e.target)); }); }, { root: strip, threshold: .55 });
+  const paneIO = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) markPane(panes.indexOf(e.target)); }); }, { root: strip, threshold: .55 });
   panes.forEach(p => paneIO.observe(p));
   function showPane(i, instant) {
     i = Math.max(0, Math.min(panes.length - 1, i));
@@ -237,33 +276,24 @@
     strip.scrollTo({ top: top, behavior: instant || reduced ? 'instant' : 'smooth' });
     if (instant) markPane(i);
   }
-  // A side room slides in from the right; the stack slides away to the left.
-  function openRoom(d) {
-    if (room === d) return;
-    if (room) room.classList.remove('on');
-    const home = $('#' + d.dataset.ch + ' .pane');
-    if (home && panes.indexOf(home) !== cur) showPane(panes.indexOf(home), true);
-    room = d; d.scrollTop = 0; d.classList.add('on'); body.classList.add('in-detail');
-    const back = $('.detail-back', d); if (back) back.focus({ preventScroll: true });
-  }
-  function closeRoom() {
-    if (!room) return;
-    const more = $('#' + room.dataset.ch + ' .cab-down');
-    room.classList.remove('on'); room = null; body.classList.remove('in-detail');
-    if (more) more.focus({ preventScroll: true });
-  }
-  // A section's name leads to its cabinet; a detail's id opens that side room.
+  // Addresses from the earlier versions of the site still lead somewhere: the old Teach and Make cabinets to My services,
+  // the old Think cabinet and the old side rooms to About me, and #write to the contact panel.
+  const ALIAS = {
+    '#top': ['#threshold'], '#board': ['#services'], '#teach': ['#services', 'board', 'teach'], '#design': ['#services', 'board', 'design'], '#consult': ['#services', 'board', 'consult'], '#make': ['#services'], '#make-detail': ['#services'],
+    '#think': ['#about'], '#think-detail': ['#about'], '#teach-detail': ['#about']
+  };
   function showTarget(sel, instant) {
-    let el = null; try { el = $(sel); } catch (e) {}
+    if (sel === '#write') { openPanel(); return true; }
+    const a = ALIAS[sel];
+    if (a && a[1]) openTab($('#' + a[1]), a[2]);
+    let el = null; try { el = $(a ? a[0] : sel); } catch (e) {}
     if (!el) return false;
-    const d = el.closest('.detail');
-    if (d) { openRoom(d); return true; }
     const p = el.classList.contains('pane') ? el : el.closest('main .pane') || $('.pane', el);
     if (!p || panes.indexOf(p) < 0) return false;
-    closeRoom(); showPane(panes.indexOf(p), instant);
+    showPane(panes.indexOf(p), instant);
     return true;
   }
-  const isPlace = sel => { let el = null; try { el = $(sel); } catch (e) {} return !!el && (!!el.closest('.detail') || el.classList.contains('chapter') || panes.indexOf(el) >= 0); };
+  const isPlace = sel => { if (sel === '#write' || ALIAS[sel]) return true; let el = null; try { el = $(sel); } catch (e) {} return !!el && (el.classList.contains('chapter') || panes.indexOf(el) >= 0); };
   prevBtn.addEventListener('click', () => showPane(cur - 1));
   nextBtn.addEventListener('click', () => showPane(cur + 1));
   const overlayOpen = () => body.classList.contains('locked');
@@ -271,21 +301,18 @@
     if (overlayOpen() || e.altKey || e.ctrlKey || e.metaKey) return;
     const a = document.activeElement;
     if (/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.id === 'solid' || a.id === 'tetra') return;
-    if (room) {
-      if (e.key === 'Escape' || e.key === 'ArrowLeft') { e.preventDefault(); closeRoom(); }
-      else if (e.key === 'ArrowDown') room.scrollBy({ top: 90 });
-      else if (e.key === 'ArrowUp') room.scrollBy({ top: -90 });
-      return;
-    }
     if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); showPane(cur + 1); }
     else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); showPane(cur - 1); }
-    else if (e.key === 'ArrowRight') { const d = $('#' + body.dataset.chapter + '-detail'); if (d) { e.preventDefault(); openRoom(d); } }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const b = $('.bb', panes[cur]); if (b) { e.preventDefault(); stepTab(b, e.key === 'ArrowRight' ? 1 : -1); } }   // left and right change the tab
   });
-  // The mouse wheel: one turn is one cabinet. A pane taller than the screen scrolls inside itself first.
+  // The mouse wheel: one turn is one cabinet. Anything inside the cabinet that scrolls takes the wheel first.
   let wheelUntil = 0;
   strip.addEventListener('wheel', e => {
-    if (overlayOpen() || room || e.ctrlKey || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    if (overlayOpen() || e.ctrlKey || Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
     const p = panes[cur], down = e.deltaY > 0, now = performance.now();
+    for (let n = e.target; n && n !== p && n !== strip; n = n.parentElement) {   // the details laid over the object keep the wheel while the pointer is over them
+      if (n.scrollHeight > n.clientHeight + 2 && /auto|scroll/.test(getComputedStyle(n).overflowY)) { wheelUntil = now + 400; return; }
+    }
     if (down ? p.scrollTop + p.clientHeight < p.scrollHeight - 2 : p.scrollTop > 2) { wheelUntil = now + 400; return; }
     e.preventDefault();
     if (now < wheelUntil) { wheelUntil = now + 250; return; } // the tail of the same turn of the wheel
@@ -293,12 +320,6 @@
     wheelUntil = now + 700;
     showPane(cur + (down ? 1 : -1));
   }, { passive: false });
-  // On a touch screen, a swipe from left to right leaves a side room.
-  details.forEach(d => {
-    let t0 = null;
-    d.addEventListener('touchstart', e => { const t = e.touches[0]; t0 = e.target.closest('.sky, .shelf, .lectures') ? null : { x: t.clientX, y: t.clientY }; }, { passive: true });
-    d.addEventListener('touchend', e => { if (!t0) return; const t = e.changedTouches[0], dx = t.clientX - t0.x, dy = t.clientY - t0.y; t0 = null; if (dx > 70 && Math.abs(dy) < 50) closeRoom(); }, { passive: true });
-  });
   window.addEventListener('resize', () => showPane(cur, true));
   markPane(0);
 
@@ -349,15 +370,16 @@
   const BOOKING_URL = 'https://calendar.app.google/LnQHr42n4ykTqa4ZA', FORM_URL = 'https://formspree.io/f/xnppyzon';
   const REQUESTS = {
     tutoring: { ch: 'make', title: 'Request tutoring', subject: 'Tutoring request', intro: 'Tell me the subject, the level and when suits you. I reply with a plan, a rate and a start date.', body: 'Hi Wehan,\n\nI’d like to ask about tutoring.\n\nSubject and grade or level: \nWhen and how often: \nIn person or online: \n\nThanks,\n' },
-    editing: { ch: 'make', title: 'Request editing', subject: 'Editing request', intro: 'Tell me what the document is and when you need it back. I reply with a rate and a date.', body: 'Hi Wehan,\n\nI’d like to ask about editing.\n\nWhat the document is and roughly how long: \nWhen I need it back: \n\nThanks,\n' },
+    editing: { ch: 'make', title: 'Request writing support', subject: 'Writing support request', intro: 'Tell me what the document is and when you need it back. I reply with a rate and a date.', body: 'Hi Wehan,\n\nI’d like to ask about writing support.\n\nWhat the document is and roughly how long: \nWhen I need it back: \n\nThanks,\n' },
     design: { ch: 'make', title: 'Request learning design', subject: 'Learning design request', intro: 'Tell me what you need built and who it is for. I reply with a plan, a rate and a timeline.', body: 'Hi Wehan,\n\nI’d like to ask about learning design.\n\nWhat I need built: \nWho it is for: \nWhen I need it: \n\nThanks,\n' },
-    consulting: { ch: 'make', title: 'Request consulting', subject: 'Consulting request', intro: 'Tell me the question and who it is for. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about philosophical and AI consulting.\n\nFor me personally, or for a school, team or organisation: \nThe question or situation: \nA talk, a workshop, a written brief, or a conversation: \n\nThanks,\n' },
+    consulting: { ch: 'make', title: 'Request consulting', subject: 'Consulting request', intro: 'Tell me the question and who it is for. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about philosophical and AI consulting.\n\nThe question or situation: \n\nThanks,\n' },
+    institution: { ch: 'make', title: 'Request consulting', subject: 'Consulting request', intro: 'Tell me the question and who it is for. I reply with a proposal and a rate.', body: 'Hi Wehan,\n\nI’d like to talk about consulting.\n\nSchool or university, and department: \nWhat you need (an AI policy, a staff workshop, or an AI review): \nHow many staff, modules or departments: \nWhen you need it by: \n\nThanks,\n' },
     any: { ch: 'write', title: 'Write to me', subject: 'Hello', intro: 'For anything else: a post, a reference, a question, a hello.', body: 'Hi Wehan,\n\n\n\nThanks,\n' }
   };
   const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   Object.keys(REQUESTS).forEach(k => {
     const r = REQUESTS[k];
-    library['request-' + k] = { title: r.title, ch: r.ch, html:
+    library['request-' + k] = { title: r.title, ch: r.ch, tone: { tutoring: 'c-teach', editing: 'c-teach', consulting: 'c-consult', institution: 'c-consult' }[k], html:
       '<p class="when">' + r.intro + '</p>' +
       '<div class="req" data-kind="' + k + '">' +
         '<label class="req-label" for="req-from">Your email <small>so that I can reply</small></label>' +
@@ -400,7 +422,7 @@
         b.disabled = true; b.textContent = 'Sending…';
         fetch(FORM_URL, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: from.value, message: text, _subject: r.subject, _gotcha: trap.value }) })
-          .then(res => { if (!res.ok) throw new Error(res.status); b.textContent = 'Sent ✓ I will reply by email'; })
+          .then(res => { if (!res.ok) throw new Error(res.status); b.textContent = 'Sent ✓ I will reply by email'; track('sent-' + form.dataset.kind); })
           .catch(() => { b.disabled = false; b.textContent = 'Could not send. Try the email buttons'; setTimeout(() => { b.textContent = 'Send from here'; }, 3000); });
         return;
       }
@@ -410,7 +432,10 @@
     });
   }
   const ORDER = {};
-  $$('.map-group').forEach(g => { ORDER[g.dataset.ch] = $$('[data-sheet]', g).map(b => b.dataset.sheet); });
+  // The order of the pop-ups within each group, for the arrows inside a pop-up and its "3 of 7".
+  Object.assign(ORDER, { threshold: ['about', 'qualifications'], make: ['tutoring', 'editing', 'classes', 'design', 'consulting', 'working', 'book'],
+    teach: ['approach', 'abbotts', 'garsfontein', 'macbeth', 'tempest', 'poems', 'grammar', 'film', 'enrichment', 'ai'],
+    think: ['posts', 'courses', 'guides', 'lectures', 'testimonials', 'publications', 'curriculum'], write: ['resume'] });
 
   const scrim = $('#scrim'), sheet = $('#sheet'), sheetCh = $('#sheet-ch'), sheetTitle = $('#sheet-title'), sheetBody = $('#sheet-body'), sheetWhere = $('#sheet-where'), sheetArt = $('#sheet-art');
   const map = $('#map'), mapBtn = $('#map-btn');
@@ -517,8 +542,10 @@
   function openSheet(id) {
     const item = library[id];
     if (!item) return;
+    track('open-' + id);
     clearTimeout(sheetTimer);
     if (map.classList.contains('on')) closeMap(true);
+    closePanel();
     if (!sheet.classList.contains('on')) lastFocus = document.activeElement;
     openId = id;
     sheet.dataset.ch = item.ch;
@@ -563,6 +590,7 @@
   function openMap() {
     clearTimeout(mapTimer);
     if (sheet.classList.contains('on')) closeSheet();
+    closePanel();
     lastFocus = document.activeElement;
     map.hidden = false; showScrim(); lock();
     mapBtn.setAttribute('aria-expanded', 'true');
@@ -578,11 +606,15 @@
   mapBtn.addEventListener('click', () => { if (map.classList.contains('on')) closeMap(); else openMap(); });
   $('#map-close').addEventListener('click', () => closeMap());
   scrim.addEventListener('click', () => { closeSheet(); closeMap(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeSheet(); closeMap(); closeCvs(); } });
+  // Escape closes the topmost thing: a pop-up, the Map, the contact panel, then the details on the board.
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (sheet.classList.contains('on')) closeSheet(); else if (map.classList.contains('on')) closeMap(); else if (panel.classList.contains('on')) closePanel(true); else closeDetail();
+    closeCvs();
+  });
 
   function goTo(sel) {
-    const el = $(sel);
-    if (!el) return;
+    if (!isPlace(sel)) return;
     closeSheet(); closeMap();
     body.classList.remove('locked');
     setTimeout(() => showTarget(sel), 60);
@@ -591,9 +623,18 @@
   // One listener for every "open this" button on the page, in the map and inside sheets.
   document.addEventListener('click', e => {
     const c = e.target.closest('[data-copy]');
-    if (c) { e.preventDefault(); copyText(c.dataset.copy).then(() => flash(c, 'Copied ✓'), () => flash(c, 'Could not copy')); return; }
+    if (c) { e.preventDefault(); track('copy-address'); copyText(c.dataset.copy).then(() => flash(c, 'Copied ✓'), () => flash(c, 'Could not copy')); return; }
     const s = e.target.closest('[data-sheet]');
-    if (s) { e.preventDefault(); const id = s.dataset.sheet, ch = library[id] && library[id].ch; const sec = ch && $('#' + ch); if (sec && map.classList.contains('on') && body.dataset.chapter !== ch) showTarget('#' + ch, true); openSheet(id); return; }
+    if (s) { e.preventDefault(); const id = s.dataset.sheet, place = library[id] && CH_PLACE[library[id].ch]; if (place && map.classList.contains('on') && body.dataset.chapter !== place.slice(1)) showTarget(place, true); openSheet(id);
+      if (s.dataset.at) { const to = $('[data-anchor="' + s.dataset.at + '"]', sheet); if (to) requestAnimationFrame(() => to.scrollIntoView({ block: 'start' })); }   // a button may open a pop-up at one of its sections
+      if (s.closest('#board') && library[id] && !library[id].tone) sheet.dataset.tone = 'c-' + svcBoard.dataset.open;   // a pop-up opened from the board keeps the colour of its tab
+      return; }
+    const dt = e.target.closest('[data-detail]');
+    if (dt) { e.preventDefault(); openDetail(dt.dataset.detail); return; }
+    const sv = e.target.closest('[data-svc]');
+    if (sv) { e.preventDefault(); const it = $('.item-btn[data-detail="' + sv.dataset.svc + '"]'); if (!it) return;
+      closeSheet(); closeMap(); body.classList.remove('locked');
+      setTimeout(() => { showTarget('#services', true); openTab(svcBoard, it.closest('.items').dataset.col); openDetail(sv.dataset.svc); }, 60); return; }
     const g = e.target.closest('[data-goto]');
     if (g) { e.preventDefault(); goTo(g.dataset.goto); return; }
     // Any other link to a place on this page (the dots, the W in the top bar) slides to that cabinet.
@@ -602,10 +643,171 @@
   });
   function openFromHash() {
     const h = location.hash || '';
-    if (h.startsWith('#s-')) { const id = h.slice(3); if (library[id]) { showTarget('#' + library[id].ch, true); openSheet(id); } }
-    else if (h.length > 1) showTarget(h, true); // an address ending in #teach, #think, #make or #write opens on that cabinet
+    if (h.startsWith('#s-')) { const id = h.slice(3); if (library[id]) { const place = CH_PLACE[library[id].ch]; if (place) showTarget(place, true); openSheet(id); } }
+    else if (h.length > 1) showTarget(h, true); // an address ending in #services or #about (or an old one: #teach, #think, #make, #write) opens in that place
   }
   window.addEventListener('hashchange', openFromHash);
+
+  /* ---------- Tabs: the services board and the About board each show one of three sides at a time ---------- */
+  const svcBoard = $('#board'), svcStage = $('.stage');
+  function openTab(board, k) {
+    if (!board || board.dataset.open === k) return;
+    board.dataset.open = k;
+    pal.refresh();   // the cabinet takes the colour of the open tab, and the stars behind it follow
+    $$('.tabs [data-tab]', board).forEach(b => b.setAttribute('aria-pressed', b.dataset.tab === k ? 'true' : 'false'));
+    if (board === svcBoard) { closeDetail(); showShapes(k); }
+    track('tab-' + board.id + '-' + k);
+  }
+  function stepTab(board, d) { const ks = $$('.tabs [data-tab]', board).map(b => b.dataset.tab), k = ks[ks.indexOf(board.dataset.open) + d]; if (k) openTab(board, k); }
+  // A tab opens its side of the board. Pressed while a details card is open on that same side, it brings the list back.
+  $$('.bb .tabs [data-tab]').forEach(b => b.addEventListener('click', () => { const bd = b.closest('.bb'); if (bd.dataset.open === b.dataset.tab) closeDetail(); else openTab(bd, b.dataset.tab); }));
+  // Pointing at a service on the list brings up its own shape.
+  $$('.bb-menu [data-shape]').forEach(li => li.addEventListener('pointerenter', () => showShapes(svcBoard.dataset.open, +li.dataset.shape)));
+
+  /* ---------- Details: a box that is pressed opens over the others and fills the board, in place of a pop-up ---------- */
+  const bbDetail = $('#bb-detail'), bbChev = $('#bb-chev'), stash = $('#stash'), arcFig = $('.arc');
+  let detailFocus = null;
+  // What each item shows when Details is pressed. Nothing here is new wording: the name, line and rate are read from the item itself,
+  // and the rest is lifted from the pop-ups, the arc of a lesson and the quotations already on the page.
+  const part = (id, sel) => { const d = document.createElement('div'); d.innerHTML = library[id].html; return $$(sel, d).map(e => e.innerHTML); };
+  const DETAILS = {
+    tutoring: { lines: () => part('tutoring', '.svc-summary .deliv li'), quote: () => VOICES.make.items[2], request: 'tutoring', more: 'tutoring' },
+    writing: { line: true, lines: () => part('editing', '.svc-summary .deliv li'), quote: () => VOICES.make.items[0], request: 'editing', more: 'editing' },
+    classes: { line: true, inline: true, quote: () => VOICES.teach.items[0],
+      extra: () => '<p class="eyebrow">What I taught in 2026 · tap a spine</p>' + SHELF_HTML + '<div class="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson.</p></div>' },
+    // Lectures: the two recordings, large, one in front of the other; the chevron beside them brings the other forward.
+    lectures: { line: true, inline: true, wide: true, quote: () => VOICES.think.items[6], more: 'courses',
+      extra: () => '<p class="eyebrow">Watch me teach · <span class="deck-n">1 of 2</span></p><div class="deck">' + LECT_HTML +
+        '<button class="deck-next" type="button" aria-label="Show the other recording"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>' },
+    lesson: { line: true, inline: true, arc: true, extra: () => '<div class="bb-arc-slot"></div>', quote: () => ['The lesson plans were well crafted and engaged learners, allowing them to partake and ask questions.', 'Mentor teacher, Hoërskool Garsfontein · formal assessment, 2026'], request: 'design', more: 'approach' },
+    // A module: what a module comes with, the modules he has designed (the paragraph that used to sit under A curriculum), and the study guides.
+    module: { line: true, inline: true, text: () => part('design', 'h4 + p')[0], quote: () => VOICES.make.items[4], request: 'design', more: 'design',
+      extra: () => '<p class="eyebrow">Study guides I wrote · tap one to read it</p>' + GUIDES_HTML },
+    // A curriculum: his own lines (chat of 2026-11-15).
+    curriculum: { line: true, text: () => 'A curriculum is a set of modules in an order that makes sense, so that each one prepares for the next. At the University of Pretoria I designed first- and second-year philosophy modules to fit what came before and after them, and helped plan that order with the department.', quote: () => VOICES.think.items[8], request: 'design', more: 'curriculum' },
+    person: { line: true, text: () => part('consulting', 'h4 + p')[0], quote: () => ['…he has been a guide and mentor to me there as much as in the academy.', 'Dr Mitchell-Ron Black · research collaborator, 2026'], request: 'consulting', more: 'consulting' },
+    // A school: his own list of what the school receives (chat of 2026-11-16), in place of the three general consulting points.
+    school: { line: true, long: true, head: 'What you receive',
+      lines: () => ['An AI policy written for your school, or your current one revised', 'A workshop for your staff, at the school or online', 'A follow-up meeting to see how the policy is working'],
+      quote: () => VOICES.teach.items[4], request: 'institution', more: 'consulting' },
+    // A university: his own lines (chat of 2026-11-15). What the university receives, on the left; his research and how he assessed his own module, on the right, above the quotation.
+    university: { line: true, long: true, head: 'What you receive',
+      lines: () => ['A written review of the module’s assessments: which ones a machine can now complete, and which still test the student', 'The weak assessments redesigned, ready to use', 'A meeting with your staff to talk it through'],
+      side: () => '<p class="bb-para">My research is on teaching in the age of AI: what part of learning cannot be automated, and how to build teaching around it.</p><ul class="bb-lines long"><li>My 2026 honours module was assessed through video essays, podcasts and written work</li><li>Its last assessment was a sit-down essay on an unseen question: the role of philosophy in a world of AI</li></ul>',
+      quote: () => ['I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.', 'Dr Mitchell-Ron Black, 2026'], request: 'institution', more: 'ai' }
+  };
+  const DETAIL_ART = { tutoring: 'quill', writing: 'edit', classes: 'people', lectures: 'cap', lesson: 'compass', module: 'blocks', curriculum: 'book', person: 'person', school: 'school', university: 'temple' };
+  // What each box shows at a glance under its one-line description: two points. Those for Writing are read from its details card;
+  // the other nine pairs are his own lines (chats of 2026-11-16). The text export reads the eight from here, so keep one service to a line.
+  const PEEK = { writing: () => DETAILS.writing.lines().slice(0, 2),
+    tutoring: () => ['School English, Grades 10 to 12', 'Home Language and First Additional Language'],
+    classes: () => ['At your school or venue, or live online', 'One session or a short series'],
+    lectures: () => ['In person, live online or recorded', 'One lecture or a whole module'],
+    lesson: () => ['Fitted to CAPS or your own curriculum', 'Plan, slides and worksheets as the lesson needs'],
+    module: () => ['For a university, school or private course', 'Lesson schedule, materials and assessments'],
+    curriculum: () => ['From your existing modules, or from scratch', 'Planned with your staff, if you like'],
+    person: () => ['In person in Pretoria East, or online', 'A conversation, not therapy'],
+    school: () => ['A new policy, or your current one revised', 'The workshop at your school, or online'],
+    university: () => ['A written report and redesigned assessments', 'A meeting with your staff to talk it through'] };
+  Object.keys(PEEK).forEach(id => { const el = $('[data-detail="' + id + '"] .item-pts'); if (el) el.innerHTML = PEEK[id]().map(l => '<span>' + l + '</span>').join(''); });
+  function openDetail(id) {
+    const d = DETAILS[id], from = $('[data-detail="' + id + '"]');
+    if (!d || !from) return;
+    stash.appendChild(arcFig);   // the arc goes back to its shelf before the card is redrawn
+    const it = from.closest('.item'), q = d.quote();
+    const btn = (cls, sheet, label, what) => '<button' + (cls ? ' class="' + cls + '"' : '') + ' type="button" data-sheet="' + sheet + '" data-track="' + what + '-' + id + '">' + label + '</button> ';   // counted by service: request-lesson, book-school, more-tutoring
+    const ul = d.lines ? '<ul class="bb-lines' + (d.long ? ' long' : '') + '">' + d.lines().map(l => '<li>' + l + '</li>').join('') + '</ul>' : '';
+    detailFocus = document.activeElement;
+    bbDetail.innerHTML = '<button class="close" type="button" data-detail-close aria-label="Close">×</button>' +
+      '<div class="bb-head"><span class="bb-icon" aria-hidden="true"><svg viewBox="0 0 48 48">' + ART[DETAIL_ART[id]] + '</svg></span><div><h3 class="bb-title" id="bb-title" tabindex="-1"></h3><p class="bb-rate">' + $('.item-rate', it).innerHTML + '</p></div></div>' +
+      '<div class="sheet-body bb-text"><div class="bb-short' + (d.wide ? ' wide' : '') + '"><div>' +
+        (d.line ? '<p class="bb-line">' + $('.item-line', it).innerHTML + '</p>' : '') +
+        (d.head ? '<p class="eyebrow bb-sub">' + d.head + '</p>' : '') +
+        (d.lines && !d.linesLast ? ul : '') +
+        (d.text ? '<p class="bb-para">' + d.text() + '</p>' : '') +
+        (d.lines && d.linesLast ? ul : '') +
+        (d.extra && d.inline ? '<div class="bb-extra compact room">' + d.extra() + '</div>' : '') +
+      '</div>' + (d.side ? '<div class="bb-side">' + d.side() : '') + '<blockquote class="bb-proof"><p>' + q[0] + '</p><small>' + q[1] + '</small></blockquote>' + (d.side ? '</div>' : '') + '</div>' +
+      (d.extra && !d.inline ? '<div class="bb-extra compact room">' + d.extra() + '</div>' : '') +
+      '<p class="more">' + (d.request ? btn('btn solid', 'request-' + d.request, 'Request', 'request') : '') + btn(d.request ? 'btn' : 'btn solid', 'book', 'Book a free intro call', 'book') + (d.more ? btn('', d.more, 'More →', 'more') : '') + '</p></div>';
+    const title = $('.bb-title', bbDetail);
+    title.textContent = $('.item-name', it).textContent;
+    if (d.arc) $('.bb-arc-slot', bbDetail).appendChild(arcFig);   // the real drawing is moved in, so that it keeps running
+    const first = $('.deck .lecture', bbDetail); if (first) first.classList.add('front');
+    bbDetail.hidden = false; bbDetail.scrollTop = 0;
+    svcStage.classList.add('detail-open');
+    // The card grows out of the box that was pressed, until it covers the others.
+    const a = from.getBoundingClientRect(), b = bbDetail.getBoundingClientRect();
+    if (!reduced && bbDetail.animate && a.width && b.width) bbDetail.animate([
+      { clipPath: 'inset(' + [a.top - b.top, b.right - a.right, b.bottom - a.bottom, a.left - b.left].map(v => Math.max(0, Math.round(v)) + 'px').join(' ') + ' round 14px)' },
+      { clipPath: 'inset(0px 0px 0px 0px round 0px)' }], { duration: 460, easing: 'cubic-bezier(.2, .7, .2, 1)' });
+    if (b.top < 100 || b.top > innerHeight * .6) bbDetail.scrollIntoView({ block: 'start' });   // on a phone, a box far down the page still opens with its title in sight, under the tabs
+    title.focus({ preventScroll: true });
+    track('detail-' + id);
+  }
+  function closeDetail() {
+    if (!svcStage.classList.contains('detail-open')) return;
+    stash.appendChild(arcFig);
+    svcStage.classList.remove('detail-open'); bbDetail.hidden = true; bbDetail.innerHTML = '';
+    if (detailFocus && detailFocus.focus && detailFocus.offsetParent) detailFocus.focus({ preventScroll: true });
+    detailFocus = null;
+  }
+  bbChev.addEventListener('click', closeDetail);
+  bbDetail.addEventListener('click', e => {
+    if (e.target.closest('[data-detail-close]')) { closeDetail(); return; }
+    if (!e.target.closest('.deck-next')) return;
+    // The other recording comes to the front. One that was playing stops, so that nothing plays out of sight.
+    const ls = $$('.deck .lecture', bbDetail), to = (ls.findIndex(l => l.classList.contains('front')) + 1) % ls.length;
+    ls.forEach((l, i) => {
+      l.classList.toggle('front', i === to);
+      if (i !== to && l.classList.contains('playing')) { const f = $('iframe', l); if (f) f.remove(); l.classList.remove('playing'); }
+    });
+    $('.deck-n', bbDetail).textContent = (to + 1) + ' of ' + ls.length;
+  });
+
+  /* ---------- The coin beside "About me": pressed, it spins, and as it spins its W flickers through five signs and back,
+     almost too fast to be sure of: phi, the unicursal hexagram, Om, yin and yang, the eye of Ra ---------- */
+  const abSeal = $('#ab-seal');
+  if (abSeal) {
+    const letter = $('.seal-letter', abSeal), SIGNS = ['Φ', 'hex', 'ॐ', '☯︎', '𓂀', 'W']; let coinTimers = [];
+    const showSign = s => { abSeal.classList.toggle('hex', s === 'hex'); if (s !== 'hex') letter.textContent = s; };
+    abSeal.addEventListener('click', () => {
+      if (reduced) return;
+      coinTimers.forEach(clearTimeout); showSign('W');
+      abSeal.classList.remove('spin'); void abSeal.offsetWidth;   // so that a second press starts it again
+      abSeal.classList.add('spin');
+      coinTimers = SIGNS.map((s, i) => setTimeout(() => showSign(s), 260 + i * 200));   // a fifth of a second for each sign
+      coinTimers.push(setTimeout(() => abSeal.classList.remove('spin'), 1750));
+      track('coin');
+    });
+  }
+
+  /* ---------- The sketch fades in the first time the services cabinet comes into view, on a first visit only ---------- */
+  const meEl = $('.me');
+  if (meEl) new IntersectionObserver((es, io) => { if (es[0].isIntersecting) { meEl.classList.add('in'); io.disconnect(); } }, { threshold: .3 }).observe(meEl);
+
+  /* ---------- The contact panel: the form, opened from the bar at the bottom ---------- */
+  const panel = $('#panel'), panelBody = $('#panel-body'), panelBtns = [$('#bar-write'), $('#bar-one')];
+  let panelTimer = null, panelFocus = null;
+  function openPanel() {
+    if (panel.classList.contains('on')) return;
+    clearTimeout(panelTimer); closeSheet(); closeMap(); closeCvs();
+    panelFocus = document.activeElement;
+    if (!panelBody.firstChild) { panelBody.innerHTML = library['request-any'].html; activateRequest(panelBody); }   // filled once, so a half-written message survives closing the panel
+    panel.hidden = false; panelBtns.forEach(b => b.setAttribute('aria-expanded', 'true'));
+    void panel.offsetWidth;   // lay it out where it starts, so that it slides up instead of jumping
+    panel.classList.add('on'); $('#panel-title').focus({ preventScroll: true });
+  }
+  function closePanel(refocus) {
+    if (!panel.classList.contains('on')) return;
+    panel.classList.remove('on'); panelBtns.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    panelTimer = setTimeout(() => { panel.hidden = true; }, 320);
+    if (refocus && panelFocus && panelFocus.focus) panelFocus.focus({ preventScroll: true });
+    panelFocus = null;
+  }
+  panelBtns.forEach(b => b.addEventListener('click', e => { e.stopPropagation(); if (panel.classList.contains('on')) closePanel(true); else { openPanel(); track(b.dataset.track); } }));   // counted here: the click is stopped before the page's own counter sees it
+  $('#panel-close').addEventListener('click', () => closePanel(true));
+  document.addEventListener('click', e => { if (panel.classList.contains('on') && !e.target.closest('#panel')) closePanel(); });
 
   /* ---------- Voices: what students, mentors and colleagues say, one at a time ---------- */
   const VOICES = {
@@ -708,8 +910,10 @@
     { id: 'poem-herb', title: 'The Herb Garden', poet: 'Stephen Gray', where: 'Gr 11 · Abbotts' },
     { id: 'poem-poet', title: 'The Poet', poet: 'Shakespeare, A Midsummer Night’s Dream', where: 'Gr 11 · Abbotts' }
   ];
-  const shelfDetail = $('#shelf-detail'), spines = $$('.shelf [data-item]');
-  function showShelf(item) {
+  // Every shelf of lesson spines on the page (About me, and the Classes details) works the same way: a spine shows its line in the box under its own shelf.
+  const SHELF_HTML = $('.shelf').outerHTML;
+  function showShelf(shelf, item) {
+    const shelfDetail = shelf.parentElement.querySelector('.shelf-detail'), spines = $$('[data-item]', shelf);
     spines.forEach(b => { const on = b.dataset.item === item; b.classList.toggle('is-on', on); if (b.dataset.item === 'poems') b.setAttribute('aria-expanded', on ? 'true' : 'false'); });
     if (item === 'poems') {
       shelfDetail.innerHTML = '<div class="fan" role="group" aria-label="The five poems I taught">' + POEMS.map((p, i) =>
@@ -719,7 +923,7 @@
       shelfDetail.innerHTML = '<p class="caption">' + d.cap + ' <button class="textlink" type="button" data-sheet="' + d.sheet + '">Open →</button></p>';
     }
   }
-  spines.forEach(b => b.addEventListener('click', () => showShelf(b.dataset.item)));
+  document.addEventListener('click', e => { const b = e.target.closest('.shelf [data-item]'); if (b) showShelf(b.closest('.shelf'), b.dataset.item); });
 
   /* ---------- The constellation ---------- */
   const NODES = [
@@ -739,34 +943,44 @@
       body: 'Hidden teachings, and how to read them. Honours course: <em>The (Secret) History of Thought</em> (2024, 2025). Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'guide-c3' },
     { id: 'african', x: 880, y: 405, r: 6.5, label: 'African esotericism',
       body: 'Postdoctoral Research Fellow at the University of Johannesburg, 2024 to 2026: <em>Platonic and African Esotericism</em>, with an eye on decolonial curricula.', more: 'posts' },
-    { id: 'life', x: 265, y: 325, r: 6.5, label: 'A way of life',
+    { id: 'life', x: 255, y: 342, r: 6.5, label: 'A way of life',
       body: 'Philosophy as practice, not only doctrine. Designed and taught <em>The Good Life</em> (FIL220, 2024).', more: 'guide-c4' },
     { id: 'nature', x: 115, y: 400, r: 5.5, label: 'Animism & nature',
       body: '<em>Animism, Consilience and the Rights of Nature</em>, co-presented at the South African Society for Environmental Philosophy, North-West University, 2025.', more: 'papers' },
-    { id: 'rorty', x: 75, y: 250, r: 5, label: 'Rorty',
-      body: 'An early article: <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em>, Humanities, 2013.',
+    { id: 'rorty', x: 96, y: 246, r: 5.5, label: 'Ethics & politics',
+      body: 'An early article, <em>Contingency, irony and morality: a critical review of Rorty’s notion of the liberal utopia</em> (Humanities, 2013). In 2018 I redesigned <em>Introduction to Moral and Political Philosophy</em> for business students.',
       links: [['Read the article', 'https://doi.org/10.3390/h2020313']] },
     { id: 'meta', x: 450, y: 405, r: 5.5, label: 'Metacrisis',
       body: '<em>Is Philosophy A(gnostic)? Post-disciplinary Interventions in the Time of Metacrisis</em>, PSSA Annual Conference, University of Cape Town, 2026, with Mitchell Black.', more: 'papers' },
     { id: 'ai', x: 340, y: 55, r: 6.5, label: 'AI & the humanities',
-      body: 'What is human teaching for, once a machine can write the essay? My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, reads Plato’s <em>Phaedrus</em> as a guide to what cannot be automated in learning, and to how teaching should be built around it. Proposed as a 2027 fellowship at the University of Pretoria.', more: 'ai' }
+      body: 'What is human teaching for, once a machine can write the essay? My current project, <em>Socratic Pedagogy beyond the AI Horizon</em>, reads Plato’s <em>Phaedrus</em> as a guide to what cannot be automated in learning, and to how teaching should be built around it.', more: 'ai' },
+    { id: 'soul', x: 592, y: 60, r: 6, label: 'The soul',
+      body: 'What is embodied, and what survives. Two papers in 2017: <em>Immortal and Separable Soul in Aristotle</em> (PSSA, Rhodes University) and <em>Embodiment in Bloom, Plotinus and Iamblichus</em> (University of the Western Cape).', more: 'papers' },
+    { id: 'hidden', x: 500, y: 310, r: 5.5, label: 'Reading hidden texts',
+      body: 'How to read a text that holds something back. Paper: <em>Reflexive Esotericism: Insights from Literary and Theological Hermeneutics</em>, PSSA, 2025.', more: 'papers' },
+    { id: 'decol', x: 668, y: 406, r: 6, label: 'Decolonial curricula',
+      body: 'An introduction to philosophy that follows it around the globe, not only through the West. I created <em>Introduction to Metaphysics and Epistemology</em> in 2019, and it is still in use at the University of Pretoria in 2026.', more: 'guide-c2' }
   ];
-  const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['plato', 'rorty'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt'], ['plato', 'ai'], ['ai', 'life']];
+  const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt'], ['plato', 'ai'], ['ai', 'life'],
+    ['plato', 'rorty'], ['rorty', 'life'], ['rorty', 'meta'], ['soul', 'plato'], ['soul', 'aristotle'], ['soul', 'neo'], ['hidden', 'eso'], ['hidden', 'plato'], ['decol', 'african'], ['decol', 'egypt'], ['decol', 'life']];
   NODES.forEach(n => {
     const links = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
-    library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p class="when">A star in my research</p><p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
+    library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p class="when">A star in my research</p><p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more === 'papers' ? '<button type="button" data-sheet="publications" data-at="papers">Conference papers →</button> ' : n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
   });
   const sky = $('#sky'), NS = 'http://www.w3.org/2000/svg';
   const mk = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  const put = (e, a) => { for (const k in a) e.setAttribute(k, a[k]); };
+  // On a phone the same twelve stars are laid out again in a tall frame, so that every star and every name fits the screen with no sideways scrolling.
+  const TALL = { ai: [100, 38], theurgy: [304, 44], aristotle: [56, 126], soul: [184, 112], neo: [282, 130], rorty: [68, 220], plato: [182, 214], egypt: [314, 214], life: [64, 318], hidden: [172, 304], eso: [276, 322],
+    meta: [140, 404], decol: [262, 402], nature: [74, 484], african: [238, 500] };
   const byId = {}; NODES.forEach(n => { byId[n.id] = n; });
-  const edgeEls = EDGES.map(([a, b]) => { const l = mk('line', { x1: byId[a].x, y1: byId[a].y, x2: byId[b].x, y2: byId[b].y }); l.dataset.a = a; l.dataset.b = b; sky.appendChild(l); return l; });
+  const edgeEls = EDGES.map(([a, b]) => { const l = mk('line', {}); l.dataset.a = a; l.dataset.b = b; sky.appendChild(l); return l; });
   const nodeEls = {};
   NODES.forEach(n => {
     const g = mk('g', { class: 'node' + (n.big ? ' big' : ''), tabindex: '0', role: 'button', 'aria-label': n.label });
-    g.appendChild(mk('circle', { class: 'hit', cx: n.x, cy: n.y, r: 28 }));
-    g.appendChild(mk('circle', { class: 'glow', cx: n.x, cy: n.y, r: n.r * 2.4 }));
-    const d = mk('circle', { class: 'dot', cx: n.x, cy: n.y, r: n.r }); d.style.animationDelay = (-Math.random() * 5).toFixed(2) + 's'; g.appendChild(d);
-    const tx = mk('text', { x: n.x, y: n.y + n.r + 24, 'text-anchor': 'middle' }); tx.textContent = n.label; g.appendChild(tx);
+    n.hit = mk('circle', { class: 'hit' }); n.glow = mk('circle', { class: 'glow' }); n.dot = mk('circle', { class: 'dot' }); n.tx = mk('text', { 'text-anchor': 'middle' });
+    n.dot.style.animationDelay = (-Math.random() * 5).toFixed(2) + 's'; n.tx.textContent = n.label;
+    g.append(n.hit, n.glow, n.dot, n.tx);
     sky.appendChild(g); nodeEls[n.id] = g;
     const lit = on => {
       g.classList.toggle('lit', on);
@@ -782,18 +996,29 @@
     g.addEventListener('click', () => openSheet('star-' + n.id));
     g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSheet('star-' + n.id); } });
   });
-  const skyWrap = $('.sky');
-  function centreSky() { if (skyWrap.scrollWidth > skyWrap.clientWidth + 4) skyWrap.scrollLeft = (skyWrap.scrollWidth - skyWrap.clientWidth) / 2; }
-  centreSky(); window.addEventListener('resize', centreSky);
+  const narrowSky = matchMedia('(max-width: 640px)');
+  function placeSky() {
+    const tall = narrowSky.matches, k = tall ? .72 : 1, at = n => tall ? TALL[n.id] : [n.x, n.y];
+    sky.setAttribute('viewBox', tall ? '0 0 360 548' : '0 0 1040 450'); sky.classList.toggle('tall', tall);
+    NODES.forEach(n => {
+      const p = at(n), r = n.r * k;
+      put(n.hit, { cx: p[0], cy: p[1], r: tall ? 24 : 28 }); put(n.glow, { cx: p[0], cy: p[1], r: r * 2.4 }); put(n.dot, { cx: p[0], cy: p[1], r: r }); put(n.tx, { x: p[0], y: p[1] + r + (tall ? 17 : 24) });
+    });
+    edgeEls.forEach(l => { const a = at(byId[l.dataset.a]), b = at(byId[l.dataset.b]); put(l, { x1: a[0], y1: a[1], x2: b[0], y2: b[1] }); });
+  }
+  placeSky();
+  if (narrowSky.addEventListener) narrowSky.addEventListener('change', placeSky); else if (narrowSky.addListener) narrowSky.addListener(placeSky);
 
   /* ---------- Lectures: the player loads when you press play ---------- */
-  $$('.lecture').forEach(l => {
-    $('.play', l).addEventListener('click', () => {
-      if (l.classList.contains('playing')) return;
-      const f = document.createElement('iframe');
-      f.src = l.dataset.src; f.setAttribute('allow', 'autoplay; fullscreen'); f.setAttribute('allowfullscreen', ''); f.title = $('.l-cap strong', l).textContent;
-      l.appendChild(f); l.classList.add('playing');
-    });
+  const LECT_HTML = $('.lectures').outerHTML, GUIDES_HTML = $('.guide-shelf').outerHTML;   // kept as they are when the page opens, for the Lectures details
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.lecture .play');
+    if (!b) return;
+    const l = b.closest('.lecture');
+    if (l.classList.contains('playing')) return;
+    const f = document.createElement('iframe');
+    f.src = l.dataset.src; f.setAttribute('allow', 'autoplay; fullscreen'); f.setAttribute('allowfullscreen', ''); f.title = $('.l-cap strong', l).textContent;
+    l.appendChild(f); l.classList.add('playing');
   });
 
   /* ---------- The editing typewriter ---------- */
@@ -854,14 +1079,15 @@
     else { lk = 0; layout(0); }
   });
 
-  /* ---------- The maker's shapes on the Make cabinet: one wireframe for each service, each morphing into the next ---------- */
+  /* ---------- The shapes on the blackboard of My services: one wireframe for each kind of work, each morphing into the next ---------- */
   // Tutoring is two quills writing together; Editing is a sentence gathering itself out of a cloud of words; Learning design is a lesson
   // as a puzzle box of four layers that twist; Consulting is the tetraktys, ten points in a pyramid, with points that light and dim.
-  // A drag turns the shape, a tap (or Enter) changes it, and the title under it opens that service.
+  // A drag turns the shape. Each tab of the board has its own: Teach the quills and the words (a tap, or Enter, changes between them),
+  // Design the lesson stages, Consult the tetraktys.
   const tc = $('#tetra');
-  let drawTetra = () => {}, sizeTetra = () => {};
+  let drawTetra = () => {}, sizeTetra = () => {}, showShapes = () => {};
   if (tc) {
-    const tx = tc.getContext('2d'), nameBtn = $('#maker-name'), whatEl = $('#maker-what');
+    const tx = tc.getContext('2d'), nameEl = $('#maker-name'), whatEl = $('#maker-what'), hintEl = $('#maker-hint');
     const mixv = (p, q, m) => p + (q - p) * m, clamp01 = v => Math.max(0, Math.min(1, v));
     const ease = v => v < .5 ? 2 * v * v : 1 - Math.pow(-2 * v + 2, 2) / 2;
     // A pulse that is 0, rises to 1, holds, and falls back to 0, once every `period` milliseconds.
@@ -973,26 +1199,164 @@
     const TLINKS = [];
     for (let a = 0; a < P.length; a++) for (let b = a + 1; b < P.length; b++) if (Math.abs(gap3(P[a], P[b]) - nearest) < 1e-6) TLINKS.push([a, b, 1]);
     const glow = P.map(() => 0); let lastSpark = 0;
+    // Now and then the ten points flicker into ones and noughts, and back.
+    const K = { phase: 0, from: 0, at: 0, flip: 0, bits: P.map((p, i) => i % 2 ? '1' : '0') };
+    function stepTerms() { K.from = K.phase; K.phase = (K.phase + 1) % 2; K.at = performance.now(); }
     function tetraktys(t) {
+      const n = performance.now();
       if (!reduced && t - lastSpark > 520) { lastSpark = t; glow[Math.floor(Math.random() * glow.length)] = 1; }   // now and then one point lights
       for (let i = 0; i < glow.length; i++) glow[i] *= .965;                                                          // and slowly dims
-      return { pts: P.map((p, i) => ({ p: [p[0], p[1] - .12, p[2]], r: 1 + glow[i] * .9, g: glow[i] })), links: TLINKS, labels: [] };
+      if (T.cur !== 3 || T.mixing) { K.phase = K.from = 0; K.at = n - 900; }                                          // it always arrives as points
+      else if (!reduced && n - K.at > (K.phase ? 4500 : 9000)) stepTerms();
+      if (K.phase === 1 && n - K.flip > 130) { K.flip = n; K.bits[Math.floor(Math.random() * K.bits.length)] = Math.random() < .5 ? '0' : '1'; }
+      const m = clamp01((n - K.at) / 900), w = ph => K.phase === K.from ? (ph === K.phase ? 1 : 0) : ph === K.phase ? m : ph === K.from ? 1 - m : 0;
+      const size = TW * .052, labels = [];
+      P.forEach((p, i) => {
+        if (w(1) > .02) labels.push({ i, text: K.bits[i], size: size * 1.7, serif: false, alpha: w(1) });
+      });
+      return { pts: P.map((p, i) => ({ p: [p[0], p[1] - .12, p[2]], r: (1 + glow[i] * .9) * (.22 + .78 * w(0)), g: glow[i] })), links: TLINKS, labels };
+    }
+
+    /* A person: a small planet with an aura. The core is solid and shaded; the aura swells and fades, and a ring of light leaves it now and then.
+       Its one point is its centre, which is where the other shapes gather when they change into it. */
+    // It answers a touch: pressed, it sends out a ring and wobbles; dragged, it is pulled along and swings back; a pointer passing over it is enough to stir it.
+    const ORB = { kick: 0, x: 0, y: 0, vx: 0, vy: 0, rings: [], last: 0, px: 0, py: 0 };
+    const orbOn = () => T.cur === 8 && !T.mixing && !reduced;
+    // It is water, not jelly: everything it does is slow, and it settles without bouncing.
+    const RING_MS = 3200;
+    function orbPoke(by, gap) { const n = performance.now(); ORB.kick = Math.min(1, ORB.kick + by); if (n - ORB.last > gap) { ORB.last = n; ORB.rings.push(n); } }
+    tc.addEventListener('pointerdown', e => { ORB.px = e.clientX; ORB.py = e.clientY; if (orbOn()) orbPoke(.55, 500); });
+    tc.addEventListener('pointermove', e => {
+      const dx = e.clientX - ORB.px, dy = e.clientY - ORB.py, far = Math.abs(dx) + Math.abs(dy); ORB.px = e.clientX; ORB.py = e.clientY;
+      if (!orbOn() || far < 1 || far > 90) return;
+      if (T.drag) { ORB.vx += dx * .0005; ORB.vy += dy * .0005; orbPoke(.05, 1100); } else orbPoke(.012, 2600);
+    });
+    function person(t) {
+      ORB.vx = (ORB.vx - ORB.x * .012) * .86; ORB.vy = (ORB.vy - ORB.y * .012) * .86;   // it drifts back to the middle, and does not overshoot
+      ORB.x = Math.max(-.22, Math.min(.22, ORB.x + ORB.vx)); ORB.y = Math.max(-.22, Math.min(.22, ORB.y + ORB.vy)); ORB.kick *= .988;
+      const n = performance.now(); ORB.rings = ORB.rings.filter(s => n - s < RING_MS);
+      return { pts: [{ p: [0, 0, 0], r: 0 }], links: [], labels: [], orb: { r: .33, pulse: .5 + .5 * Math.sin(t * .0011), wave: (t % 6000) / 6000,
+        dx: ORB.x, dy: ORB.y, kick: ORB.kick, wob: t * .0026, rip: t / 5200, rings: ORB.rings.map(s => (n - s) / RING_MS) } };
+    }
+
+    /* A university: a star tetrahedron, two tetrahedra through one another, its points lighting and dimming in turn. */
+    const STAR = [[1, 1, 1], [1, -1, -1], [-1, 1, -1], [-1, -1, 1]].map(v => v.map(x => x * .58)), STAR8 = STAR.concat(STAR.map(v => v.map(x => -x)));
+    const SP = STAR8.map(p => ({ p, r: 1 })), SLINKS = [], mids = [];
+    for (let h = 0; h < 2; h++) for (let a = 0; a < 4; a++) for (let c = a + 1; c < 4; c++) {   // three small nodes along every edge
+      let prev = h * 4 + a; const A = STAR8[h * 4 + a], B = STAR8[h * 4 + c];
+      for (let k = 1; k < 4; k++) { SP.push({ p: A.map((v, n) => v + (B[n] - v) * k / 4), r: k === 2 ? .7 : .42 }); SLINKS.push([prev, SP.length - 1, 1]); prev = SP.length - 1; if (k === 2) mids.push(prev); }
+      SLINKS.push([prev, h * 4 + c, 1]);
+    }
+    // Where the two tetrahedra cross they mark out an octahedron: its edges are drawn too, each with one node of its own.
+    const sd = (i, k) => Math.hypot(SP[i].p[0] - SP[k].p[0], SP[i].p[1] - SP[k].p[1], SP[i].p[2] - SP[k].p[2]);
+    const core = mids.filter((m, n) => !mids.slice(0, n).some(o => sd(m, o) < 1e-6)), near = Math.min(...core.slice(1).map(m => sd(core[0], m)));
+    for (let a = 0; a < core.length; a++) for (let c = a + 1; c < core.length; c++) if (Math.abs(sd(core[a], core[c]) - near) < 1e-6) {
+      const A = SP[core[a]].p, B = SP[core[c]].p;
+      SP.push({ p: A.map((v, n) => (v + B[n]) / 2), r: .34 }); SLINKS.push([core[a], SP.length - 1, .6], [SP.length - 1, core[c], .6]);
+    }
+    const sglow = SP.map(() => 0); let sSpark = 0;
+    function merkaba(t) {
+      if (!reduced && t - sSpark > 150) { sSpark = t; sglow[Math.floor(Math.random() * SP.length)] = 1; }
+      for (let i = 0; i < sglow.length; i++) sglow[i] *= .95;
+      return { pts: SP.map((q, i) => ({ p: q.p, r: q.r * (1 + sglow[i] * 1.3), g: sglow[i] })), links: SLINKS, labels: [] };
+    }
+
+    /* 5. Classes: a ring of seats, one of them the teacher's. Talk crosses the ring between seats, not only to and from the front. */
+    function classes(t) {
+      const N = 13, pts = [], links = [], beat = t / 1700, s = Math.floor(beat), a = Math.sin(Math.PI * (beat % 1));
+      const lit = new Array(N).fill(0);
+      for (let k = 0; k < 4; k++) { const x = (s * 5 + k * 3) % N, y = (s * 11 + k * 7 + 4) % N; if (x !== y) { links.push([x, y, .95 * a]); lit[x] = lit[y] = a; } }
+      for (let i = 0; i < N; i++) {
+        const th = i / N * TAU;
+        pts.push({ p: [.82 * Math.sin(th), -.3 + (i ? 0 : .16), .82 * Math.cos(th)], r: (i ? .75 : 1.5) + .5 * lit[i], g: lit[i] });
+        links.push([i, (i + 1) % N, .3]);
+      }
+      return { pts, links, labels: [] };
+    }
+
+    /* 6. Lectures: a lectern, and a raked hall of rows fanning out in front of it. A wave passes back through the rows. */
+    function lectures(t) {
+      const pts = [{ p: [0, -.05, .8], r: 1.6, g: .4 }, { p: [0, -.6, .8], r: 0 }], links = [[0, 1, 1]];
+      for (let row = 0; row < 4; row++) {
+        const n = 5 + row, R = .55 + .3 * row, g = Math.max(0, Math.sin(t * .0022 - row * .95));
+        for (let k = 0; k < n; k++) {
+          const th = (k / (n - 1) - .5) * 1.75;
+          pts.push({ p: [R * Math.sin(th), -.6 + .2 * row, .8 - R * Math.cos(th)], r: .6 + .55 * g, g: g * .8 });
+          if (k) links.push([pts.length - 2, pts.length - 1, .3 + .4 * g]);
+        }
+      }
+      return { pts, links, labels: [] };
+    }
+
+    /* 7. A module: a run of lessons. Each is a small copy of the lesson box, with its four layers and no words, and each is of its own size.
+       Their layers twist a quarter turn, one lesson after another. */
+    const RUN = [.8, 1.04, .9, 1.18, .72, .96], RUN_GAP = .085, RUN_W = RUN.reduce((s, k) => s + .27 * k, 0) + RUN_GAP * (RUN.length - 1);   // six lessons in a row
+    function moduleShelf(t) {
+      const pts = [], links = [], quads = [], PERIOD = 9000, FLOOR = -.4;
+      let x = -RUN_W / 2;
+      RUN.forEach((k, b) => {
+        const hs = .135 * k, tall = .66 * k, gap = .014 * k, cx = x + hs, tb = t + (RUN.length - b) * 650, cyc = Math.floor(tb / PERIOD), s = tb % PERIOD;
+        let top = FLOOR + tall + gap * (STAGES.length - 1); x += 2 * hs + RUN_GAP;
+        STAGES.forEach((st, n) => {
+          const h = st[1] / MINUTES * tall, dir = n % 2 ? 1 : -1, cy = top - h / 2; top -= h + gap;
+          const th = dir * Math.PI / 2 * (cyc + ease(clamp01((s - 400 - n * 380) / 1300))), cs = Math.cos(th), sn = Math.sin(th), base = pts.length;
+          BOX.forEach(q => { const u = q[0] * hs, z = q[2] * hs; pts.push({ p: [cx + u * cs + z * sn, cy + q[1] * h / 2, -u * sn + z * cs], r: .15 }); });
+          EDGES.forEach(e => links.push([base + e[0], base + e[1], .9]));
+          FACES.forEach(f => quads.push(f.map(i => base + i)));
+        });
+      });
+      pts.push({ p: [-RUN_W / 2 - .08, FLOOR, 0], r: 0 }, { p: [RUN_W / 2 + .08, FLOOR, 0], r: 0 }); links.push([pts.length - 2, pts.length - 1, .5]);   // the line they stand on
+      return { pts, links, labels: [], quads };
+    }
+
+    /* 8. A curriculum: a spiral stair, and every step of it is a module: a row of lessons laid flat, from the post outwards.
+       The same ground comes round again, one level higher each time; a light climbs it, a module at a time. */
+    const STEP = [.9, 1.16, .78, 1.06, .86];   // five lessons to a step
+    function curriculum(t) {
+      const N = 12, pts = [], links = [], quads = [], at = (t * .0016) % (N + 5) - 2.5;
+      for (let i = 0; i < N; i++) {
+        const th = i * .56, y = -.88 + i * 1.6 / (N - 1), g = Math.max(0, 1 - Math.abs(i - at) / 2), sn = Math.sin(th), cs = Math.cos(th);
+        let r = .13;
+        for (let b = 0; b < STEP.length; b++) {
+          const k = STEP[(b + i) % STEP.length], s = .056 * k, w = .1 * k, rc = r + s, base = pts.length; r += 2 * s + .016;   // each lesson lies flat: a tile, as long and as wide as its size
+          BOX.forEach(q => { const u = rc + q[0] * s, v = q[2] * w; pts.push({ p: [u * sn + v * cs, y + q[1] * .014, u * cs - v * sn], r: 0 }); });
+          EDGES.forEach(e => links.push([base + e[0], base + e[1], .5 + .5 * g]));
+          FACES.forEach(f => { const q = f.map(n => base + n); q.a = 1 + 5 * g; quads.push(q); });
+        }
+        pts.push({ p: [r * sn, y, r * cs], r: .2 + .4 * g, g: .8 * g });   // the end of the step, where the light on the stair shows
+      }
+      pts.push({ p: [0, -.94, 0], r: 0 }, { p: [0, .94, 0], r: 0 }); links.push([pts.length - 2, pts.length - 1, .4]);   // the post the stair turns about
+      return { pts, links, labels: [], quads };
     }
 
     const SHAPES = [
       { key: 'tutoring', title: 'Tutoring', what: 'Quills', frame: quill },
       { key: 'editing', title: 'Editing', what: 'Words', frame: words },
       { key: 'design', title: 'Learning design', what: 'Lesson stages', frame: blocks },
-      { key: 'consulting', title: 'Philosophical & AI consulting', what: 'Tetraktys', frame: tetraktys }
+      { key: 'consulting', title: 'Philosophical & AI consulting', what: 'Tetraktys', frame: tetraktys },
+      { key: 'classes', what: 'Seats', frame: classes },
+      { key: 'courses', what: 'Hall', frame: lectures },
+      { key: 'design', what: 'Shelf', frame: moduleShelf },
+      { key: 'design', what: 'Stair', frame: curriculum },
+      { key: 'consulting', what: 'Centres', frame: person },
+      { key: 'consulting', what: 'Star', frame: merkaba }
     ];
-    const T = { ax: .3, ay: -.35, vy: reduced ? 0 : .0035, drag: null, seen: false, col: null, theme: '', cur: 0, nxt: 0, mix: 0, mixing: false, since: performance.now() };
-    function caption(i) { const s = SHAPES[i]; nameBtn.textContent = s.title; nameBtn.dataset.sheet = s.key; whatEl.textContent = s.what; }
-    function nextShape() {
-      if (T.mixing) return;
-      T.nxt = (T.cur + 1) % SHAPES.length; T.since = performance.now();
-      if (reduced) { T.cur = T.nxt; caption(T.cur); return; }
+    const SETS = { teach: [0, 1, 4, 5], design: [2, 6, 7], consult: [8, 3, 9] }, TAB_NAME = { teach: 'Teach', design: 'Design', consult: 'Consult' };
+    const T = { ax: .3, ay: -.35, vy: reduced ? 0 : .0035, drag: null, seen: false, col: null, theme: '', cur: 0, nxt: 0, mix: 0, mixing: false, since: performance.now(), set: 'teach', want: 0, named: 0 };
+    const NAMES = ['Tutoring', 'Writing', 'Lessons', 'For Your School', 'Classes', 'Lectures', 'Modules', 'Curricula', 'For You', 'For Your University'];
+    function caption(i) { T.named = i; nameEl.textContent = NAMES[i]; hintEl.textContent = 'drag to turn · tap to change'; }
+    function tapShape() { nextShape(); }
+    // Ask for a shape. If one is already changing, the new one follows as soon as that change is done.
+    function goShape(i) {
+      T.want = i; T.since = performance.now();
+      if (T.mixing || i === T.cur) return;
+      T.nxt = i;
+      if (reduced) { T.cur = i; caption(i); return; }
       T.mixing = true; T.mix = 0;
     }
+    function nextShape() { const set = SETS[T.set]; goShape(set[(set.indexOf(T.want) + 1) % set.length]); }
+    showShapes = (tab, i) => { if (tab !== T.set) T.col = null;   // a new tab, a new colour for the object
+      T.set = tab; goShape(i === undefined ? SETS[tab][0] : i); };
     caption(0);
 
     // Words are drawn once, large, onto their own small canvases and then placed as pictures: a picture glides between pixels, where type would step.
@@ -1019,12 +1383,12 @@
       const dx = e.clientX - T.drag.x, dy = e.clientY - T.drag.y; T.drag.x = e.clientX; T.drag.y = e.clientY; T.drag.moved += Math.abs(dx) + Math.abs(dy);
       T.ay += dx * .008; T.ax = Math.max(-1.2, Math.min(1.2, T.ax + dy * .008)); T.vy = dx * .0012;
     });
-    tc.addEventListener('pointerup', () => { if (!T.drag) return; const tap = T.drag.moved < 6; T.drag = null; tc.classList.remove('dragging'); if (tap) nextShape(); });
+    tc.addEventListener('pointerup', () => { if (!T.drag) return; const tap = T.drag.moved < 6; T.drag = null; tc.classList.remove('dragging'); if (tap) tapShape(); });
     tc.addEventListener('pointercancel', () => { T.drag = null; tc.classList.remove('dragging'); });
     tc.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') { T.ay -= .2; e.preventDefault(); }
       else if (e.key === 'ArrowRight') { T.ay += .2; e.preventDefault(); }
-      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); nextShape(); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tapShape(); }
     });
 
     drawTetra = t => {
@@ -1032,8 +1396,9 @@
       const theme = root.getAttribute('data-theme') || 'dark';
       if (theme !== T.theme || !T.col) { T.theme = theme; T.col = rgb(cssVar('--accent', tc) || '#C9A24D'); sprites.clear(); }
       if (!T.drag) { T.ay += T.vy; T.vy += ((reduced ? 0 : .0035) - T.vy) * .02; T.ax += (.3 - T.ax) * .012; }
-      if (T.mixing) { T.mix += .014; if (T.mix >= .5 && nameBtn.dataset.sheet !== SHAPES[T.nxt].key) caption(T.nxt); if (T.mix >= 1) { T.mixing = false; T.cur = T.nxt; } }
-      else if (!reduced && !T.drag && t - T.since > 13000) nextShape();   // left alone, it moves on to the next service by itself
+      if (T.mixing) { T.mix += Math.min(400, t - (T.last || t)) / 1150; if (T.mix >= .5 && T.named !== T.nxt) caption(T.nxt); if (T.mix >= 1) { T.mixing = false; T.cur = T.nxt; if (T.want !== T.cur) goShape(T.want); } }
+      else if (!reduced && !T.drag && SETS[T.set].length > 1 && t - T.since > 13000) nextShape();   // left alone on the Teach tab, it moves between the quills and the words by itself
+      T.last = t;   // a change of shape takes the same time whatever the frame rate of the screen
       const tt = reduced ? 0 : t;   // with reduced motion the shapes hold still
       const m = T.mixing ? ease(clamp01(T.mix)) : 0, A = SHAPES[T.cur].frame(tt), B = T.mixing ? SHAPES[T.nxt].frame(tt) : null;
       const ca = Math.cos(T.ax), sa = Math.sin(T.ax), cb = Math.cos(T.ay), sb = Math.sin(T.ay), sc = TW * .4;
@@ -1054,9 +1419,33 @@
       tx.fillStyle = grad; tx.fillRect(0, 0, TW, TW);
       const paint = (S, pos, fade) => {
         if (fade <= .01) return;
-        if (S.quads) {   // the sides of the box, faintly glazed
-          tx.fillStyle = 'rgba(' + col + ',' + (.05 * fade).toFixed(3) + ')';
-          for (const q of S.quads) { tx.beginPath(); q.forEach((i, k) => { const p = pos(i); if (k) tx.lineTo(p.x, p.y); else tx.moveTo(p.x, p.y); }); tx.closePath(); tx.fill(); }
+        if (S.orb) {   // a planet and its aura
+          const p0 = pos(0), o = S.orb, c = { x: p0.x + o.dx * sc * fade, y: p0.y + o.dy * sc * fade }, R = sc * o.r * (.35 + .65 * fade), A = R * (2.05 + .4 * o.pulse + .3 * o.kick), L = pal.light, k = L ? 1.35 : 1;
+          const mixc = (to, m) => [T.col.r, T.col.g, T.col.b].map(v => Math.round(v + (to - v) * m)).join(','), rg = (x, y, r0, r1) => tx.createRadialGradient(x, y, r0, c.x, c.y, r1);
+          let g = rg(c.x, c.y, R * .92, A);   // the aura: densest against the planet, gone at its edge; it swells and fades
+          g.addColorStop(0, 'rgba(' + col + ',' + Math.min(1, (.5 - .16 * o.pulse) * k * fade).toFixed(3) + ')'); g.addColorStop(.4, 'rgba(' + col + ',' + (.17 * k * fade).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + col + ',0)');
+          tx.fillStyle = g; tx.beginPath(); tx.arc(c.x, c.y, A, 0, TAU); tx.fill();
+          const W = R * (1.05 + 1.5 * o.wave);   // a ring of light leaving it
+          tx.lineWidth = 1.6; tx.strokeStyle = 'rgba(' + col + ',' + (.55 * k * (1 - o.wave) * fade).toFixed(3) + ')'; tx.beginPath(); tx.arc(c.x, c.y, W, 0, TAU); tx.stroke();
+          for (const ph of o.rings) {   // the rings a touch sends out
+            const e = 1 - (1 - ph) * (1 - ph);   // a ring slows as it spreads, as on a pond
+            tx.lineWidth = .6 + 1.3 * (1 - ph); tx.strokeStyle = 'rgba(' + col + ',' + (.5 * k * (1 - ph) * (1 - ph) * fade).toFixed(3) + ')'; tx.beginPath(); tx.arc(c.x, c.y, R * (1 + 1.9 * e), 0, TAU); tx.stroke();
+          }
+          const wb = .03 * o.kick * Math.sin(o.wob);   // touched, the core gives a little, slowly, and settles
+          tx.save(); tx.translate(c.x, c.y); tx.rotate(o.wob * .21); tx.scale(1 + wb, 1 - wb); tx.rotate(-o.wob * .21);
+          g = tx.createRadialGradient(-R * .38, -R * .42, R * .04, 0, 0, R);   // the core: lit from the upper left, in shadow at the lower right
+          g.addColorStop(0, 'rgba(' + mixc(255, L ? .5 : .82) + ',' + fade.toFixed(3) + ')'); g.addColorStop(.45, 'rgba(' + col + ',' + fade.toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + mixc(0, L ? .45 : .62) + ',' + fade.toFixed(3) + ')');
+          tx.fillStyle = g; tx.beginPath(); tx.arc(0, 0, R, 0, TAU); tx.fill();
+          if (o.kick > .03) {   // and ripples cross its face
+            tx.save(); tx.clip(); tx.lineWidth = 1.1;
+            for (let i = 0; i < 2; i++) { const q = (o.rip + i / 2) % 1; tx.strokeStyle = 'rgba(' + mixc(255, L ? .55 : .85) + ',' + (.32 * Math.min(1, o.kick * 1.6) * Math.sin(Math.PI * q) * fade).toFixed(3) + ')'; tx.beginPath(); tx.arc(-R * .38, -R * .42, R * 1.9 * q, 0, TAU); tx.stroke(); }
+            tx.restore();
+          }
+          tx.lineWidth = 1.2; tx.strokeStyle = 'rgba(' + mixc(255, L ? .2 : .5) + ',' + (.7 * fade).toFixed(3) + ')'; tx.beginPath(); tx.arc(0, 0, R, 0, TAU); tx.stroke();
+          tx.restore();
+        }
+        if (S.quads) {   // the sides of the box, faintly glazed; a side can be lit more than the rest
+          for (const q of S.quads) { tx.fillStyle = 'rgba(' + col + ',' + (.05 * (q.a || 1) * fade).toFixed(3) + ')'; tx.beginPath(); q.forEach((i, k) => { const p = pos(i); if (k) tx.lineTo(p.x, p.y); else tx.moveTo(p.x, p.y); }); tx.closePath(); tx.fill(); }
         }
         for (const l of S.links) {
           const a = pos(l[0]), b = pos(l[1]), dep = (a.d + b.d) / 2, al = (.2 + .6 * dep) * l[2] * fade;
