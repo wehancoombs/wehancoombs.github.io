@@ -882,3 +882,24 @@ He sent a phone screenshot (Samsung Internet): the site was in light mode, but t
 - **The brown.** The page now tells the browser that it has its own light and dark (`<meta name="color-scheme" content="light dark">`, and `color-scheme: only light` / `dark` in the styles), which is what stops a browser's forced dark mode from recolouring it. This could not be reproduced in the preview (it is the phone browser's own feature), so it needs his phone to confirm.
 - **The switch shows its word on a phone too** ("Dark" when the page is light, "Light" when it is dark).
 
+## 2026-11-17: the brown on a Samsung phone, rounds two and three (v=83, v=84 on `services`, on the staging site only)
+
+v=82 (published) did not stop the brown: tested in a Secret mode tab of Samsung Internet on the phone that shows it ("Still brown in secret mode"). His own phone never showed it.
+
+- **v=83** added a `prefers-color-scheme: dark` rule (head and stylesheet), the signal Samsung Internet is said to look for before darkening a page. Still brown.
+- **v=84.** A page cannot switch a browser's own darkening off, so where a browser is going to darken it anyway the site now shows its own dark mode instead, which darkening leaves almost untouched, and hides the switch there (choosing light would bring the brown back). Detected in the first script in the head: Samsung Internet (`SamsungBrowser` in its name) reporting dark, or any browser that recolours the system colours. Everyone else still opens in light. The start-up code was tested against seven pretend browsers (`headtest.js`, session scratchpad): only the Samsung-in-dark and recolouring cases turn dark.
+- **A check page** on the test copy only, https://wehancoombs.com/site-preview/check.html, shows what the phone reports (its browser name, whether it says it prefers dark, a system colour, and whether a plain white page is darkened). It is not on `services`, so the next staging refresh removes it.
+- Not yet known: whether Samsung Internet on that phone reports "prefers dark" while its dark mode is on. If it does not, v=84 cannot tell it is being darkened, and the check page will show that.
+
+## 2026-11-17: the Samsung brown, round four (v=85 on `services`, on the staging site only)
+
+The check page on the affected phone (Samsung Internet 30, Secret mode): it darkened a plain white page while telling it "prefers light" (prefers dark: false; system colour white). So v=84 could not tell it was darkening, and stayed light and brown. His own phone (Chrome inside another app) reports prefers dark but does not darken pages, which is why he never saw it.
+
+v=85: in Samsung Internet (known by `SamsungBrowser` in its name) the page always declares a dark colour scheme (`color-scheme` meta set to dark by the first script, and `color-scheme: dark` on the root), in its light look too. Chromium-based browsers leave alone a page that says its own scheme is dark. The light look itself does not change (checked in the preview with the Samsung class added: same background, same form colours). The v=84 guess (dark mode and no switch) is removed. Everyone else is unchanged. A second check page, https://wehancoombs.com/site-preview/check2.html, is white and cream but says dark: if Samsung leaves it white, the fix works. Not yet confirmed on the phone.
+
+## 2026-11-17: the Samsung brown, round five (v=86 on `services`, on the staging site only)
+
+v=85 did not help ("Still brown"): Samsung Internet 30 darkens every light page whatever colour scheme the page declares, and reports "prefers light" while doing it, so a page can neither detect it nor switch it off. Its darkening keeps the tint: the white check page turned neutral charcoal, the site's cream turned brown.
+
+v=86: in Samsung Internet only (`html.samsung`, set by the first script from the browser's name), the light look uses neutral off-whites and greys instead of the creams (`--bg #F4F4F3`, `--bg-2`, `--surface`, `--bb`, lines and text greys). With that browser's dark mode off it looks like the light site in white; with it on it should turn charcoal, not brown. Accents, the drawing and everything else are unchanged; other browsers are unchanged. v=85's colour-scheme trick is removed. Checked in the preview with the class added (the background becomes #F4F4F3). Not yet seen on the Samsung phone. The check pages are dropped from the test copy.
+

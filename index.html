@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
+<style>@media (prefers-color-scheme: dark) { :root { --own-dark: 1; } }</style>
 <title>Wehan Coombs · Teaching and Learning Solutions</title>
 <meta name="description" content="Dr Wehan Coombs: bespoke educational solutions, from one-to-one tutoring to university curricula and AI policy. Pretoria East or online.">
 <meta property="og:title" content="Wehan Coombs · Teaching and Learning Solutions">
@@ -19,6 +20,9 @@
     var d = document.documentElement, t = null, seen = false;
     try { t = localStorage.getItem('theme'); seen = !!localStorage.getItem('seen'); localStorage.setItem('seen', '1'); } catch (e) {}
     if (t !== 'light' && t !== 'dark') t = 'light';   // light for everyone, whatever their system setting, until they use the switch
+    // Samsung Internet's dark mode darkens every light page, keeping its tint (the cream turns brown), cannot be switched off by the page, and is not
+    // reported to it. So in Samsung Internet the light look uses neutral colours (see html.samsung in the styles): if it is darkened, it turns charcoal.
+    try { if (/SamsungBrowser/i.test(navigator.userAgent)) d.classList.add('samsung'); } catch (x) {}
     if (t === 'light') d.setAttribute('data-theme', 'light');
     if (!seen) d.classList.add('first-visit');
   })();
@@ -27,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=82">
+<link rel="stylesheet" href="assets/style.css?v=86">
 </head>
 <body data-chapter="threshold">
 
@@ -1193,7 +1197,7 @@
 
 </div>
 
-<script src="assets/main.js?v=82"></script>
+<script src="assets/main.js?v=86"></script>
 <script data-goatcounter="https://wehancoombs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

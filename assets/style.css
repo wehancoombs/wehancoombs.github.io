@@ -1559,3 +1559,15 @@ p.map-ch:hover { color: var(--text); }
 /* The switch always shows its word, on a phone too, so that the choice is plain to see */
 .pill.theme .lbl { display: inline; }
 .pill.theme { white-space: nowrap; }
+
+/* For Samsung Internet: it darkens any page that has no rule of this kind. Having one tells it the page looks after dark mode itself.
+   The rule sets a value nothing uses, so nothing seen changes; light and dark are still chosen by the switch alone. */
+@media (prefers-color-scheme: dark) { :root { --own-dark: 1; } }
+
+/* Samsung Internet: its own dark mode darkens light pages and keeps their tint, so the cream would turn brown. There the light look uses neutral
+   off-whites and greys instead; darkened, they turn charcoal. Accents, the drawing and everything else are unchanged. */
+html.samsung[data-theme="light"] {
+  --bg: #F4F4F3; --bg-2: #EAEAE8; --surface: #FBFBFA; --bb: #FFFFFF;
+  --line: #D9D9D6; --line-2: #C2C2BE;
+  --text: #1E1E1D; --text-2: #5C5C5A; --text-3: #8A8A87;
+}
