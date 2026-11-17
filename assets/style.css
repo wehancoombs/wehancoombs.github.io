@@ -1571,3 +1571,8 @@ html.samsung[data-theme="light"] {
   --line: #D9D9D6; --line-2: #C2C2BE;
   --text: #1E1E1D; --text-2: #5C5C5A; --text-3: #8A8A87;
 }
+
+/* About me: a star can be pulled a little way and the web wobbles back (v87) */
+#sky { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+#sky .node { touch-action: none; }
+#sky.pulling, #sky.pulling .node { cursor: grabbing; }

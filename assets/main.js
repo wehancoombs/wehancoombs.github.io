@@ -959,7 +959,7 @@
       body: 'An introduction to philosophy that follows it around the globe, not only through the West. I created <em>Introduction to Metaphysics and Epistemology</em> in 2019, and it is still in use at the University of Pretoria in 2026.', more: 'guide-c2' }
   ];
   const EDGES = [['plato', 'aristotle'], ['plato', 'neo'], ['plato', 'eso'], ['plato', 'life'], ['neo', 'theurgy'], ['neo', 'egypt'], ['theurgy', 'egypt'], ['eso', 'african'], ['eso', 'neo'], ['eso', 'meta'], ['life', 'nature'], ['life', 'meta'], ['nature', 'meta'], ['african', 'egypt'], ['plato', 'ai'], ['ai', 'life'],
-    ['plato', 'rorty'], ['rorty', 'life'], ['rorty', 'meta'], ['soul', 'plato'], ['soul', 'aristotle'], ['soul', 'neo'], ['hidden', 'eso'], ['hidden', 'plato'], ['decol', 'african'], ['decol', 'egypt'], ['decol', 'life']];
+    ['plato', 'rorty'], ['rorty', 'life'], ['rorty', 'meta'], ['soul', 'plato'], ['soul', 'aristotle'], ['soul', 'neo'], ['hidden', 'eso'], ['hidden', 'plato'], ['decol', 'african'], ['decol', 'egypt'], ['decol', 'life'], ['rorty', 'aristotle']];
   NODES.forEach(n => {
     const links = (n.links || []).map(l => '<li><a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + '</a></li>').join('');
     library['star-' + n.id] = { title: n.label, ch: 'think', html: '<p class="when">A star in my research</p><p>' + n.body + '</p>' + (links ? '<ul class="list">' + links + '</ul>' : '') + '<p class="more">' + (n.more === 'papers' ? '<button type="button" data-sheet="publications" data-at="papers">Conference papers →</button> ' : n.more ? '<button type="button" data-sheet="' + n.more + '">Go further →</button> ' : '') + '<button type="button" data-sheet="publications">Research and publications →</button></p>' };
@@ -997,13 +997,64 @@
   function placeSky() {
     const tall = narrowSky.matches, k = tall ? .72 : 1, at = n => tall ? TALL[n.id] : [n.x, n.y];
     sky.setAttribute('viewBox', tall ? '0 0 360 548' : '0 0 1040 450'); sky.classList.toggle('tall', tall);
+    NODES.forEach(n => { n.home = at(n); n.rr = n.r * k; n.lift = tall ? 17 : 24; n.hr = tall ? 24 : 28; if (!n.off) { n.off = [0, 0]; n.v = [0, 0]; } });
+    sky.reach = tall ? 46 : 72;
+    drawSky();
+  }
+  // Every star is drawn at its place plus how far it has been pulled (off); the lines follow their stars.
+  function drawSky() {
     NODES.forEach(n => {
-      const p = at(n), r = n.r * k;
-      put(n.hit, { cx: p[0], cy: p[1], r: tall ? 24 : 28 }); put(n.glow, { cx: p[0], cy: p[1], r: r * 2.4 }); put(n.dot, { cx: p[0], cy: p[1], r: r }); put(n.tx, { x: p[0], y: p[1] + r + (tall ? 17 : 24) });
+      const x = n.home[0] + n.off[0], y = n.home[1] + n.off[1], r = n.rr;
+      put(n.hit, { cx: x, cy: y, r: n.hr }); put(n.glow, { cx: x, cy: y, r: r * 2.4 }); put(n.dot, { cx: x, cy: y, r: r }); put(n.tx, { x: x, y: y + r + n.lift });
     });
-    edgeEls.forEach(l => { const a = at(byId[l.dataset.a]), b = at(byId[l.dataset.b]); put(l, { x1: a[0], y1: a[1], x2: b[0], y2: b[1] }); });
+    edgeEls.forEach(l => { const a = byId[l.dataset.a], b = byId[l.dataset.b]; put(l, { x1: a.home[0] + a.off[0], y1: a.home[1] + a.off[1], x2: b.home[0] + b.off[0], y2: b.home[1] + b.off[1] }); });
   }
   placeSky();
+  // The web gives a little: a star can be pulled a short way (it stretches like elastic, never far), the stars tied to it are drawn along,
+  // and when it is let go everything wobbles back into place. Each star is held to its place by a spring, and each line is a spring too.
+  // A tap still opens the star's note; only a real pull does not. Left out for anyone who asks their device for less motion.
+  (() => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const K_HOME = 38, K_EDGE = 68, DAMP = 5.5, STEP = 1 / 120;
+    let held = null, from = null, base = null, pulled = false, justPulled = false, raf = 0, last = 0;
+    const toSky = e => { const m = sky.getScreenCTM(); if (!m) return null; const q = sky.createSVGPoint(); q.x = e.clientX; q.y = e.clientY; const r = q.matrixTransform(m.inverse()); return [r.x, r.y]; };
+    function step(dt) {
+      NODES.forEach(n => { n.f = [-K_HOME * n.off[0], -K_HOME * n.off[1]]; });
+      EDGES.forEach(([a, b]) => { const A = byId[a], B = byId[b], dx = B.off[0] - A.off[0], dy = B.off[1] - A.off[1];
+        A.f[0] += K_EDGE * dx; A.f[1] += K_EDGE * dy; B.f[0] -= K_EDGE * dx; B.f[1] -= K_EDGE * dy; });
+      NODES.forEach(n => {
+        if (n === held && pulled) { n.v = [0, 0]; return; }
+        const m = n.r / 6;   // the bigger stars are a little heavier
+        for (let i = 0; i < 2; i++) { n.v[i] += (n.f[i] / m - DAMP * n.v[i]) * dt; n.off[i] += n.v[i] * dt; }
+      });
+    }
+    function frame(t) {
+      let dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+      while (dt > 0) { step(Math.min(STEP, dt)); dt -= STEP; }
+      drawSky();
+      const moving = held || NODES.some(n => Math.abs(n.off[0]) + Math.abs(n.off[1]) > .04 || Math.abs(n.v[0]) + Math.abs(n.v[1]) > .04);
+      if (moving) raf = requestAnimationFrame(frame);
+      else { NODES.forEach(n => { n.off = [0, 0]; n.v = [0, 0]; }); drawSky(); raf = 0; last = 0; }
+    }
+    const go = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
+    sky.addEventListener('pointerdown', e => {
+      const g = e.target.closest('.node'); justPulled = false;
+      if (!g || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      const n = NODES.find(x => nodeEls[x.id] === g), p = toSky(e); if (!n || !p) return;
+      held = n; from = p; base = n.off.slice(); pulled = false;
+    });
+    window.addEventListener('pointermove', e => {
+      if (!held) return;
+      const p = toSky(e); if (!p) return;
+      const dx = p[0] - from[0], dy = p[1] - from[1], len = Math.hypot(dx, dy);
+      if (!pulled) { if (len < 7) return; pulled = true; sky.classList.add('pulling'); }
+      const R = sky.reach, tx = base[0] + dx, ty = base[1] + dy, tl = Math.hypot(tx, ty), f = tl ? R * Math.tanh(tl / R) / tl : 0;   // elastic: the further, the harder
+      held.off = [tx * f, ty * f]; go();
+    });
+    const letGo = () => { if (!held) return; if (pulled) { justPulled = true; sky.classList.remove('pulling'); } held = null; pulled = false; go(); };
+    window.addEventListener('pointerup', letGo); window.addEventListener('pointercancel', letGo);
+    sky.addEventListener('click', e => { if (justPulled) { justPulled = false; e.stopPropagation(); e.preventDefault(); } }, true);   // a pull is not a tap
+  })();
   if (narrowSky.addEventListener) narrowSky.addEventListener('change', placeSky); else if (narrowSky.addListener) narrowSky.addListener(placeSky);
 
   /* ---------- Lectures: the player loads when you press play ---------- */

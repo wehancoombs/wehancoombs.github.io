@@ -1,4 +1,4 @@
-# Progress log: wehancoombs.github.io
+# Progress log: wehancoombs.com
 
 Plain-words record of where the website stands. Newest entries at the bottom.
 
@@ -15,7 +15,7 @@ Feel: warm, scholarly, uncluttered. Plain static files (HTML + CSS), hosted on G
 ## How to preview and publish
 
 - **Preview on your computer:** open the folder `wehan-site` in File Explorer and double-click `index.html`. It opens in your browser. Nothing goes online.
-- **Publish:** only when you say yes. Pushing to GitHub updates the live site at https://wehancoombs.github.io within about a minute.
+- **Publish:** only when you say yes. Pushing to GitHub updates the live site at https://wehancoombs.com within about a minute.
 - **The CV PDFs** are built from the HTML files in the sibling folder `wehan-cvs/cv-bundle` (see its README). Edit there, re-render, then copy the PDFs into `wehan-site/cv/`.
 
 ---
@@ -25,7 +25,7 @@ Feel: warm, scholarly, uncluttered. Plain static files (HTML + CSS), hosted on G
 **Done**
 - Single-page site (`index.html`) in a dark navy palette with sections: About, Teaching, Academic, Freelance, CVs, Contact.
 - Headshot (`headshot.jpg`) and three two-page CV PDFs in `cv/`.
-- Pushed to GitHub. The site is **live** at https://wehancoombs.github.io.
+- Pushed to GitHub. The site is **live** at https://wehancoombs.com.
 
 **Not done**
 - No PROGRESS.md or notes were kept.
@@ -98,7 +98,7 @@ Wehan asked for a bold, visual, interactive portfolio with very few words, that 
 Wehan's brief: no separate "Full profile" page. Everything from it should be found by exploring the beautiful page, hidden until wanted, a couple of clicks away. A pop-out map. Real deliverables on show (a recorded class, study guides) without hurting the look.
 
 **Done**
-- `profile.html` is gone. All of its content, plus the whole teaching portfolio from the full resume (teaching philosophy, curriculum design, assessment, student support, evaluations, referees), now lives in 30 "sheets": panels that slide in from the right. Each has a title, the chapter colour, Previous/Next within its chapter, and a Map button. Escape or the × closes it. Opening a sheet puts `#s-name` in the address bar, so a sheet can be linked to directly (for example `wehancoombs.github.io/#s-courses`).
+- `profile.html` is gone. All of its content, plus the whole teaching portfolio from the full resume (teaching philosophy, curriculum design, assessment, student support, evaluations, referees), now lives in 30 "sheets": panels that slide in from the right. Each has a title, the chapter colour, Previous/Next within its chapter, and a Map button. Escape or the × closes it. Opening a sheet puts `#s-name` in the address bar, so a sheet can be linked to directly (for example `wehancoombs.com/#s-courses`).
 - **The map**: a "Map" button at the top left opens a drawer listing every sheet under its chapter (Begin, Teach, Think, Make, So far, Write), plus CV downloads and links. One click to open the map, one click to the thing. On phones it fills the screen.
 - **Chapter index lines**: under each chapter heading, a short line of small labels (for example "Approach · Abbotts College · Hoërskool Garsfontein · Beyond the classroom") that open the sheets directly, so the map is never required.
 - **Everything on the page now opens something**: the big numbers, the book spines ("More →"), the stars (each note now has "Go further →"), the tool cards, the years ("More →" under the caption), the footer motto (opens "Why I teach").
@@ -332,7 +332,7 @@ Wehan's eleven-point list, imported from another chat. Pushed live on 2026-10-29
 - **The scroll cue is an arrow.** The faint line at the foot of the first screen is now a small chevron that bobs gently, fixed at the bottom of the screen (centre on a desktop, bottom-right on a phone), and fades out once the visitor scrolls. It keeps still under reduced motion.
 - **Shelf caption** reads "Each spine opens a lesson." The sentence about the poems spine is gone.
 - **Tagline** unchanged; an HTML comment above it marks it as being rewritten.
-- **CVs** (`../wehan-cvs/cv-bundle`, its own repo): no "Page 2" labels; the website row reads "Website: wehancoombs.github.io ↗", underlined in the accent colour and linked; all four re-rendered with `overflow: 0` on every page; copied into `cv/` and to Drive, old ones archived as "(before 2026-10-29)". The QR code was checked and left alone: it encodes the Full Resume link, the doc opens without a Google login, and it decodes from the PDFs rasterised at 96 and 150 dpi.
+- **CVs** (`../wehan-cvs/cv-bundle`, its own repo): no "Page 2" labels; the website row reads "Website: wehancoombs.com ↗", underlined in the accent colour and linked; all four re-rendered with `overflow: 0` on every page; copied into `cv/` and to Drive, old ones archived as "(before 2026-10-29)". The QR code was checked and left alone: it encodes the Full Resume link, the doc opens without a Google login, and it decodes from the PDFs rasterised at 96 and 150 dpi.
 - **site-text.md** in the parent folder (`D:\Coding Projects\Personal Website\site-text.md`): every visible piece of text, page by page and pop-up by pop-up, for review in another chat. Made by a script, not by hand.
 - Assets at `?v=15`.
 
@@ -386,7 +386,7 @@ Pushed live on 2026-11-07. Tagged v1.1-stable (the fallback version is now this 
 - **No more welcome card.** Wehan asked for it to go. The markup, its styles and its script are gone; the page opens straight on the first screen. (The text exporter no longer lists it.)
 - **Covers from the PDFs.** The first page of each of the five study guides (fetched from the Drive links already on the site) and of the Macbeth revision sheet, rendered with PyMuPDF at 560px wide into `materials/covers/` (23 to 77 KB each). They appear on the guide cards on the Think shelf, as a row of five covers in the Study guides pop-up (replacing the plain list; the wording is unchanged), and as a thumbnail link to the PDF in the Macbeth pop-up.
 - **Conference papers as a timeline.** Same twelve lines, now an ordered list down the years: a year in the margin (shown once per run, so 2025 appears once above its three papers), a rail with dots, the title in full and the venue in smaller grey type. The split happens at open time, like the chips; the HTML lines are untouched.
-- **From the portfolio chat.** Wehan brought suggestions from the chat that built his PGCE portfolio (https://wehancoombs.github.io/ves310-portfolio/). Taken: the two sites now link (Teach chapter and the Abbotts pop-up point to the portfolio); the micro-lesson on adjectives for Grade 10 (10 min 53 s, hosted on the portfolio) plays inside the Teaching approach pop-up; the stat counters carry their real number in the HTML so search engines and readers without scripts see 95, not 0 (the script resets them to 0 only when it is about to count up); the year strip's hover caption no longer fires several swaps when the mouse crosses the strip quickly.
+- **From the portfolio chat.** Wehan brought suggestions from the chat that built his PGCE portfolio (https://wehancoombs.com/ves310-portfolio/). Taken: the two sites now link (Teach chapter and the Abbotts pop-up point to the portfolio); the micro-lesson on adjectives for Grade 10 (10 min 53 s, hosted on the portfolio) plays inside the Teaching approach pop-up; the stat counters carry their real number in the HTML so search engines and readers without scripts see 95, not 0 (the script resets them to 0 only when it is about to count up); the year strip's hover caption no longer fires several swaps when the mouse crosses the strip quickly.
 - Left alone, on purpose: the top bar's blur (small elements only), the brand image's empty alt (decorative, the name sits next to it), the shared `theme` key with the portfolio (same origin, and the same theme on both sites is a feature), print styles (the CVs are the printable things), and the quiz and icons (they live on the portfolio, which is now linked). The 22 quotes are Wehan's to cut in the Google Doc.
 - Assets at `?v=18`. Checked at 1366 and 390 wide: no overflow, no console errors, the video loads (1280 by 720).
 
@@ -624,7 +624,7 @@ Not on the page any more: the three old cabinet sentences (Teach, Think, Make), 
 
 ## 2026-11-15, evening: his rounds on the three cabinets (v=51 on `services`, on the staging site, not live)
 
-Staging: he asked for a separate live site to test on his phone. It is https://wehancoombs.github.io/site-preview/ (repo `wehancoombs/site-preview`, remote `preview`). After every change: copy `services` to a `preview` branch, add a noindex meta and take out the visit counter, force-push to `preview:main`. He said to treat it as the staging platform, so refresh it without asking. The live site still needs "publish".
+Staging: he asked for a separate live site to test on his phone. It is https://wehancoombs.com/site-preview/ (repo `wehancoombs/site-preview`, remote `preview`). After every change: copy `services` to a `preview` branch, add a noindex meta and take out the visit counter, force-push to `preview:main`. He said to treat it as the staging platform, so refresh it without asking. The live site still needs "publish".
 
 What changed, at his word:
 
@@ -897,9 +897,17 @@ The check page on the affected phone (Samsung Internet 30, Secret mode): it dark
 
 v=85: in Samsung Internet (known by `SamsungBrowser` in its name) the page always declares a dark colour scheme (`color-scheme` meta set to dark by the first script, and `color-scheme: dark` on the root), in its light look too. Chromium-based browsers leave alone a page that says its own scheme is dark. The light look itself does not change (checked in the preview with the Samsung class added: same background, same form colours). The v=84 guess (dark mode and no switch) is removed. Everyone else is unchanged. A second check page, https://wehancoombs.com/site-preview/check2.html, is white and cream but says dark: if Samsung leaves it white, the fix works. Not yet confirmed on the phone.
 
-## 2026-11-17: the Samsung brown, round five (v=86 on `services`, on the staging site only)
+## 2026-11-17: the Samsung brown, round five (v=86, PUBLISHED the same morning on his "Publish, thank you")
 
 v=85 did not help ("Still brown"): Samsung Internet 30 darkens every light page whatever colour scheme the page declares, and reports "prefers light" while doing it, so a page can neither detect it nor switch it off. Its darkening keeps the tint: the white check page turned neutral charcoal, the site's cream turned brown.
 
 v=86: in Samsung Internet only (`html.samsung`, set by the first script from the browser's name), the light look uses neutral off-whites and greys instead of the creams (`--bg #F4F4F3`, `--bg-2`, `--surface`, `--bb`, lines and text greys). With that browser's dark mode off it looks like the light site in white; with it on it should turn charcoal, not brown. Accents, the drawing and everything else are unchanged; other browsers are unchanged. v=85's colour-scheme trick is removed. Checked in the preview with the class added (the background becomes #F4F4F3). Not yet seen on the Samsung phone. The check pages are dropped from the test copy.
 
+
+## 2026-11-17: the web on About me gives a little (v=87 on `services`, on the staging site only)
+
+His ask: join Ethics & politics to Aristotle, and give the whole web a slight jiggle. Now a star can be pulled a short way (it stretches like elastic and never goes far: about 72 units on a wide screen, 46 on a phone), the stars tied to it are drawn along, and when it is let go everything wobbles back into place. Each star is held to its place by a spring and each line is a spring; the bigger stars are a little heavier. A tap still opens the star's note; a real pull (more than a few pixels) does not. Left out for anyone whose device asks for less motion. On a phone, a finger that lands on a star pulls it instead of scrolling the page. Checked in the preview on a wide screen and at phone size: the pull, the settle back to the exact place, the tap, no sideways scroll. Not yet seen on his phone. Tags before it: v2.1-stable (live v=86).
+
+## 2026-11-17: his own icons, and the share preview names the domain (v=88 on `services`, on the staging site only)
+
+From his Claude chat. The six icon files he made (favicon.ico, favicon.svg, apple-touch-icon.png, icon-192.png, icon-512.png, site.webmanifest: a cream W in a gold ring on #100F0D) are now in the repo and in the page head, in place of the inline icon. The links are relative (`favicon.ico`, not `/favicon.ico`), and so are the two icons named in the manifest, so they also work on the test copy in /site-preview/. The share preview (og:image, og:url) now names https://wehancoombs.com/ instead of github.io; there was no canonical or twitter tag. index.html is the only page. On his word every other github.io in these notes became wehancoombs.com, except two that would turn false: the name of an old Google Doc ("Site text – wehancoombs.github.io") and the sentence saying github.io redirects to the domain. The PGCE portfolio now opens at https://wehancoombs.com/ves310-portfolio/ (github.io redirects there). Publishing also carries v=87 (the web on About me), which is on `services` before it.
