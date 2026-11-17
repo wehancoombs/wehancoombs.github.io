@@ -1552,3 +1552,10 @@ p.map-ch:hover { color: var(--text); }
   .bb-chev { position: static; order: 3; flex: none; }
 }
 @media (prefers-reduced-motion: reduce) { .bb-detail { animation: none; } .bb-head button.bb-rate { transition: none; } }
+
+/* Light and dark: the page handles both itself. Saying so (here and in the head) keeps a browser's own dark mode from recolouring the light page. */
+:root { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: only light; }
+/* The switch always shows its word, on a phone too, so that the choice is plain to see */
+.pill.theme .lbl { display: inline; }
+.pill.theme { white-space: nowrap; }

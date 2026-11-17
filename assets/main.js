@@ -37,8 +37,8 @@
   };
   pal.refresh();
 
-  /* ---------- Light and dark: the visitor's system setting, until the switch is used; the switch is remembered ---------- */
-  const themeBtn = $('#theme'), sysLight = matchMedia('(prefers-color-scheme: light)');
+  /* ---------- Light and dark: light, until the switch is used; the switch is remembered. The visitor's system setting is not followed. ---------- */
+  const themeBtn = $('#theme');
   const isLight = () => root.getAttribute('data-theme') === 'light';
   function setTheme(light) { if (light) root.setAttribute('data-theme', 'light'); else root.removeAttribute('data-theme'); }
   function paintTheme() {
@@ -54,9 +54,6 @@
     paintTheme(); repaintStill();
     setTimeout(() => body.classList.remove('theming'), 1000);
   });
-  // If the system setting changes while the page is open, follow it, unless the switch has been used.
-  const followSystem = () => { let saved = null; try { saved = localStorage.getItem('theme'); } catch (e) {} if (saved !== 'light' && saved !== 'dark') { setTheme(sysLight.matches); paintTheme(); repaintStill(); } };
-  if (sysLight.addEventListener) sysLight.addEventListener('change', followSystem); else if (sysLight.addListener) sysLight.addListener(followSystem);
   paintTheme();
 
   /* ---------- The CVs in the top bar: one dropdown, at every width ---------- */

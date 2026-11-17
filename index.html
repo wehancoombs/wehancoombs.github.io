@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
 <title>Wehan Coombs · Teaching and Learning Solutions</title>
 <meta name="description" content="Dr Wehan Coombs: bespoke educational solutions, from one-to-one tutoring to university curricula and AI policy. Pretoria East or online.">
 <meta property="og:title" content="Wehan Coombs · Teaching and Learning Solutions">
@@ -12,12 +13,12 @@
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#100F0D">
 <script>
-  // Before the page paints: light or dark (the remembered choice if the switch has been used, otherwise the visitor's system setting),
+  // Before the page paints: light or dark (the remembered choice if the switch has been used, otherwise light),
   // and whether this is a first visit (the sketch fades in once only).
   (function () {
     var d = document.documentElement, t = null, seen = false;
     try { t = localStorage.getItem('theme'); seen = !!localStorage.getItem('seen'); localStorage.setItem('seen', '1'); } catch (e) {}
-    if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    if (t !== 'light' && t !== 'dark') t = 'light';   // light for everyone, whatever their system setting, until they use the switch
     if (t === 'light') d.setAttribute('data-theme', 'light');
     if (!seen) d.classList.add('first-visit');
   })();
@@ -26,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=81">
+<link rel="stylesheet" href="assets/style.css?v=82">
 </head>
 <body data-chapter="threshold">
 
@@ -53,7 +54,7 @@
         <button class="pill cv-link" type="button" data-sheet="resume" title="The full resume"><b>≡</b><span><i>Full </i>resume</span></button>
       </div>
     </div>
-    <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☀<span class="lbl"> Light</span></button>
+    <button class="pill theme" id="theme" type="button" aria-label="Switch between dark and light mode">☾<span class="lbl"> Dark</span></button>
   </div>
 </header>
 
@@ -1192,7 +1193,7 @@
 
 </div>
 
-<script src="assets/main.js?v=81"></script>
+<script src="assets/main.js?v=82"></script>
 <script data-goatcounter="https://wehancoombs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

@@ -874,3 +874,11 @@ His word: "Final changes below then push to my LIVE SITE and fix all the CV's to
 3. **Landing page, Consult box:** "For You · For Your School · For Your University".
 4. **Testimonials pop-up:** the sentence "Weighted by the number of students who answered it is 4.3; the large second-year ethics class of 2018 pulls it down." is removed. He wrote "from both"; it was on the site in this one place only.
 
+## 2026-11-17: light by default, and no more brown (v=82 on `services`, on the staging site)
+
+He sent a phone screenshot (Samsung Internet): the site was in light mode, but the browser's own dark mode had darkened the light page into a muddy brown. His word: "Ignore user theme and force light mode as default, always. Make the word dark/light clear ... make sure the horrible brown never shows up again."
+
+- **Light for everyone.** A first visit opens in light mode whatever the visitor's system setting; the system setting is no longer followed. The switch still works and is remembered.
+- **The brown.** The page now tells the browser that it has its own light and dark (`<meta name="color-scheme" content="light dark">`, and `color-scheme: only light` / `dark` in the styles), which is what stops a browser's forced dark mode from recolouring it. This could not be reproduced in the preview (it is the phone browser's own feature), so it needs his phone to confirm.
+- **The switch shows its word on a phone too** ("Dark" when the page is light, "Light" when it is dark).
+
