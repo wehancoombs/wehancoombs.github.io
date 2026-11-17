@@ -1395,8 +1395,11 @@ html.first-visit .me.in { opacity: 1; }
 .bb-extra .deck .lecture .l-cap strong { font-size: 20px; margin-bottom: 3px; }
 
 /* Each recording shows a still from itself (Google Drive's own preview picture), darkened at the foot so that its caption reads */
-.lecture[data-src*="1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ"] { --still: url("https://drive.google.com/thumbnail?id=1qdqHfrFqPeQcDQpA1wr5STu0e5b0S1EJ&sz=w960"); }
-.lecture[data-src*="1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3"] { --still: url("https://drive.google.com/thumbnail?id=1JqwCuWJwbXZ4gx45t1xbDxAtxvrOAqL3&sz=w960"); }
+.lecture[data-src*="3yu_p7YIFhc"] { --still: url("https://i.ytimg.com/vi/3yu_p7YIFhc/maxresdefault.jpg"); }
+.lecture[data-src*="A2ta75nJWTI"] { --still: url("https://i.ytimg.com/vi/A2ta75nJWTI/maxresdefault.jpg"); }
+.lecture[data-src*="peBkDshxgYs"] { --still: url("https://i.ytimg.com/vi/peBkDshxgYs/maxresdefault.jpg"); }
+/* With three recordings, only the next one waits behind the front one; the third stays out of sight */
+.deck .lecture.later { opacity: 0; }
 .lecture::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, .82), rgba(0, 0, 0, .12) 58%, rgba(0, 0, 0, .28)), var(--still, none) center / cover no-repeat; }
 .lecture .play, .lecture .l-cap { z-index: 1; }
 .lecture .play { background: rgba(0, 0, 0, .5); }
@@ -1576,3 +1579,8 @@ html.samsung[data-theme="light"] {
 #sky { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 #sky .node { touch-action: none; }
 #sky.pulling, #sky.pulling .node { cursor: grabbing; }
+
+/* Under the Lectures deck: a link to the recording in front, on YouTube */
+.deck-watch { margin: 4px 0 0; font: 600 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; }
+.deck-watch a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); padding-bottom: 2px; }
+.deck-watch a:hover, .deck-watch a:focus-visible { border-bottom-color: var(--accent); }
