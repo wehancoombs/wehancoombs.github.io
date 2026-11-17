@@ -1584,3 +1584,9 @@ html.samsung[data-theme="light"] {
 .deck-watch { margin: 4px 0 0; font: 600 12px var(--sans); letter-spacing: .12em; text-transform: uppercase; }
 .deck-watch a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); padding-bottom: 2px; }
 .deck-watch a:hover, .deck-watch a:focus-visible { border-bottom-color: var(--accent); }
+
+/* The micro lesson on the Classes card: one recording on its own, under the shelf */
+.bb-extra .lectures.solo { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
+.bb-extra .lectures.solo + .deck-watch { margin-top: 8px; }
+.bb-extra .lectures.solo .lecture .play { width: 58px; height: 58px; top: 42%; }
+.bb-extra .lectures.solo .lecture .play span { border-width: 10px 0 10px 17px; }

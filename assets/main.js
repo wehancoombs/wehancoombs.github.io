@@ -671,10 +671,14 @@
     tutoring: { lines: () => part('tutoring', '.svc-summary .deliv li'), quote: () => VOICES.make.items[2], request: 'tutoring', more: 'tutoring' },
     writing: { line: true, lines: () => part('editing', '.svc-summary .deliv li'), quote: () => VOICES.make.items[0], request: 'editing', more: 'editing' },
     classes: { line: true, inline: true, quote: () => VOICES.teach.items[0],
-      extra: () => '<p class="eyebrow">What I taught in 2026 · tap a spine</p>' + SHELF_HTML + '<div class="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson.</p></div>' },
+      extra: () => '<p class="eyebrow">What I taught in 2026 · tap a spine</p>' + SHELF_HTML + '<div class="shelf-detail" aria-live="polite"><p class="caption">Each spine opens a lesson.</p></div>' +
+        // The PGCE micro lesson, a mock FET English lesson (his word, 2026-11-17)
+        '<p class="eyebrow">Watch me teach</p><div class="lectures solo"><div class="lecture" data-src="https://www.youtube-nocookie.com/embed/peBkDshxgYs?autoplay=1&amp;rel=0">' +
+        '<button class="play" type="button" aria-label="Play: English micro lesson on adjectives, PGCE, 2026"><span></span></button><p class="l-cap"><strong>English micro lesson on adjectives</strong>PGCE · 2026</p></div></div>' +
+        '<p class="deck-watch"><a href="https://youtu.be/peBkDshxgYs" target="_blank" rel="noopener" data-track="watch-youtube">Watch on YouTube ↗</a></p>' },
     // Lectures: the two recordings, large, one in front of the other; the chevron beside them brings the other forward.
     lectures: { line: true, inline: true, wide: true, quote: () => VOICES.think.items[6], more: 'courses',
-      extra: () => '<p class="eyebrow">Watch me teach · <span class="deck-n">1 of 3</span></p><div class="deck">' + LECT_HTML +
+      extra: () => '<p class="eyebrow">Watch me teach · <span class="deck-n">1 of 2</span></p><div class="deck">' + LECT_HTML +
         '<button class="deck-next" type="button" aria-label="Show the next recording"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>' +
         '<p class="deck-watch"><a href="https://youtu.be/3yu_p7YIFhc" target="_blank" rel="noopener" data-track="watch-youtube">Watch on YouTube ↗</a></p>' },
     lesson: { line: true, inline: true, arc: true, extra: () => '<div class="bb-arc-slot"></div>', quote: () => ['The lesson plans were well crafted and engaged learners, allowing them to partake and ask questions.', 'Mentor teacher, Hoërskool Garsfontein · formal assessment, 2026'], request: 'design', more: 'approach' },
