@@ -950,3 +950,14 @@ From his Claude chat (on his phone, built in the cloud, not on his PC). His word
 **Later the same night:** on his word the "Why a philosopher for English?" section is removed ("People will buy the pitch or they won't"). The page now runs: headline, facts, Coaching, How it works, Talks, About, last call. Still not published.
 
 **Later still (his words):** it is "15 years teaching philosophy", not lecturing: he has only lectured since 2019. Changed in the facts and in About. A fourth fact joins the other three: "English: Literature and Philosophy, my first degree" (the word English set large). The facts now sit two by two.
+
+## 2026-11-18 (near midnight): two pages, home and talks (branch `one-page-site`, NOT published)
+
+His decision: the home page sells coaching only, and the talks get their own page at `wehancoombs.com/talks/`, because parents and schools arrive through different doors. The rule he agreed for what earns a page: someone has paid for it, or he is sending that link to someone this month. Everything else he can do stays in the CVs.
+
+- **Home (`index.html`):** the Talks band is now a short navy pointer ("I also give talks and staff sessions for schools and universities, starting with Teach by Learning." and a "See the talks" button). The Talks link in the top bar opens the talks page.
+- **Talks (`talks/index.html`):** heading "Talks and staff sessions" ("For schools and universities. Online now, in person from April 2027."); Teach by Learning on a navy band ("On request."); the two priced staff sessions; "Who is speaking" (photo, the head of department's quotation, the academic CV, the student evaluations); "Ask about a session" (a booking button; the email address is still to be added, marked `CONTACT TO ADD`).
+- **Styles** moved out of the page into one shared file, `site.css` (linked as `site.css?v=1`; raise the number when the styles change so phones fetch the new file).
+- Both pages carry the visit counter, the named clicks and the Samsung fix.
+- Checked at 320, 390, 820 and 1280 pixels wide: no sideways scrolling; every local link on both pages points to a file that exists.
+- **Still open before publishing:** his email address, on both pages.

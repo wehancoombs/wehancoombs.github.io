@@ -24,172 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<style>
-/* ---------- Colours and type ---------- */
-:root {
-  --cream: #F7F2E8;      /* page */
-  --cream-2: #EFE7D6;    /* the one tinted band */
-  --navy: #16243A;       /* text, buttons, the Talks band */
-  --navy-2: #46546A;     /* quieter text */
-  --gold: #A87C1F;       /* thin lines only */
-  --gold-light: #D2AE5E; /* lines and small text on navy */
-  --rule: rgba(22, 36, 58, .16);
-  --serif: "EB Garamond", Garamond, "Times New Roman", serif;
-  --sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --page: 1120px;
-  --gutter: clamp(20px, 5vw, 48px);
-}
-html.samsung { --cream: #F4F4F3; --cream-2: #EAEAE8; }
-/* Tells Samsung Internet the page looks after dark mode itself. Sets a value nothing uses. */
-@media (prefers-color-scheme: dark) { :root { --own-dark: 1; } }
-
-*, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
-body {
-  margin: 0; background: var(--cream); color: var(--navy);
-  font-family: var(--sans); font-size: 1.125rem; line-height: 1.6;
-  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
-}
-img { max-width: 100%; display: block; }
-p { margin: 0 0 1em; }
-p:last-child { margin-bottom: 0; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
-a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
-a:hover { text-decoration-color: var(--gold); }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
-.wrap { max-width: var(--page); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-.skip { position: absolute; left: -9999px; }
-.skip:focus { left: 12px; top: 12px; z-index: 20; background: var(--navy); color: var(--cream); padding: 10px 14px; }
-
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-block; font-family: var(--sans); font-weight: 600; font-size: 1.0625rem; line-height: 1.2;
-  padding: 16px 26px; border: 1px solid var(--navy); background: var(--navy); color: var(--cream);
-  text-decoration: none; border-radius: 0; text-align: center;
-}
-.btn:hover { background: #0E1828; border-color: #0E1828; }
-.btn.small { font-size: .9375rem; padding: 11px 16px; white-space: nowrap; }
-.on-navy .btn { background: var(--cream); color: var(--navy); border-color: var(--cream); }
-.on-navy .btn:hover { background: #fff; border-color: #fff; }
-
-/* ---------- Header ---------- */
-.top { position: sticky; top: 0; z-index: 10; background: var(--cream); border-bottom: 1px solid var(--gold); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
-.name { font-family: var(--serif); font-size: 1.375rem; font-weight: 500; text-decoration: none; white-space: nowrap; letter-spacing: 0; }
-.top nav { display: none; }
-.top nav a { text-decoration: none; font-size: 1rem; margin-right: 30px; }
-.top nav a:hover { text-decoration: underline; text-decoration-color: var(--gold); }
-.top-right { display: flex; align-items: center; }
-
-/* ---------- Hero ---------- */
-.hero { padding: clamp(48px, 9vw, 112px) 0 clamp(40px, 6vw, 72px); }
-.hero h1 { font-size: clamp(2.75rem, 9.2vw, 6rem); line-height: 1; letter-spacing: -.022em; max-width: 13.5em; text-wrap: balance; }
-.hero .lede { font-size: clamp(1.1875rem, 2.2vw, 1.4375rem); line-height: 1.5; max-width: 36em; margin: clamp(24px, 3.4vw, 40px) 0 0; }
-.hero .rates { font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.35; margin: 18px 0 0; }
-.hero .act { margin-top: clamp(28px, 3.6vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
-.hero .note { font-size: 1rem; color: var(--navy-2); margin: 0; }
-
-/* Who is behind it: a small portrait and three facts */
-.who { border-top: 1px solid var(--gold); }
-.who .wrap { display: grid; gap: 0; }
-.who-me { display: flex; align-items: center; gap: 16px; padding: 22px 0; }
-.who-me img { width: 64px; height: 64px; object-fit: cover; flex: none; }
-.who-me p { margin: 0; line-height: 1.35; }
-.who-me b { font-family: var(--serif); font-weight: 500; font-size: 1.25rem; display: block; }
-.who-me span { font-size: 1rem; color: var(--navy-2); }
-.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
-.facts li { border-top: 1px solid var(--rule); padding: 16px 0; font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
-.facts b { font-family: var(--serif); font-weight: 500; font-size: 1.625rem; line-height: 1.1; color: var(--navy); display: block; margin-bottom: 2px; }
-
-/* ---------- Sections: the heading sits in the margin on wide screens ---------- */
-.sec { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--gold); }
-.sec h2 { font-size: clamp(2.125rem, 5vw, 3.25rem); margin-bottom: clamp(24px, 3vw, 36px); }
-.sec h3 { font-size: clamp(1.5rem, 3vw, 1.875rem); line-height: 1.15; }
-.band { background: var(--cream-2); }
-.on-navy { background: var(--navy); color: var(--cream); border-top: 0; }
-.on-navy + .sec { border-top: 0; }
-.on-navy :focus-visible { outline-color: var(--gold-light); }
-
-/* Rows: name, what it is, price */
-.rows { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule); }
-.rows li { border-top: 1px solid var(--rule); padding: 22px 0; display: grid; gap: 6px; }
-.rows p { margin: 0; max-width: 34em; }
-.rows .price { font-family: var(--serif); font-size: 1.375rem; white-space: nowrap; }
-.on-navy .rows { border-color: rgba(247, 242, 232, .22); }
-.on-navy .rows li { border-color: rgba(247, 242, 232, .22); }
-
-/* A quotation */
-.quote { margin: clamp(40px, 6vw, 64px) 0 0; padding: 4px 0 4px clamp(18px, 3vw, 30px); border-left: 1px solid var(--gold); max-width: 40em; }
-.quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.8vw, 1.75rem); line-height: 1.35; margin: 0 0 12px; }
-.quote footer { font-size: 1rem; color: var(--navy-2); }
-
-/* How it works: a real sequence, so it is numbered */
-.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 0; }
-.steps li { counter-increment: step; border-top: 1px solid var(--rule); padding: 20px 0 20px 56px; position: relative; max-width: 40em; }
-.steps li::before { content: counter(step); position: absolute; left: 0; top: 10px; font-family: var(--serif); font-size: 2.5rem; line-height: 1; color: var(--gold); }
-.steps li:last-child { border-bottom: 1px solid var(--rule); }
-
-/* Talks */
-.lead-talk { padding-bottom: clamp(32px, 5vw, 48px); }
-.lead-talk h3 { font-size: clamp(2.25rem, 6.4vw, 4rem); line-height: 1; letter-spacing: -.02em; margin-bottom: 18px; }
-.lead-talk p { font-size: clamp(1.125rem, 2vw, 1.3125rem); max-width: 34em; }
-.lead-talk .when { color: var(--gold-light); font-size: 1rem; margin-top: 14px; }
-.fee { color: var(--gold-light); font-size: 1rem; }
-.ask { margin-top: clamp(28px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
-.ask span { font-size: 1rem; }
-
-/* About */
-.about { display: grid; gap: 28px; }
-.about img { width: 150px; height: 150px; object-fit: cover; }
-.about-text p { font-family: var(--serif); font-size: clamp(1.375rem, 2.6vw, 1.625rem); line-height: 1.35; max-width: 24em; }
-.links { list-style: none; margin: clamp(32px, 5vw, 48px) 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
-.links li { border-top: 1px solid var(--rule); }
-.links a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; text-decoration: none; }
-.links a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: .18em; }
-.links small { font-size: .9375rem; color: var(--navy-2); white-space: nowrap; }
-.contact { margin-top: 28px; }
-.contact b { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
-.contact span { display: block; color: var(--navy-2); font-size: 1rem; margin-top: 4px; }
-
-/* Last call */
-.last h2 { margin-bottom: 18px; font-size: clamp(2.25rem, 6.4vw, 4rem); line-height: 1.02; letter-spacing: -.02em; }
-.last p { max-width: 34em; }
-.last .btn { margin-top: 26px; }
-
-footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size: 1rem; color: var(--navy-2); }
-
-/* ---------- Wider screens ---------- */
-@media (min-width: 620px) {
-  .facts { column-gap: 32px; }
-  .facts li { padding: 20px 0 22px; }
-  .who-me { padding: 26px 0; }
-  .about { grid-template-columns: 150px 1fr; gap: 40px; align-items: start; }
-}
-@media (min-width: 800px) {
-  .top nav { display: block; }
-  .top .wrap { min-height: 76px; }
-  .rows li { grid-template-columns: 1fr auto; column-gap: 40px; row-gap: 8px; align-items: baseline; padding: 26px 0; }
-  .rows li > h3 { grid-column: 1; }
-  .rows li > p { grid-column: 1; }
-  .rows li > .price, .rows li > .fee { grid-column: 2; grid-row: 1; text-align: right; }
-}
-@media (min-width: 980px) {
-  .split { display: grid; grid-template-columns: 17rem 1fr; column-gap: 56px; }
-  .split > h2 { margin-bottom: 0; }
-  .who .wrap { grid-template-columns: 17rem 1fr; column-gap: 56px; align-items: center; }
-  .facts li:nth-child(-n+2) { border-top: 0; }
-}
-@media (max-width: 480px) {
-  .name { font-size: 1.25rem; }
-  .btn.small { font-size: .875rem; padding: 10px 12px; }
-  .top .wrap { gap: 10px; }
-}
-@media (max-width: 350px) {
-  .name { font-size: 1.0625rem; }
-  .btn.small { font-size: .8125rem; padding: 9px 9px; }
-}
-@media print { .top { position: static; } .btn { border: 1px solid #000; } }
-</style>
+<link rel="stylesheet" href="site.css?v=1">
 </head>
 <body>
 <a class="skip" href="#coaching">Skip to coaching</a>
@@ -200,7 +35,7 @@ footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size:
     <div class="top-right">
       <nav aria-label="Sections">
         <a href="#coaching">Coaching</a>
-        <a href="#talks">Talks</a>
+        <a href="talks/">Talks</a>
         <a href="#about">About</a>
       </nav>
       <a class="btn small" href="https://calendar.app.google/LnQHr42n4ykTqa4ZA" target="_blank" rel="noopener" data-track="book-bar">Book a free intro call</a>
@@ -280,29 +115,12 @@ footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size:
     </div>
   </section>
 
-  <section class="sec on-navy" id="talks">
+  <section class="sec on-navy also" id="talks">
     <div class="wrap split">
       <h2>Talks and staff sessions</h2>
       <div>
-        <div class="lead-talk">
-          <h3>Teach by Learning</h3>
-          <p>A talk for student teachers and lecturers on how teaching is done: get curious yourself, turn that curiosity toward your learners, then run the lesson in three steps.</p>
-          <p class="when">On request.</p>
-        </div>
-        <ul class="rows">
-          <li class="two">
-            <h3>Keeping real thinking at the centre: teaching and assessment in the age of AI</h3>
-            <span class="fee">Talk R3,500. Half-day workshop R6,500.<br>Online now, in person from April 2027.</span>
-          </li>
-          <li class="two">
-            <h3>Whose knowledge? Designing a curriculum that is both local and global</h3>
-            <span class="fee">Talk R3,500. Half-day workshop R6,500.<br>Online now, in person from April 2027.</span>
-          </li>
-        </ul>
-        <!-- CONTACT TO ADD: this button should open an email to Wehan. The address is not in this file yet. -->
-        <div class="ask">
-          <a class="btn" href="#contact" data-track="ask-session">Ask about a session</a>
-        </div>
+        <p>I also give talks and staff sessions for schools and universities, starting with Teach by Learning.</p>
+        <a class="btn" href="talks/" data-track="see-talks">See the talks</a>
       </div>
     </div>
   </section>
