@@ -943,7 +943,8 @@ From his Claude chat (on his phone, built in the cloud, not on his PC). His word
 - **Removed from this branch:** the old `index.html` and the `assets` folder (styles, script, the six drawings). All of it is on `old-site`.
 - **Added beyond his brief, all taken from the old site's own wording:** the three facts, the student quotation, the head of department's quotation, and the closing "Start with a free 20-minute call." band.
 - **Still open before publishing:**
-  1. "Why a philosopher for English?" holds draft wording written for him. He wants to sleep on it.
-  2. His email address is not in the page. The "Ask about a session" button points to the About section and the contact line reads "Email address to be added". Both are marked in the HTML with `CONTACT TO ADD`.
+  1. His email address is not in the page. The "Ask about a session" button points to the About section and the contact line reads "Email address to be added". Both are marked in the HTML with `CONTACT TO ADD`.
 - Checked at 320, 390, 820 and 1280 pixels wide: no sideways scrolling; every local link points to a file that exists.
 - **To publish:** on his "publish", merge `one-page-site` into `main`. Then bring the site text Google Doc in line.
+
+**Later the same night:** on his word the "Why a philosopher for English?" section is removed ("People will buy the pitch or they won't"). The page now runs: headline, facts, Coaching, How it works, Talks, About, last call. Still not published.
