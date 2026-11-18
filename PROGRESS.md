@@ -948,3 +948,5 @@ From his Claude chat (on his phone, built in the cloud, not on his PC). His word
 - **To publish:** on his "publish", merge `one-page-site` into `main`. Then bring the site text Google Doc in line.
 
 **Later the same night:** on his word the "Why a philosopher for English?" section is removed ("People will buy the pitch or they won't"). The page now runs: headline, facts, Coaching, How it works, Talks, About, last call. Still not published.
+
+**Later still (his words):** it is "15 years teaching philosophy", not lecturing: he has only lectured since 2019. Changed in the facts and in About. A fourth fact joins the other three: "English: Literature and Philosophy, my first degree" (the word English set large). The facts now sit two by two.
