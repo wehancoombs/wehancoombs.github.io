@@ -931,3 +931,19 @@ He saw the Drive recordings still on the Lectures card (the YouTube links were o
 ## 2026-11-17: the micro lesson moves to Classes (v=92 on `services`, on the staging site only)
 
 His word: the adjectives lesson is a mock FET English micro lesson, so it belongs with Classes, not Lectures. It leaves the Lectures deck (two recordings again, "1 of 2") and the Recorded lectures pop-up, and stands on the Classes card under the shelf of lessons: "Watch me teach", the recording (caption "English micro lesson on adjectives", "PGCE · 2026", his YouTube thumbnail, a larger play button) and "Watch on YouTube ↗".
+
+## 2026-11-18: the whole site becomes one plain page (branch `one-page-site`, NOT published)
+
+From his Claude chat (on his phone, built in the cloud, not on his PC). His word: the site has to match what he is actually selling for income, and the old one can go.
+
+- **Saved first.** The site as it was on 17 Nov (v=92, the three cabinets) is kept whole on the branch `old-site`.
+- **The new page.** One `index.html` with its styles inside it. No animations, no pop-ups, no dark mode. Cream #F7F2E8, navy #16243A, thin gold lines #A87C1F; EB Garamond headings, Source Sans 3 body; squared corners. Design reference: artboard A2 on his design canvas.
+- **Top to bottom:** header (name, Coaching / Talks / About, "Book a free intro call"); the headline "A Doctor of Philosophy for your essay, your exam or your thesis." with the offer and the two rates (school English R400 an hour, university work R500); a strip with his photo and three facts (15 years, 4.5 out of 5, 98 out of 100); Coaching (three rows with prices, one student quotation); "Why a philosopher for English?"; How it works (three steps); Talks and staff sessions (Teach by Learning first, then the two priced sessions); About (photo, the head of department's quotation, the four CVs, the student evaluations); a last call to book; footer.
+- **Kept as they were:** CNAME, the `cv` folder, the `materials` folder, the icon files and `site.webmanifest`, `headshot.jpg`, the visit counter (GoatCounter) with named clicks, the booking link, and the Samsung Internet fix (neutral off-whites in that browser only, so its dark mode does not turn the cream brown).
+- **Removed from this branch:** the old `index.html` and the `assets` folder (styles, script, the six drawings). All of it is on `old-site`.
+- **Added beyond his brief, all taken from the old site's own wording:** the three facts, the student quotation, the head of department's quotation, and the closing "Start with a free 20-minute call." band.
+- **Still open before publishing:**
+  1. "Why a philosopher for English?" holds draft wording written for him. He wants to sleep on it.
+  2. His email address is not in the page. The "Ask about a session" button points to the About section and the contact line reads "Email address to be added". Both are marked in the HTML with `CONTACT TO ADD`.
+- Checked at 320, 390, 820 and 1280 pixels wide: no sideways scrolling; every local link points to a file that exists.
+- **To publish:** on his "publish", merge `one-page-site` into `main`. Then bring the site text Google Doc in line.
