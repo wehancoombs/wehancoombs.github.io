@@ -1143,3 +1143,10 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - **16, talks steps:** "Book a free 20-minute call, or email me: who the session is for, how many people, and when." / "I send the outline, the fee and the date in writing." / "I run the session online, or at your venue from April 2027. Travel is quoted per booking."
 - "I reply within two working days." now sits under the email address in About, on both pages.
 - Still only on the test copy. The live site waits for his "publish".
+
+## 2026-11-19 (19:05): PUBLISHED again, on his word "push": the feedback round
+
+- **Reversed before publishing, on his word:** the home headline swap (feedback point 2). The top sentence is again "A Doctor of Philosophy for your essay, your exam or your thesis.", with "One-to-one writing coaching, from high school to university." under it. He likes it as a hook and will tell the reviewer so. The link-preview picture follows.
+- **Now live from the feedback round:** laptop sizing of the page top (3, 6); "Wehan Coombs, PhD" (4); talks fees "from" (5); centred arrows without the count (9, 15); "English tutoring" and the why-it-suits-English line (8); rewritten How it works on both pages, with the reply line under the email (10, 16).
+- **Rejected or left:** headline change (2); hiding coaching prices (5); selling harder in the coaching pointer (7); "Workshops" naming, still open (11); a "What I offer" section (12); the old portfolio (13); About near the top (14); one long page (17).
+- The previous live version is commit acbdf5a. The old site is still on `old-site`.
