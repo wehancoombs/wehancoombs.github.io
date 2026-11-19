@@ -1022,3 +1022,7 @@ His decision after a review of the four CVs and the Full Resume: the CVs are for
 ## 2026-11-19 (10:25): the line drawing in About (styles now `site.css?v=7`)
 
 His one remaining issue was the headshot appearing twice on the home page. In About the photo is replaced by his line drawing (from the old site, redrawn in the site's navy as `assets/wehan-drawing.webp`, 640 pixels wide). He stands on the left and points at the sentence about him; the links and the email sit under it on a phone and beside the drawing on a wide screen. The photo stays in the navy strip under the headline and on the talks page. He called the talks page "perfect now".
+
+## 2026-11-19 (10:40): About, his way (styles now `site.css?v=8`)
+
+His notes: the figure should point at the examples under About, which can be squeezed or simplified to fit, and a line should cross the figure where it ends so the cut-off legs do not float. Now: the sentence about him comes first; under it the figure stands on a gold rule and points at three short links beside him ("Watch me teach", "Student evaluations", "Full resume"; the "Opens in…" notes are gone); the email and "Pretoria East, South Africa." sit under the rule.
