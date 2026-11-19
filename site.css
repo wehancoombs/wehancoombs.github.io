@@ -139,12 +139,7 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .card::before { content: "\201C"; position: absolute; left: 24px; top: 6px; font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--gold); }
 .card p { font-family: var(--serif); font-style: italic; font-size: clamp(1.3125rem, 2.3vw, 1.5rem); line-height: 1.34; margin: 0 0 12px; }
-.card .mark { position: absolute; right: 22px; top: 16px; margin: 0; display: flex; align-items: center; gap: 8px; font-style: normal; font-size: 1rem; line-height: 1; color: var(--navy-2); font-family: var(--sans); }
-.card .mark svg { width: 46px; height: 46px; display: block; }
-.card .mark circle { fill: none; transform: rotate(-90deg); transform-origin: 50px 50px; stroke-width: 5; }
-.card .mark .t { stroke: var(--rule); }
-.card .mark .a { stroke: var(--gold); stroke-linecap: round; }
-.card .mark text { font-family: var(--serif); font-size: 38px; font-weight: 500; text-anchor: middle; fill: var(--navy); font-style: normal; }
+.card .tag { position: absolute; right: 24px; top: 22px; margin: 0; font-family: var(--sans); font-style: normal; font-size: 1rem; line-height: 1.2; color: var(--navy-2); }
 .card footer { margin-top: auto; padding-top: 18px; }
 .card footer::before { content: ""; display: block; width: 36px; height: 1px; background: var(--gold); margin-bottom: 12px; }
 .rail-nav { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
