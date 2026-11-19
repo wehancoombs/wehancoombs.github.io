@@ -1169,3 +1169,7 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - Put back: the price beside each coaching row (R400, R500, R500), the fee beside each session (from R3,500, from R6,500, On request), "From R400 an hour" in the search and link-preview descriptions, the price range for search engines, and the talks button's wording "See coaching and rates".
 - Still gone, on both pages: the rates line under the headline.
 - Styles are `site.css?v=22`, the same styles as v=20.
+
+## 2026-11-19 (22:50): PUBLISHED, on his word: Teach by Learning priced like the other two sessions
+
+- "On request" beside Teach by Learning was Claude's placeholder from before the talk had a fee. It now reads "Talk from R3,500" and "Half-day workshop from R6,500", the same as the other two sessions.
