@@ -1010,3 +1010,11 @@ His decision after a review of the four CVs and the Full Resume: the CVs are for
 - **The three-step lesson curve.** Talks page, in the Teach by Learning band: the old site's curve (Known, Challenge, Own) redrawn in gold, with his three sentences from the old site as a numbered list under it. It is a still drawing now; the old site's moving dot and tap-to-read are gone.
 - **A sample for parents.** Home page, School English row: "See a sample: my lesson notes and quotation bank for a Macbeth essay" (the PDF already in `materials`; six pages, his own lesson notes for a Grade 10 revision lesson, not a learner handout, so it is labelled as notes).
 - Left behind on purpose: the cabinets, the turning shapes, the coin, the constellation, the pop-ups, dark mode and the line drawing.
+
+## 2026-11-19 (10:00): his five notes (styles now `site.css?v=6`)
+
+- **The Macbeth sample is gone** from the School English row ("Unless you want to bring in the whole bookshelf, I don't really see the point"). The PDF is still in `materials`, unlinked.
+- **The travelling light on the rings is gone** ("it looks out of place"). The rings still draw themselves once when they come into view; that was there before and he had called the strip "looking great". If he meant that too, remove the short script at the foot of `index.html` and the `.who.pre` rules.
+- **Each service has a small picture:** a gold line drawing on a navy disc (book, graduate's cap, pencil on the home page; spark, chip, globe on the talks page).
+- **Comments row:** the Garsfontein mentor's card now comes first.
+- **Talks page rebuilt, simple** (his words: "either go simple or go all out, pick a lane"). Four blocks: the heading with one button; "Three sessions" as three rows in the same style as the coaching rows; one navy band with his photo, the head of department's quotation and three links (two lectures, the full resume); "Ask about a session". The three-step curve and its list are removed again; they belong on a full Teach by Learning page if that is ever built ("all out").

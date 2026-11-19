@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=5">
+<link rel="stylesheet" href="site.css?v=6">
 </head>
 <body>
 <a class="skip" href="#coaching">Skip to coaching</a>
@@ -67,9 +67,7 @@
         <li>
           <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="track" cx="50" cy="50" r="44"/>
-            <mask id="m15" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><circle class="m" cx="50" cy="50" r="44" stroke-dasharray="15.4 3.031"/></mask>
             <circle class="arc segs" cx="50" cy="50" r="44" stroke-dasharray="15.4 3.031"/>
-            <circle class="glint" cx="50" cy="50" r="44" mask="url(#m15)"/>
             <text class="num" x="50" y="56">15</text>
             <text class="sub" x="50" y="71">years</text>
           </svg>
@@ -79,9 +77,7 @@
           <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
             <defs><clipPath id="half"><rect x="0" y="0" width="5" height="10"/></clipPath></defs>
             <circle class="track" cx="50" cy="50" r="44"/>
-            <mask id="m45" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><circle class="m" cx="50" cy="50" r="44" stroke-dasharray="248.8 276.5"/></mask>
             <circle class="arc draw" cx="50" cy="50" r="44" stroke-dasharray="248.8 276.5" style="--len:248.8"/>
-            <circle class="glint" cx="50" cy="50" r="44" mask="url(#m45)"/>
             <text class="num" x="50" y="54">4.5</text>
             <g><path class="star" transform="translate(25 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/><path class="star" transform="translate(35 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/><path class="star" transform="translate(45 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/><path class="star" transform="translate(55 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/><path class="star half" transform="translate(65 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/><path class="star" clip-path="url(#half)" transform="translate(65 60)" d="M5 .6 6.35 3.6 9.6 3.95 7.2 6.15 7.85 9.4 5 7.75 2.15 9.4 2.8 6.15 .4 3.95 3.65 3.6Z"/></g>
           </svg>
@@ -90,9 +86,7 @@
         <li>
           <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="track" cx="50" cy="50" r="44"/>
-            <mask id="m98" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100"><circle class="m" cx="50" cy="50" r="44" stroke-dasharray="270.9 276.5"/></mask>
             <circle class="arc draw" cx="50" cy="50" r="44" stroke-dasharray="270.9 276.5" style="--len:270.9"/>
-            <circle class="glint" cx="50" cy="50" r="44" mask="url(#m98)"/>
             <text class="num" x="50" y="56">98</text>
             <text class="sub" x="50" y="71">out of 100</text>
           </svg>
@@ -108,18 +102,20 @@
       <div>
         <ul class="rows">
           <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5.6c3-1.1 6-1 9 .8 3-1.8 6-1.9 9-.8v12.6c-3-1.1-6-1-9 .8-3-1.8-6-1.9-9-.8z"/><path d="M12 6.4v12.6"/></svg></span>
             <h3>School English</h3>
             <p>Grades 10 to 12 English, Home Language and First Additional Language.</p>
-            <p class="aside"><a href="materials/macbeth-revision-sheet.pdf" target="_blank" rel="noopener" data-track="sample-macbeth">See a sample: my lesson notes and quotation bank for a Macbeth essay</a> (PDF)</p>
             <span class="price">R400 an hour</span>
           </li>
           <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 9.2 12 4.6l9.5 4.6L12 13.8z"/><path d="M6.4 11.3v4.3c2.2 2.1 9 2.1 11.2 0v-4.3"/><path d="M21.5 9.2v5.3"/></svg></span>
             <h3>University writing</h3>
             <p>Essays, dissertations and theses in any subject. I coach and give feedback. I don&rsquo;t edit or write for you.</p>
             <p class="aside">My own subjects are philosophy and English literature, so there I can help with the content as well.</p>
             <span class="price">R500 an hour</span>
           </li>
           <li>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.2 19.8l1-4.2L16.6 4.2a2 2 0 0 1 2.9 0l.3.3a2 2 0 0 1 0 2.9L8.4 18.8z"/><path d="M14.6 6.2l3.2 3.2"/></svg></span>
             <h3>Other writing</h3>
             <p>Anything else you are writing in English, for work or for yourself. Same terms: I coach, you write.</p>
             <span class="price">R500 an hour</span>
@@ -138,9 +134,9 @@
       </blockquote>
     </div>
     <div class="rail" id="rail" tabindex="0" role="group" aria-label="More comments. Swipe sideways or use the arrow buttons.">
+        <blockquote class="card"><p>Excellent subject knowledge. The lesson plans were well crafted and engaged learners, allowing them to partake and ask questions.</p><p>The student had a good relationship with the learners. They were comfortable with asking him questions.</p><footer>Mentor teacher, Ho&euml;rskool Garsfontein, on my three weeks there as a student teacher, 2026</footer></blockquote>
         <blockquote class="card"><p class="mark">98 out of 100</p><p>The student demonstrated excellent knowledge and innovative way of using media to deliver a successful lesson.</p><p>Even when I could not see the learners, the student&rsquo;s ability to make and create a lively lesson were greatly demonstrated.</p><footer>University of Pretoria mentor lecturer, on the live online Grade 11 poetry lesson I taught as a student teacher, 2026</footer></blockquote>
         <blockquote class="card"><p class="mark">95 out of 100</p><p>The student enhanced the learners&rsquo; vocabulary through scaffolding. Language is precise and engaging.</p><p>Wehan&rsquo;s communication style is extremely effective. He engages students very well.</p><footer>Mentor teacher, Abbotts College Pretoria East, on my seven weeks there as a student teacher, 2026</footer></blockquote>
-        <blockquote class="card"><p>Excellent subject knowledge. The lesson plans were well crafted and engaged learners, allowing them to partake and ask questions.</p><p>The student had a good relationship with the learners. They were comfortable with asking him questions.</p><footer>Mentor teacher, Ho&euml;rskool Garsfontein, on my three weeks there as a student teacher, 2026</footer></blockquote>
         <blockquote class="card"><p>This module not only enhanced my understanding of esoterism but also significantly improved my writing skills and contributed to my growth as a philosopher.</p><footer>An honours student, 2024</footer></blockquote>
         <blockquote class="card"><p>Without exaggeration, those seminars changed the way I write and engage with the tradition in which I am trained.</p><p>I have yet to meet one [former student] who does not speak highly of him.</p><footer>Dr Mitchell-Ron Black, research collaborator, who sat in on my honours seminars</footer></blockquote>
         <blockquote class="card"><p>I found that whatever I didn&rsquo;t understand in the pre-reading was so well explained by Sir that I understood the content. I am truly grateful. I truly cannot emphasize enough what a great lecturer Mr Coombs is.</p><footer>A first-year student, 2021</footer></blockquote>
