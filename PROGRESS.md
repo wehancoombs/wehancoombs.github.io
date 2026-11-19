@@ -1075,3 +1075,10 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 - **Talks:** the heading "Three sessions" is now "Sessions".
 - **Drawing on the talks page:** it stands on the gold rule under the page top, on the right, flipped left to right so he points at the title (wide screens) or at the "Ask about a session" button (phones). Checked at 29 screen widths from 320 to 1920: it never touches the text and always stands on the rule.
 - **Home page:** the drawing stays in About. Claude's reasons: on a phone the top of the home page is already full (headline, rates, button, note); the photo sits in the navy strip straight below, so a drawing at the top would put his face twice on one screen; and in About it has a job, pointing at the three links.
+
+## 2026-11-19 (13:05): the talks drawing now points exactly; a coaching pointer on the talks page (styles now `site.css?v=15`)
+
+- **Why it was off:** the drawing was simply set down to the right of the button, so the finger pointed above it.
+- **Phones (under 880 wide):** the button is now set level with his fingertip, with the drawing right beside it. Measured: the fingertip is within 1 pixel of the button's middle and 12 pixels from its edge, at every width tested.
+- **Wide screens:** the drawing stands beside the title, sized so the fingertip is level with the middle of the letters and 34 pixels from the last one. Tested at 33 widths from 320 to 1920; it never touches text and always stands on the rule.
+- **Coaching pointer:** the talks page now has a "Writing coaching" row with a "See the coaching" button to the home page, the mirror of the home page's "Talks and staff sessions" row. It sits after the comments and before "Ask about a session".
