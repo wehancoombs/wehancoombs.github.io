@@ -167,28 +167,10 @@ a:hover { text-decoration-color: var(--gold); }
 .also .btn { margin-top: 26px; }
 
 /* Talks page */
-.hero.slim { --foot: clamp(36px, 5vw, 56px); --h1: clamp(2.5rem, 7.4vw, 4.75rem); --fig: 150px; padding-bottom: var(--foot); }
-/* Talks page: the line drawing stands on the rule under the page top, turned to face the text.
-   His fingertip is 27.05% of the way down the drawing. On phones the button is set level with it;
-   on wide screens the drawing is sized so the fingertip is level with the title. */
-.with-presenter .act { align-items: flex-start; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; }
-.with-presenter .act .btn { flex: none; white-space: nowrap; margin-top: max(0px, calc(var(--fig) * .2705 - 27px)); }
-.presenter { display: block; flex: none; width: auto; height: var(--fig); margin-bottom: calc(-1 * var(--foot)); transform: scaleX(-1); }
-.hero.slim h1 { font-size: var(--h1); }
-.speaker .who-me { margin-bottom: clamp(28px, 4vw, 44px); }
-.speaker .who-me img { width: 88px; height: 88px; border: 1px solid var(--gold-light); }
-.speaker .who-me span { color: rgba(247, 242, 232, .78); }
-.speaker blockquote { margin: 0; }
-.speaker .card { color: var(--navy); }
-.speaker .card footer { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
-.on-navy .rail-nav button { border-color: var(--cream); color: var(--cream); }
-.on-navy .rail-nav button:hover { background: var(--cream); color: var(--navy); }
-.on-navy .rail-nav span { color: var(--cream); }
+.hero.slim { padding-bottom: clamp(36px, 5vw, 56px); }
+.hero.slim h1 { font-size: clamp(2.5rem, 7.4vw, 4.75rem); }
 .see { margin: clamp(28px, 4vw, 44px) 0 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
 .see a { text-decoration-color: var(--gold-light); }
-.reach .mail { font-family: var(--serif); font-size: 1.5rem; }
-.reach p { max-width: 34em; }
-.reach .btn { margin-top: 22px; }
 
 .aside a { text-decoration-color: var(--gold); }
 
@@ -238,24 +220,12 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
   .rows h3 { padding-top: 10px; }
   .rows li > .price, .rows li > .fee { grid-column: 3; grid-row: 1; text-align: right; padding-top: 14px; }
 }
-/* Talks page, wide screens: the drawing stands beside the title and points at it */
-@media (min-width: 880px) {
-  .hero.slim {
-    --lede: clamp(1.1875rem, 2.2vw, 1.4375rem); --m1: clamp(24px, 3.4vw, 40px); --m2: clamp(28px, 3.6vw, 40px);
-    --fig: min(calc((var(--foot) + 54px + var(--m2) + 1.5 * var(--lede) + var(--m1) + .43 * var(--h1)) / .7295),
-               calc((min(100vw - 2 * var(--gutter), var(--page) - 2 * var(--gutter)) - 8.5 * var(--h1) - 36px) * 1.409));
-  }
-  .with-presenter .wrap { position: relative; }
-  .with-presenter .act .btn { margin-top: 0; }
-  .presenter { position: absolute; left: calc(var(--gutter) + 8.46 * var(--h1) + 34px); bottom: calc(-1 * var(--foot)); margin: 0; }
-}
 @media (min-width: 980px) {
   .split { display: grid; grid-template-columns: 17rem 1fr; column-gap: 56px; }
   .split > h2 { margin-bottom: 0; }
   .who .wrap { grid-template-columns: 17rem 1fr; column-gap: 56px; align-items: center; padding-top: 44px; padding-bottom: 48px; }
   .who-me { align-items: flex-start; flex-direction: column; gap: 14px; }
   .who-me img { width: 88px; height: 88px; }
-  .speaker .who-me { flex-direction: row; align-items: center; gap: 20px; }
 }
 @media (max-width: 480px) {
   .name { font-size: 1.25rem; }
@@ -265,6 +235,5 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
 @media (max-width: 350px) {
   .name { font-size: 1.0625rem; }
   .btn.small { font-size: .8125rem; padding: 9px 9px; }
-  .hero.slim { --fig: 98px; }
 }
 @media print { .top { position: static; } .btn { border: 1px solid #000; } }

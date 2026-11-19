@@ -1082,3 +1082,16 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 - **Phones (under 880 wide):** the button is now set level with his fingertip, with the drawing right beside it. Measured: the fingertip is within 1 pixel of the button's middle and 12 pixels from its edge, at every width tested.
 - **Wide screens:** the drawing stands beside the title, sized so the fingertip is level with the middle of the letters and 34 pixels from the last one. Tested at 33 widths from 320 to 1920; it never touches text and always stands on the rule.
 - **Coaching pointer:** the talks page now has a "Writing coaching" row with a "See the coaching" button to the home page, the mirror of the home page's "Talks and staff sessions" row. It sits after the comments and before "Ask about a session".
+
+## 2026-11-19 (13:25): the talks page now mirrors the home page, section by section (styles now `site.css?v=16`)
+
+His call: the talks page felt visually confused, the coaching page is right, so copy its structure exactly. Both pages now run: page top, navy strip with three rings, three rows, comments row, How it works, navy pointer to the other page, About (drawing pointing at three links, then the email), last band, foot.
+
+- **Page top:** a headline sentence (placeholder, his to choose: "A Doctor of Philosophy for your staff room or your lecture hall."), then "Talks and staff sessions for schools and universities. Online now, in person from April 2027.", the fees line, and the same "Book a free consultation" button as the home page. "Ask about a session" is gone, so the whole site has one action.
+- **Navy strip:** same photo; PhD and the Johannesburg postdoctoral fellowship (2024 to 2026, from the Full Resume); rings: 15 years, 4.5 stars, and 12 papers presented at academic conferences, 2012 to 2026 (counted from the Full Resume's table).
+- **Sessions:** unchanged rows.
+- **Comments:** the four cards, now on the cream band like the home page, headed "What colleagues and students say".
+- **How it works:** consultation; the session, fee and date in writing; online now, in person from April 2027, travel quoted per booking.
+- **Pointer:** "Writing coaching" is now the navy band, like the home page's talks pointer.
+- **About:** the same "I teach because..." sentence; the drawing, unflipped, points at the two recordings and the full resume; the email is under the rule.
+- The drawing is no longer at the top of the talks page (the home page has none there). The styles that only the old talks page used are deleted.
