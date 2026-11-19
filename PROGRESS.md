@@ -1102,3 +1102,13 @@ His call: the talks page felt visually confused, the coaching page is right, so 
 - **Sessions order:** the AI talk ("Keeping real thinking at the centre") leads, then Teach by Learning, then "Whose knowledge?". The page's description for search engines follows the same order, and the home page's pointer now ends "starting with teaching and assessment in the age of AI" instead of "starting with Teach by Learning".
 - **About drawing:** the gold line under the figure is removed on both pages, on his word. Measured before removing it: on phones 360 pixels wide or narrower the talks page's figure was floating 30 to 47 pixels above the line, because its longer link labels wrap. He saw that, liked it, and asked for the coaching page to match.
 - **Pointer button on talks:** "See the coaching" is now "See coaching and rates" (Claude's suggestion after he asked whether the wording was the best).
+
+## 2026-11-19 (13:55): the About line is back, with air above it; final sweep (styles now `site.css?v=18`)
+
+- **About, both pages:** the gold line is back under the figure, but the figure no longer touches it. There are 21 pixels of air on phones and 31 on wide screens, the same on both pages at every width (the figure now sits at the bottom of its space, so wrapped link labels no longer change the gap).
+- **Final sweep, all three pages (home, talks, not-found):**
+  - Markup: every tag closed, no repeated ids, headings in order, one email link each on home and talks.
+  - Links: every in-page link has a target, every link to the other page resolves, every outside link opens in a new tab, every picture and icon file exists and has a description.
+  - Browser, nine screen sizes from 320 to 1920: no sideways scrolling, nothing wider than the screen, no script errors, rings drawn, About drawing loads, comment arrows and counts work (7 and 4), the motto's note opens by tap and by hover.
+  - Styles: nine leftover lines from earlier designs deleted; every class in the pages is either styled or deliberately plain.
+- **Still not checkable from the chat:** the two YouTube links and the test site as served.

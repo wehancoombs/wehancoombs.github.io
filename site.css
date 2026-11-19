@@ -113,9 +113,6 @@ a:hover { text-decoration-color: var(--gold); }
 .on-navy .rows li { border-color: rgba(247, 242, 232, .22); }
 
 /* A quotation */
-.quote { margin: clamp(40px, 6vw, 64px) 0 0; padding: 4px 0 4px clamp(18px, 3vw, 30px); border-left: 1px solid var(--gold); max-width: 40em; }
-.quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.8vw, 1.75rem); line-height: 1.35; margin: 0 0 12px; }
-.quote footer { font-size: 1rem; color: var(--navy-2); }
 
 /* What students and mentors say: one large comment, then a row to swipe through */
 .said { padding-bottom: clamp(40px, 6vw, 72px); }
@@ -153,14 +150,8 @@ a:hover { text-decoration-color: var(--gold); }
 .steps li:last-child { border-bottom: 1px solid var(--rule); }
 
 /* Talks */
-.lead-talk { padding-bottom: clamp(32px, 5vw, 48px); }
-.lead-talk h3 { font-size: clamp(2.25rem, 6.4vw, 4rem); line-height: 1; letter-spacing: -.02em; margin-bottom: 18px; }
-.lead-talk p { font-size: clamp(1.125rem, 2vw, 1.3125rem); max-width: 34em; }
-.lead-talk .when { color: var(--gold-light); font-size: 1rem; margin-top: 14px; }
 .fee { color: var(--navy-2); font-size: 1rem; }
 .on-navy .fee { color: var(--gold-light); }
-.ask { margin-top: clamp(28px, 4vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
-.ask span { font-size: 1rem; }
 
 /* The short pointer to the talks page, on the home page */
 .also p { font-family: var(--serif); font-size: clamp(1.375rem, 2.8vw, 1.75rem); line-height: 1.35; max-width: 26em; }
@@ -176,8 +167,9 @@ a:hover { text-decoration-color: var(--gold); }
 
 /* About: the line drawing stands on a rule and points at the three links */
 .about-text p { font-family: var(--serif); font-size: clamp(1.25rem, 2.6vw, 1.625rem); line-height: 1.35; max-width: 26em; }
-.stage { display: grid; grid-template-columns: 40% 1fr; column-gap: 14px; align-items: start; margin-top: 26px; }
-.stage .me { display: block; width: 100%; height: auto; }
+/* The figure does not touch the line: his legs end just above it, with some air between. */
+.stage { display: grid; grid-template-columns: 40% 1fr; column-gap: 14px; align-items: start; margin-top: 26px; padding-bottom: clamp(20px, 3vw, 30px); border-bottom: 1px solid var(--gold); }
+.stage .me { display: block; width: 100%; height: auto; align-self: end; }
 .links { list-style: none; margin: calc(25% - 22px) 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
 .links li { border-top: 1px solid var(--rule); }
 .links a { display: block; padding: 11px 0; text-decoration-color: var(--gold); font-size: 1.125rem; line-height: 1.3; }
