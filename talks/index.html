@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../site.css?v=11">
+<link rel="stylesheet" href="../site.css?v=12">
 </head>
 <body>
 <a class="skip" href="#sessions">Skip to the sessions</a>
@@ -89,16 +89,18 @@
         <img src="../headshot.jpg" width="88" height="88" alt="Dr Wehan Coombs">
         <p><b>Dr Wehan Coombs</b><span>PhD in Philosophy, University of Pretoria</span><span>Fifteen years teaching philosophy at the University of Pretoria</span></p>
       </div>
-      <div class="quotes">
-        <blockquote class="lead-quote">
-          <p>In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, at first-year, second-year and honours level, and I recommend him without reservation.</p>
-          <footer>Prof Emma Ruttkamp-Bloem, Head of the Department of Philosophy, University of Pretoria. Peer evaluation report, 2026</footer>
-        </blockquote>
-        <blockquote class="lead-quote">
-          <p>I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.</p>
-          <footer>Dr Mitchell-Ron Black, research collaborator, who works with AI systems daily. Recommendation, 2026</footer>
-        </blockquote>
-      </div>
+    </div>
+    <div class="rail" id="rail" tabindex="0" role="group" aria-label="Comments. Swipe sideways or use the arrow buttons.">
+      <blockquote class="card"><p class="tag">On AI</p><p>I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject.</p><footer>Dr Mitchell-Ron Black, research collaborator, who works with AI systems daily. Recommendation, 2026</footer></blockquote>
+      <blockquote class="card"><p class="tag">Presenting online</p><p>In a class of 300 Mr Coombs effortlessly attends to questions in the chat while still clearly and concisely going through the course content.</p><footer>A first-year student, on my live online lectures, 2021</footer></blockquote>
+      <blockquote class="card"><p class="tag">From my head of department</p><p>In 2019 I noted that Dr Coombs had the potential to become a brilliant lecturer. In the years since, he has more than fulfilled that potential, at first-year, second-year and honours level, and I recommend him without reservation.</p><footer>Prof Emma Ruttkamp-Bloem, Head of the Department of Philosophy, University of Pretoria. Peer evaluation report, 2026</footer></blockquote>
+    </div>
+    <div class="wrap rail-nav">
+      <button type="button" data-rail="-1" aria-label="Earlier comment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button type="button" data-rail="1" aria-label="Next comment"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+      <span id="rail-count" aria-live="polite">1 of 3</span>
+    </div>
+    <div class="wrap">
       <p class="see"><a href="https://youtu.be/3yu_p7YIFhc" target="_blank" rel="noopener" data-track="watch-fil110">Watch a first-year lecture</a><a href="https://youtu.be/A2ta75nJWTI" target="_blank" rel="noopener" data-track="watch-fil710">Watch an honours seminar</a><a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view" target="_blank" rel="noopener" data-track="full-resume">Full resume</a></p>
     </div>
   </section>
@@ -120,6 +122,29 @@
   <div class="wrap"><a href="../">Dr Wehan Coombs · wehancoombs.com</a></div>
 </footer>
 
+<script>
+  // The arrows move the row of comments one card at a time.
+  (function () {
+    var rail = document.getElementById('rail'); if (!rail) return;
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-rail]'); if (!b) return;
+      var card = rail.querySelector('.card'), step = card ? card.getBoundingClientRect().width + 16 : 300;
+      rail.scrollBy({ left: step * Number(b.getAttribute('data-rail')), behavior: 'smooth' });
+    });
+    // "3 of 9": which comment is in view.
+    var count = document.getElementById('rail-count'), cards = rail.querySelectorAll('.card'), tick = null;
+    rail.addEventListener('scroll', function () {
+      if (tick) return;
+      tick = setTimeout(function () {
+        tick = null;
+        var step = cards[0].getBoundingClientRect().width + 16;
+        var end = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
+        var i = end ? cards.length : Math.min(cards.length, Math.round(rail.scrollLeft / step) + 1);
+        if (count) count.textContent = i + ' of ' + cards.length;
+      }, 80);
+    }, { passive: true });
+  })();
+</script>
 <script>
   // Named clicks, reported to the visit counter (GoatCounter) when its script is on the page.
   document.addEventListener('click', function (e) {

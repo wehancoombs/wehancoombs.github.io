@@ -121,9 +121,6 @@ a:hover { text-decoration-color: var(--gold); }
 .said { padding-bottom: clamp(40px, 6vw, 72px); }
 .said h2 { margin-bottom: clamp(24px, 3.4vw, 40px); }
 .said blockquote { margin: 0; }
-.lead-quote { position: relative; padding-left: clamp(34px, 6vw, 76px); max-width: 52rem; }
-.lead-quote::before { content: "\201C"; position: absolute; left: -4px; top: -.14em; font-family: var(--serif); font-size: clamp(4.5rem, 11vw, 8.5rem); line-height: 1; color: var(--gold); }
-.lead-quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3.6vw, 2.375rem); line-height: 1.25; margin: 0 0 16px; letter-spacing: -.005em; }
 .said footer { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
 .rail {
   display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
@@ -176,12 +173,11 @@ a:hover { text-decoration-color: var(--gold); }
 .speaker .who-me img { width: 88px; height: 88px; border: 1px solid var(--gold-light); }
 .speaker .who-me span { color: rgba(247, 242, 232, .78); }
 .speaker blockquote { margin: 0; }
-.speaker .lead-quote::before { color: var(--gold-light); }
-.speaker .quotes { display: grid; gap: 36px; }
-.speaker .lead-quote { padding-left: 40px; max-width: none; }
-.speaker .lead-quote::before { font-size: 4.5rem; left: -2px; top: -.1em; }
-.speaker .lead-quote p { font-size: clamp(1.375rem, 2.3vw, 1.75rem); line-height: 1.3; }
-.speaker .lead-quote footer { font-size: 1rem; line-height: 1.4; color: rgba(247, 242, 232, .78); }
+.speaker .card { color: var(--navy); }
+.speaker .card footer { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
+.on-navy .rail-nav button { border-color: var(--cream); color: var(--cream); }
+.on-navy .rail-nav button:hover { background: var(--cream); color: var(--navy); }
+.on-navy .rail-nav span { color: var(--cream); }
 .see { margin: clamp(28px, 4vw, 44px) 0 0; display: flex; flex-wrap: wrap; gap: 10px 28px; }
 .see a { text-decoration-color: var(--gold-light); }
 .reach .mail { font-family: var(--serif); font-size: 1.5rem; }
@@ -217,7 +213,6 @@ footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size:
   .links a { padding: 13px 0; }
 }
 @media (min-width: 800px) {
-  .speaker .quotes { grid-template-columns: 1fr 1fr; column-gap: 56px; }
   .top nav { display: block; }
   .top .wrap { min-height: 76px; }
   .rows li { grid-template-columns: 56px 1fr auto; column-gap: 22px; row-gap: 8px; padding: 26px 0; }

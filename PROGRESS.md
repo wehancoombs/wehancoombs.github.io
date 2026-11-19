@@ -1039,3 +1039,8 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 
 - Home, comments row: Dr Black's second line is his own sentence again, word for word and with nothing added: "I have yet to meet one who does not speak highly of him." The card's attribution now says it is about the honours seminars and his former students. (Claude had added "[former student]" in brackets earlier, then swapped the line; he said to revert.)
 - Talks page, navy band: a second quotation beside the head of department's, from Dr Black: "I find his account of what cannot be automated in learning more persuasive than most of what I read on the subject." Attributed as "research collaborator, who works with AI systems daily" (his letter says so). Side by side on a wide screen, one under the other on a phone.
+
+## 2026-11-19 (11:10): comment rows on both pages, his way (styles now `site.css?v=12`)
+
+- **Home:** the honours student's card that mentions esotericism is removed. "On explaining" now follows "Teaching online". Seven cards: At school, At school, Teaching online, On explaining, One to one, On writing, From my head of department.
+- **Talks:** the navy band now holds a scrolling row of three cards, the same kind as on the home page: Dr Black on AI first; then a 2021 first-year on a live online lecture to a class of 300 (Claude's pick, because the talks are offered online); then the head of department. The arrows and the "1 of 3" count are in cream on the navy. The row's small script is now also at the foot of `talks/index.html`.
