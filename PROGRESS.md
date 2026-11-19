@@ -961,3 +961,9 @@ His decision: the home page sells coaching only, and the talks get their own pag
 - Both pages carry the visit counter, the named clicks and the Samsung fix.
 - Checked at 320, 390, 820 and 1280 pixels wide: no sideways scrolling; every local link on both pages points to a file that exists.
 - **Still open before publishing:** his email address, on both pages.
+
+## 2026-11-19: staged on the test site
+
+On his word ("stage it as a new live GitHub site"), the two-page build from `one-page-site` was copied to the staging repo `wehancoombs/site-preview` (address: https://wehancoombs.com/site-preview/), as one new commit on its `main` (nothing force-pushed; the old test copy is still in that repo's history). The staging copy has no CNAME, carries a noindex tag, has the visit counter taken out, and its tab titles start with "Test copy:". After each change to `one-page-site`, copy it across the same way. Still NOT published to the real site.
+
+He plans a proper build and push at his PC on Monday 23 Nov, continuing from `one-page-site`.
