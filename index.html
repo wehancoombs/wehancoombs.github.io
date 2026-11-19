@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=12">
+<link rel="stylesheet" href="site.css?v=13">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -214,7 +214,7 @@
       <div>
         <div class="about">
           <div class="about-text">
-            <p>I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives. Above all, I keep learning from the people I teach.</p>
+            <p>I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives.</p>
           </div>
           <div class="stage">
             <img class="me" src="assets/wehan-drawing.webp" width="320" height="451" loading="lazy" decoding="async" alt="A line drawing of Dr Wehan Coombs, pointing at the links beside him">
@@ -246,7 +246,7 @@
 </main>
 
 <footer class="end">
-  <div class="wrap">Dr Wehan Coombs · wehancoombs.com</div>
+  <div class="wrap"><span class="motto-wrap"><button class="motto" type="button" aria-describedby="motto-tip" data-track="motto"><em>Docendo discimus.</em></button><span id="motto-tip" role="tooltip"><em>Docendo discimus</em>: by teaching, we learn. After Seneca, <em>Letters to Lucilius</em>, 7.8.</span></span> <span>Dr Wehan Coombs · wehancoombs.com</span></div>
 </footer>
 
 <script>
@@ -280,6 +280,17 @@
       if (en[0].isIntersecting) { who.classList.remove('pre'); ob.disconnect(); }
     }, { threshold: 0.25 }).observe(who);
   })();
+</script>
+<script>
+  // The motto in the foot: a tap shows or hides its note (hovering and keyboard focus are handled in the styles).
+  document.addEventListener('click', function (e) {
+    var w = document.querySelector('.motto-wrap'); if (!w) return;
+    var on = e.target.closest && e.target.closest('.motto');
+    w.classList.toggle('open', on ? !w.classList.contains('open') : false);
+  });
+  document.addEventListener('keydown', function (e) {
+    var w = document.querySelector('.motto-wrap'); if (w && e.key === 'Escape') { w.classList.remove('open'); if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); }
+  });
 </script>
 <script>
   // Named clicks, reported to the visit counter (GoatCounter) when its script is on the page.

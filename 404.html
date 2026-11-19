@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/site.css?v=12">
+<link rel="stylesheet" href="/site.css?v=13">
 </head>
 <body>
 <header class="top">
@@ -47,9 +47,20 @@
 </main>
 
 <footer class="end">
-  <div class="wrap"><a href="/">Dr Wehan Coombs · wehancoombs.com</a></div>
+  <div class="wrap"><span class="motto-wrap"><button class="motto" type="button" aria-describedby="motto-tip" data-track="motto"><em>Docendo discimus.</em></button><span id="motto-tip" role="tooltip"><em>Docendo discimus</em>: by teaching, we learn. After Seneca, <em>Letters to Lucilius</em>, 7.8.</span></span> <a href="/">Dr Wehan Coombs · wehancoombs.com</a></div>
 </footer>
 
+<script>
+  // The motto in the foot: a tap shows or hides its note (hovering and keyboard focus are handled in the styles).
+  document.addEventListener('click', function (e) {
+    var w = document.querySelector('.motto-wrap'); if (!w) return;
+    var on = e.target.closest && e.target.closest('.motto');
+    w.classList.toggle('open', on ? !w.classList.contains('open') : false);
+  });
+  document.addEventListener('keydown', function (e) {
+    var w = document.querySelector('.motto-wrap'); if (w && e.key === 'Escape') { w.classList.remove('open'); if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); }
+  });
+</script>
 <script>
   // Named clicks, reported to the visit counter (GoatCounter) when its script is on the page.
   document.addEventListener('click', function (e) {

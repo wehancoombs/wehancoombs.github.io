@@ -1064,3 +1064,8 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 
 - The About text was a repeat of the navy strip. It is now two sentences taken word for word from the old site's "About me": "I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives. Above all, I keep learning from the people I teach."
 - His call: the quote checks do not hold up publishing. They are separate to-dos now, as is the WhatsApp button decision.
+
+## 2026-11-19 (12:30): About cut to one sentence; the motto is back (styles now `site.css?v=13`)
+
+- **About:** only "I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives." The second sentence is out, on his word.
+- **Motto:** "Docendo discimus." is back from the old site, in the foot of every page (home, talks and the not-found page), left of the name. Hovering, tapping or tabbing to it shows the old note word for word: "Docendo discimus: by teaching, we learn. After Seneca, Letters to Lucilius, 7.8." A second tap, a tap elsewhere or Escape hides it. Why the foot: it is where the old site had it, it works as a quiet sign-off on both pages, and it is the Latin for Teach by Learning.
