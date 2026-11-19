@@ -967,3 +967,13 @@ His decision: the home page sells coaching only, and the talks get their own pag
 On his word ("stage it as a new live GitHub site"), the two-page build from `one-page-site` was copied to the staging repo `wehancoombs/site-preview` (address: https://wehancoombs.com/site-preview/), as one new commit on its `main` (nothing force-pushed; the old test copy is still in that repo's history). The staging copy has no CNAME, carries a noindex tag, has the visit counter taken out, and its tab titles start with "Test copy:". After each change to `one-page-site`, copy it across the same way. Still NOT published to the real site.
 
 He plans a proper build and push at his PC on Monday 23 Nov, continuing from `one-page-site`.
+
+## 2026-11-19 (morning): the CVs come off the site
+
+His decision after a review of the four CVs and the Full Resume: the CVs are for sending to specific places, not for the public site, because they carry his cell number and his referees' names and contact details.
+
+- Both pages: the CV links are gone. The links list now holds the student evaluations and one quiet link, "Full resume and teaching portfolio" (the Google Doc).
+- The `cv` folder is removed from this branch, so the PDFs stop being public once this is published. They are still on `old-site`, in the `wehan-cvs` project and in his Drive. If he has sent anyone a direct link to a PDF on the site, that link will stop working after publishing.
+- In the Full Resume Google Doc, the six referees' email addresses were removed and a line added: "Contact details for all referees are available on request." Its date now reads November 2026. The CVs he sends keep the referees' details.
+- On lecturing: he says his resume beats his memory. The resume has tutor 2010 to 2013, assistant lecturer from 2014, head lecturer from 2016. The site keeps "15 years teaching philosophy".
+- For Monday at his PC (CV work, in `wehan-cvs`): retire the Freelance CV (it sells editing, philosophical counselling and web apps, all dropped); in the General CV change "a year in the high-school classroom" (the practicums were ten weeks) and trim the old spread of services.
