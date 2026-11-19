@@ -1112,3 +1112,7 @@ His call: the talks page felt visually confused, the coaching page is right, so 
   - Browser, nine screen sizes from 320 to 1920: no sideways scrolling, nothing wider than the screen, no script errors, rings drawn, About drawing loads, comment arrows and counts work (7 and 4), the motto's note opens by tap and by hover.
   - Styles: nine leftover lines from earlier designs deleted; every class in the pages is either styled or deliberately plain.
 - **Still not checkable from the chat:** the two YouTube links and the test site as served.
+
+## 2026-11-19 (14:00): sessions order
+
+- On his word: the AI talk, then "Whose knowledge?", then Teach by Learning. The page's description for search engines follows the same order.
