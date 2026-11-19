@@ -1150,3 +1150,10 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - **Now live from the feedback round:** laptop sizing of the page top (3, 6); "Wehan Coombs, PhD" (4); talks fees "from" (5); centred arrows without the count (9, 15); "English tutoring" and the why-it-suits-English line (8); rewritten How it works on both pages, with the reply line under the email (10, 16).
 - **Rejected or left:** headline change (2); hiding coaching prices (5); selling harder in the coaching pointer (7); "Workshops" naming, still open (11); a "What I offer" section (12); the old portfolio (13); About near the top (14); one long page (17).
 - The previous live version is commit acbdf5a. The old site is still on `old-site`.
+
+## 2026-11-19 (19:30): PUBLISHED, on his word: no prices on either page (styles now `site.css?v=21`)
+
+- On his word (he came round to the reviewer's point 5: prices on the page are jarring), every price is off both pages: the rates line under each headline, the price beside each coaching row, the fee beside each session (including "On request"), "From R400 an hour" in the search and link-preview descriptions, and the price range in the hidden description for search engines.
+- Price is now handled in the process: step 2 of How it works says the rate (home) or the fee (talks) is agreed in writing.
+- The rates themselves have not changed: School English R400 an hour, university and other writing R500 an hour, a talk from R3,500, a half-day workshop from R6,500.
+- "Writing coaching" stays as the term, though he and the reviewer disagree about it.

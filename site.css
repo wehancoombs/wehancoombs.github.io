@@ -208,7 +208,7 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
 @media (min-width: 800px) {
   .top nav { display: block; }
   .top .wrap { min-height: 76px; }
-  .rows li { grid-template-columns: 56px 1fr auto; column-gap: 22px; row-gap: 8px; padding: 26px 0; }
+  .rows li { grid-template-columns: 56px 1fr; column-gap: 22px; row-gap: 8px; padding: 26px 0; }
   .rows li > .ico { width: 56px; height: 56px; }
   .rows li > .ico svg { width: 30px; height: 30px; }
   .rows h3 { padding-top: 10px; }
