@@ -977,3 +977,11 @@ His decision after a review of the four CVs and the Full Resume: the CVs are for
 - In the Full Resume Google Doc, the six referees' email addresses were removed and a line added: "Contact details for all referees are available on request." Its date now reads November 2026. The CVs he sends keep the referees' details.
 - On lecturing: he says his resume beats his memory. The resume has tutor 2010 to 2013, assistant lecturer from 2014, head lecturer from 2016. The site keeps "15 years teaching philosophy".
 - For Monday at his PC (CV work, in `wehan-cvs`): retire the Freelance CV (it sells editing, philosophical counselling and web apps, all dropped); in the General CV change "a year in the high-school classroom" (the practicums were ten weeks) and trim the old spread of services.
+
+## 2026-11-19 (later in the morning): his round of small changes (styles now `site.css?v=2`)
+
+- Line under the headline, his wording: "One-to-one writing coaching, from high school to university. In person in Pretoria East, or online." The browser tab title still says "English and writing coaching", kept for people searching for an English tutor.
+- Buttons: "Book a free 20-minute call" (headline, last band, talks page) and the shorter "Book a free call" in the top bar. The small line under the headline button is now "On Google Meet. No charge, no obligation."
+- The strip under the headline: three large figures (15 years, 4.5 out of 5, 98 out of 100), each under a gold rule. His first degree moved out of the figures to sit under his name: "BA in English Literature and Philosophy".
+- Coaching: two rows. "School English" (R400) and "University writing" (R500), which now takes in essays, dissertations and theses in any subject and philosophy tutoring. Under the rows: "Writing something else in English? Tell me about it on the call."
+- New band, "What students and mentors say": one large quotation (the honours student on one-on-one consultations and feedback) and three smaller ones, all taken word for word from the old site. The quotation that sat under the coaching rows moved here.
