@@ -63,22 +63,31 @@ a:hover { text-decoration-color: var(--gold); }
 .hero .act { margin-top: clamp(28px, 3.6vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
 .hero .note { font-size: 1rem; color: var(--navy-2); margin: 0; }
 
-/* Who is behind it: a small portrait, the degrees, and three figures */
-.who { border-top: 1px solid var(--gold); }
-.who .wrap { display: grid; gap: 0; padding-top: 26px; padding-bottom: 30px; }
-.who-me { display: flex; align-items: center; gap: 18px; padding: 0 0 24px; }
-.who-me img { width: 72px; height: 72px; object-fit: cover; flex: none; }
+/* Who is behind it: a navy band with a small portrait, the degrees and three gold rings */
+.who { background: var(--navy); color: var(--cream); }
+.who .wrap { display: grid; gap: 26px; padding-top: 30px; padding-bottom: 36px; }
+.who-me { display: flex; align-items: center; gap: 18px; }
+.who-me img { width: 72px; height: 72px; object-fit: cover; flex: none; border: 1px solid var(--gold-light); }
 .who-me p { margin: 0; line-height: 1.35; }
 .who-me b { font-family: var(--serif); font-weight: 500; font-size: 1.375rem; display: block; margin-bottom: 2px; }
-.who-me span { font-size: 1rem; color: var(--navy-2); display: block; }
-.facts { list-style: none; margin: 0; padding: 0; display: grid; }
-.facts li { display: grid; grid-template-columns: 8.75rem 1fr; column-gap: 16px; align-items: center; border-top: 1px solid var(--rule); padding: 14px 0; }
-.facts li:last-child { border-bottom: 1px solid var(--rule); }
-.facts p { margin: 0; }
-.fig { font-family: var(--serif); line-height: 1; white-space: nowrap; }
-.fig b { font-weight: 500; font-size: 2.75rem; letter-spacing: -.02em; }
-.fig i { font-size: 1.125rem; color: var(--navy-2); }
-.lab { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
+.who-me span { font-size: 1rem; color: rgba(247, 242, 232, .78); display: block; }
+.medals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 14px; }
+.medals li { text-align: center; }
+.medals p { margin: 12px 0 0; font-size: .875rem; line-height: 1.35; color: rgba(247, 242, 232, .82); }
+.ring { display: block; width: 100%; max-width: 148px; margin: 0 auto; }
+.ring circle { fill: none; transform: rotate(-90deg); transform-origin: 50px 50px; }
+.ring .track { stroke: rgba(247, 242, 232, .16); stroke-width: 2.5; }
+.ring .arc { stroke: var(--gold-light); stroke-width: 3.5; }
+.ring .arc.draw { stroke-linecap: round; transition: stroke-dashoffset 1.2s cubic-bezier(.2, .7, .2, 1); }
+.ring .arc.segs { transition: opacity .9s ease-out; }
+.who.pre .arc.draw { stroke-dashoffset: var(--len); }
+.who.pre .arc.segs { opacity: 0; }
+.ring text { font-family: var(--serif); text-anchor: middle; }
+.ring .num { font-size: 33px; font-weight: 500; fill: var(--cream); letter-spacing: -.5px; }
+.ring .sub { font-size: 10.5px; font-style: italic; fill: var(--gold-light); }
+.ring .star { fill: var(--gold-light); }
+.ring .star.half { fill: none; stroke: var(--gold-light); stroke-width: .7; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- Sections: the heading sits in the margin on wide screens ---------- */
 .sec { padding: clamp(56px, 8vw, 104px) 0; border-top: 1px solid var(--gold); }
@@ -102,19 +111,32 @@ a:hover { text-decoration-color: var(--gold); }
 .quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.375rem, 2.8vw, 1.75rem); line-height: 1.35; margin: 0 0 12px; }
 .quote footer { font-size: 1rem; color: var(--navy-2); }
 
-/* The line under the coaching rows */
-.else { margin-top: 22px; color: var(--navy-2); }
-
-/* What students and mentors say */
+/* What students and mentors say: one large comment, then a row to swipe through */
+.said { padding-bottom: clamp(40px, 6vw, 72px); }
 .said h2 { margin-bottom: clamp(28px, 4vw, 44px); }
 .said blockquote { margin: 0; }
 .lead-quote { position: relative; padding-left: clamp(34px, 6vw, 76px); max-width: 52rem; }
 .lead-quote::before { content: "\201C"; position: absolute; left: -4px; top: -.14em; font-family: var(--serif); font-size: clamp(4.5rem, 11vw, 8.5rem); line-height: 1; color: var(--gold); }
 .lead-quote p { font-family: var(--serif); font-style: italic; font-size: clamp(1.5rem, 3.6vw, 2.375rem); line-height: 1.25; margin: 0 0 16px; letter-spacing: -.005em; }
-.said footer { font-size: 1rem; color: var(--navy-2); }
-.more-quotes { display: grid; gap: 0; margin-top: clamp(36px, 5vw, 60px); }
-.more-quotes blockquote { border-top: 1px solid var(--gold); padding: 20px 0 26px; }
-.more-quotes p { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; line-height: 1.35; margin: 0 0 12px; }
+.said footer { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
+.rail {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  margin-top: clamp(36px, 5vw, 60px); padding: 4px var(--gutter) 18px;
+  padding-left: max(var(--gutter), calc((100vw - var(--page)) / 2 + var(--gutter)));
+  scroll-padding-left: max(var(--gutter), calc((100vw - var(--page)) / 2 + var(--gutter)));
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar { display: none; }
+.card { flex: 0 0 min(78vw, 344px); scroll-snap-align: start; background: var(--cream); border-top: 2px solid var(--gold); padding: 22px 22px 24px; display: flex; flex-direction: column; }
+.card p { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; line-height: 1.35; margin: 0 0 16px; }
+.card .mark { font-style: normal; font-size: 1.75rem; line-height: 1.1; margin-bottom: 12px; letter-spacing: -.01em; }
+.card footer { margin-top: auto; }
+.rail-nav { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.rail-nav button { width: 44px; height: 44px; border: 1px solid var(--navy); background: transparent; color: var(--navy); padding: 0; cursor: pointer; border-radius: 0; }
+.rail-nav button:hover { background: var(--navy); color: var(--cream); }
+.rail-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; display: block; margin: 0 auto; }
+.rail-nav span { font-size: 1rem; color: var(--navy-2); margin-left: 6px; }
+@media (prefers-reduced-motion: reduce) { .ring .arc { transition: none !important; } }
 
 /* How it works: a real sequence, so it is numbered */
 .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 0; }
@@ -138,7 +160,7 @@ a:hover { text-decoration-color: var(--gold); }
 
 /* Talks page */
 .talk-rows h3 { max-width: 22em; }
-.reach b { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; display: block; }
+.reach .mail { font-family: var(--serif); font-size: 1.5rem; }
 .reach p { max-width: 34em; }
 .reach .btn { margin-top: 22px; }
 
@@ -152,7 +174,7 @@ a:hover { text-decoration-color: var(--gold); }
 .links a:hover span:first-child { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: .18em; }
 .links small { font-size: .9375rem; color: var(--navy-2); white-space: nowrap; }
 .contact { margin-top: 28px; }
-.contact b { font-family: var(--serif); font-weight: 500; font-size: 1.5rem; }
+.contact a { font-family: var(--serif); font-size: 1.5rem; }
 .contact span { display: block; color: var(--navy-2); font-size: 1rem; margin-top: 4px; }
 
 /* Last call */
@@ -164,12 +186,8 @@ footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size:
 
 /* ---------- Wider screens ---------- */
 @media (min-width: 620px) {
-  .facts { grid-template-columns: repeat(3, 1fr); column-gap: 36px; }
-  .facts li { display: block; border-top: 2px solid var(--gold); border-bottom: 0; padding: 16px 0 0; }
-  .facts li:last-child { border-bottom: 0; }
-  .fig { margin-bottom: 10px !important; }
-  .fig b { font-size: 3.25rem; }
-  .more-quotes { grid-template-columns: repeat(3, 1fr); column-gap: 36px; }
+  .medals { column-gap: 36px; }
+  .medals p { font-size: 1rem; max-width: 15em; margin-left: auto; margin-right: auto; }
   .about { grid-template-columns: 150px 1fr; gap: 40px; align-items: start; }
 }
 @media (min-width: 800px) {
@@ -183,8 +201,9 @@ footer.end { border-top: 1px solid var(--gold); padding: 26px 0 34px; font-size:
 @media (min-width: 980px) {
   .split { display: grid; grid-template-columns: 17rem 1fr; column-gap: 56px; }
   .split > h2 { margin-bottom: 0; }
-  .who .wrap { grid-template-columns: 17rem 1fr; column-gap: 56px; align-items: center; padding-top: 34px; padding-bottom: 38px; }
-  .who-me { padding: 0; align-items: flex-start; flex-direction: column; gap: 14px; }
+  .who .wrap { grid-template-columns: 17rem 1fr; column-gap: 56px; align-items: center; padding-top: 44px; padding-bottom: 48px; }
+  .who-me { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .who-me img { width: 88px; height: 88px; }
 }
 @media (max-width: 480px) {
   .name { font-size: 1.25rem; }
