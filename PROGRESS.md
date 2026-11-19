@@ -1095,3 +1095,10 @@ His call: the talks page felt visually confused, the coaching page is right, so 
 - **Pointer:** "Writing coaching" is now the navy band, like the home page's talks pointer.
 - **About:** the same "I teach because..." sentence; the drawing, unflipped, points at the two recordings and the full resume; the email is under the rule.
 - The drawing is no longer at the top of the talks page (the home page has none there). The styles that only the old talks page used are deleted.
+
+## 2026-11-19 (13:40): talks headline chosen; AI talk first; the About line is gone (styles now `site.css?v=17`)
+
+- **Talks headline:** his pick, "Keeping real thinking at the centre of teaching."
+- **Sessions order:** the AI talk ("Keeping real thinking at the centre") leads, then Teach by Learning, then "Whose knowledge?". The page's description for search engines follows the same order, and the home page's pointer now ends "starting with teaching and assessment in the age of AI" instead of "starting with Teach by Learning".
+- **About drawing:** the gold line under the figure is removed on both pages, on his word. Measured before removing it: on phones 360 pixels wide or narrower the talks page's figure was floating 30 to 47 pixels above the line, because its longer link labels wrap. He saw that, liked it, and asked for the coaching page to match.
+- **Pointer button on talks:** "See the coaching" is now "See coaching and rates" (Claude's suggestion after he asked whether the wording was the best).

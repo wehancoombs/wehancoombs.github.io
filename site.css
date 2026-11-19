@@ -176,7 +176,7 @@ a:hover { text-decoration-color: var(--gold); }
 
 /* About: the line drawing stands on a rule and points at the three links */
 .about-text p { font-family: var(--serif); font-size: clamp(1.25rem, 2.6vw, 1.625rem); line-height: 1.35; max-width: 26em; }
-.stage { display: grid; grid-template-columns: 40% 1fr; column-gap: 14px; align-items: start; margin-top: 26px; border-bottom: 1px solid var(--gold); }
+.stage { display: grid; grid-template-columns: 40% 1fr; column-gap: 14px; align-items: start; margin-top: 26px; }
 .stage .me { display: block; width: 100%; height: auto; }
 .links { list-style: none; margin: calc(25% - 22px) 0 0; padding: 0; border-bottom: 1px solid var(--rule); }
 .links li { border-top: 1px solid var(--rule); }
