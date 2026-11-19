@@ -99,6 +99,8 @@ a:hover { text-decoration-color: var(--gold); }
 .on-navy :focus-visible { outline-color: var(--gold-light); }
 
 /* Rows: name, what it is, price */
+/* One line above the coaching rows: why this suits English */
+.why { font-family: var(--serif); font-size: clamp(1.25rem, 2.2vw, 1.4375rem); line-height: 1.4; max-width: 30em; margin: 0 0 clamp(20px, 3vw, 28px); }
 .rows { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule); }
 .rows li { border-top: 1px solid var(--rule); padding: 22px 0; display: grid; grid-template-columns: 48px 1fr; column-gap: 16px; row-gap: 6px; align-items: start; }
 .rows li > * { grid-column: 2; }

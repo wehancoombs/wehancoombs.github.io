@@ -1135,3 +1135,11 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - **Points 9 and 15, comment arrows:** the arrows sit in the middle under the cards, the "1 of 7" count is gone, and an arrow greys out at its end of the row.
 - **Suggested, not applied:** a line on why coaching and not only tutoring (8); clearer How it works steps on both pages (10, 16); "Talks and workshops" (11).
 - **No change:** separate "What I offer" section (12, covered by 2 and 3); old portfolio (13); About position (14).
+
+## 2026-11-19 (19:25): feedback points 8, 10 and 16 applied on the test copy (styles now `site.css?v=20`)
+
+- **8:** the School English row now says "English tutoring for Grades 10 to 12, Home Language and First Additional Language." One line sits above the coaching rows, adapted from his Full Resume: "Reading a hard text closely, building an argument and writing a clear essay are what philosophy trains, and they are most of what English asks in Grades 10 to 12."
+- **10, home steps:** "Book a free 20-minute call on Google Meet." / "We agree a plan, the rate and the dates in writing." / "We meet one to one, in Pretoria East or online."
+- **16, talks steps:** "Book a free 20-minute call, or email me: who the session is for, how many people, and when." / "I send the outline, the fee and the date in writing." / "I run the session online, or at your venue from April 2027. Travel is quoted per booking."
+- "I reply within two working days." now sits under the email address in About, on both pages.
+- Still only on the test copy. The live site waits for his "publish".
