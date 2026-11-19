@@ -1162,3 +1162,10 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 
 - The talks page's navy button said "See coaching and rates", but the coaching page no longer shows rates. It now says "See how the coaching works".
 - Checked on the live site after publishing: no rand amounts on either page.
+
+## 2026-11-19 (19:45): PUBLISHED, on his word: prices back, except the line under each headline
+
+- Claude had misread "remove the prices from the landing pages" and taken every price off both pages. He meant only the rates line under the headline (he sent a screenshot with that one line struck through).
+- Put back: the price beside each coaching row (R400, R500, R500), the fee beside each session (from R3,500, from R6,500, On request), "From R400 an hour" in the search and link-preview descriptions, the price range for search engines, and the talks button's wording "See coaching and rates".
+- Still gone, on both pages: the rates line under the headline.
+- Styles are `site.css?v=22`, the same styles as v=20.
