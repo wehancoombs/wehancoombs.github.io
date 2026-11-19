@@ -1018,3 +1018,7 @@ His decision after a review of the four CVs and the Full Resume: the CVs are for
 - **Each service has a small picture:** a gold line drawing on a navy disc (book, graduate's cap, pencil on the home page; spark, chip, globe on the talks page).
 - **Comments row:** the Garsfontein mentor's card now comes first.
 - **Talks page rebuilt, simple** (his words: "either go simple or go all out, pick a lane"). Four blocks: the heading with one button; "Three sessions" as three rows in the same style as the coaching rows; one navy band with his photo, the head of department's quotation and three links (two lectures, the full resume); "Ask about a session". The three-step curve and its list are removed again; they belong on a full Teach by Learning page if that is ever built ("all out").
+
+## 2026-11-19 (10:25): the line drawing in About (styles now `site.css?v=7`)
+
+His one remaining issue was the headshot appearing twice on the home page. In About the photo is replaced by his line drawing (from the old site, redrawn in the site's navy as `assets/wehan-drawing.webp`, 640 pixels wide). He stands on the left and points at the sentence about him; the links and the email sit under it on a phone and beside the drawing on a wide screen. The photo stays in the navy strip under the headline and on the talks page. He called the talks page "perfect now".
