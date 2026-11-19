@@ -56,8 +56,8 @@ a:hover { text-decoration-color: var(--gold); }
 .top-right { display: flex; align-items: center; }
 
 /* ---------- Hero ---------- */
-.hero { padding: clamp(48px, 9vw, 112px) 0 clamp(40px, 6vw, 72px); }
-.hero h1 { font-size: clamp(2.75rem, 9.2vw, 6rem); line-height: 1; letter-spacing: -.022em; max-width: 13.5em; text-wrap: balance; }
+.hero { padding: clamp(40px, min(9vw, 9vh), 104px) 0 clamp(36px, min(6vw, 7vh), 72px); }
+.hero h1 { font-size: clamp(2.75rem, min(8.4vw, 10.5vh), 5rem); line-height: 1; letter-spacing: -.022em; max-width: 14em; text-wrap: balance; }
 .hero .lede { font-size: clamp(1.1875rem, 2.2vw, 1.4375rem); line-height: 1.5; max-width: 36em; margin: clamp(24px, 3.4vw, 40px) 0 0; }
 .hero .rates { font-family: var(--serif); font-size: clamp(1.25rem, 2.4vw, 1.5rem); line-height: 1.35; margin: 18px 0 0; }
 .hero .act { margin-top: clamp(28px, 3.6vw, 40px); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
@@ -136,11 +136,11 @@ a:hover { text-decoration-color: var(--gold); }
 .card .tag { position: absolute; right: 24px; top: 22px; margin: 0; font-family: var(--sans); font-style: normal; font-size: 1rem; line-height: 1.2; color: var(--navy-2); }
 .card footer { margin-top: auto; padding-top: 18px; }
 .card footer::before { content: ""; display: block; width: 36px; height: 1px; background: var(--gold); margin-bottom: 12px; }
-.rail-nav { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.rail-nav { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; }
 .rail-nav button { width: 44px; height: 44px; border: 1px solid var(--navy); background: transparent; color: var(--navy); padding: 0; cursor: pointer; border-radius: 0; }
-.rail-nav button:hover { background: var(--navy); color: var(--cream); }
+.rail-nav button:hover:not(:disabled) { background: var(--navy); color: var(--cream); }
+.rail-nav button:disabled { opacity: .3; cursor: default; }
 .rail-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; display: block; margin: 0 auto; }
-.rail-nav span { font-family: var(--serif); font-size: 1.25rem; color: var(--navy); margin-left: 8px; }
 @media (prefers-reduced-motion: reduce) { .ring .arc { transition: none !important; } }
 
 /* How it works: a real sequence, so it is numbered */
@@ -227,5 +227,6 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
 @media (max-width: 350px) {
   .name { font-size: 1.0625rem; }
   .btn.small { font-size: .8125rem; padding: 9px 9px; }
+  .hero h1 { font-size: 2.375rem; }
 }
 @media print { .top { position: static; } .btn { border: 1px solid #000; } }

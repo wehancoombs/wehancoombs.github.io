@@ -1123,3 +1123,15 @@ His call: the talks page felt visually confused, the coaching page is right, so 
 - The old site is kept whole on the branch `old-site` (commit ec6ec8d, the last live version of it). To put it back: make `main` equal to `old-site` again.
 - Gone from the live site with this: the four CV PDFs, the Macbeth sheet and the study-guide covers. Old links to them land on the not-found page, which points to the Full Resume.
 - Not done as part of publishing, and still his: rename the Google Calendar booking page to a free consultation; check the three school mentor quotes; tell the three academics they are quoted; decide on a WhatsApp button; confirm R500 for Other writing.
+
+## 2026-11-19 (19:10): fixes from the professional's feedback, on the test copy only (styles now `site.css?v=19`)
+
+Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) plus two WhatsApp notes about the booking page. He marked which to fix. The live site is unchanged until he says "publish".
+
+- **Point 2, headline:** the home page now leads with what it is, "One-to-one writing coaching, from high school to university.", and the Doctor of Philosophy sentence is the line under it. Same two sentences as before, swapped. The search description and link preview follow.
+- **Points 3 and 6, laptops:** the headline and the space around it now also shrink with the height of the screen. On a 1536 by 740 laptop screen the headline is two lines and the navy strip shows at the bottom of the first screen. Largest headline size is 80 pixels, down from 96.
+- **Point 4, name:** "Dr Wehan Coombs" is now "Wehan Coombs, PhD" in the header, foot, page titles, link previews and the not-found page, so nobody reads a medical doctor. In the navy strip the name stands alone because "PhD in Philosophy" is the next line. "Dr Coombs" inside Prof Ruttkamp-Bloem's quotation is untouched.
+- **Point 5, prices:** coaching prices stay. Talks fees now read "from R3,500" and "from R6,500".
+- **Points 9 and 15, comment arrows:** the arrows sit in the middle under the cards, the "1 of 7" count is gone, and an arrow greys out at its end of the row.
+- **Suggested, not applied:** a line on why coaching and not only tutoring (8); clearer How it works steps on both pages (10, 16); "Talks and workshops" (11).
+- **No change:** separate "What I offer" section (12, covered by 2 and 3); old portfolio (13); About position (14).
