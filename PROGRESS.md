@@ -1116,3 +1116,10 @@ His call: the talks page felt visually confused, the coaching page is right, so 
 ## 2026-11-19 (14:00): sessions order
 
 - On his word: the AI talk, then "Whose knowledge?", then Teach by Learning. The page's description for search engines follows the same order.
+
+## 2026-11-19 (13:05): PUBLISHED, on his word "publish"
+
+- The new two-page site (home and talks, plus the not-found page) is now the live site on wehancoombs.com. This is the same build as the test copy at wehancoombs.com/site-preview, minus the test-only settings.
+- The old site is kept whole on the branch `old-site` (commit ec6ec8d, the last live version of it). To put it back: make `main` equal to `old-site` again.
+- Gone from the live site with this: the four CV PDFs, the Macbeth sheet and the study-guide covers. Old links to them land on the not-found page, which points to the Full Resume.
+- Not done as part of publishing, and still his: rename the Google Calendar booking page to a free consultation; check the three school mentor quotes; tell the three academics they are quoted; decide on a WhatsApp button; confirm R500 for Other writing.
