@@ -119,7 +119,7 @@ a:hover { text-decoration-color: var(--gold); }
 
 /* What students and mentors say: one large comment, then a row to swipe through */
 .said { padding-bottom: clamp(40px, 6vw, 72px); }
-.said h2 { margin-bottom: clamp(28px, 4vw, 44px); }
+.said h2 { margin-bottom: clamp(24px, 3.4vw, 40px); }
 .said blockquote { margin: 0; }
 .lead-quote { position: relative; padding-left: clamp(34px, 6vw, 76px); max-width: 52rem; }
 .lead-quote::before { content: "\201C"; position: absolute; left: -4px; top: -.14em; font-family: var(--serif); font-size: clamp(4.5rem, 11vw, 8.5rem); line-height: 1; color: var(--gold); }
@@ -127,22 +127,31 @@ a:hover { text-decoration-color: var(--gold); }
 .said footer { font-size: 1rem; line-height: 1.4; color: var(--navy-2); }
 .rail {
   display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-  margin-top: clamp(36px, 5vw, 60px); padding: 4px var(--gutter) 18px;
+  padding: 4px var(--gutter) 22px;
   padding-left: max(var(--gutter), calc((100vw - var(--page)) / 2 + var(--gutter)));
   scroll-padding-left: max(var(--gutter), calc((100vw - var(--page)) / 2 + var(--gutter)));
   scrollbar-width: none;
 }
 .rail::-webkit-scrollbar { display: none; }
-.card { flex: 0 0 min(78vw, 344px); scroll-snap-align: start; background: var(--cream); border-top: 2px solid var(--gold); padding: 22px 22px 24px; display: flex; flex-direction: column; }
-.card p { font-family: var(--serif); font-style: italic; font-size: 1.3125rem; line-height: 1.35; margin: 0 0 12px; }
-.card p + footer, .card footer { padding-top: 6px; }
-.card .mark { font-style: normal; font-size: 1.75rem; line-height: 1.1; margin-bottom: 12px; letter-spacing: -.01em; }
-.card footer { margin-top: auto; }
-.rail-nav { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.card {
+  flex: 0 0 min(84vw, 430px); scroll-snap-align: start; position: relative; display: flex; flex-direction: column;
+  background: var(--cream); padding: 58px 28px 26px; border-bottom: 2px solid var(--gold);
+}
+.card::before { content: "\201C"; position: absolute; left: 24px; top: 6px; font-family: var(--serif); font-size: 5rem; line-height: 1; color: var(--gold); }
+.card p { font-family: var(--serif); font-style: italic; font-size: clamp(1.3125rem, 2.3vw, 1.5rem); line-height: 1.34; margin: 0 0 12px; }
+.card .mark { position: absolute; right: 22px; top: 16px; margin: 0; display: flex; align-items: center; gap: 8px; font-style: normal; font-size: 1rem; line-height: 1; color: var(--navy-2); font-family: var(--sans); }
+.card .mark svg { width: 46px; height: 46px; display: block; }
+.card .mark circle { fill: none; transform: rotate(-90deg); transform-origin: 50px 50px; stroke-width: 5; }
+.card .mark .t { stroke: var(--rule); }
+.card .mark .a { stroke: var(--gold); stroke-linecap: round; }
+.card .mark text { font-family: var(--serif); font-size: 38px; font-weight: 500; text-anchor: middle; fill: var(--navy); font-style: normal; }
+.card footer { margin-top: auto; padding-top: 18px; }
+.card footer::before { content: ""; display: block; width: 36px; height: 1px; background: var(--gold); margin-bottom: 12px; }
+.rail-nav { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
 .rail-nav button { width: 44px; height: 44px; border: 1px solid var(--navy); background: transparent; color: var(--navy); padding: 0; cursor: pointer; border-radius: 0; }
 .rail-nav button:hover { background: var(--navy); color: var(--cream); }
 .rail-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; display: block; margin: 0 auto; }
-.rail-nav span { font-size: 1rem; color: var(--navy-2); margin-left: 6px; }
+.rail-nav span { font-family: var(--serif); font-size: 1.25rem; color: var(--navy); margin-left: 8px; }
 @media (prefers-reduced-motion: reduce) { .ring .arc { transition: none !important; } }
 
 /* How it works: a real sequence, so it is numbered */

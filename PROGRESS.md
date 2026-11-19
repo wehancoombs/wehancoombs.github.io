@@ -1026,3 +1026,7 @@ His one remaining issue was the headshot appearing twice on the home page. In Ab
 ## 2026-11-19 (10:40): About, his way (styles now `site.css?v=8`)
 
 His notes: the figure should point at the examples under About, which can be squeezed or simplified to fit, and a line should cross the figure where it ends so the cut-off legs do not float. Now: the sentence about him comes first; under it the figure stands on a gold rule and points at three short links beside him ("Watch me teach", "Student evaluations", "Full resume"; the "Opens in…" notes are gone); the email and "Pretoria East, South Africa." sit under the rule.
+
+## 2026-11-19 (10:50): comments as one scrolling band (styles now `site.css?v=9`)
+
+His note: no main comment with the rest below it; one band, starting with the best one, then scroll; and make the section look better. Now: the heading, then one row of nine cards to swipe through, then the two arrow buttons with a count ("3 of 9"). The Garsfontein mentor comes first (his choice of the strongest), then the honours student on one-on-one consultations (the former large one), the lecturer (98), Abbotts (95), the honours student on writing, Dr Black, the two first-years, Prof Ruttkamp-Bloem. Each card: a gold opening quotation mark, the words in larger italic, a short gold rule above who said it, a gold line along the bottom. The two marks are small gold rings (98 and 95) in the card's corner, echoing the rings under the headline.
