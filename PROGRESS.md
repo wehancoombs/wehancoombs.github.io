@@ -1157,3 +1157,8 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - Price is now handled in the process: step 2 of How it works says the rate (home) or the fee (talks) is agreed in writing.
 - The rates themselves have not changed: School English R400 an hour, university and other writing R500 an hour, a talk from R3,500, a half-day workshop from R6,500.
 - "Writing coaching" stays as the term, though he and the reviewer disagree about it.
+
+## 2026-11-19 (19:40): one follow-up to the price removal, published with it
+
+- The talks page's navy button said "See coaching and rates", but the coaching page no longer shows rates. It now says "See how the coaching works".
+- Checked on the live site after publishing: no rand amounts on either page.
