@@ -167,7 +167,11 @@ a:hover { text-decoration-color: var(--gold); }
 .also .btn { margin-top: 26px; }
 
 /* Talks page */
-.hero.slim { padding-bottom: clamp(36px, 5vw, 56px); }
+.hero.slim { --foot: clamp(36px, 5vw, 56px); padding-bottom: var(--foot); }
+/* Talks page: the line drawing stands on the rule under the page top, turned to point at the button (phones) or the title (wide screens) */
+.with-presenter .act { align-items: flex-end; flex-wrap: nowrap; justify-content: space-between; }
+.with-presenter .act .btn { flex: none; white-space: nowrap; }
+.presenter { display: block; flex: none; width: auto; height: 150px; margin-bottom: calc(-1 * var(--foot)); transform: scaleX(-1); }
 .hero.slim h1 { font-size: clamp(2.5rem, 7.4vw, 4.75rem); }
 .speaker .who-me { margin-bottom: clamp(28px, 4vw, 44px); }
 .speaker .who-me img { width: 88px; height: 88px; border: 1px solid var(--gold-light); }
@@ -231,6 +235,9 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
   .rows li > .ico svg { width: 30px; height: 30px; }
   .rows h3 { padding-top: 10px; }
   .rows li > .price, .rows li > .fee { grid-column: 3; grid-row: 1; text-align: right; padding-top: 14px; }
+  .with-presenter .wrap { position: relative; }
+  .with-presenter .act { justify-content: flex-start; }
+  .presenter { position: absolute; right: 2%; bottom: calc(-1 * var(--foot)); margin: 0; height: clamp(230px, 27vw, 330px); }
 }
 @media (min-width: 980px) {
   .split { display: grid; grid-template-columns: 17rem 1fr; column-gap: 56px; }
@@ -248,5 +255,6 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
 @media (max-width: 350px) {
   .name { font-size: 1.0625rem; }
   .btn.small { font-size: .8125rem; padding: 9px 9px; }
+  .presenter { height: 98px; }
 }
 @media print { .top { position: static; } .btn { border: 1px solid #000; } }

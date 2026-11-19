@@ -1069,3 +1069,9 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 
 - **About:** only "I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives." The second sentence is out, on his word.
 - **Motto:** "Docendo discimus." is back from the old site, in the foot of every page (home, talks and the not-found page), left of the name. Hovering, tapping or tabbing to it shows the old note word for word: "Docendo discimus: by teaching, we learn. After Seneca, Letters to Lucilius, 7.8." A second tap, a tap elsewhere or Escape hides it. Why the foot: it is where the old site had it, it works as a quiet sign-off on both pages, and it is the Latin for Teach by Learning.
+
+## 2026-11-19 (12:45): "Sessions"; the drawing at the top of the talks page (styles now `site.css?v=14`)
+
+- **Talks:** the heading "Three sessions" is now "Sessions".
+- **Drawing on the talks page:** it stands on the gold rule under the page top, on the right, flipped left to right so he points at the title (wide screens) or at the "Ask about a session" button (phones). Checked at 29 screen widths from 320 to 1920: it never touches the text and always stands on the rule.
+- **Home page:** the drawing stays in About. Claude's reasons: on a phone the top of the home page is already full (headline, rates, button, note); the photo sits in the navy strip straight below, so a drawing at the top would put his face twice on one screen; and in About it has a job, pointing at the three links.
