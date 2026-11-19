@@ -1059,3 +1059,8 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 - **Sweep, checked and fine:** no sideways scrolling at 320, 390, 820 and 1280; no script errors; both comment rows' arrows and counts; keyboard focus rings; text contrast (navy on cream 14 to 1, grey 6.9 to 1; gold is used for large numerals and rules only); the Full Resume and the evaluations PDF are both shared by link.
 - **Could not check from the chat:** the two YouTube links and the test site itself (the web fetch needs his approval and he was away).
 - **Left for him:** check the handwritten mentor quotes; tell the three academics they are quoted; R500 for Other writing; whether to add a sentence of his own to About; whether to add a WhatsApp button (needs his number on the site).
+
+## 2026-11-19 (12:05): About now uses his own words
+
+- The About text was a repeat of the navy strip. It is now two sentences taken word for word from the old site's "About me": "I teach because I have seen what happens when students realise they can think for themselves, and that transformation carries into the rest of their lives. Above all, I keep learning from the people I teach."
+- His call: the quote checks do not hold up publishing. They are separate to-dos now, as is the WhatsApp button decision.
