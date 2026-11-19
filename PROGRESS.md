@@ -1044,3 +1044,18 @@ His notes: the range and sequence felt random; the rings repeated numbers alread
 
 - **Home:** the honours student's card that mentions esotericism is removed. "On explaining" now follows "Teaching online". Seven cards: At school, At school, Teaching online, On explaining, One to one, On writing, From my head of department.
 - **Talks:** the navy band now holds a scrolling row of three cards, the same kind as on the home page: Dr Black on AI first; then a 2021 first-year on a live online lecture to a class of 300 (Claude's pick, because the talks are offered online); then the head of department. The arrows and the "1 of 3" count are in cream on the navy. The row's small script is now also at the foot of `talks/index.html`.
+
+## 2026-11-19 (11:30): talks row in his order, and a full sweep before publishing
+
+- **Talks comments:** four cards in the order he gave: Dr Black on AI, Prof Ruttkamp-Bloem, Prof John F. Finamore ("Wehan is in an excellent position to consider ways of using Platonism to shed light on modern teaching with AI.", checked word for word against his 2026 recommendation letter in Drive), then the 2021 first-year on online lectures.
+- **Sweep, fixed:**
+  - Link previews: two new pictures (`share.jpg`, `share-talks.jpg`, 1200 by 630) so a link pasted into WhatsApp shows the headline, not only the small headshot.
+  - A "page is no longer here" page (`404.html`) for old links, such as the CV PDFs, with a link to the full resume.
+  - `site.webmanifest` still carried the old site's name and dark colours. Now "Dr Wehan Coombs" in cream.
+  - `_config.yml` keeps these working notes out of the published site (they stay in the repository).
+  - The unlinked `materials/` folder (Macbeth sheet and study-guide covers) is out of the new build. It is still on `old-site`.
+  - For search engines: `robots.txt`, `sitemap.xml`, a canonical address on each page, and a short description of the coaching service in the home page's head.
+  - The About drawing now loads only when scrolled to.
+- **Sweep, checked and fine:** no sideways scrolling at 320, 390, 820 and 1280; no script errors; both comment rows' arrows and counts; keyboard focus rings; text contrast (navy on cream 14 to 1, grey 6.9 to 1; gold is used for large numerals and rules only); the Full Resume and the evaluations PDF are both shared by link.
+- **Could not check from the chat:** the two YouTube links and the test site itself (the web fetch needs his approval and he was away).
+- **Left for him:** check the handwritten mentor quotes; tell the three academics they are quoted; R500 for Other writing; whether to add a sentence of his own to About; whether to add a WhatsApp button (needs his number on the site).

@@ -1,0 +1,3 @@
+# Keeps the working notes out of the published site. They stay in the repository.
+exclude:
+  - PROGRESS.md

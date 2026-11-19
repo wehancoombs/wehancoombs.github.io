@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Page not found: Dr Wehan Coombs</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F2E8">
+<script>
+  try { if (/SamsungBrowser/i.test(navigator.userAgent)) document.documentElement.classList.add('samsung'); } catch (e) {}
+</script>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css?v=12">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="/">Dr Wehan Coombs</a>
+    <div class="top-right">
+      <nav aria-label="Sections">
+        <a href="/#coaching">Coaching</a>
+        <a href="/talks/">Talks</a>
+        <a href="/#about">About</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero slim">
+    <div class="wrap">
+      <h1>That page is no longer here.</h1>
+      <p class="lede">This site was rebuilt in November 2026, so some older links have stopped working.</p>
+      <div class="act">
+        <a class="btn" href="/" data-track="404-home">Go to the home page</a>
+      </div>
+      <p class="see"><a href="/talks/" data-track="404-talks">Talks and staff sessions</a><a href="https://docs.google.com/document/d/1uBnQTpyejNyltP889HYTxGxJh2-pD4FMiTWkkgGSCeg/view" target="_blank" rel="noopener" data-track="404-resume">Looking for my CV? Full resume</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <div class="wrap"><a href="/">Dr Wehan Coombs · wehancoombs.com</a></div>
+</footer>
+
+<script>
+  // Named clicks, reported to the visit counter (GoatCounter) when its script is on the page.
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('[data-track]');
+    if (!t) return;
+    try { if (window.goatcounter && goatcounter.count) goatcounter.count({ path: t.getAttribute('data-track'), title: t.getAttribute('data-track'), event: true }); } catch (x) {}
+  });
+</script>
+<script data-goatcounter="https://wehancoombs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
