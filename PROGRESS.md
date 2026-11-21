@@ -1183,3 +1183,11 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 ## 2026-11-21 (07:27): PUBLISHED, on his word: talks fees from R2,500 and from R5,000
 
 - The talks page's fees now agree with the two flyers: "Talk from R2,500" and "Half-day workshop from R5,000" beside each of the three sessions.
+
+## 2026-11-21 (17:45): written comments added to the University writing row (test copy only, not published)
+
+- His decision, made in the Career chat on 21 Nov: written comments on a piece are quoted per piece (his hours x R500, one read and one set of comments). Direct editing is not offered.
+- Home page, University writing row, first line: "Essays, dissertations and theses in any subject. Send me a chapter and I'll return written comments, or we work through it together. I don't edit or write for you."
+- Same row, price: "R500 an hour, or a fixed quote for written comments". The second half sits on its own smaller line under "R500 an hour," so the row fits a phone screen. Checked at 320, 360, 390, 820 and 1280 wide: nothing runs off the side.
+- How it works, step 3: "We meet one to one, in Pretoria East or online, or I send written comments on your draft."
+- Styles are now `site.css?v=23`: one new rule for the smaller second line under a price. The talks page is unchanged apart from that version number.

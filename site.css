@@ -111,6 +111,8 @@ a:hover { text-decoration-color: var(--gold); }
 .rows p { margin: 0; max-width: 34em; }
 .rows .aside { font-size: 1rem; color: var(--navy-2); margin-top: 6px; }
 .rows .price { font-family: var(--serif); font-size: 1.375rem; white-space: nowrap; }
+/* A second, quieter line under a price: it may wrap, the price itself may not */
+.rows .price .or { display: block; font-family: var(--sans); font-size: 1rem; line-height: 1.4; color: var(--navy-2); white-space: normal; margin-top: 2px; }
 .on-navy .rows { border-color: rgba(247, 242, 232, .22); }
 .on-navy .rows li { border-color: rgba(247, 242, 232, .22); }
 
@@ -213,6 +215,9 @@ footer.end .wrap { display: flex; flex-wrap: wrap; justify-content: space-betwee
   .rows li > .ico svg { width: 30px; height: 30px; }
   .rows h3 { padding-top: 10px; }
   .rows li > .price, .rows li > .fee { grid-column: 3; grid-row: 1; text-align: right; padding-top: 14px; }
+  /* A price with a second line runs down beside the text, so it does not push the text away from its heading */
+  .rows li > .price { grid-row: 1 / span 3; }
+  .rows .price .or { max-width: 11em; margin-left: auto; }
 }
 @media (min-width: 980px) {
   .split { display: grid; grid-template-columns: 17rem 1fr; column-gap: 56px; }
