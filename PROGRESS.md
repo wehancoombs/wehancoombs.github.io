@@ -1191,3 +1191,9 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 - Same row, price: "R500 an hour, or a fixed quote for written comments". The second half sits on its own smaller line under "R500 an hour," so the row fits a phone screen. Checked at 320, 360, 390, 820 and 1280 wide: nothing runs off the side.
 - How it works, step 3: "We meet one to one, in Pretoria East or online, or I send written comments on your draft."
 - Styles are now `site.css?v=23`: one new rule for the smaller second line under a price. The talks page is unchanged apart from that version number.
+
+## 2026-11-21 (18:45): PUBLISHED, on his word ("Apply, publish"): written comments on the home page
+
+- Live now, home page: the University writing row's new first line, its price "R500 an hour, or a fixed quote for written comments", and How it works step 3 with "or I send written comments on your draft".
+- Other writing row: "Same terms:" removed, so the row reads "Anything else you are writing in English, for work or for yourself. I coach, you write." It sat under a row that now offers written comments, and "same terms" could have been read as offering them here too. He decided written comments for university work only.
+- Styles are `site.css?v=23`.
