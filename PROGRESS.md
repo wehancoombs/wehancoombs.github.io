@@ -1173,3 +1173,9 @@ Source: the Google Doc "Wehan Website Feedback" (17 points, with screenshots) pl
 ## 2026-11-19 (22:50): PUBLISHED, on his word: Teach by Learning priced like the other two sessions
 
 - "On request" beside Teach by Learning was Claude's placeholder from before the talk had a fee. It now reads "Talk from R3,500" and "Half-day workshop from R6,500", the same as the other two sessions.
+
+## 2026-11-21: talks fees on the test copy now agree with the flyers (not published)
+
+- His two flyers price a talk at R3,500 in person or R2,500 online, and a half-day workshop at R6,500 in person or R5,000 online. The site said "from R3,500" and "from R6,500", which was wrong: online is cheaper, and online is all he offers until April 2027.
+- Claude's call, at his request: the flyers' two-level fees stand. The talks page's three rows now read "Talk from R2,500" and "Half-day workshop from R5,000". On the test copy only, waiting for his "publish".
+- Both flyers (Google Docs) now give the address as wehancoombs.com and the name as "Wehan Coombs, PhD".
